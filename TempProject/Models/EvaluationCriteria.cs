@@ -1,0 +1,21 @@
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
+using TempProject.Repository;
+
+namespace TempProject.Models
+{
+    public class EvaluationCriteria : ISoftDeleteRepository
+    {
+        public int Id { get; set; }
+        public string Comment { get; set; } = "Not Found";
+
+        public string Rating { get; set; } = "Not Found";
+
+
+        [ForeignKey("CustomerReport")]
+        public int CustomerReportId { get; set; }
+        public virtual CustomerReport CustomerReport { get; set; }
+        [DefaultValue(false)]
+        public bool IsDeleted { get; set; }
+    }
+}

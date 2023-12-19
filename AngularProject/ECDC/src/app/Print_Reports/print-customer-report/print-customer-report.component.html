@@ -1,0 +1,295 @@
+<div class="container mb-5" style="margin-top: 8%; overflow: hidden;">
+    <div class="heading_container heading_center d-flex">
+      <h2 class="mx-auto my-4">
+        Customer Satisfaction Evaluation Report 
+      </h2>
+    </div>
+  
+    <div class="form-group">
+        <select class="form-control" (change)="CustomerReportByMonthAndYearSelected($event)">
+          <option value="" disabled selected>Choose Month And Year</option>
+          <option value="{{customerReport.month}} / {{customerReport.year}}" *ngFor="let customerReport of CustomerReport">
+            Month - {{customerReport.month}} / Year :  {{customerReport.year}}
+          </option>
+        </select>
+    </div>
+  
+    <div class="px-4 px-lg-0 m-5">
+      <div class="pb-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12 p-3 bg-white rounded shadow-sm mb-4 print-section" *ngFor="let record of CustomerReportRecord">
+              <div class="table-responsive">
+                <table class="border" style="width: 100%;">
+                  <tr>
+                    <div style="display: flex;">
+                      <img style="margin-left: 30px;" width="100px" src="../../assets/img/ECDC Logo png.png" />
+                    </div>
+                  </tr>
+                </table>
+                <div style="text-align: center; margin-top: 10px;">
+                  <label class="form-label " style="font-weight: bolder; font-size: large; color: black;">
+                    Customer Satisfaction Evaluation Report 
+                  </label>
+                </div>
+  
+                <div class="col-12">
+                  <table class="table table-bordered " style="border: 1px solid black;width: 100%;">
+                    <tbody>
+                      <tr>
+                        <td scope="row">
+                          <div class=" ">
+                            <h6 class=" ">
+                              <span>Client Name :</span>
+                              <span>{{ record. client}}</span>
+                            </h6>
+                          </div>
+                        </td>
+                        <td scope="row">
+                          <div class=" ">
+                            <h6 class=" ">
+                              <span>Client Representative :</span>
+                              <span>{{ record.clientRepresentative }}</span>
+                            </h6>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td scope="row">
+                          <div class =" ">
+                            <h6 class=" ">
+                              <span>Rig Number:</span>
+                              <span>{{ record.rigId }}</span>
+                            </h6>
+                          </div>
+                        </td>
+                        <td scope="row">
+                          <div class=" ">
+                            <h6 class=" ">
+                              <span>Well Name/Location 	:</span>
+                              <span>{{ record.location }}</span>
+                            </h6>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td scope="row">
+                          <div class=" ">
+                            <h6 class=" ">
+                              <span>Date From:</span>
+                              <span>{{ record.dateFrom | date: 'dd-MM-yyyy' }}</span>
+                            </h6>
+                          </div>
+                        </td>
+                        <td scope="row">
+                          <div class=" ">
+                            <h6 class=" ">
+                              <span>Date To:</span>
+                              <span>{{ record.dateTo | date: 'dd-MM-yyyy' }}</span>
+                            </h6>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td scope="row">
+                          <div class =" ">
+                            <h6 class=" ">
+                              <span>Year:</span>
+                              <span>{{ record. year}}</span>
+                            </h6>
+                          </div>
+                        </td>
+                        <td scope="row">
+                          <div class=" ">
+                            <h6 class=" ">
+                              <span>Month 	:</span>
+                              <span>{{ record.month }}</span>
+                            </h6>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+  
+                <div class="col-12">
+                  <table class="table table-borderless">
+                    <tbody>
+                      <tr>
+                        <td scope="row" class="p-0">
+                          <div class="  mt-3">
+                            <h6 class="mb-0">
+                              <span style="font-weight: bold; color: rgb(38, 38, 202); text-decoration: underline;">
+                                Our Dear Customer:  :</span>
+                              <div class="p-1 mt-3" style="border: 1px solid black; max-width: 100%; overflow: hidden;">
+                                <ul>
+                                  <li>
+                                    ECDC  Philosophy of business  and Quality Policy ensure that customers ultimately determine our success. We must constantly strive to deliver a service that exceed their expectations 
+                                  </li>
+                                  <li>
+                                    That is why we kindly ask you to give us your perception of the degree to which our delivered service have fulfilled your requirements.
+                                  </li>
+                                  <li>
+                                    Your completion of this form with your perception and return back is of great value to empower us to continue satisfying your requirements. 
+                                  </li>
+                                </ul>
+                              </div>
+                            </h6>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+  
+                <div class="col-12">
+                  <table class="table table-borderless">
+                    <tbody>
+                      <tr>
+                        <td scope="row" class="p-0">
+                          <div class="  mt-3">
+                            <h6 class="mb-0">
+                             
+                              <div class="p-1 mt-3" style="border: 1px solid black; max-width: 100%; overflow: hidden;">
+                                <ul>
+                                  <li>
+                                    Rate your perception as (5)   Fully Satisfactory  & (0) Unsatisfactory     
+                                  </li>
+                                  <li>
+                                    If your rate is less than (3), Your comments would be highly appreciated 
+                                  </li>
+                                </ul>
+                              </div>
+                            </h6>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              
+  
+                <div class="col-12 mt-4" style="margin-bottom: 10px;">
+                  <table class="table "
+                    style="font-size: 14px;   width: 100%;">
+                    <div class="table-bordered" style="display: flex;text-align: center; ">
+                      <table class="table" style="border: 1px solid black;">
+                        <tr>
+                          <th>No</th>
+                          <th>Evaluation Criteria</th>
+                          <th>Rating</th>
+                          <th>Comment</th>
+                        </tr>
+                        <tr>
+                          <td>1</td>
+                          <td>Rig performance (time/depth)</td>
+                          <td>{{ record.rating }}</td>
+                          <td>{{ record.commentEvaluationCriteria }}</td>
+                        </tr>
+                        <tr>
+                          <td>2</td>
+                          <td>Down time Evaluation </td>
+                          <td>{{ record.rating1 }}</td>
+                          <td>{{ record.commentEvaluationCriteria1 }}</td>
+                        </tr>
+                        <tr>
+                          <td>3</td>
+                          <td>Behavior of our people </td>
+                          <td>{{ record.rating2 }}</td>
+                          <td>{{ record.commentEvaluationCriteria2 }}</td>
+                        </tr>
+                        <tr>
+                          <td>4</td>
+                          <td>Compliance with your company regulation</td>
+                          <td>{{ record.rating3 }}</td>
+                          <td>{{ record.commentEvaluationCriteria3 }}</td>
+                        </tr>
+                        <tr>
+                          <td>5</td>
+                          <td>Compliance with the rules of regulatory parties</td>
+                          <td>{{ record.rating4 }}</td>
+                          <td>{{ record.commentEvaluationCriteria4 }}</td>
+                        </tr>
+                        <tr>
+                          <td>6</td>
+                          <td>Keeping Safety regulations during work (ISM code) </td>
+                          <td>{{ record.rating5 }}</td>
+                          <td>{{ record.commentEvaluationCriteria5 }}</td>
+                        </tr>
+                        <tr>
+                          <td>7</td>
+                          <td>Provided accommodation/living facility</td>
+                          <td>{{ record.rating6 }}</td>
+                          <td>{{ record.commentEvaluationCriteria6 }}</td>
+                        </tr>
+                        <tr>
+                          <td>8</td>
+                          <td>Invoicing (time/accuracy)</td>
+                          <td>{{ record.rating7 }}</td>
+                          <td>{{ record.commentEvaluationCriteria7 }}</td>
+                        </tr>
+                      </table>
+                    
+                    </div>
+                  </table>
+                </div>
+  
+              
+                <div class="d-flex justify-content-evenly mx-auto">
+                  <div>
+                    <label style="font-weight: bold;">Evaluation Result: </label>
+                    <span style="height: 25px; ">
+                      = {{record.evaluationResult}}
+                    </span>
+                  </div>
+                </div>
+  
+                <div class="col-12">
+                  <table class="table table-borderless">
+                    <tbody>
+                      <tr>
+                        <td scope="row" class="p-0">
+                          <div class="  mt-3">
+                            <h6 class="mb-0">
+                              <span style="font-weight: bold; color: rgb(38, 38, 202); text-decoration: underline;">
+                                Comments :</span>
+                              <div class="p-1 mt-3" style="border: 1px solid black; max-width: 100%; overflow: hidden;">
+                                <ul>
+                                  <li>
+                                    {{ record.comment }}
+                                  </li>
+                                </ul>
+                              </div>
+                            </h6>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                
+                <div class="d-flex justify-content-evenly mx-auto" >
+                  <div>
+                    <label style="font-weight: bold;">Customer Representative: </label>
+                    <span style="height: 25px; ">
+                    {{record.customerRepresentative}}
+                    </span>
+                  </div>
+                  <div>
+                    <label style="font-weight: bold;">ECDC Representative : </label>
+                    <span style="height: 25px; ">
+                    {{record.ecdcRepresentative}}
+                    </span>
+                  </div>
+                </div>
+              </div>
+  
+            </div>
+          </div>
+          <input *ngIf="Data" type="submit" class="btn btn-primary my-4" value="Print Data" (click)="print()" />
+        </div>
+      </div>
+    </div>
+  
+  
