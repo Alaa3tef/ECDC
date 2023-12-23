@@ -15,6 +15,7 @@ namespace TempProject.Controllers
     {
         public IRepository<CustomerReport> CustomerReportRepo { get; set; }
         public IRepository<EvaluationCriteria> EvaluationCriteriaRepo { get; set; }
+        public IRepository<Rig> RigRepo { get; set; }
 
         public ICustomerReportRepository CustomerReportRepoistory { get; set; }
 
@@ -24,7 +25,8 @@ namespace TempProject.Controllers
         public CustomerReportController(Microsoft.AspNetCore.Identity.UserManager<IdentityUser> _userManager,
             IRepository<CustomerReport> _CustomerReportRepo,
             ICustomerReportRepository _CustomerReportRepoistory,
-            IRepository<EvaluationCriteria> _EvaluationCriteriaRepo)
+            IRepository<EvaluationCriteria> _EvaluationCriteriaRepo,
+            IRepository<Rig> _RigRepo)
 
             
         {
@@ -32,357 +34,11 @@ namespace TempProject.Controllers
             this.CustomerReportRepoistory = _CustomerReportRepoistory;
             this.userManager = _userManager;
             this.EvaluationCriteriaRepo = _EvaluationCriteriaRepo;
+			this.RigRepo = _RigRepo;
 
         }
 
-        //[HttpGet("GetData")]
-        //public async Task<ResultDTO> GetAllWithData(string UserID, string UserRole)
-        //{
-        //    ResultDTO result = new ResultDTO();
-
-        //    try
-        //    {
-        //        if (string.Equals(UserRole, "Admin", StringComparison.OrdinalIgnoreCase))
-        //        {
-        //            List<CustomerReport> temp = CustomerReportRepoistory.getall();
-        //            List<CustomerReportResponseDTO> newTemp = new List<CustomerReportResponseDTO>();
-
-        //            Console.WriteLine(temp.Count);
-
-        //            foreach (CustomerReport customerReport in temp)
-        //            {
-
-        //                CustomerReportResponseDTO customerReportResponseDTO = new CustomerReportResponseDTO();
-        //                customerReportResponseDTO.Id = customerReport.Id;
-        //                customerReportResponseDTO.RigId = customerReport.Rig.Number;
-        //                customerReportResponseDTO.DateFrom = customerReport.DateFrom;
-        //                customerReportResponseDTO.DateTo = customerReport.DateTo;
-        //                customerReportResponseDTO.Year = customerReport.Year;
-        //                //customerReportResponseDTO.RatingId = customerReport.RatingId;
-        //                //customerReportResponseDTO.RatingName = customerReport.Rating.Name;
-        //                customerReportResponseDTO.Client = customerReport.Client;
-        //                customerReportResponseDTO.ClientRepresentative = customerReport.ClientRepresentative;
-        //                customerReportResponseDTO.Comment = customerReport.Comment;
-        //                customerReportResponseDTO.Location = customerReport.Location;
-        //                customerReportResponseDTO.ECDCRepresentative = customerReport.ECDCRepresentative;
-        //                customerReportResponseDTO.CustomerRepresentative = customerReport.CustomerRepresentative;
-        //                customerReportResponseDTO.EvaluationResult = customerReport.EvaluationResult;
-        //                customerReportResponseDTO.Month = customerReport.Month;
-
-        //                customerReportResponseDTO.userName = customerReport.user.UserName;
-        //                customerReportResponseDTO.userID = customerReport.user.Id;
-        //                List<EvaluationCriteria> evaluationCriterias = EvaluationCriteriaRepo.getall().Where(emp => emp.CustomerReportId == customerReport.Id).ToList();
-
-
-        //                // Ensure at least one rating is present
-        //                if (evaluationCriterias.Any())
-        //                {
-        //                    //// Set the first rating
-        //                    //customerReportResponseDTO.Rating = evaluationCriterias[0].Rating;
-        //                    //customerReportResponseDTO.Rating1 = evaluationCriterias[1].Rating;
-        //                    //customerReportResponseDTO.Rating2 = evaluationCriterias[2].Rating;
-        //                    //customerReportResponseDTO.Rating3 = evaluationCriterias[3].Rating;
-        //                    //customerReportResponseDTO.Rating4 = evaluationCriterias[4].Rating;
-        //                    //customerReportResponseDTO.Rating5 = evaluationCriterias[5].Rating;
-        //                    //customerReportResponseDTO.Rating6 = evaluationCriterias[6].Rating;
-        //                    //customerReportResponseDTO.Rating7 = evaluationCriterias[7].Rating;
-
-        //                    // Set the ratings
-        //                    for (int i = 0; i < Math.Min(8, evaluationCriterias.Count); i++)
-        //                    {
-        //                        switch (i)
-        //                        {
-        //                            case 0:
-        //                                customerReportResponseDTO.Rating = evaluationCriterias[i].Rating;
-        //                                customerReportResponseDTO.CommentEvaluationCriteria = evaluationCriterias[i].Comment;
-        //                                break;
-        //                            case 1:
-        //                                customerReportResponseDTO.Rating1 = evaluationCriterias[i].Rating;
-        //                                customerReportResponseDTO.CommentEvaluationCriteria1 = evaluationCriterias[i].Comment;
-        //                                break;
-        //                            case 2:
-        //                                customerReportResponseDTO.Rating2 = evaluationCriterias[i].Rating;
-        //                                customerReportResponseDTO.CommentEvaluationCriteria2 = evaluationCriterias[i].Comment;
-        //                                break;
-        //                            case 3:
-        //                                customerReportResponseDTO.Rating3 = evaluationCriterias[i].Rating;
-        //                                customerReportResponseDTO.CommentEvaluationCriteria3 = evaluationCriterias[i].Comment;
-        //                                break;
-        //                            case 4:
-        //                                customerReportResponseDTO.Rating4 = evaluationCriterias[i].Rating;
-        //                                customerReportResponseDTO.CommentEvaluationCriteria4 = evaluationCriterias[i].Comment;
-        //                                break;
-        //                            case 5:
-        //                                customerReportResponseDTO.Rating5 = evaluationCriterias[i].Rating;
-        //                                customerReportResponseDTO.CommentEvaluationCriteria5 = evaluationCriterias[i].Comment;
-        //                                break;
-        //                            case 6:
-        //                                customerReportResponseDTO.Rating6 = evaluationCriterias[i].Rating;
-        //                                customerReportResponseDTO.CommentEvaluationCriteria6 = evaluationCriterias[i].Comment;
-        //                                break;
-        //                            case 7:
-        //                                customerReportResponseDTO.Rating7 = evaluationCriterias[i].Rating;
-        //                                customerReportResponseDTO.CommentEvaluationCriteria7 = evaluationCriterias[i].Comment;
-        //                                break;
-        //                        }
-        //                    }
-        //                    // Assign comments for the remaining criteria (if any)
-        //                    for (int i = Math.Min(8, evaluationCriterias.Count); i < 8; i++)
-        //                    {
-        //                        switch (i)
-        //                        {
-        //                            case 0:
-        //                                customerReportResponseDTO.CommentEvaluationCriteria = string.Empty;
-        //                                break;
-        //                            case 1:
-        //                                customerReportResponseDTO.CommentEvaluationCriteria1 = string.Empty;
-        //                                break;
-        //                            case 2:
-        //                                customerReportResponseDTO.CommentEvaluationCriteria2 = string.Empty;
-        //                                break;
-        //                            case 3:
-        //                                customerReportResponseDTO.CommentEvaluationCriteria3 = string.Empty;
-        //                                break;
-        //                            case 4:
-        //                                customerReportResponseDTO.CommentEvaluationCriteria4 = string.Empty;
-        //                                break;
-        //                            case 5:
-        //                                customerReportResponseDTO.CommentEvaluationCriteria5 = string.Empty;
-        //                                break;
-        //                            case 6:
-        //                                customerReportResponseDTO.CommentEvaluationCriteria6 = string.Empty;
-        //                                break;
-        //                            case 7:
-        //                                customerReportResponseDTO.CommentEvaluationCriteria7 = string.Empty;
-        //                                break;
-        //                        }
-        //                    }
-        //                        //// Assign comments based on their count
-        //                        //for (int i = 0; i < 8; i++)
-        //                        //{
-        //                        //    // Assign comments only if available
-        //                        //    if (i < evaluationCriterias.Count)
-        //                        //    {
-        //                        //        switch (i)
-        //                        //        {
-        //                        //            case 0:
-        //                        //                customerReportResponseDTO.CommentEvaluationCriteria = i < evaluationCriterias.Count ? evaluationCriterias[i].Comment : string.Empty;
-        //                        //                break;
-        //                        //            case 1:
-        //                        //                customerReportResponseDTO.CommentEvaluationCriteria1 = i < evaluationCriterias.Count ? evaluationCriterias[i].Comment : string.Empty;
-        //                        //                break;
-        //                        //            case 2:
-        //                        //                customerReportResponseDTO.CommentEvaluationCriteria2 = i < evaluationCriterias.Count ? evaluationCriterias[i].Comment : string.Empty;
-        //                        //                break;
-        //                        //            case 3:
-        //                        //                customerReportResponseDTO.CommentEvaluationCriteria3 = i < evaluationCriterias.Count ? evaluationCriterias[i].Comment : string.Empty;
-        //                        //                break;
-        //                        //            case 4:
-        //                        //                customerReportResponseDTO.CommentEvaluationCriteria4 = i < evaluationCriterias.Count ? evaluationCriterias[i].Comment : string.Empty;
-        //                        //                break;
-        //                        //            case 5:
-        //                        //                customerReportResponseDTO.CommentEvaluationCriteria5 = i < evaluationCriterias.Count ? evaluationCriterias[i].Comment : string.Empty;
-        //                        //                break;
-        //                        //            case 6:
-        //                        //                customerReportResponseDTO.CommentEvaluationCriteria6 = i < evaluationCriterias.Count ? evaluationCriterias[i].Comment : string.Empty;
-        //                        //                break;
-        //                        //            case 7:
-        //                        //                customerReportResponseDTO.CommentEvaluationCriteria7 = i < evaluationCriterias.Count ? evaluationCriterias[i].Comment : string.Empty;
-        //                        //                break;
-
-        //                        //        }
-
-        //                        //    }
-
-        //                        //    else
-        //                        //    {
-        //                        //        // If no comment is available, set an empty string or handle as needed
-        //                        //        switch (i)
-        //                        //        {
-        //                        //            case 0:
-        //                        //                customerReportResponseDTO.CommentEvaluationCriteria = string.Empty;
-        //                        //                break;
-        //                        //            case 1:
-        //                        //                customerReportResponseDTO.CommentEvaluationCriteria1 = string.Empty;
-        //                        //                break;
-        //                        //            case 2:
-        //                        //                customerReportResponseDTO.CommentEvaluationCriteria2 = string.Empty;
-        //                        //                break;
-        //                        //            case 3:
-        //                        //                customerReportResponseDTO.CommentEvaluationCriteria3 = string.Empty;
-        //                        //                break;
-        //                        //            case 4:
-        //                        //                customerReportResponseDTO.CommentEvaluationCriteria4 = string.Empty;
-        //                        //                break;
-        //                        //            case 5:
-        //                        //                customerReportResponseDTO.CommentEvaluationCriteria5 = string.Empty;
-        //                        //                break;
-        //                        //            case 6:
-        //                        //                customerReportResponseDTO.CommentEvaluationCriteria6 = string.Empty;
-        //                        //                break;
-        //                        //            case 7:
-        //                        //                customerReportResponseDTO.CommentEvaluationCriteria7 = string.Empty;
-        //                        //                break;
-        //                        //        }
-        //                        //    }
-        //                        //}
-
-
-
-        //                        newTemp.Add(customerReportResponseDTO);
-        //                }
-
-
-
-        //                if (newTemp != null && newTemp.Count > 0)
-        //                {
-        //                    result.Message = "Success";
-        //                    result.Statescode = 200;
-        //                    result.Data = newTemp;
-
-        //                    return result;
-        //                }
-        //            }
-
-
-        //        }
-
-        //        else if (string.Equals(UserRole, "User", StringComparison.OrdinalIgnoreCase))
-        //        {
-        //            List<CustomerReport> temp = CustomerReportRepoistory.getall().Where(a => a.user.Id == UserID).ToList();
-        //            List<CustomerReportResponseDTO> newTemp = new List<CustomerReportResponseDTO>();
-        //            foreach (CustomerReport customerReport in temp)
-        //            {
-
-        //                CustomerReportResponseDTO customerReportResponseDTO = new CustomerReportResponseDTO();
-        //                customerReportResponseDTO.Id = customerReport.Id;
-        //                customerReportResponseDTO.RigId = customerReport.Rig.Number;
-        //                customerReportResponseDTO.DateFrom = customerReport.DateFrom;
-        //                customerReportResponseDTO.DateTo = customerReport.DateTo;
-        //                customerReportResponseDTO.Year = customerReport.Year;
-        //                //customerReportResponseDTO.RatingId = customerReport.RatingId;
-        //                //customerReportResponseDTO.RatingName = customerReport.Rating.Name;
-        //                customerReportResponseDTO.Client = customerReport.Client;
-        //                customerReportResponseDTO.ClientRepresentative = customerReport.ClientRepresentative;
-        //                customerReportResponseDTO.Comment = customerReport.Comment;
-        //                customerReportResponseDTO.Location = customerReport.Location;
-        //                customerReportResponseDTO.ECDCRepresentative = customerReport.ECDCRepresentative;
-        //                customerReportResponseDTO.EvaluationResult = customerReport.EvaluationResult;
-        //                customerReportResponseDTO.Month = customerReport.Month;
-        //                customerReportResponseDTO.CustomerRepresentative = customerReport.CustomerRepresentative;
-
-        //                customerReportResponseDTO.userName = customerReport.user.UserName;
-        //                customerReportResponseDTO.userID = customerReport.user.Id;
-        //                List<EvaluationCriteria> evaluationCriterias = EvaluationCriteriaRepo.getall().Where(emp => emp.CustomerReportId == customerReport.Id).ToList();
-
-
-
-        //                // Ensure at least one rating is present
-        //                if (evaluationCriterias.Any())
-        //                {
-        //                    // Set the first rating
-        //                    customerReportResponseDTO.Rating = evaluationCriterias[0].Rating;
-        //                    customerReportResponseDTO.Rating1 = evaluationCriterias[1].Rating;
-        //                    customerReportResponseDTO.Rating2 = evaluationCriterias[2].Rating;
-        //                    customerReportResponseDTO.Rating3 = evaluationCriterias[3].Rating;
-        //                    customerReportResponseDTO.Rating4 = evaluationCriterias[4].Rating;
-        //                    customerReportResponseDTO.Rating5 = evaluationCriterias[5].Rating;
-        //                    customerReportResponseDTO.Rating6 = evaluationCriterias[6].Rating;
-        //                    customerReportResponseDTO.Rating7 = evaluationCriterias[7].Rating;
-
-        //                    // Assign comments based on their count
-        //                    for (int i = 0; i < 8; i++)
-        //                    {
-        //                        // Assign comments only if available
-        //                        if (i < evaluationCriterias.Count)
-        //                        {
-        //                            switch (i)
-        //                            {
-        //                                case 0:
-        //                                    customerReportResponseDTO.CommentEvaluationCriteria = evaluationCriterias[i].Comment;
-        //                                    break;
-        //                                case 1:
-        //                                    customerReportResponseDTO.CommentEvaluationCriteria1 = evaluationCriterias[i].Comment;
-        //                                    break;
-        //                                case 2:
-        //                                    customerReportResponseDTO.CommentEvaluationCriteria2 = evaluationCriterias[i].Comment;
-        //                                    break;
-        //                                case 3:
-        //                                    customerReportResponseDTO.CommentEvaluationCriteria3 = evaluationCriterias[i].Comment;
-        //                                    break;
-        //                                case 4:
-        //                                    customerReportResponseDTO.CommentEvaluationCriteria4 = evaluationCriterias[i].Comment;
-        //                                    break;
-        //                                case 5:
-        //                                    customerReportResponseDTO.CommentEvaluationCriteria5 = evaluationCriterias[i].Comment;
-        //                                    break;
-        //                                case 6:
-        //                                    customerReportResponseDTO.CommentEvaluationCriteria6 = evaluationCriterias[i].Comment;
-        //                                    break;
-        //                                case 7:
-        //                                    customerReportResponseDTO.CommentEvaluationCriteria7 = evaluationCriterias[i].Comment;
-        //                                    break;
-
-        //                            }
-
-        //                        }
-
-        //                        else
-        //                        {
-        //                            // If no comment is available, set an empty string or handle as needed
-        //                            switch (i)
-        //                            {
-        //                                case 0:
-        //                                    customerReportResponseDTO.CommentEvaluationCriteria = string.Empty;
-        //                                    break;
-        //                                case 1:
-        //                                    customerReportResponseDTO.CommentEvaluationCriteria1 = string.Empty;
-        //                                    break;
-        //                                case 2:
-        //                                    customerReportResponseDTO.CommentEvaluationCriteria2 = string.Empty;
-        //                                    break;
-        //                                case 3:
-        //                                    customerReportResponseDTO.CommentEvaluationCriteria3 = string.Empty;
-        //                                    break;
-        //                                case 4:
-        //                                    customerReportResponseDTO.CommentEvaluationCriteria4 = string.Empty;
-        //                                    break;
-        //                                case 5:
-        //                                    customerReportResponseDTO.CommentEvaluationCriteria5 = string.Empty;
-        //                                    break;
-        //                                case 6:
-        //                                    customerReportResponseDTO.CommentEvaluationCriteria6 = string.Empty;
-        //                                    break;
-        //                                case 7:
-        //                                    customerReportResponseDTO.CommentEvaluationCriteria7 = string.Empty;
-        //                                    break;
-        //                            }
-        //                        }
-        //                    }
-        //                    newTemp.Add(customerReportResponseDTO);
-        //                }
-
-
-        //            }
-        //            //result.Data = prod;
-
-        //            if (newTemp != null)
-        //            {
-        //                result.Message = "Success";
-        //                result.Statescode = 200;
-        //                result.Data = newTemp;
-
-        //                return result;
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        result.Statescode = 404;
-        //        result.Message = "data not found";
-        //    }
-        //    return result;
-        //}
+ 
 
         [HttpGet("GetData")]
         public async Task<ResultDTO> GetAllWithData(string UserID, string UserRole)
@@ -489,8 +145,6 @@ namespace TempProject.Controllers
 
             return result;
         }
-
-
 
 
         [HttpGet("GetDataForExcel")]
@@ -1571,9 +1225,6 @@ namespace TempProject.Controllers
 
         }
 
-
-
-
         [HttpPost]
         public ActionResult<ResultDTO> AddCustomerReport ([FromForm] CustomerReportDTO customerReport)
         {
@@ -1785,182 +1436,190 @@ namespace TempProject.Controllers
 
         //********************* Analysis For User ********************************
 
-        //[HttpGet("GetDrillAnalysisByDrillTypeAndMonth")]
-        //public ActionResult<ResultDTO> GetDrillAnalysisWithCompareByMonth(int Month1, int Month2, string UserRole,string UserId)
-        //{
+        [HttpGet("GetCustomerAnalysisByYearForUser")]
+        public ActionResult<ResultDTO> GetCustomerAnalysisByYearForUser(int Year, string UserRole, string UserId)
+        {
 
-        //    ResultDTO result = new ResultDTO();
+            ResultDTO result = new ResultDTO();
 
-        //    try
-        //    {
-        //        if (string.Equals(UserRole, "User", StringComparison.OrdinalIgnoreCase))
-        //        {
-        //            List<Drill> temp = DrillRepoistory.getall().Where(r => (r.Date.Month == Month1 || r.Date.Month == Month2) && r.user.Id==UserId).ToList();
+            try
+            {
+                if (string.Equals(UserRole, "User", StringComparison.OrdinalIgnoreCase))
+                {
+                    List<CustomerReport> temp = CustomerReportRepoistory.getall().Where(r => r.Year == Year && r.user.Id == UserId).ToList();
 
-        //            List<DrillResponseDTO> newTemp = new List<DrillResponseDTO>();
-        //            foreach (Drill drill in temp)
-        //            {
-        //                DrillResponseDTO drillDTO = new DrillResponseDTO();
-        //                drillDTO.Id = drill.Id;
-        //                drillDTO.RigId = drill.Rig.Id;
-        //                drillDTO.Date= drill.Date;
-        //                drillDTO.DrillTypeName = drill.DrillType.Name;
-        //                drillDTO.userID = drill.user.Id;
-        //                newTemp.Add(drillDTO);
-        //            }
-        //            if (newTemp != null)
-        //            {
+                    List<CustomerReportDTO> newTemp = new List<CustomerReportDTO>();
+                    foreach (CustomerReport customerReport in temp)
+                    {
+                        CustomerReportDTO customerReportResponseDTO = new CustomerReportDTO();
+                        customerReportResponseDTO.Id = customerReport.Id;
+                        customerReportResponseDTO.RigId = customerReport.Rig.Id;
+                        customerReportResponseDTO.EvaluationResult = customerReport.EvaluationResult;
+                        customerReportResponseDTO.userID = customerReport.user.Id;
+                        customerReportResponseDTO.Month = customerReport.Month;
+                        customerReportResponseDTO.RigNumber = customerReport.Rig.Number;
 
-        //                result.Message = "Success";
-        //                result.Statescode = 200;
-        //                result.Data = newTemp;
+                        newTemp.Add(customerReportResponseDTO);
+                    }
+                    if (newTemp != null)
+                    {
 
-        //                return result;
-        //            }
-        //        }
-               
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        result.Statescode = 404;
-        //        result.Message = "data not found";
-        //    }
-        //    return result;
-        //}
+                        result.Message = "Success";
+                        result.Statescode = 200;
+                        result.Data = newTemp;
 
-        //[HttpGet("GetDrillAnalysisByDrillTypeAndYear")]
-        //public ActionResult<ResultDTO> GetDrillAnalysisByDrillTypeAndYear(int Year, string UserRole, string UserId)
-        //{
+                        return result;
+                    }
+                }
 
-        //    ResultDTO result = new ResultDTO();
+            }
+            catch (Exception ex)
+            {
+                result.Statescode = 404;
+                result.Message = "data not found";
+            }
+            return result;
+        }
 
-        //    try
-        //    {
-        //        if (string.Equals(UserRole, "User", StringComparison.OrdinalIgnoreCase))
-        //        {
-        //            List<Drill> temp = DrillRepoistory.getall().Where(r =>  r.Date.Year == Year && r.user.Id == UserId) .ToList();
+        /// *********************** Analysis For Admin ************************
+        [HttpGet("GetCustomerAnalysisWithCompareByYear")]
+        public ActionResult<ResultDTO> GetCustomerAnalysisWithCompareByYear([FromQuery] int Year, string UserRole)
+        {
 
-        //            List<DrillResponseDTO> newTemp = new List<DrillResponseDTO>();
-        //            foreach (Drill drill in temp)
-        //            {
-        //                DrillResponseDTO drillDTO = new DrillResponseDTO();
-        //                drillDTO.Id = drill.Id;
-        //                drillDTO.RigId = drill.Rig.Id;
-        //                drillDTO.Date = drill.Date;
-        //                drillDTO.DrillTypeName = drill.DrillType.Name;
-        //                drillDTO.userID = drill.user.Id;
-        //                newTemp.Add(drillDTO);
-        //            }
-        //            if (newTemp != null)
-        //            {
+            ResultDTO result = new ResultDTO();
 
-        //                result.Message = "Success";
-        //                result.Statescode = 200;
-        //                result.Data = newTemp;
+            try
+            {
+                if (string.Equals(UserRole, "Admin", StringComparison.OrdinalIgnoreCase))
+                {
+                    List<CustomerReport> temp = CustomerReportRepoistory.getall().Where(r => (r.Year == Year)).ToList();
 
-        //                return result;
-        //            }
-        //        }
-               
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        result.Statescode = 404;
-        //        result.Message = "data not found";
-        //    }
-        //    return result;
-        //}
+                    List<CustomerReportDTO> newTemp = new List<CustomerReportDTO>();
+                    foreach (CustomerReport customerReport in temp)
+                    {
+                        CustomerReportDTO customerReportResponseDTO = new CustomerReportDTO();
+                        customerReportResponseDTO.Id = customerReport.Id;
+                        customerReportResponseDTO.RigId = customerReport.Rig.Id;
+                        customerReportResponseDTO.RigNumber = customerReport.Rig.Number;
 
-        //           /// *********************** Analysis For Admin ************************
-        //[HttpGet("GetDrillAnalysisWithCompareByYear")]
-        //public ActionResult<ResultDTO> GetDrillAnalysisWithCompare([FromQuery] int Year, string UserRole)
-        //{
+                        customerReportResponseDTO.EvaluationResult = customerReport.EvaluationResult;
+                        customerReportResponseDTO.Month = customerReport.Month;
+                        customerReportResponseDTO.userID = customerReport.user.Id;
 
-        //    ResultDTO result = new ResultDTO();
+                        newTemp.Add(customerReportResponseDTO);
+                    }
 
-        //    try
-        //    {
-        //         if (string.Equals(UserRole, "Admin", StringComparison.OrdinalIgnoreCase))
-        //        {
-        //            List<Drill> temp = DrillRepoistory.getall().Where(r => (r.Date.Year == Year)).ToList();
+                  
 
+                    if (newTemp != null)
+                    {
 
-        //            List<DrillResponseDTO> newTemp = new List<DrillResponseDTO>();
-        //            foreach (Drill drill in temp)
-        //            {
-        //                DrillResponseDTO drillDTO = new DrillResponseDTO();
-        //                drillDTO.Id = drill.Id;
-        //                drillDTO.RigId = drill.Rig.Id;
-        //                drillDTO.Date = drill.Date;
-        //                drillDTO.DrillTypeName = drill.DrillType.Name;
-        //                drillDTO.userID = drill.user.Id;
+                        result.Message = "Success";
+                        result.Statescode = 200;
+                        result.Data = newTemp;
 
-        //                newTemp.Add(drillDTO);
-        //            }
-        //            if (newTemp != null)
-        //            {
+                        return result;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Statescode = 404;
+                result.Message = "data not found";
+            }
+            return result;
+        }
 
-        //                result.Message = "Success";
-        //                result.Statescode = 200;
-        //                result.Data = newTemp;
+        [HttpGet("GetCustomerAnalysisWithCompareByMonth")]
+        public ActionResult<ResultDTO> GetCustomerAnalysisWithCompareByMonth([FromQuery] int Month, string UserRole)
+        {
 
-        //                return result;
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        result.Statescode = 404;
-        //        result.Message = "data not found";
-        //    }
-        //    return result;
-        //}
+            ResultDTO result = new ResultDTO();
 
+            try
+            {
+                if (string.Equals(UserRole, "Admin", StringComparison.OrdinalIgnoreCase))
+                {
+                    List<CustomerReport> temp = CustomerReportRepoistory.getall().Where(r => (r.Month == Month)).ToList();
+                   
+                    List<CustomerReportDTO> newTemp = new List<CustomerReportDTO>();
+                    foreach (CustomerReport customerReport in temp)
+                    {
+                        CustomerReportDTO customerReportResponseDTO = new CustomerReportDTO();
+                        customerReportResponseDTO.Id = customerReport.Id;
+                        customerReportResponseDTO.RigId = customerReport.Rig.Id;
+                        customerReportResponseDTO.EvaluationResult = customerReport.EvaluationResult;
+                        customerReportResponseDTO.userID = customerReport.user.Id;
+                        customerReportResponseDTO.Month = customerReport.Month;
+                        customerReportResponseDTO.RigNumber = customerReport.Rig.Number;
 
-        //[HttpGet("GetDrillAnalysisWithCompareByMonth")]
-        //public ActionResult<ResultDTO> GetDrillAnalysisWithCompareByMonth(int Month1, int Month2, string UserRole)
-        //{
+                        newTemp.Add(customerReportResponseDTO);
+                    }
+                    if (newTemp != null)
+                    {
 
-        //    ResultDTO result = new ResultDTO();
+                        result.Message = "Success";
+                        result.Statescode = 200;
+                        result.Data = newTemp;
 
-        //    try
-        //    {
-                
-        //        if (string.Equals(UserRole, "Admin", StringComparison.OrdinalIgnoreCase))
-        //        {
-        //            List<Drill> temp = DrillRepoistory.getall().Where(r =>(r.Date.Month == Month1 || r.Date.Month == Month2)).ToList();
-        //            List<DrillResponseDTO> newTemp = new List<DrillResponseDTO>();
-        //            foreach (Drill drill in temp)
-        //            {
-        //                DrillResponseDTO drillDTO = new DrillResponseDTO();
-        //                drillDTO.Id = drill.Id;
-        //                drillDTO.RigId = drill.Rig.Id;
-        //                drillDTO.Date = drill.Date;
-        //                drillDTO.DrillTypeName = drill.DrillType.Name;
-        //                drillDTO.userName = drill.user.UserName;
+                        return result;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Statescode = 404;
+                result.Message = "data not found";
+            }
+            return result;
+        }
 
-        //                newTemp.Add(drillDTO);
-        //            }
-        //            if (newTemp != null)
-        //            {
+        [HttpGet("GetCustomerAnalysisWithCompareTwoRigsByYear")]
+        public ActionResult<ResultDTO> GetCustomerAnalysisWithCompareTwoRigsByYear([FromQuery] int RigID1, int RigID2, int Year, string UserRole)
+        {
 
-        //                result.Message = "Success";
-        //                result.Statescode = 200;
-        //                result.Data = newTemp;
+            ResultDTO result = new ResultDTO();
 
-        //                return result;
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        result.Statescode = 404;
-        //        result.Message = "data not found";
-        //    }
-        //    return result;
-        //}
+            try
+            {
+                if (string.Equals(UserRole, "Admin", StringComparison.OrdinalIgnoreCase))
+                {
+                    List<CustomerReport> temp = CustomerReportRepoistory.getall().Where(r => (r.Rig.Id == RigID1 || r.Rig.Id == RigID2) && (r.Year == Year)).ToList();
 
-       
+                    List<CustomerReportDTO> newTemp = new List<CustomerReportDTO>();
+                    foreach (CustomerReport customerReport in temp)
+                    {
+                        CustomerReportDTO customerReportResponseDTO = new CustomerReportDTO();
+                        customerReportResponseDTO.Id = customerReport.Id;
+                        customerReportResponseDTO.RigId = customerReport.Rig.Id;
+                        customerReportResponseDTO.EvaluationResult = customerReport.EvaluationResult;
+                        customerReportResponseDTO.userID = customerReport.user.Id;
+                        customerReportResponseDTO.Month = customerReport.Month;
+                        customerReportResponseDTO.RigNumber = customerReport.Rig.Number;
+
+                        newTemp.Add(customerReportResponseDTO);
+                    }
+                    if (newTemp != null)
+                    {
+
+                        result.Message = "Success";
+                        result.Statescode = 200;
+                        result.Data = newTemp;
+
+                        return result;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Statescode = 404;
+                result.Message = "data not found";
+            }
+            return result;
+        }
+
+        /// *********************** End  Analysis ************************
+
 
         [HttpPut("{id:int}")]
         public ActionResult<ResultDTO> Put(int id, [FromForm] CustomerReportDTO newCustometReport) //[FromBody] string value)

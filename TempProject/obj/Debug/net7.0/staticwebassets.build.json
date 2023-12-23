@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "cN4qSIBIz/Ac9sw/tgkCmMkp+kZw4CmX7nC0txwyiVc=",
+  "Hash": "6yZVb2y2S3bZqBDGeUHO2K4DboWvQLpxU1zrGrVy9hw=",
   "Source": "TempProject",
   "BasePath": "_content/TempProject",
   "Mode": "Default",
@@ -2346,6 +2346,23 @@
       "OriginalItemSpec": "wwwroot\\DrillIMG\\8ee964c8-8a66-4473-9e55-2b2365e19d3aedit.png"
     },
     {
+      "Identity": "E:\\FreeLance Jop\\ECDC JOP\\AfterBush\\TempProject\\wwwroot\\DrillIMG\\90744b7e-68fa-4470-9147-32226813d5aadashBoard.png",
+      "SourceId": "TempProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\FreeLance Jop\\ECDC JOP\\AfterBush\\TempProject\\wwwroot\\",
+      "BasePath": "_content/TempProject",
+      "RelativePath": "DrillIMG/90744b7e-68fa-4470-9147-32226813d5aadashBoard.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\DrillIMG\\90744b7e-68fa-4470-9147-32226813d5aadashBoard.png"
+    },
+    {
       "Identity": "E:\\FreeLance Jop\\ECDC JOP\\AfterBush\\TempProject\\wwwroot\\DrillIMG\\916bf640-bf18-48fd-9506-10070ab612213s.jpeg",
       "SourceId": "TempProject",
       "SourceType": "Discovered",
@@ -2463,6 +2480,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\DrillIMG\\a74dcd80-e533-4621-8e0a-c9d0b6886f4855s.jpeg"
+    },
+    {
+      "Identity": "E:\\FreeLance Jop\\ECDC JOP\\AfterBush\\TempProject\\wwwroot\\DrillIMG\\aa7f7a84-dde2-444b-93ac-2a5d02dce50adashBoard.png",
+      "SourceId": "TempProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\FreeLance Jop\\ECDC JOP\\AfterBush\\TempProject\\wwwroot\\",
+      "BasePath": "_content/TempProject",
+      "RelativePath": "DrillIMG/aa7f7a84-dde2-444b-93ac-2a5d02dce50adashBoard.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\DrillIMG\\aa7f7a84-dde2-444b-93ac-2a5d02dce50adashBoard.png"
     },
     {
       "Identity": "E:\\FreeLance Jop\\ECDC JOP\\AfterBush\\TempProject\\wwwroot\\DrillIMG\\b2cf41eb-6ed6-4d6f-a055-9e07df6b7cb0neda2.jpg",

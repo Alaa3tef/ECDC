@@ -9,6 +9,7 @@ namespace TempProject.DTO
     {
         public int Id { get; set; }
         public int RigId { get; set; }
+        public int RigNumber { get; set; }
 
         [Column(TypeName = "date")]
         public DateTime DateFrom { get; set; }

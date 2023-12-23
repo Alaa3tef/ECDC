@@ -999,6 +999,7 @@ namespace TempProject.Controllers
 					.Where(r => r.Date.Year == Year &&(r.Date.Month == Month1) && r.Rig.Id == item.Id).Sum(s => s.TotalManPowerHours);
 					TotalManPowerHoursListMonth1.Add(Count);
 				}
+				
 				foreach (var item in AllRigs)
 				{
 					int Count = QHSEDailyReportRepoistory.getall()

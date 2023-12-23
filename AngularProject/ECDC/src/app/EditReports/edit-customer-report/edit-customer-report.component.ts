@@ -5,7 +5,6 @@ import { AddNewCustomerReportServiceService } from 'Services/add-new-customer-re
 import { DataService } from 'Services/data.service';
 import { LoginService } from 'Services/login.service';
 import { IcustomerReport } from 'SharedClasses/ICustomerReport';
-import { IRating } from 'SharedClasses/IRating';
 import { IRig } from 'SharedClasses/IRig';
 
 @Component({
@@ -64,7 +63,7 @@ export class EditCustomerReportComponent {
           this.customerReport = data.data,
             console.log('*************************************************************')
           console.log(this.customerReport);
-          // this.Rating=data.data.ratingId;
+          this.evaluationResultEquip=data.data.evaluationResult;
         },
         error: (erorr: string) => this.ErrorMessage = erorr
       }),
@@ -99,12 +98,6 @@ export class EditCustomerReportComponent {
               Validators.required
             ]
           ),
-          // ratingId: this.fb.control(
-          //   '',
-          //   [
-          //     Validators.required
-          //   ]
-          // ),
           clientRepresentative: this.fb.control(
             '',
             [
@@ -345,7 +338,7 @@ export class EditCustomerReportComponent {
     this.evaluationResultEquip = TotalRasults;
     console.log("The TotalRasults:  ", this.rowTotals+this.rowTotals1+this.rowTotals2+this.rowTotals3+this.rowTotals4+this.rowTotals5+this.rowTotals6+this.rowTotals7
     );
-
+    this.cdr.detectChanges();
   }
   get id() {
     return this.customerReportForm.get('id');

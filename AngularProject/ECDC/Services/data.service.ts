@@ -67,6 +67,20 @@ export class DataService {
   GetDrillAnalysisWithCompareByMonth(month1:number,month2:number,userRole:string): Observable<IAPIResult> {
     return this.http.get<IAPIResult>(`http://localhost:5000/api/Drill/GetDrillAnalysisWithCompareByMonth/?Month1=${month1}&Month2=${month2}&UserRole=${userRole}`);
   }
+  // *************************** Charts For Admin Customer Report **********************
+  GetCustomerAnalysisWithCompareByYear(year:number,userRole:string): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/CustomerReport/GetCustomerAnalysisWithCompareByYear/?Year=${year}&UserRole=${userRole}`);
+  }
+  GetCustomerAnalysisWithCompareByMonth(month:number,userRole:string): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/CustomerReport/GetCustomerAnalysisWithCompareByMonth/?Month=${month}&UserRole=${userRole}`);
+  }
+  GetCustomerAnalysisWithCompareTwoRigsByYear(Rig1:number,Rig2:number,Year:number,userRole:string): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/CustomerReport/GetCustomerAnalysisWithCompareTwoRigsByYear/?RigID1=${Rig1}&RigID2=${Rig2}&Year=${Year}&UserRole=${userRole}`);
+  }
+    // *************************** Charts For User Customer Report **********************
+    GetCustomerAnalysisByYearForUser(year:number,userRole:string,UserId:string): Observable<IAPIResult> {
+      return this.http.get<IAPIResult>(`http://localhost:5000/api/CustomerReport/GetCustomerAnalysisByYearForUser/?Year=${year}&UserRole=${userRole}&UserId=${UserId}`);
+    }
   GetSubjectById(id:number): Observable<IAPIResult> {
     return this.http.get<IAPIResult>(`http://localhost:5000/api/SubjectList/${id}`);
   }

@@ -20,15 +20,13 @@
           <div class="row">
             <div class="col-lg-12 p-3 bg-white rounded shadow-sm mb-4 print-section" *ngFor="let record of CustomerReportRecord">
               <div class="table-responsive">
-                <table class="border" style="width: 100%;">
                   <tr>
                     <div style="display: flex;">
-                      <img style="margin-left: 30px;" width="100px" src="../../assets/img/ECDC Logo png.png" />
+                      <img style="margin-top: 30px;" width="100px" src="../../assets/img/ECDC Logo png.png" />
                     </div>
                   </tr>
-                </table>
                 <div style="text-align: center; margin-top: 10px;">
-                  <label class="form-label " style="font-weight: bolder; font-size: large; color: black;">
+                  <label class="form-label " style="font-weight: bolder; font-size: large; text-decoration: underline;color: black;">
                     Customer Satisfaction Evaluation Report 
                   </label>
                 </div>
@@ -237,7 +235,7 @@
               
                 <div class="d-flex justify-content-evenly mx-auto">
                   <div>
-                    <label style="font-weight: bold;">Evaluation Result: </label>
+                    <label style="font-weight: bold;">Evaluation Result: 5 R1 + 4 R2 + 2 ( R3+R4+R5+R6+ R7) + R8  </label>
                     <span style="height: 25px; ">
                       = {{record.evaluationResult}}
                     </span>
@@ -282,6 +280,25 @@
                     {{record.ecdcRepresentative}}
                     </span>
                   </div>
+                </div>
+
+                <div class=" mt-4" >
+                  <table class="table mb-1 borderNone"
+                    style="display: flex; align-items: center; justify-content: center; border: none;">
+                    <tbody>
+                      <tr>
+                        <td scope="row" class="borderNone">
+                          Form No. ECDC-QHSE-FM-93  
+                        </td>
+                        <td class="borderNone" scope="row">
+                          Issue 4 
+                        </td>
+                        <td class="borderNone" scope="row">
+                          Issue Date: 01/01/2021
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
   

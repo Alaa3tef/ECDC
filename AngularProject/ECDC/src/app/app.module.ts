@@ -195,6 +195,10 @@ import { CustomerReportTableComponent } from './Report_Data/customer-report-tabl
 import { EditCustomerReportComponent } from './EditReports/edit-customer-report/edit-customer-report.component';
 import { PrintCustomerReportComponent } from './Print_Reports/print-customer-report/print-customer-report.component';
 import { PrintCustomerReportByIdComponent } from './Print_Reports/print-customer-report-by-id/print-customer-report-by-id.component';
+import { CustomerCompareAllRigsByYearComponent } from './Charts_Of_Reports/CustomerCharts/Admin/customer-compare-all-rigs-by-year/customer-compare-all-rigs-by-year.component';
+import { CustomerCompareAllRigsByMonthComponent } from './Charts_Of_Reports/CustomerCharts/Admin/customer-compare-all-rigs-by-month/customer-compare-all-rigs-by-month.component';
+import { CustomerCompareTwoRigByYearComponent } from './Charts_Of_Reports/CustomerCharts/Admin/customer-compare-two-rig-by-year/customer-compare-two-rig-by-year.component';
+import { CustomerCompareByMonthUserComponent } from './Charts_Of_Reports/CustomerCharts/UserCharts/customer-compare-by-month-user/customer-compare-by-month-user.component';
 
 @NgModule({
   declarations: [
@@ -384,7 +388,11 @@ import { PrintCustomerReportByIdComponent } from './Print_Reports/print-customer
     CustomerReportTableComponent,
     EditCustomerReportComponent,
     PrintCustomerReportComponent,
-    PrintCustomerReportByIdComponent
+    PrintCustomerReportByIdComponent,
+    CustomerCompareAllRigsByYearComponent,
+    CustomerCompareAllRigsByMonthComponent,
+    CustomerCompareTwoRigByYearComponent,
+    CustomerCompareByMonthUserComponent
   ],
   imports: [
     BrowserModule,

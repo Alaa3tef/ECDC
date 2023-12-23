@@ -7,9 +7,9 @@ namespace TempProject.Models
     public class EvaluationCriteria : ISoftDeleteRepository
     {
         public int Id { get; set; }
-        public string Comment { get; set; } = "Not Found";
+        public string Comment { get; set; } = " ";
 
-        public string Rating { get; set; } = "Not Found";
+        public string Rating { get; set; } = " ";
 
 
         [ForeignKey("CustomerReport")]

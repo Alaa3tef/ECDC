@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { AddNewCustomerReportServiceService } from 'Services/add-new-customer-report-service.service';
 import { DataService } from 'Services/data.service';
 import { LoginService } from 'Services/login.service';
-import { IRating } from 'SharedClasses/IRating';
 import { IRig } from 'SharedClasses/IRig';
 import { Workbook } from 'exceljs';
 import * as saveAs from 'file-saver';
@@ -53,6 +52,7 @@ export class CustomerReportComponent {
   rowTotals7: number=0;
   evaluationResultEquip:number=0
   User:any;
+  showExportMessage = false;
 
   constructor(private loginService: LoginService, private dataService: DataService, private AddNewCustomerReport: AddNewCustomerReportServiceService, private fb: FormBuilder, private router: Router) {
     
@@ -241,7 +241,10 @@ export class CustomerReportComponent {
     
     // this.initForm()
       this.dataService.GetCustomersReport(this.User.ID,this.User.Role).subscribe({
-        next: data => this.json_data = data.data,
+        next: data => {this.json_data = data.data
+        console.log("dtaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",data.data)
+        },
+      
         error: err => this.ErrorMessage = err
       }),
     
@@ -494,7 +497,7 @@ get id() {
     }
   }
 
-  
+
   Download() {
     let workbook = new Workbook();
 
@@ -549,5 +552,8 @@ get id() {
       let blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
       saveAs.saveAs(blob, fname + '-' + new Date().toUTCString() + '.xlsx');
     });
+
+    this.showExportMessage = false;
+
   }
 }

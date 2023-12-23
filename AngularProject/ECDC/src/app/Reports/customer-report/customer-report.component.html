@@ -124,6 +124,24 @@
             </div>
           </td>
         </tr>
+
+        <tr>
+          <td colspan="4">
+            <label for="comment">Evaluation Instructions:</label>            
+                <div class="p-1 mb-2" style="border: 1px solid ; max-width: 100%; overflow: hidden;">
+                  <ul>
+                    <li>
+                      Rate your perception as (5)   Fully Satisfactory  & (0) Unsatisfactory     
+                    </li>
+                    <li>
+                      If your rate is less than (3), Your comments would be highly appreciated 
+                    </li>
+                  </ul>
+                </div>
+          </td>
+        </tr>
+       
+       
         <tr>
           <td>
             <div class="form-group">
@@ -396,7 +414,7 @@
         <tr>
           <td colspan="4">
             <div class="form-group">
-              <label>Evaluation Rating Result:</label>
+              <label>Evaluation Rating Result: 5 R1 + 4 R2 + 2 ( R3+R4+R5+R6+ R7) + R8  </label>
               <input id="evaluationResult" type="text" formControlName="evaluationResult" class="form-control" [(ngModel)]="evaluationResultEquip"readonly />
             </div>
           </td>
@@ -444,8 +462,11 @@
 
       </table>
 
+
       <input type="submit" class="btn btn-success me-3" value="Submit" />
+    
       <input type="submit" class="btn btn-primary me-3" value="Export Data" (click)="Download()" />
+
       <input routerLink="/PrintCustomer" type="submit" class="btn btn-primary" value="Show Data">
 
     </form>

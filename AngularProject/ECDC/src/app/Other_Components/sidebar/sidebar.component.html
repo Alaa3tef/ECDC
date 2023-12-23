@@ -92,6 +92,26 @@
             <i class="bi bi-circle"></i><span>QHSE Statics Compare With All Rigs By Month Chart</span>
           </a>
         </li>
+        <li *ngIf="IsAdmin">
+          <a routerLink="/CustomerChartByYearAllRigs">
+            <i class="bi bi-circle"></i><span>Customer Satisfaction With Compare All Rigs By Year </span>
+          </a>
+        </li>
+        <li *ngIf="IsAdmin">
+          <a routerLink="/CustomerChartByMonthAllRigs">
+            <i class="bi bi-circle"></i><span>Customer Satisfaction With Compare All Rigs By Month </span>
+          </a>
+        </li>
+        <li *ngIf="IsAdmin">
+          <a routerLink="/CustomerChartByYearTwoRigs">
+            <i class="bi bi-circle"></i><span>Customer Satisfaction With Compare Two Rigs By Year </span>
+          </a>
+        </li>
+        <li *ngIf="IsUser">
+          <a routerLink="/CustomerChartByMonthUser">
+            <i class="bi bi-circle"></i><span>Customer Satisfaction With Compare By Month</span>
+          </a>
+        </li>
       </ul>
     </li>
 
