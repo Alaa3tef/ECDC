@@ -425,11 +425,6 @@
           <tr>
             <td colspan="4">
               <div class="form-group">
-
-                <!-- <label>Evaluation Rating Result:</label>
-                <input class="form-control" [value]="evaluationResultEquip" disabled />
-                <input id="evaluationResult" type="evaluationResult" formControlName="evaluationResult"
-                  class="form-control" [(ngModel)]="evaluationResultEquip" hidden /> -->
                   <label>Evaluation Rating Result: 5 R1 + 4 R2 + 2 ( R3+R4+R5+R6+ R7) + R8  </label>
                   <input id="evaluationResult" type="number" formControlName="evaluationResult" class="form-control"
                          [(ngModel)]="evaluationResultEquip" />
@@ -441,12 +436,7 @@
           <tr>
             <td colspan="4">
               <label for="comment">Comment:</label>
-              <textarea class="form-control " formControlName="comment" rows="4" id="comment"[(ngModel)]="customerReport.comment" name="text"></textarea>
-              <div *ngIf="comment?.invalid && (comment?.dirty || comment?.touched)">
-                <small class="text-danger" *ngIf="comment?.errors?.['required']">
-                  Comment is required
-                </small>
-              </div>
+              <textarea class="form-control " formControlName="comment" rows="4" id="comment"[(ngModel)]="customerReport.comment" name="text" placeholder="Write Your Comment"></textarea>
             </td>
           </tr>
           <tr>

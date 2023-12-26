@@ -45,7 +45,7 @@ export class PrintDrillComponent {
   
 
   DrillTypeAndRigAndDateSelected(event: any) {
-    console.log(event.target.value)
+    console.log("event.target.value",event.target.value)
    
    
     const regex = /(\d+) \/ ([\w\s]+) \/ (\d{2}-\d{2}-\d{4})/;
@@ -59,22 +59,21 @@ export class PrintDrillComponent {
       console.log("String: " + drillType);
       console.log("Date: " + date);
 
-      this.AddNewDrill.GetDrillByDrillType(drillType,this.User.ID,this.User.Role,date,rigNumber).subscribe({
-        next: data => {
-          this.DrillRecord = data.data;
+      this.AddNewDrill.GetDrillByDrillType(drillType, this.User.ID, this.User.Role, date, rigNumber).subscribe({
+        next: response => {
+          console.log("Full API Response:", response);
+          this.DrillRecord = response.data; // Assuming data is the array you want
           this.Data = true;
-          console.log("dtoooooooo");
-  
-          console.log(this.DrillRecord[0])
-  
+          console.log("dtoooooooo", this.DrillRecord);
+          console.log("this.DrillRecord[0]", this.DrillRecord[0]);
           console.log("done");
-          
         },
         error: error => {
           this.ErrorMessage = error;
           console.log("Error");
         }
-      })
+      });
+      
     } else {
       console.log("No match found");
     }

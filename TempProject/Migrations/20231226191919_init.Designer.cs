@@ -12,7 +12,7 @@ using TempProject.Models;
 namespace TempProject.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20231216202423_init")]
+    [Migration("20231226191919_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -656,7 +656,6 @@ namespace TempProject.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Comment")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CustomerRepresentative")

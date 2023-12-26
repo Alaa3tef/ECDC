@@ -423,12 +423,7 @@
         <tr>
           <td colspan="4">
             <label for="comment">Comment:</label>
-            <textarea class="form-control " formControlName="comment" rows="4" id="comment" name="text"></textarea>
-            <div *ngIf="comment?.invalid && (comment?.dirty || comment?.touched)">
-              <small class="text-danger" *ngIf="comment?.errors?.['required']">
-                Comment is required
-              </small>
-            </div>
+            <textarea class="form-control " formControlName="comment" rows="4" id="comment" name="text" placeholder="Write Your Comment"></textarea>
           </td>
         </tr>
         <tr>

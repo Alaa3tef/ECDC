@@ -25,7 +25,7 @@ namespace TempProject.Models
 
 
         public string CustomerRepresentative { get; set; }
-        public string Comment { get; set; }
+        public string? Comment { get; set; }
         public string Location { get; set; }
         public string Client { get; set; }
 

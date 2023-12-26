@@ -566,7 +566,7 @@ namespace TempProject.Migrations
                     DateTo = table.Column<DateTime>(type: "date", nullable: false),
                     ECDCRepresentative = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CustomerRepresentative = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Comment = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Location = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Client = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EvaluationResult = table.Column<int>(type: "int", nullable: false),

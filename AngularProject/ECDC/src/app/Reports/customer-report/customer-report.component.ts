@@ -124,7 +124,7 @@ export class CustomerReportComponent {
           comment: this.fb.control(
             '',
             [
-               Validators.required
+               //Validators.required
             ]
           ),
           customerRepresentative: this.fb.control(

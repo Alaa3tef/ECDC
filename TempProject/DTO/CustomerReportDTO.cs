@@ -22,7 +22,7 @@ namespace TempProject.DTO
         public int Year { get; set; }
         public int EvaluationResult { get; set; }
         public string Location { get; set; }
-        public string Comment { get; set; }
+        public string? Comment { get; set; }
         public string CustomerRepresentative { get; set; }
         public string ECDCRepresentative { get; set; }
         //public int RatingId { get; set; }
