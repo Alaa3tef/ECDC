@@ -6,6 +6,7 @@ import { IClassification } from 'SharedClasses/IClassification';
 import { IClassificationOfAccident } from 'SharedClasses/IClassificationOfAccident';
 import { IClient } from 'SharedClasses/IClient';
 import { IComminucationMethod } from 'SharedClasses/IComminucationMethod';
+import { ICorrectiveObservation } from 'SharedClasses/ICorrectiveObservation';
 import { ICrew } from 'SharedClasses/ICrew';
 import { IDaysSinceNoFatality } from 'SharedClasses/IDaysSinceNoFatality';
 import { IDaysSinceNoLTI } from 'SharedClasses/IDaysSinceNoLTI';
@@ -22,7 +23,9 @@ import { IReportedByName } from 'SharedClasses/IReportedByName';
 import { IReportedByPosition } from 'SharedClasses/IReportedByPosition';
 import { IResponsibility } from 'SharedClasses/IResponsibility';
 import { IRig } from 'SharedClasses/IRig';
+import { IRootCause } from 'SharedClasses/IRootCause';
 import { IRouteName } from 'SharedClasses/IRouteName';
+import { IStandard } from 'SharedClasses/IStandard';
 import { ISubjectList } from 'SharedClasses/ISubjectList';
 import { IToolPusherPosition } from 'SharedClasses/IToolPusherPosition';
 import { IToolPusherPositionName } from 'SharedClasses/IToolPusherPositionName';
@@ -142,6 +145,19 @@ export class AddDataService {
   AddDaysSinceNoFatality(DaysSinceNoFatality:IDaysSinceNoFatality):Observable<IDaysSinceNoFatality> {
     return this.http.post<IDaysSinceNoFatality>(`http://localhost:5000/api/DaysSinceNoFatality`,DaysSinceNoFatality);
   }
- 
+
+  //****************** corrective Action Report **************** */
+  AddRootCause(RootCause:IRootCause):Observable<IRootCause> {
+    return this.http.post<IRootCause>(`http://localhost:5000/api/RootCauses`,RootCause);
+  }
+  AddStandard(Standard:IStandard):Observable<IStandard> {
+    return this.http.post<IStandard>(`http://localhost:5000/api/Standard`,Standard);
+  }
+  AddCorrectiveObservation(CorrectiveObservation:ICorrectiveObservation):Observable<ICorrectiveObservation> {
+    return this.http.post<ICorrectiveObservation>(`http://localhost:5000/api/CorrectiveObservation`,CorrectiveObservation);
+  }
+  AddCorrectiveAction(Formdata: FormData): Observable<any> {
+    return this.http.post<FormData>(`http://localhost:5000/api/CorrectiveAction`, Formdata);
+  }
 
 }

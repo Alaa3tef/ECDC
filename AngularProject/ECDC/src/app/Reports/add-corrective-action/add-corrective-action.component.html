@@ -1,0 +1,517 @@
+<div class="container mb-5" style="margin-top: 8%;">
+  <div class="heading_container heading_center d-flex">
+    <h2 class="mx-auto my-4">
+      Corrective Action Report
+    </h2>
+
+  </div>
+
+  <div class="row">
+    <form [formGroup]="CorrectiveActionForm" id="print-section" (ngSubmit)="submitData()"
+      class="col-md-10 mx-auto d-flex flex-wrap">
+
+      <table class="table">
+        <tr>
+          <td colspan="2">
+            <div class="form-group">
+              <label class="form-label" for="reportNo">Report Number: </label>
+              <input type="number" formControlName="reportNo" class="form-control" />
+              <div *ngIf="reportNo?.invalid && (reportNo?.dirty || reportNo?.touched)">
+                <small class="text-danger" *ngIf="reportNo?.errors?.['required']">
+                  Report Number is required
+                </small>
+              </div>
+            </div>
+          </td>
+          <td colspan="2">
+            <div class="form-group">
+              <label class="form-label" for="rigId">Rig Number: </label>
+              <select name="rigId" [(ngModel)]="SelectedRig" formControlName="rigId" id="rigId" class="form-select">
+                <option value="" disabled selected>Choose Rig Number</option>
+                <option *ngFor="let item of rigList " value="{{item.id}}">Rig - {{item.number}}</option>
+              </select>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <div class="form-group">
+              <label class="form-label" for="descriptionOfNonConformity">Description of Non Conformity: </label>
+              <select name="descriptionOfNonConformity" formControlName="descriptionOfNonConformity"
+                id="descriptionOfNonConformity" class="form-select">
+                <option value="" disabled selected>Choose Description of Non Conformity </option>
+                <option value="Observation">Observation</option>
+                <option value="Non Conformity">Non Conformity</option>
+              </select>
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="standardId">Standard: </label>
+              <select name="standardId" formControlName="standardId" id="standardId" class="form-select">
+                <option value="" disabled selected>Choose Standard</option>
+                <option *ngFor="let item of standardList " value="{{item.id}}">{{item.standardName}}</option>
+              </select>
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="clauseNo">Clause Number: </label>
+              <input type="text" formControlName="clauseNo" class="form-control" />
+              <div *ngIf="clauseNo?.invalid && (clauseNo?.dirty || clauseNo?.touched)">
+                <small class="text-danger" *ngIf="clauseNo?.errors?.['required']">
+                  Clause Number is required
+                </small>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-center pb-4">
+            <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+              <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+                Objective Evidence
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4">
+            <div class="form-group">
+              <textarea formControlName="objectiveEvidence" class="form-control"></textarea>
+              <div *ngIf="objectiveEvidence?.invalid && (objectiveEvidence?.dirty || objectiveEvidence?.touched)">
+                <small class="text-danger" *ngIf="objectiveEvidence?.errors?.['required']">
+                  Objective Evidence is required
+                </small>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <div class="form-group">
+              <label class="form-label" for="correctiveObservation">Observation </label>
+              <select multiple size="3" name="correctiveObservation" formControlName="correctiveObservation"
+                id="correctiveObservation" (change)="SelectedObservation($event)" class="form-select">
+                <option value="" disabled selected>Choose Observation</option>
+                <option *ngFor="let item of observationList" [value]="item.id">{{item.observation}}</option>
+              </select>
+            </div>
+          </td>
+          <td colspan="2">
+            <div class="form-group">
+              <label class="form-label" for="ifOtherObservation">If Other (Please specify) : </label>
+              <input type="text" formControlName="ifOtherObservation" class="form-control" />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <div class="form-group">
+              <label class="form-label" for="updateRisk">Update Risk: </label>
+              <select name="updateRisk" formControlName="updateRisk" id="updateRisk" class="form-select">
+                <option value="" disabled selected>Choose Update Risk</option>
+                <option value=True>Yes</option>
+                <option value=False>No</option>
+              </select>
+            </div>
+          </td>
+          <td colspan="2">
+            <div class="form-group">
+              <label class="form-label" for="ifUpdate">If Yes please explain here: </label>
+              <input type="text" formControlName="ifUpdate" class="form-control" />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <div class="form-group">
+              <label class="form-label" for="updateRisk">Management of Change: </label>
+              <select name="managementOfChange" formControlName="managementOfChange" id="managementOfChange"
+                class="form-select">
+                <option value="" disabled selected>Choose Management of Change</option>
+                <option value=True>Yes</option>
+                <option value=False>No</option>
+              </select>
+            </div>
+          </td>
+          <td colspan="2">
+            <div class="form-group">
+              <label class="form-label" for="ifManagementOfChange">If Yes please explain here: </label>
+              <input type="text" formControlName="ifManagementOfChange" class="form-control" />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-center pb-4">
+            <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+              <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+                NCR Raised By
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <div class="form-group">
+              <label class="form-label" for="nameRasiedBy">Name: </label>
+              <input type="text" formControlName="nameRasiedBy" class="form-control" />
+              <div *ngIf="nameRasiedBy?.invalid && (nameRasiedBy?.dirty || nameRasiedBy?.touched)">
+                <small class="text-danger" *ngIf="nameRasiedBy?.errors?.['required']">
+                  Name is required
+                </small>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="sigRasiedBy">Signature: </label>
+              <input type="text" formControlName="sigRasiedBy" class="form-control" />
+              <div *ngIf="sigRasiedBy?.invalid && (sigRasiedBy?.dirty || sigRasiedBy?.touched)">
+                <small class="text-danger" *ngIf="sigRasiedBy?.errors?.['required']">
+                  Signature is required
+                </small>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="dateRaisedBy">Date: </label>
+              <input type="date" formControlName="dateRaisedBy" class="form-control" />
+              <div *ngIf="dateRaisedBy?.invalid && (dateRaisedBy?.dirty || dateRaisedBy?.touched)">
+                <small class="text-danger" *ngIf="dateRaisedBy?.errors?.['required']">
+                  Date is required
+                </small>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-center pb-4">
+            <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+              <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+                Root Causes
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <div class="form-group">
+              <select multiple size="3" name="rootCauses" formControlName="rootCauses" id="rootCauses"
+              (change)="SelectedRootCause($event)" class="form-select">
+                <option value="" disabled selected>Choose Root Causes</option>
+                <option *ngFor="let item of rootCausesList" [value]="item.id">{{item.causeName}}</option>
+              </select>
+            </div>
+          </td>
+          <td colspan="2">
+            <div class="form-group">
+              <label class="form-label" for="ifOtherRootCause">If Other (Please specify): </label>
+              <input type="text" formControlName="ifOtherRootCause" class="form-control" />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-center pb-4">
+            <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+              <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+                Corrective Action
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="sn1">SN: </label>
+              <input type="text" formControlName="sn1" class="form-control" />
+            </div>
+          </td>
+          <td colspan="2">
+            <div class="form-group">
+              <label class="form-label" for="action1">Action: </label>
+              <select name="action1" formControlName="action1" id="action1" class="form-select">
+                <option value="" disabled selected>Choose Action</option>
+                <option value="Corrective Action">Corrective Action</option>
+                <option value="Correction Action">Correction Action</option>
+              </select>
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="responsible1">Responsible: </label>
+              <input type="text" formControlName="responsible1" class="form-control" />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="suggestedDate1">Suggested Date: </label>
+              <input type="date" formControlName="suggestedDate1" class="form-control" />
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="achievementDate1">Achievement Date: </label>
+              <input type="date" formControlName="achievementDate1" class="form-control" />
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="followUpAudit1">Follow-Up Audit: </label>
+              <input type="text" formControlName="followUpAudit1" class="form-control" />
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="status1">Status: </label>
+              <select name="status1" formControlName="status1" id="status1" class="form-select">
+                <option value="" disabled selected>Choose Status</option>
+                <option value=True>Yes</option>
+                <option value=False>No</option>
+              </select>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-center" style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="sn2">SN: </label>
+              <input type="text" formControlName="sn2" class="form-control" />
+            </div>
+          </td>
+          <td colspan="2">
+            <div class="form-group">
+              <label class="form-label" for="action2">Action: </label>
+              <select name="action2" formControlName="action2" id="action2" class="form-select">
+                <option value="" disabled selected>Choose Action</option>
+                <option value="Corrective Action">Corrective Action</option>
+                <option value="Correction Action">Correction Action</option>
+              </select>
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="responsible2">Responsible: </label>
+              <input type="text" formControlName="responsible2" class="form-control" />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="suggestedDate2">Suggested Date: </label>
+              <input type="date" formControlName="suggestedDate2" class="form-control" />
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="achievementDate2">Achievement Date: </label>
+              <input type="date" formControlName="achievementDate2" class="form-control" />
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="followUpAudit2">Follow-Up Audit: </label>
+              <input type="text" formControlName="followUpAudit2" class="form-control" />
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="status2">Status: </label>
+              <select name="status2" formControlName="status2" id="status2" class="form-select">
+                <option value="" disabled selected>Choose Status</option>
+                <option value=True>Yes</option>
+                <option value=False>No</option>
+              </select>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-center" style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="sn3">SN: </label>
+              <input type="text" formControlName="sn3" class="form-control" />
+            </div>
+          </td>
+          <td colspan="2">
+            <div class="form-group">
+              <label class="form-label" for="action3">Action: </label>
+              <select name="action3" formControlName="action3" id="action3" class="form-select">
+                <option value="" disabled selected>Choose Action</option>
+                <option value="Corrective Action">Corrective Action</option>
+                <option value="Correction Action">Correction Action</option>
+              </select>
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="responsible3">Responsible: </label>
+              <input type="text" formControlName="responsible3" class="form-control" />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="suggestedDate3">Suggested Date: </label>
+              <input type="date" formControlName="suggestedDate3" class="form-control" />
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="achievementDate3">Achievement Date: </label>
+              <input type="date" formControlName="achievementDate3" class="form-control" />
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="followUpAudit3">Follow-Up Audit: </label>
+              <input type="text" formControlName="followUpAudit3" class="form-control" />
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="status3">Status: </label>
+              <select name="status3" formControlName="status3" id="status3" class="form-select">
+                <option value="" disabled selected>Choose Status</option>
+                <option value=True>Yes</option>
+                <option value=False>No</option>
+              </select>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-center" style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="sn4">SN: </label>
+              <input type="text" formControlName="sn4" class="form-control" />
+            </div>
+          </td>
+          <td colspan="2">
+            <div class="form-group">
+              <label class="form-label" for="action4">Action: </label>
+              <select name="action4" formControlName="action4" id="action4" class="form-select">
+                <option value="" disabled selected>Choose Action</option>
+                <option value="Corrective Action">Corrective Action</option>
+                <option value="Correction Action">Correction Action</option>
+              </select>
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="responsible4">Responsible: </label>
+              <input type="text" formControlName="responsible4" class="form-control" />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="suggestedDate4">Suggested Date: </label>
+              <input type="date" formControlName="suggestedDate4" class="form-control" />
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="achievementDate4">Achievement Date: </label>
+              <input type="date" formControlName="achievementDate4" class="form-control" />
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="followUpAudit4">Follow-Up Audit: </label>
+              <input type="text" formControlName="followUpAudit4" class="form-control" />
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="status4">Status: </label>
+              <select name="status4" formControlName="status4" id="status4" class="form-select">
+                <option value="" disabled selected>Choose Status</option>
+                <option value=True>Yes</option>
+                <option value=False>No</option>
+              </select>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-center pb-4">
+            <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+              <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+                Follow-Up Audit
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4">
+            <div class="form-group">
+              <textarea formControlName="comment" class="form-control"></textarea>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4">
+            <div class="form-group">
+              <label class="form-label">Photos : </label>
+              <input type="file" formControlName="images" name="images" class="form-control"
+                (change)="GetImagePath($event)" multiple #fileInput />
+              <div *ngIf="images?.invalid && (images?.dirty || images?.touched)">
+                <small class="text-danger" *ngIf="images?.errors?.['required']">
+                  Photos is required
+                </small>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <div class="form-group">
+              <label class="form-label" for="q_ManagerSig">Q_Manager Sig: </label>
+              <input type="text" formControlName="q_ManagerSig" class="form-control" />
+              <div *ngIf="q_ManagerSig?.invalid && (q_ManagerSig?.dirty || q_ManagerSig?.touched)">
+                <small class="text-danger" *ngIf="q_ManagerSig?.errors?.['required']">
+                  Q_Manager Sig is required
+                </small>
+              </div>
+            </div>
+          </td>
+          <td colspan="2">
+            <div class="form-group">
+              <label class="form-label" for="formStatus">Form Status: </label>
+              <select name="formStatus" formControlName="formStatus" id="formStatus"
+                class="form-select">
+                <option value="" disabled selected>Choose Status</option>
+                <option value="open">Open</option>
+                <option value="closed">Closed</option>
+              </select>
+            </div>
+          </td>
+        </tr>
+
+
+      </table>
+
+
+      <input type="submit" class="btn btn-success me-3" value="Submit" />
+      <input type="submit" class="btn btn-primary me-3" value="Export Data" (click)="Download()" />
+      <input routerLink="/Dashboard/CorrectiveAction/Print" type="submit" class="btn btn-primary" value="Show Data">
+
+    </form>
+  </div>
+</div>

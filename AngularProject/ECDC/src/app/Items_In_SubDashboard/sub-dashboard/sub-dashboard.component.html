@@ -131,7 +131,7 @@
         </div>
       </div>
     </div>
-   
+
 
     <div class="col-md-6" *ngIf="IsUser||IsAdmin">
       <div class="card p-3 mb-2">
@@ -235,7 +235,7 @@
             </div>
           </div>
         </div>
-    
+
       </div>
     </div>
     <!-- <div class="col-md-6" *ngIf="IsUser||IsAdmin">
@@ -266,7 +266,7 @@
             </div>
           </div>
         </div>
-    
+
       </div>
     </div>
     <!-- <div class="col-md-6" *ngIf="IsUser||IsAdmin">
@@ -420,5 +420,49 @@
         </div>
       </div>
     </div>
+    <div class="col-md-6" *ngIf="IsUser||IsAdmin">
+      <div class="card p-3 mb-2">
+        <div>
+          <h3 class="heading"> Root Cause </h3>
+          <h5> {{RootCauseCount}} Record </h5>
+          <div class="mt-5">
+            <div class="mt-3">
+              <span class="text1">
+                <a routerLink="/Dashboard/RootCause">Show Data</a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6" *ngIf="IsUser||IsAdmin">
+      <div class="card p-3 mb-2">
+        <div>
+          <h3 class="heading"> Standard </h3>
+          <h5> {{StandardCount}} Record </h5>
+          <div class="mt-5">
+            <div class="mt-3">
+              <span class="text1">
+                <a routerLink="/Dashboard/Standard">Show Data</a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6" *ngIf="IsUser||IsAdmin">
+      <div class="card p-3 mb-2">
+        <div>
+          <h3 class="heading"> Observation </h3>
+          <h5> {{CorrectiveObservationCount}} Record </h5>
+          <div class="mt-5">
+            <div class="mt-3">
+              <span class="text1">
+                <a routerLink="/Dashboard/CorrectiveObservation">Show Data</a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>

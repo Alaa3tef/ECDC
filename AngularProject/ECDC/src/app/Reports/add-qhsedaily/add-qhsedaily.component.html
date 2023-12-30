@@ -3,13 +3,13 @@
       <h2 class="mx-auto my-4">
         QHSE Daily Report
       </h2>
-  
+
     </div>
-  
+
     <div class="row">
       <form [formGroup]="QHSEDailyForm" id="print-section" (ngSubmit)="submitData()"
         class="col-md-10 mx-auto d-flex flex-wrap">
-  
+
         <table class="table">
           <tr>
             <td>
@@ -53,12 +53,12 @@
                   </small>
                 </div>
               </div>
-             
+
             </td>
 
           </tr>
           <tr>
-            
+
             <td>
               <div class="form-group">
                 <label>Man Power :</label>
@@ -102,9 +102,9 @@
                   </div>
                 </div>
               </td>
-              
+
           </tr>
-        
+
           <tr>
             <td>
               <div class="form-group">
@@ -139,7 +139,7 @@
                 </div>
               </div>
             </td>
-              
+
               <td>
                 <div class="form-group">
                   <label>Drills :</label>
@@ -151,11 +151,11 @@
                   </div>
                 </div>
               </td>
-            
+
           </tr>
-  
+
           <tr>
-           
+
             <td>
               <div class="form-group">
                 <label>PTW (Hot) :</label>
@@ -189,7 +189,7 @@
                   </div>
                 </div>
               </td>
-           
+
               <td rowspan="2">
                 <div class="from-group">
                   <label for="leaderShipVisitsDTO" class="form-label">Leadership Visits:</label>
@@ -200,11 +200,11 @@
                   </select>
                 </div>
               </td>
-             
-           
-           
+
+
+
           </tr>
-  
+
           <tr>
             <td>
                 <div class="form-group">
@@ -239,10 +239,10 @@
                   </div>
                 </div>
               </td>
-           
-              
+
+
           </tr>
-  
+
           <tr>
 
             <td>
@@ -287,13 +287,13 @@
               </div>
             </td>
 
-           
+
           </tr>
           <br>
           <tr>
-            
+
             <td>
-             
+
               <input type="checkbox" id="myCheck" (change)="toggleTextVisibility1($event)">
               <label for="monthlyInspection">
                 Monthly Inspection :
@@ -301,35 +301,35 @@
               <div class="form-group">
 
                 <input [style.display]="textVisible1 ? 'block' : 'none'" id="monthlyInspection" type="number" placeholder="Monthly Inspection" class="form-control" formControlName="monthlyInspection" />
-            
+
               </div>
-             
-               
-                
+
+
+
               <td>
-            
+
                   <input type="checkbox" id="myCheck2" (change)="toggleTextVisibility2($event)">
                   <label>Weekly Inspection :</label>
                   <div class="form-group">
                   <input type="number" [style.display]="textVisible2 ? 'block' : 'none'"  class="form-control" formControlName="weeklyInspection" />
-               
+
                 </div>
               </td>
-             
-             
-       
-          
 
-           
-          
+
+
+
+
+
+
           </tr>
-  
+
           <tr>
             <td>
                 <div class="form-group">
                   <label>Days since last LTI :</label>
                   <input type="number"  [(ngModel)]="DaysSinceLastLTI" readonly  class="form-control" formControlName="daysSinceLastLTI" />
-                 
+
                 </div>
               </td>
               <td>
@@ -350,19 +350,19 @@
                     [(ngModel)]="DaysLTIId" hidden />
                 </div>
               </td>
-             
+
           </tr>
-  
-         
-          
+
+
+
         </table>
-  
-  
+
+
         <input type="submit" [disabled]="QHSEDailyForm.invalid" class="btn btn-success me-3" value="Submit" />
         <input type="submit" class="btn btn-primary me-3" value="Export Data" (click)="Download()" />
         <input routerLink="/PrintQHSEDaily" type="submit" class="btn btn-primary" value="Show Data">
-  
+
       </form>
     </div>
   </div>
-  
+

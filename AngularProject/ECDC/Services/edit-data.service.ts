@@ -33,6 +33,10 @@ import { ILeadershipVisits } from 'SharedClasses/ILeadershipVisits';
 import { ICrew } from 'SharedClasses/ICrew';
 import { IDaysSinceNoFatality } from 'SharedClasses/IDaysSinceNoFatality';
 import { IDaysSinceNoLTI } from 'SharedClasses/IDaysSinceNoLTI';
+import { IRootCause } from 'SharedClasses/IRootCause';
+import { IStandard } from 'SharedClasses/IStandard';
+import { ICorrectiveObservation } from 'SharedClasses/ICorrectiveObservation';
+import { ICorrectiveAction } from 'SharedClasses/ICorrectiveAction';
 
 @Injectable({
   providedIn: 'root'
@@ -239,7 +243,7 @@ export class EditDataService {
   }
   EditResponsibility(id:number,Responsibility:any):Observable<any>{
     return this.http.put<any>(`http://localhost:5000/api/Responsibility/${id}`,Responsibility);
-  } 
+  }
   EditClient(id:number,Client:FormData):Observable<IClient>{
     return this.http.put<IClient>(`http://localhost:5000/api/Client/${id}`,Client);
   }
@@ -256,23 +260,57 @@ export class EditDataService {
     return this.http.put<IDaysSinceNoFatality>(`http://localhost:5000/api/DaysSinceNoFatality/${id}`,DaysSinceNoFatality);
   }
 
+  //****************** Corrective Action Report ****************************** */
+  EditRootCause(RootCause:IRootCause): Observable<IRootCause> {
+    return this.http.put<IRootCause>(`http://localhost:5000/api/RootCauses/${RootCause.id}`,RootCause);
+  }
+
+  GetRootCauseById(id: number): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/RootCauses/${id}`);
+  }
+
+  EditStandard(Standard:IStandard): Observable<IStandard> {
+    return this.http.put<IStandard>(`http://localhost:5000/api/Standard/${Standard.id}`,Standard);
+  }
+
+  GetStandardById(id: number): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/Standard/${id}`);
+  }
+
+  EditCorrectiveObservation(CorrectiveObservation:ICorrectiveObservation): Observable<ICorrectiveObservation> {
+    return this.http.put<ICorrectiveObservation>(`http://localhost:5000/api/CorrectiveObservation/${CorrectiveObservation.id}`,CorrectiveObservation);
+  }
+
+  GetCorrectiveObservationById(id: number): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/CorrectiveObservation/${id}`);
+  }
+
+  EditCorrective(id:number,Corrective:FormData): Observable<FormData> {
+    return this.http.put<FormData>(`http://localhost:5000/api/CorrectiveAction/${id}`,Corrective);
+  }
+
+  GetCorrectiveById(id: number,userId:string,userRole:string): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/CorrectiveAction/${id}?UserId=${userId}&UserRole=${userRole}`);
+  }
+
+
   // EditResponsibility(id:number,Responsibility:IResponsibility):Observable<any> {
   //   const url = `http://localhost:5000/api/Responsibility/${id}`;
-  
+
   //   const headers = {
   //     'Content-Type': 'application/json'
   //   };
-  
+
   //   return this.http.put(url, JSON.stringify(Responsibility), { headers })
   // }
 
   // EditDrillTypes(id:number,DrillType:IDrillType):Observable<any> {
   //   const url = `http://localhost:5000/api/DrillType/Edit/${id}`;
-  
+
   //   const headers = {
   //     'Content-Type': 'application/json'
   //   };
-  
+
   //   return this.http.put(url, JSON.stringify(DrillType), { headers })
   // }
 }

@@ -195,10 +195,28 @@ import { CustomerReportTableComponent } from './Report_Data/customer-report-tabl
 import { EditCustomerReportComponent } from './EditReports/edit-customer-report/edit-customer-report.component';
 import { PrintCustomerReportComponent } from './Print_Reports/print-customer-report/print-customer-report.component';
 import { PrintCustomerReportByIdComponent } from './Print_Reports/print-customer-report-by-id/print-customer-report-by-id.component';
+<<<<<<< HEAD
 import { CustomerCompareAllRigsByYearComponent } from './Charts_Of_Reports/CustomerCharts/Admin/customer-compare-all-rigs-by-year/customer-compare-all-rigs-by-year.component';
 import { CustomerCompareAllRigsByMonthComponent } from './Charts_Of_Reports/CustomerCharts/Admin/customer-compare-all-rigs-by-month/customer-compare-all-rigs-by-month.component';
 import { CustomerCompareTwoRigByYearComponent } from './Charts_Of_Reports/CustomerCharts/Admin/customer-compare-two-rig-by-year/customer-compare-two-rig-by-year.component';
 import { CustomerCompareByMonthUserComponent } from './Charts_Of_Reports/CustomerCharts/UserCharts/customer-compare-by-month-user/customer-compare-by-month-user.component';
+=======
+import { AddStandardComponent } from './Add_Data/add-standard/add-standard.component';
+import { AddCorrectiveObservationComponent } from './Add_Data/add-corrective-observation/add-corrective-observation.component';
+import { AddRootCauseComponent } from './Add_Data/add-root-cause/add-root-cause.component';
+import { RootCauseComponent } from './Items_In_SubDashboard/root-cause/root-cause.component';
+import { EditRootCauseComponent } from './EditReports/edit-root-cause/edit-root-cause.component';
+import { StandardComponent } from './Items_In_SubDashboard/standard/standard.component';
+import { CorrectiveObservationComponent } from './Items_In_SubDashboard/corrective-observation/corrective-observation.component';
+import { EditStandardComponent } from './EditReports/edit-standard/edit-standard.component';
+import { EditCorrectiveObservationComponent } from './EditReports/edit-corrective-observation/edit-corrective-observation.component';
+import { AddCorrectiveActionComponent } from './Reports/add-corrective-action/add-corrective-action.component';
+import { CorrectiveActionTableComponent } from './Report_Data/corrective-action-table/corrective-action-table.component';
+import { EditCorrectiveActionComponent } from './EditReports/edit-corrective-action/edit-corrective-action.component';
+import { PrintCorrectiveByIdComponent } from './Print_Reports/print-corrective-by-id/print-corrective-by-id.component';
+import { PrintCorrectiveComponent } from './Print_Reports/print-corrective/print-corrective.component';
+import { CorrectiveChartComponent } from './Charts_Of_Reports/corrective-chart/corrective-chart.component';
+>>>>>>> ae785e06fe85edbf05e5ac645501a859ba2b011f
 
 @NgModule({
   declarations: [
@@ -389,10 +407,28 @@ import { CustomerCompareByMonthUserComponent } from './Charts_Of_Reports/Custome
     EditCustomerReportComponent,
     PrintCustomerReportComponent,
     PrintCustomerReportByIdComponent,
+<<<<<<< HEAD
     CustomerCompareAllRigsByYearComponent,
     CustomerCompareAllRigsByMonthComponent,
     CustomerCompareTwoRigByYearComponent,
     CustomerCompareByMonthUserComponent
+=======
+    AddStandardComponent,
+    AddCorrectiveObservationComponent,
+    AddRootCauseComponent,
+    RootCauseComponent,
+    EditRootCauseComponent,
+    StandardComponent,
+    CorrectiveObservationComponent,
+    EditStandardComponent,
+    EditCorrectiveObservationComponent,
+    AddCorrectiveActionComponent,
+    CorrectiveActionTableComponent,
+    EditCorrectiveActionComponent,
+    PrintCorrectiveByIdComponent,
+    PrintCorrectiveComponent,
+    CorrectiveChartComponent
+>>>>>>> ae785e06fe85edbf05e5ac645501a859ba2b011f
   ],
   imports: [
     BrowserModule,

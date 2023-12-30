@@ -34,6 +34,7 @@
     <Folder Include="wwwroot\HazardIMG\" />
     <Folder Include="wwwroot\DrillIMG\" />
     <Folder Include="wwwroot\AccidentIMG\" />
+    <Folder Include="wwwroot\CorrectiveIMG\" />
     <Folder Include="wwwroot\Uploads\" />
   </ItemGroup>
 

@@ -116,10 +116,19 @@ namespace TempProject
             builder.Services.AddScoped<ICustomerReportRepository, CustomerReportRepository>();
             builder.Services.AddScoped<IRepository<EvaluationCriteria>, Repository<EvaluationCriteria>>();
 
+			//************ Corrective Action Report *************
+			builder.Services.AddScoped<IRepository<Standard>, Repository<Standard>>();
+			builder.Services.AddScoped<IRepository<RootCauses>, Repository<RootCauses>>();
+			builder.Services.AddScoped<IRepository<CorrectiveActionObservation>, Repository<CorrectiveActionObservation>>();
+			builder.Services.AddScoped<IRepository<CorrectiveAction>, Repository<CorrectiveAction>>();
+			builder.Services.AddScoped<IRepository<CorrectiveImages>, Repository<CorrectiveImages>>();
+			builder.Services.AddScoped<IRepository<CorrectiveDataTable>, Repository<CorrectiveDataTable>>();
+			builder.Services.AddScoped<IRepository<CorrectiveAndRootCauses>, Repository<CorrectiveAndRootCauses>>();
+			builder.Services.AddScoped<IRepository<CorrectiveAndObservation>, Repository<CorrectiveAndObservation>>();
+			builder.Services.AddScoped<ICorrectiveActionRepository, CorrectiveActionRepository>();
 
 
-
-            builder.Services.AddDbContext<Context>(options =>
+			builder.Services.AddDbContext<Context>(options =>
               options.UseSqlServer(builder.Configuration.GetConnectionString("cs"))
             );
 

@@ -20,6 +20,7 @@ namespace TempProject.Controllers
         {
             this.AccidentCausesRepo = _AccidentCausesRepo;
         }
+
         [HttpGet]
         public ActionResult<ResultDTO> GetAll()
         {

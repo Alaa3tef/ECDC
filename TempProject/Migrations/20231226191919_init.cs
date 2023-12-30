@@ -121,6 +121,20 @@ namespace TempProject.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CorrectiveActionObservations",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Observation = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CorrectiveActionObservations", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Crews",
                 columns: table => new
                 {
@@ -322,6 +336,20 @@ namespace TempProject.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "RootCauses",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CauseName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RootCauses", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "RouteNames",
                 columns: table => new
                 {
@@ -333,6 +361,20 @@ namespace TempProject.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_RouteNames", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Standards",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StandardName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Standards", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -549,6 +591,40 @@ namespace TempProject.Migrations
                         onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Bop_Rigs_RigId",
+                        column: x => x.RigId,
+                        principalTable: "Rigs",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CorrectiveActions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ReportNo = table.Column<int>(type: "int", nullable: false),
+                    RigId = table.Column<int>(type: "int", nullable: false),
+                    DescriptionOfNonConformity = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ClauseNo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ObjectiveEvidence = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IfOtherObservation = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdateRisk = table.Column<bool>(type: "bit", nullable: false),
+                    IfUpdate = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ManagementOfChange = table.Column<bool>(type: "bit", nullable: false),
+                    IfManagementOfChange = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NameRasiedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SigRasiedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DateRaisedBy = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IfOtherRootCause = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Q_ManagerSig = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CorrectiveActions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CorrectiveActions_Rigs_RigId",
                         column: x => x.RigId,
                         principalTable: "Rigs",
                         principalColumn: "Id",
@@ -1081,6 +1157,108 @@ namespace TempProject.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CorrectiveAndObservations",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CorrectiveActionId = table.Column<int>(type: "int", nullable: false),
+                    CorrectiveObservationId = table.Column<int>(type: "int", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CorrectiveAndObservations", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CorrectiveAndObservations_CorrectiveActionObservations_CorrectiveObservationId",
+                        column: x => x.CorrectiveObservationId,
+                        principalTable: "CorrectiveActionObservations",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_CorrectiveAndObservations_CorrectiveActions_CorrectiveActionId",
+                        column: x => x.CorrectiveActionId,
+                        principalTable: "CorrectiveActions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CorrectiveAndRootCauses",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CorrectiveActionId = table.Column<int>(type: "int", nullable: false),
+                    RootCausesId = table.Column<int>(type: "int", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CorrectiveAndRootCauses", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CorrectiveAndRootCauses_CorrectiveActions_CorrectiveActionId",
+                        column: x => x.CorrectiveActionId,
+                        principalTable: "CorrectiveActions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_CorrectiveAndRootCauses_RootCauses_RootCausesId",
+                        column: x => x.RootCausesId,
+                        principalTable: "RootCauses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CorrectiveDataTables",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SN = table.Column<int>(type: "int", nullable: true),
+                    Action = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Responsible = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SuggestedDate = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AchievementDate = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FollowUpAudit = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Status = table.Column<bool>(type: "bit", nullable: false),
+                    CorrectiveActionId = table.Column<int>(type: "int", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CorrectiveDataTables", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CorrectiveDataTables_CorrectiveActions_CorrectiveActionId",
+                        column: x => x.CorrectiveActionId,
+                        principalTable: "CorrectiveActions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CorrectiveImages",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FileName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CorrectiveActionId = table.Column<int>(type: "int", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CorrectiveImages", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CorrectiveImages_CorrectiveActions_CorrectiveActionId",
+                        column: x => x.CorrectiveActionId,
+                        principalTable: "CorrectiveActions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "EvaluationCriterias",
                 columns: table => new
                 {
@@ -1549,6 +1727,41 @@ namespace TempProject.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CorrectiveActions_RigId",
+                table: "CorrectiveActions",
+                column: "RigId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CorrectiveAndObservations_CorrectiveActionId",
+                table: "CorrectiveAndObservations",
+                column: "CorrectiveActionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CorrectiveAndObservations_CorrectiveObservationId",
+                table: "CorrectiveAndObservations",
+                column: "CorrectiveObservationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CorrectiveAndRootCauses_CorrectiveActionId",
+                table: "CorrectiveAndRootCauses",
+                column: "CorrectiveActionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CorrectiveAndRootCauses_RootCausesId",
+                table: "CorrectiveAndRootCauses",
+                column: "RootCausesId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CorrectiveDataTables_CorrectiveActionId",
+                table: "CorrectiveDataTables",
+                column: "CorrectiveActionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CorrectiveImages_CorrectiveActionId",
+                table: "CorrectiveImages",
+                column: "CorrectiveActionId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_CrewQuizAndQHSEDaily_CrewId",
                 table: "CrewQuizAndQHSEDaily",
                 column: "CrewId");
@@ -1817,6 +2030,18 @@ namespace TempProject.Migrations
                 name: "Bop");
 
             migrationBuilder.DropTable(
+                name: "CorrectiveAndObservations");
+
+            migrationBuilder.DropTable(
+                name: "CorrectiveAndRootCauses");
+
+            migrationBuilder.DropTable(
+                name: "CorrectiveDataTables");
+
+            migrationBuilder.DropTable(
+                name: "CorrectiveImages");
+
+            migrationBuilder.DropTable(
                 name: "CrewQuizAndQHSEDaily");
 
             migrationBuilder.DropTable(
@@ -1868,6 +2093,9 @@ namespace TempProject.Migrations
                 name: "ReportedByPositions");
 
             migrationBuilder.DropTable(
+                name: "Standards");
+
+            migrationBuilder.DropTable(
                 name: "StopCardRegisters");
 
             migrationBuilder.DropTable(
@@ -1878,6 +2106,15 @@ namespace TempProject.Migrations
 
             migrationBuilder.DropTable(
                 name: "PTSMs");
+
+            migrationBuilder.DropTable(
+                name: "CorrectiveActionObservations");
+
+            migrationBuilder.DropTable(
+                name: "RootCauses");
+
+            migrationBuilder.DropTable(
+                name: "CorrectiveActions");
 
             migrationBuilder.DropTable(
                 name: "Crews");

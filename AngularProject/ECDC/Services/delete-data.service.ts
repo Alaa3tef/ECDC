@@ -38,13 +38,17 @@ import { ILeadershipVisits } from 'SharedClasses/ILeadershipVisits';
 import { IDaysSinceNoLTI } from 'SharedClasses/IDaysSinceNoLTI';
 import { IDaysSinceNoFatality } from 'SharedClasses/IDaysSinceNoFatality';
 import { IcustomerReport } from 'SharedClasses/ICustomerReport';
+import { IRootCause } from 'SharedClasses/IRootCause';
+import { IStandard } from 'SharedClasses/IStandard';
+import { ICorrectiveObservation } from 'SharedClasses/ICorrectiveObservation';
+import { ICorrectiveAction } from 'SharedClasses/ICorrectiveAction';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DeleteDataService {
 
-  
+
   constructor(private http:HttpClient) { }
 
 
@@ -55,7 +59,7 @@ export class DeleteDataService {
   DeleteDrivers(Driver:IDriver): Observable<IDriver> {
     return this.http.put<IDriver>(`http://localhost:5000/api/Driver/Delete/${Driver.id}`,Driver);
   }
-   
+
 
   DeleteViolationcCategories(ViolationCategory:IViolationCategory): Observable<IViolationCategory> {
     return this.http.put<IViolationCategory>(`http://localhost:5000/api/ViolationCategory/Delete/${ViolationCategory.id}`,ViolationCategory);
@@ -177,11 +181,11 @@ export class DeleteDataService {
   DeleteClient(Client:IClient): Observable<IClient> {
     return this.http.put<IClient>(`http://localhost:5000/api/Client/Delete/${Client.id}`,Client);
   }
-  
+
   DeleteCrew(Crew:ICrew): Observable<ICrew> {
     return this.http.put<ICrew>(`http://localhost:5000/api/Crew/Delete/${Crew.id}`,Crew);
   }
-  
+
   DeleteLeadershipVists(LeadershipVists:ILeadershipVisits): Observable<ILeadershipVisits> {
     return this.http.put<ILeadershipVisits>(`http://localhost:5000/api/LeadershipVisit/Delete/${LeadershipVists.id}`,LeadershipVists);
   }
@@ -190,6 +194,24 @@ export class DeleteDataService {
   }
   DeleteDaysSinceNoFatality(DaysSinceNoFatality:IDaysSinceNoFatality): Observable<IDaysSinceNoFatality> {
     return this.http.put<IDaysSinceNoFatality>(`http://localhost:5000/api/DaysSinceNoFatality/Delete/${DaysSinceNoFatality.id}`,DaysSinceNoFatality);
+  }
+
+  //************************* Corrective Action Report ************** */
+
+  DeleteRootCause(RootCause:IRootCause): Observable<IRootCause> {
+    return this.http.put<IRootCause>(`http://localhost:5000/api/RootCauses/Delete/${RootCause.id}`,RootCause);
+  }
+
+  DeleteStandard(Standard:IStandard): Observable<IStandard> {
+    return this.http.put<IStandard>(`http://localhost:5000/api/Standard/Delete/${Standard.id}`,Standard);
+  }
+
+  DeleteCorrectiveObservation(CorrectiveObservation:ICorrectiveObservation): Observable<ICorrectiveObservation> {
+    return this.http.put<ICorrectiveObservation>(`http://localhost:5000/api/CorrectiveObservation/Delete/${CorrectiveObservation.id}`,CorrectiveObservation);
+  }
+
+  DeleteCorrective(Corrective:ICorrectiveAction): Observable<ICorrectiveAction> {
+    return this.http.put<ICorrectiveAction>(`http://localhost:5000/api/CorrectiveAction/Delete/${Corrective.id}`,Corrective);
   }
 }
 

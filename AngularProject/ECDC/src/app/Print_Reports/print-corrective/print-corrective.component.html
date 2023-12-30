@@ -1,0 +1,268 @@
+<div class="container mb-5" style="margin-top: 8%;">
+  <div class="heading_container heading_center d-flex">
+    <h2 class="mx-auto my-4">
+      Corrective Action Report
+    </h2>
+  </div>
+  <div *ngIf="User.Role=='Admin'; then thenBlock else elseBlock"></div>
+  <ng-template #thenBlock>
+    <label class="mb-2">Rig Number :</label>
+    <select class="form-control" [(ngModel)]="rigId" (change)="ClassificationSelected($event)">
+      <option value="{{ item.id }}" *ngFor="let item of rigList">
+        Rig - {{ item.number}}
+      </option>
+    </select>
+  </ng-template>
+  <ng-template #elseBlock>
+    <label class="mb-2">Date :</label>
+    <select class="form-control" [(ngModel)]="date" (change)="ClassificationSelected($event)">
+      <option value="{{ item }}" *ngFor="let item of corrective">
+        {{ item | date: 'dd-MM-yyyy'}}
+      </option>
+    </select>
+  </ng-template>
+
+  <div class="px-4 px-lg-0 m-5">
+    <div class="pb-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 p-5 bg-white rounded shadow-sm mb-4 print-section"
+            *ngFor="let record of correctiveRecord">
+            <div class="table-responsive">
+              <table class="border" style="width: 100%;">
+                <tr>
+                  <div style="display: flex;">
+                    <img style="margin-left: 30px;" width="100px" src="../../assets/img/ECDC Logo png.png" />
+                    <label class="form-label mt-3"
+                      style="font-weight: bolder; font-size: large; color: black; margin-left: 130px;">
+                      Correcrive Action Report
+                    </label>
+                  </div>
+                </tr>
+              </table>
+
+              <div class="col-12">
+                <table class="table table-bordered" style="margin-bottom: 0;font-size: 15px;">
+                  <tbody>
+                    <tr style="background-color: dimgray;color: white;">
+                      <td class="p-auto" scope="row">
+                        <div>
+                          <div style="font-weight: bold;" class="mb-1">Description Of Non-conformity :</div>
+                          <div>
+                            <span>Observation
+                              <input type="checkbox" [checked]="record.descriptionOfNonConformity === 'Observation'">
+                              Nonconformity
+                              <input type="checkbox" [checked]="record.descriptionOfNonConformity === 'Non Conformity'">
+                            </span>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="p-auto" scope="row">
+                        <div>
+                          <div>
+                            <span style="font-weight: bold;" class="mb-1">Rig Number : </span>
+                            <span>{{ record.rig }}</span>
+                          </div>
+                          <div>
+                            <span style="font-weight: bold;">Report Number : </span>
+                            <span>{{ record.reportNo }}</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="p-auto" scope="row">
+                        <div>
+                          <div>
+                            <span style="font-weight: bold;" class="mb-1">Standard : </span>
+                            <span>{{ record.standard }}</span>
+                          </div>
+                          <div>
+                            <span style="font-weight: bold;">Clause Number : </span>
+                            <span>{{ record.clauseNo }}</span>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="3" scope="row" class="p-1">
+                        <div>
+                          <div *ngIf="record.objectiveEvidence" style="font-weight: bold;">
+                            Objective Evidence : {{record.objectiveEvidence}}</div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight: bold;background-color: dimgray;color: white;" class="p-1 pb-0" colspan="3"
+                        scope="row">
+                        <div>
+                          <h6>
+                            This Observation/ Nonconformity identified through :
+                          </h6>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="3" class="p-1">
+                        <span *ngFor="let item of observationList;let i = index" class="mr-5">
+                          {{item.observation}}
+                          <input type="checkbox" [checked]="record.correctiveAndObservation[i] === item.observation">
+                        </span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight: bold;background-color: dimgray;color: white;" class="p-1 pb-0" colspan="3"
+                        scope="row">
+                        <div>
+                          <h6>
+                            Update risks and opportunities & make changes to the quality management system if necessary
+                            :
+                          </h6>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="3" class="p-1">
+                        <h6 *ngIf="record.updateRisk===true">
+                          Update Risks & Opportunity :
+                          <span>
+                            {{record.ifUpdate}}
+                          </span>
+                        </h6>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="3" class="p-1">
+                        <h6 *ngIf="record.managementOfChange===true">
+                          Make changes to the QMS :
+                          <span>
+                            {{record.ifManagementOfChange}}
+                          </span>
+                        </h6>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight: bold;background-color: dimgray;color: white;" class="p-1 pb-0" colspan="3"
+                        scope="row">
+                        <div>
+                          <h6>
+                            NCR Raised By :
+                          </h6>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="p-1">
+                        Name : {{record.nameRasiedBy}}
+                      </td>
+                      <td class="p-1">
+                        Signature : {{record.sigRasiedBy}}
+                      </td>
+                      <td class="p-1">
+                        Date : {{record.dateRaisedBy|date: 'dd-MM-yyyy'}}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight: bold;background-color: dimgray;color: white;" class="p-1 pb-0" colspan="3"
+                        scope="row">
+                        <div>
+                          Root Causes :
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="3" class="p-1">
+                        <span *ngFor="let item of record.correctiveAndRootCauses" class="mr-5">
+                          {{item}}
+                          <br>
+                        </span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight: bold;background-color: dimgray;color: white;" class="p-1 pb-0" colspan="3"
+                        scope="row">
+                        <div>
+                          <h6>
+                            Corrective Action :
+                          </h6>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr *ngIf="record.correctiveDataTable.length>0">
+                      <td colspan="3" class="p-1">
+                        <table class="table table-bordered text-center">
+                          <tr>
+                            <th>SN</th>
+                            <th>Corrective Actions</th>
+                            <th>Responsible</th>
+                            <th>Suggested date</th>
+                            <th>Achievement date</th>
+                            <th>Follow-up audit</th>
+                            <th>Status</th>
+                          </tr>
+                          <tr *ngFor="let item of record.correctiveDataTable">
+                            <td>{{item.sn}}</td>
+                            <td>{{item.action}}</td>
+                            <td>{{item.responsible}}</td>
+                            <td>{{item.suggestedDate |date: 'dd-MM-yyyy'}}</td>
+                            <td>{{item.achievementDate|date: 'dd-MM-yyyy'}}</td>
+                            <td>{{item.followUpAudit}}</td>
+                            <td>{{item.status}}</td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight: bold;background-color: dimgray;color: white;" class="p-1 pb-0" colspan="3"
+                        scope="row">
+                        <div>
+                          Follow-up audit :
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="3" class="p-1">
+                        {{record.comment}}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="3" class="p-1">
+                        <div class="d-flex justify-content-end">
+                          <span class="fw-bold">Q. Manager Sig. </span> : {{record.q_ManagerSig}}
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-12">
+                <table class="table table-borderless mb-1"
+                  style="display: flex; align-items: center; justify-content: center;">
+                  <tbody>
+                    <tr>
+                      <td scope="row">
+                        Issue No. 01
+                        <br>
+                        Revision No. 04
+                      </td>
+                      <td scope="row">
+                        Document No. ECDC-QHSE-FM-107
+                        <br>
+                        Page 1 / 1
+                      </td>
+                      <td scope="row">
+                        Issue Date: 1/1/2021
+                        <br>
+                        Revision Date: 00/00/0000
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- End -->
+          </div>
+        </div>
+        <input *ngIf="Data" type="submit" class="btn btn-primary my-4" value="Print Data" (click)="print()" />
+      </div>
+    </div>
+  </div>
+</div>

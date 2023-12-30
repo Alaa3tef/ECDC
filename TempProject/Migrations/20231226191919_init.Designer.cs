@@ -12,7 +12,11 @@ using TempProject.Models;
 namespace TempProject.Migrations
 {
     [DbContext(typeof(Context))]
+<<<<<<<< HEAD:TempProject/Migrations/20231226191919_init.Designer.cs
     [Migration("20231226191919_init")]
+========
+    [Migration("20231220205146_init")]
+>>>>>>>> ae785e06fe85edbf05e5ac645501a859ba2b011f:TempProject/Migrations/20231220205146_init.Designer.cs
     partial class init
     {
         /// <inheritdoc />
@@ -565,6 +569,214 @@ namespace TempProject.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ComminucationMethods");
+                });
+
+            modelBuilder.Entity("TempProject.Models.CorrectiveAction", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClauseNo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateRaisedBy")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DescriptionOfNonConformity")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IfManagementOfChange")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IfOtherObservation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IfOtherRootCause")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IfUpdate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("ManagementOfChange")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("NameRasiedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ObjectiveEvidence")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Q_ManagerSig")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ReportNo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RigId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SigRasiedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("UpdateRisk")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RigId");
+
+                    b.ToTable("CorrectiveActions");
+                });
+
+            modelBuilder.Entity("TempProject.Models.CorrectiveActionObservation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Observation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CorrectiveActionObservations");
+                });
+
+            modelBuilder.Entity("TempProject.Models.CorrectiveAndObservation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CorrectiveActionId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CorrectiveObservationId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CorrectiveActionId");
+
+                    b.HasIndex("CorrectiveObservationId");
+
+                    b.ToTable("CorrectiveAndObservations");
+                });
+
+            modelBuilder.Entity("TempProject.Models.CorrectiveAndRootCauses", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CorrectiveActionId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("RootCausesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CorrectiveActionId");
+
+                    b.HasIndex("RootCausesId");
+
+                    b.ToTable("CorrectiveAndRootCauses");
+                });
+
+            modelBuilder.Entity("TempProject.Models.CorrectiveDataTable", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AchievementDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Action")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CorrectiveActionId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FollowUpAudit")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Responsible")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("SN")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SuggestedDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CorrectiveActionId");
+
+                    b.ToTable("CorrectiveDataTables");
+                });
+
+            modelBuilder.Entity("TempProject.Models.CorrectiveImages", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CorrectiveActionId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CorrectiveActionId");
+
+                    b.ToTable("CorrectiveImages");
                 });
 
             modelBuilder.Entity("TempProject.Models.Crew", b =>
@@ -1896,6 +2108,26 @@ namespace TempProject.Migrations
                     b.ToTable("RigMovePerformances");
                 });
 
+            modelBuilder.Entity("TempProject.Models.RootCauses", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CauseName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RootCauses");
+                });
+
             modelBuilder.Entity("TempProject.Models.RouteName", b =>
                 {
                     b.Property<int>("Id")
@@ -1914,6 +2146,26 @@ namespace TempProject.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("RouteNames");
+                });
+
+            modelBuilder.Entity("TempProject.Models.Standard", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("StandardName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Standards");
                 });
 
             modelBuilder.Entity("TempProject.Models.StopCardRegister", b =>
@@ -2245,6 +2497,77 @@ namespace TempProject.Migrations
                     b.Navigation("Rig");
 
                     b.Navigation("user");
+                });
+
+            modelBuilder.Entity("TempProject.Models.CorrectiveAction", b =>
+                {
+                    b.HasOne("TempProject.Models.Rig", "Rig")
+                        .WithMany()
+                        .HasForeignKey("RigId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Rig");
+                });
+
+            modelBuilder.Entity("TempProject.Models.CorrectiveAndObservation", b =>
+                {
+                    b.HasOne("TempProject.Models.CorrectiveAction", "CorrectiveAction")
+                        .WithMany("CorrectiveAndObservation")
+                        .HasForeignKey("CorrectiveActionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TempProject.Models.CorrectiveActionObservation", "CorrectiveObservation")
+                        .WithMany()
+                        .HasForeignKey("CorrectiveObservationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CorrectiveAction");
+
+                    b.Navigation("CorrectiveObservation");
+                });
+
+            modelBuilder.Entity("TempProject.Models.CorrectiveAndRootCauses", b =>
+                {
+                    b.HasOne("TempProject.Models.CorrectiveAction", "CorrectiveAction")
+                        .WithMany("CorrectiveAndRootCauses")
+                        .HasForeignKey("CorrectiveActionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TempProject.Models.RootCauses", "RootCauses")
+                        .WithMany()
+                        .HasForeignKey("RootCausesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CorrectiveAction");
+
+                    b.Navigation("RootCauses");
+                });
+
+            modelBuilder.Entity("TempProject.Models.CorrectiveDataTable", b =>
+                {
+                    b.HasOne("TempProject.Models.CorrectiveAction", "CorrectiveAction")
+                        .WithMany("CorrectiveDataTable")
+                        .HasForeignKey("CorrectiveActionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CorrectiveAction");
+                });
+
+            modelBuilder.Entity("TempProject.Models.CorrectiveImages", b =>
+                {
+                    b.HasOne("TempProject.Models.CorrectiveAction", "CorrectiveAction")
+                        .WithMany("Images")
+                        .HasForeignKey("CorrectiveActionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CorrectiveAction");
                 });
 
             modelBuilder.Entity("TempProject.Models.CrewQuizAndQHSEDaily", b =>
@@ -2728,6 +3051,17 @@ namespace TempProject.Migrations
             modelBuilder.Entity("TempProject.Models.ComminucationMethod", b =>
                 {
                     b.Navigation("JMPs");
+                });
+
+            modelBuilder.Entity("TempProject.Models.CorrectiveAction", b =>
+                {
+                    b.Navigation("CorrectiveAndObservation");
+
+                    b.Navigation("CorrectiveAndRootCauses");
+
+                    b.Navigation("CorrectiveDataTable");
+
+                    b.Navigation("Images");
                 });
 
             modelBuilder.Entity("TempProject.Models.Crew", b =>
