@@ -1,0 +1,22 @@
+<div class="container" style="margin: 8% 0; min-height: 63vh;">
+  <div class="heading_container heading_center d-flex">
+    <h2 class="mx-auto my-4">
+      Corrective Action Chart
+    </h2>
+
+  </div>
+  <div class="mb-5">
+    <label for="month" class="form-label">Rig Number</label>
+    <select name="date" id="date" class="form-select" (change)="onChange($event)">
+      <option value="" disabled selected>Choose Rig</option>
+      <option *ngFor="let item of rigList" [value]="item.id">Rig - {{item.number}}</option>
+    </select>
+  </div>
+
+  <div id="divChart" #divChart *ngIf="temp">
+    <div id="chart3">
+      <p class="display-6 text-center">Corrective Action By Rig</p>
+      <canvas id="myChart3"></canvas>
+    </div>
+  </div>
+</div>

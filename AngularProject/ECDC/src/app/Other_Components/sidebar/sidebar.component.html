@@ -60,7 +60,7 @@
             <i class="bi bi-circle"></i><span>Drill Chart</span>
           </a>
         </li>
-       
+
         <li *ngIf="IsAdmin">
           <a routerLink="/DrillCompareCharts">
             <i class="bi bi-circle"></i><span>Drill Compare By DrillType Chart</span>
@@ -90,6 +90,11 @@
         <li *ngIf="IsAdmin">
           <a routerLink="/QHSEChartByMonthAllRigs">
             <i class="bi bi-circle"></i><span>QHSE Statics Compare With All Rigs By Month Chart</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/Dashboard/CorrectiveAction/Chart">
+            <i class="bi bi-circle"></i><span>Corrective Action Chart</span>
           </a>
         </li>
       </ul>
@@ -159,6 +164,11 @@
         <li *ngIf="IsUser || IsAdmin">
           <a routerLink="/Customer/Add">
             <i class="bi bi-circle"></i><span>Customer Satisfaction Evaluation Report </span>
+          </a>
+        </li>
+        <li *ngIf="IsUser || IsAdmin">
+          <a routerLink="Dashboard/CorrectiveAction/Add">
+            <i class="bi bi-circle"></i><span>Corrective Action Report </span>
           </a>
         </li>
       </ul>
@@ -313,6 +323,11 @@
         <li *ngIf="IsUser || IsAdmin">
           <a routerLink="/Dashboard/Customer">
             <i class="bi bi-circle"></i><span>Customer Satisfaction Evaluation</span>
+          </a>
+        </li>
+        <li *ngIf="IsUser || IsAdmin">
+          <a routerLink="/Dashboard/CorrectiveAction">
+            <i class="bi bi-circle"></i><span>Corrective Action</span>
           </a>
         </li>
       </ul>

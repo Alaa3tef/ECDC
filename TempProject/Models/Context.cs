@@ -77,7 +77,19 @@ namespace TempProject.Models
         public DbSet<CustomerReport> CustomerReports { get; set; }
         public DbSet<EvaluationCriteria> EvaluationCriterias { get; set; }
 
-        public Context(DbContextOptions c) : base(c)
+		//----------------Corrective Action Report------------------------
+
+		public DbSet<CorrectiveAction> CorrectiveActions { get; set; }
+		public DbSet<CorrectiveActionObservation> CorrectiveActionObservations { get; set; }
+		public DbSet<CorrectiveAndObservation> CorrectiveAndObservations { get; set; }
+		public DbSet<CorrectiveAndRootCauses> CorrectiveAndRootCauses { get; set; }
+		public DbSet<CorrectiveDataTable> CorrectiveDataTables { get; set; }
+		public DbSet<CorrectiveImages> CorrectiveImages { get; set; }
+		public DbSet<Standard> Standards { get; set; }
+		public DbSet<RootCauses> RootCauses { get; set; }
+
+
+		public Context(DbContextOptions c) : base(c)
         {
             
         }

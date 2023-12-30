@@ -71,7 +71,7 @@ export class DataService {
     return this.http.get<IAPIResult>(`http://localhost:5000/api/SubjectList/${id}`);
   }
 
- 
+
   GetClassification(): Observable<IAPIResult> {
     return this.http.get<IAPIResult>(`http://localhost:5000/api/Classification`);
   }
@@ -305,5 +305,36 @@ export class DataService {
     return this.http.get<IAPIResult>(`http://localhost:5000/api/DaysSinceNoLTI/ByRigNumber/${RigNumber}`);
   }
 
+  //********************** Corrective Action Report *********************** */
+  GetRootCause(): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/RootCauses`);
+  }
 
+  GetStandard(): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/Standard`);
+  }
+
+  GetCorrectiveObservation(): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/CorrectiveObservation`);
+  }
+
+  GetCorrectiveDataById(id:number,userId:string,userRole:string): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/CorrectiveAction/GetDataById/${id}?UserId=${userId}&UserRole=${userRole}`);
+  }
+
+  GetCorrectiveDataByDate(date:Date,userId:string,userRole:string): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/CorrectiveAction/GetDataByDate/${date}?UserId=${userId}&UserRole=${userRole}`);
+  }
+
+  GetCorrective(userId:string,userRole:string): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/CorrectiveAction/GetData?UserId=${userId}&UserRole=${userRole}`);
+  }
+
+  GetCorrectiveForExcel(userId:string,userRole:string): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/CorrectiveAction/GetDataForExcel?UserId=${userId}&UserRole=${userRole}`);
+  }
+
+  GetCorrectiveForAnalysis(RigId:number,userId:string,userRole:string): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/CorrectiveAction/GetDataForAnalysis?RigId=${RigId}&UserId=${userId}&UserRole=${userRole}`);
+  }
 }

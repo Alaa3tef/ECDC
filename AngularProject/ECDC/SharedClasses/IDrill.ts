@@ -5,63 +5,63 @@ export interface IDrill {
   id: number,
   rigId: number,
 
-     date :Date ,
-     drillTypeId:number,
+  date: Date,
+  drillTypeId: number,
 
-     timeInitiated :string ,
-     timeCompleted :string ,
-     duration:string,
-     
-     drillScenario :string ,
+  timeInitiated: string,
+  timeCompleted: string,
+  duration: string,
 
-    teamMemeberCode:number ,
-    teamMemeberPosition :string ,
-    teamMemeberName:string  ,
+  drillScenario: string,
 
-    teamMemeberCode1:number ,
-    teamMemeberPosition1 :string ,
-    teamMemeberName1:string  ,
+  teamMemeberCode: number,
+  teamMemeberPosition: string,
+  teamMemeberName: string,
 
-    teamMemeberCode2:number ,
-    teamMemeberPosition2 :string ,
-    teamMemeberName2:string  ,
+  teamMemeberCode1: number,
+  teamMemeberPosition1: string,
+  teamMemeberName1: string,
 
-    teamMemeberCode3:number ,
-    teamMemeberPosition3:string ,
-    teamMemeberName3:string  ,
+  teamMemeberCode2: number,
+  teamMemeberPosition2: string,
+  teamMemeberName2: string,
 
-    teamMemeberCode4:number  ,
-    teamMemeberPosition4:string   ,
-    teamMemeberName4:string   ,
+  teamMemeberCode3: number,
+  teamMemeberPosition3: string,
+  teamMemeberName3: string,
 
-    teamMemeberCode5:number ,
-    teamMemeberPosition5 :string ,
-    teamMemeberName5:string  ,
+  teamMemeberCode4: number,
+  teamMemeberPosition4: string,
+  teamMemeberName4: string,
 
-    teamMemeberCode6:number ,
-    teamMemeberPosition6:string ,
-    teamMemeberName6:string  ,
+  teamMemeberCode5: number,
+  teamMemeberPosition5: string,
+  teamMemeberName5: string,
 
-    teamMemeberCode7:number  ,
-    teamMemeberPosition7:string  ,
-    teamMemeberName7:string   ,
+  teamMemeberCode6: number,
+  teamMemeberPosition6: string,
+  teamMemeberName6: string,
+
+  teamMemeberCode7: number,
+  teamMemeberPosition7: string,
+  teamMemeberName7: string,
 
 
-    emergencyEquipmentUsed:string  ,
-    effectivenessPoints :string,
-    deficienciesPoints :string ,
-    recommendations :string ,
+  emergencyEquipmentUsed: string,
+  effectivenessPoints: string,
+  deficienciesPoints: string,
+  recommendations: string,
 
-    stpCode :number ,
-    stpPositionName :string ,
-    stpName :string ,
+  stpCode: number,
+  stpPositionName: string,
+  stpName: string,
 
-    qhseEmpCode :number ,
-    qhsePositionName :string ,
-    qhseEmpName :string ,
+  qhseEmpCode: number,
+  qhsePositionName: string,
+  qhseEmpName: string,
 
   userID: string,
-  images:File[],
-  isDeleted:boolean
+  images: File[],
+  isDeleted: boolean
 
 }

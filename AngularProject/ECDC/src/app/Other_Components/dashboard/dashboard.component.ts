@@ -65,6 +65,8 @@ export class DashboardComponent {
   drillsCount: number = 0;
   PotentialHazardList: any;
   PotentialHazardCount: number = 0;
+  CorrectiveList: any[]=[];
+  CorrectiveCount: number = 0;
   User: any;
   TotalManHours: any;
   DaysSinceNoLTIList:any[]=[];
@@ -149,6 +151,20 @@ export class DashboardComponent {
         console.log("rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr" + data.data)
         this.drillsList = data.data,
           this.drillsCount = this.drillsList.length
+      }
+    })
+    this.dataService.GetCorrective(this.User.ID, this.User.Role).subscribe({
+      next: data => {
+        data.data.forEach((ele: any) => {
+          if(ele.formStatus=="open"){
+            this.CorrectiveList.push(ele)
+          }
+        });
+          this.CorrectiveCount = this.CorrectiveList.length
+          console.log("this.CorrectiveList")
+          console.log(this.CorrectiveList)
+          console.log("this.CorrectiveCount")
+          console.log(this.CorrectiveCount)
       }
     })
 

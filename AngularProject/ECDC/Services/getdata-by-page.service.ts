@@ -119,4 +119,21 @@ export class GetdataByPageService {
   GetDaysDaysSinceNoLTIByPage(pageNumber:number):Observable<any>{
     return this.http.get<any>(`http://localhost:5000/api/DaysSinceNoLTI/ByPage/${pageNumber}`);
   }
+
+  //**************** Corrective Action Report ********************** */
+  GetRootCauseByPage(pageNumber:number):Observable<any>{
+    return this.http.get<any>(`http://localhost:5000/api/RootCauses/ByPage/${pageNumber}`);
+  }
+
+  GetStandardByPage(pageNumber:number):Observable<any>{
+    return this.http.get<any>(`http://localhost:5000/api/Standard/ByPage/${pageNumber}`);
+  }
+
+  GetCorrectiveObservationByPage(pageNumber:number):Observable<any>{
+    return this.http.get<any>(`http://localhost:5000/api/CorrectiveObservation/ByPage/${pageNumber}`);
+  }
+
+  GetCorrectiveByPage(pageNumber:number,userId:string,userRole:string):Observable<any>{
+    return this.http.get<any>(`http://localhost:5000/api/CorrectiveAction/ByPage/${pageNumber}?UserId=${userId}&UserRole=${userRole}`);
+  }
 }

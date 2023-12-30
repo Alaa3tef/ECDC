@@ -13,7 +13,10 @@ namespace TempProject.Models
 		public virtual List<DaysSinceNoLTI> DaysSinceNoLTI { get; set; }
 		public virtual List<QHSEDailyReport> QHSEDailyReport { get; set; }
 		public virtual List<Accident> Accidents { get; set; }
-        public virtual List<RigMovePerformance> RigMovePerformances { get; set; }
+
+		public virtual List<CorrectiveAction> CorrectiveActions { get; set; }
+
+		public virtual List<RigMovePerformance> RigMovePerformances { get; set; }
         public virtual List<EmployeeCompetencyEvaluation> RigEmployeeCompetencyEvaluation { get; set; }
         public virtual List<PotentialHazard> PotentialHazard { get; set; }
         public virtual List<PPEReceiving> PPEReceiving { get; set;}
