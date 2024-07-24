@@ -1,0 +1,393 @@
+<div class="container mb-5" style="margin-top: 8%;">
+    <div class="heading_container heading_center d-flex">
+      <h2 class="mx-auto">
+        Weekly Camp Inspection Report
+      </h2>
+    </div>
+
+
+    <div class="px-4 px-lg-0 m-4" *ngIf="WeeklyCampInspectionObj">
+      <div class="pb-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12 p-5 bg-white rounded shadow-sm mb-4 print-section">
+              <div class="table-responsive">
+                <table class="border" style="width: 100%;">
+                  <tr>
+                    <div style="display: flex;">
+                      <img style="margin-left: 30px;" width="100px" src="../../assets/img/ECDC Logo png.png" />
+                      <label class="form-label mt-3"
+                        style="font-weight: bolder; font-size: large; color: black; margin-left: 130px;">
+                        Weekly Camp Inspection Report
+                      </label>
+                    </div>
+                  </tr>
+                </table>
+
+                <div class="col-12">
+                  <table class="table table-bordered" style="margin-bottom: 0;font-size: 14px;">
+                    <tbody >
+                      <tr >
+                        <th class="p-0"colspan="2">RIG : {{WeeklyCampInspectionObj.rigId}}</th>
+                        <th class="p-0" colspan="3">Date : {{WeeklyCampInspectionObj.date |date: 'dd-MM-yyyy'}}</th>
+                      </tr>
+                      <tr style="vertical-align: middle; ">
+                        <th style="width: 80%;" >Area of Inspection</th>
+                        <th class="p-0 text-center w-50" >Status</th>
+                        <th colspan="2">Comment</th>
+                      </tr>
+                      <tr>
+                        <td colspan="4" style="background-color: rgb(187, 213, 243);">1. GENERAL</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" >Are parking and courtyard barriers logically situated & signs posted?</td>
+                        <td class="status">{{WeeklyCampInspectionObj.general_AreParking}}</td>
+                        <td colspan="2"class="comment-cell">{{WeeklyCampInspectionObj.general_AreParkingComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" >Is camp site without rubbish?</td>
+                        <td class="status">{{WeeklyCampInspectionObj.general_IsCampSite}}</td>
+                        <td colspan="4"class="comment-cell">{{WeeklyCampInspectionObj.general_IsCampSiteComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Is all rubbish properly disposed?</td>
+                        <td class="status">{{WeeklyCampInspectionObj.general_IsAllRubbish}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.general_IsAllRubbishComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Are water & sewage lines neatly run?</td>
+                        <td class="status">{{WeeklyCampInspectionObj.general_AreWater}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.general_AreWaterComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Is generator / water tank area clean & tidy?</td>
+                        <td class="status">{{WeeklyCampInspectionObj.general_IsGenerator}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.general_IsGeneratorComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >What is general opinion of catering service quality?</td>
+                        <td class="status">{{WeeklyCampInspectionObj.general_WhatIsGeneralOpinion}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.general_WhatIsGeneralOpinionComment}}</td>
+                      </tr>
+                      <tr>
+                        <td colspan="4" style="background-color: rgb(187, 213, 243);">2. SAFETY</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Date of last campfire drill?</td>
+                        <td class="status">{{WeeklyCampInspectionObj.safety_DateOfLastCampfireDrill}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.safety_DateOfLastCampfireDrillComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Date of last medical drill?</td>
+                        <td class="status">{{WeeklyCampInspectionObj.safety_DateOfLastMedicalDrill}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.safety_DateOfLastMedicalDrillComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Are staff aware of food hazards?</td>
+                        <td class="status">{{WeeklyCampInspectionObj.safety_AreStaffAwareOfFoodHazards}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.safety_AreStaffAwareOfFoodHazardsComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Fire pump in good condition?</td>
+                        <td class="status"> {{WeeklyCampInspectionObj.safety_FirePumpInGoodCondition}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.safety_FirePumpInGoodConditionComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Is the diesel tank grounding wire installed?</td>
+                        <td class="status">{{WeeklyCampInspectionObj.safety_IsTheDiesel}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.safety_IsTheDieselComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Are there any unsafe electrical installations in evidence?</td>
+                        <td class="status">{{WeeklyCampInspectionObj.safety_AreThereAnyUnsafe}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.safety_AreThereAnyUnsafeComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Is camp earthing system as per earthing diagram?</td>
+                        <td class="status">{{WeeklyCampInspectionObj.safety_IsCampEarthing}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.safety_IsCampEarthingComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Are fire emergency procedures posted?</td>
+                        <td class="status">{{WeeklyCampInspectionObj.safety_AreFireEmergency}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.safety_AreFireEmergencyComment}}</td>
+                      </tr>
+                      <tr>
+                        <td colspan="4" style="background-color: rgb(187, 213, 243);">3. FOOD STORAGE AREAS</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >What is the general appearance?</td>
+                        <td class="status">{{WeeklyCampInspectionObj.foodStorage_WhatIsTheGeneralAppearance}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.foodStorage_WhatIsTheGeneralAppearanceComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Is food properly protected from risk of contamination by pests?</td>
+                        <td class="status">{{WeeklyCampInspectionObj.foodStorage_IsFoodProperlyProtectedFromRisk}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.foodStorage_IsFoodProperlyProtectedFromRiskComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Are dry foods properly stored and area clean & tidy?</td>
+                        <td class="status">{{WeeklyCampInspectionObj.foodStorage_AreDryFoodsProperlyStored}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.foodStorage_AreDryFoodsProperlyStoredComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Are frozen foods properly stored and segregated?</td>
+                        <td class="status">{{WeeklyCampInspectionObj.foodStorage_AreFrozenFoods}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.foodStorage_AreFrozenFoodsComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Is There Enough Dry food?</td>
+                        <td class="status">{{WeeklyCampInspectionObj.foodStorage_IsThereEnoughDryFood}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.foodStorage_IsThereEnoughDryFoodComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Frozen stored food has entrance date stickers</td>
+                        <td class="status">{{WeeklyCampInspectionObj.foodStorage_FrozenStoredFood}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.foodStorage_FrozenStoredFoodComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Is food properly stored and cleaned?</td>
+                        <td class="status">{{WeeklyCampInspectionObj.foodStorage_IsFoodProperlyStored}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.foodStorage_IsFoodProperlyStoredComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Are chiller and freezer clean and tidy?</td>
+                        <td class="status">{{WeeklyCampInspectionObj.foodStorage_AreChillerAndFreezerClean}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.foodStorage_AreChillerAndFreezerCleanComment}}</td>
+                      </tr>
+                      <tr>
+                        <td colspan="4" style="background-color: rgb(187, 213, 243);">4. GALLEY</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Is there any water leaks?</td>
+                        <td class="status">{{WeeklyCampInspectionObj.galley_IsThereWnyWaterLeaks}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.galley_IsThereWnyWaterLeaksComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Are all appliances working and in hygienic state?</td>
+                        <td>{{WeeklyCampInspectionObj.galley_AreAllAppliancesWorking}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.galley_AreAllAppliancesWorkingComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >When was exhaust fans last cleaned?</td>
+                        <td>{{WeeklyCampInspectionObj.galley_WhenWasExhaustFans}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.galley_WhenWasExhaustFansComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Are dishes and utensils clean and in good condition?</td>
+                        <td>{{WeeklyCampInspectionObj.galley_AreDishesAndUtensilsClean}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.galley_AreDishesAndUtensilsCleanComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >What the condition of the chip pan and food oil?</td>
+                        <td>{{WeeklyCampInspectionObj.galley_WhatTheConditionOfTheChipPanAndfoodOil}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.galley_WhatTheConditionOfTheChipPanAndfoodOilComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Is the galley area clean and tidy?</td>
+                        <td>{{WeeklyCampInspectionObj.galley_IsTheGalleyAreaClean}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.galley_IsTheGalleyAreaCleanComment}}</td>
+                      </tr>
+                      <tr>
+                        <td colspan="4" style="background-color: rgb(187, 213, 243);">5. MESS HALL</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Are wash hand basins clean with hot water, soap and hygienic hand drying facilities?</td>
+                        <td>{{WeeklyCampInspectionObj.messHall_AreWashHandBasins}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.messHall_AreWashHandBasinsComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Registers for changing food oil</td>
+                        <td>{{WeeklyCampInspectionObj.messHall_RegistersForChangingFoodOil}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.messHall_RegistersForChangingFoodOilComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >All electrical cables are in ducts?</td>
+                        <td>{{WeeklyCampInspectionObj.messHall_AllElectricalCables}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.messHall_AllElectricalCablesComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Are all appliances working?</td>
+                        <td>{{WeeklyCampInspectionObj.messHall_AreAllAppliancesWorking}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.messHall_AreAllAppliancesWorkingComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Are tables/ chairs/ curtains in good working condition?</td>
+                        <td>{{WeeklyCampInspectionObj.messHall_AreTablesInGoodWorkingCondition}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.messHall_AreTablesInGoodWorkingConditionComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Are fly killers working?</td>
+                        <td>{{WeeklyCampInspectionObj.messHall_AreFlyKillersWorking}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.messHall_AreFlyKillersWorkingComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Is mess hall clean and tidy?</td>
+                        <td>{{WeeklyCampInspectionObj.messHall_IsMessHallClean}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.messHall_IsMessHallCleanComment}}</td>
+                      </tr>
+                      <tr>
+                        <td colspan="4" style="background-color: rgb(187, 213, 243);">6. ACCOMODATIONS</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Is generator / water tank area clean & tidy?</td>
+                        <td>{{WeeklyCampInspectionObj.general_IsGenerator}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.general_IsGeneratorComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Lockers of bathrooms are installed well</td>
+                        <td>{{WeeklyCampInspectionObj.accomodations_LockersOfBathroomsAreInstalledWell}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.accomodations_LockersOfBathroomsAreInstalledWellComment}}</td>
+                      </tr>
+
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Types of cleaning materials used</td>
+                        <td>{{WeeklyCampInspectionObj.accomodations_TypesOfCleaningMaterialsUsed}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.accomodations_TypesOfCleaningMaterialsUsedComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Any lack in cleaning and housekeeping observed?</td>
+                        <td>{{WeeklyCampInspectionObj.accomodations_AnyLackInCleaning}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.accomodations_AnyLackInCleaningComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Are door hinges and closures in good working condition?</td>
+                        <td>{{WeeklyCampInspectionObj.accomodations_AreDoorHingesAndClosures}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.accomodations_AreDoorHingesAndClosuresComment}}</td>
+                      </tr>
+                      <tr>
+                        <td colspan="4" style="background-color: rgb(187, 213, 243);">7. CLINC</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Is the clinic clean and tidy?</td>
+                        <td>{{WeeklyCampInspectionObj.clinic_IsTheClinicCleanAndTidy}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.clinic_IsTheClinicCleanAndTidyComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Relevant SDS present?</td>
+                        <td>{{WeeklyCampInspectionObj.clinic_RelevantSdsPresent}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.clinic_RelevantSdsPresentComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Is medical apparatus in good condition?</td>
+                        <td>{{WeeklyCampInspectionObj.clinic_IsMedicalApparatus}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.clinic_IsMedicalApparatusComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Is medical stock maintained at an acceptable level & is it properly stored?</td>
+                        <td>{{WeeklyCampInspectionObj.clinic_IsMedicalStockMaintained}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.clinic_IsMedicalStockMaintainedComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Is medical treatment log up to date?</td>
+                        <td>{{WeeklyCampInspectionObj.clinic_IsMedicalTreatment}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.clinic_IsMedicalTreatmentComment}}</td>
+                      </tr>
+                      <tr>
+                        <td colspan="4" style="background-color: rgb(187, 213, 243);">8. LAUNDRY</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Is laundry clean and tidy?</td>
+                        <td>{{WeeklyCampInspectionObj.laundry_IsLaundryAleanAndTidy}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.laundry_IsLaundryAleanAndTidyComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Types of chemicals used are relevant</td>
+                        <td>{{WeeklyCampInspectionObj.laundry_TypesOfChemicalsUsedAreRelevant}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.laundry_TypesOfChemicalsUsedAreRelevantComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Are all appliances safety switches working?</td>
+                        <td>{{WeeklyCampInspectionObj.laundry_AreAllAppliancesSafety}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.laundry_AreAllAppliancesSafetyComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Are all appliances working?</td>
+                        <td>{{WeeklyCampInspectionObj.laundry_AreAllAppliancesWorking}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.laundry_AreAllAppliancesWorkingComment}}</td>
+                      </tr>
+                      <tr>
+                        <td colspan="4" style="background-color: rgb(187, 213, 243);">9. GENERAL BATHROOMS</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Are all electrical fixtures with covers?</td>
+                        <td>{{WeeklyCampInspectionObj.generalBathRooms_AreAllElectricalFixtures}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.generalBathRooms_AreAllElectricalFixturesComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Are all doors in good working order?</td>
+                        <td>{{WeeklyCampInspectionObj.generalBathRooms_AreAllDoorsInGoodWorkingOrder}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.generalBathRooms_AreAllDoorsInGoodWorkingOrderComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Any leaks in piping?</td>
+                        <td>{{WeeklyCampInspectionObj.generalBathRooms_AnyLeaksInPiping}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.generalBathRooms_AnyLeaksInPipingComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Is the area clean and tidy?</td>
+                        <td>{{WeeklyCampInspectionObj.generalBathRooms_IsTheAreaCleanAndTidy}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.generalBathRooms_IsTheAreaCleanAndTidyComment}}</td>
+                      </tr>
+                      <tr>
+                        <td colspan="4" style="background-color: rgb(187, 213, 243);">10. WATER TANKS</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Are water tanks hatches clean and secured?</td>
+                        <td>{{WeeklyCampInspectionObj.waterTanks_AreWaterTanksHatchesClean}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.waterTanks_AreWaterTanksHatchesCleanComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Any water leaks?</td>
+                        <td>{{WeeklyCampInspectionObj.waterTanks_AnyWaterLeaks}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.waterTanks_AnyWaterLeaksComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >What is the date of last water sample?</td>
+                        <td>{{WeeklyCampInspectionObj.waterTanks_WhatIsTheDateOfLastWaterSample}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.waterTanks_WhatIsTheDateOfLastWaterSampleComment}}</td>
+                      </tr>
+                      <tr style="vertical-align: middle;">
+                        <td class="p-0"dir="auto" style="width: 37%;" >Is area clean and tidy?</td>
+                        <td>{{WeeklyCampInspectionObj.waterTanks_IsAreaCleanAndTidy}}</td>
+                        <td class="comment-cell"colspan="4">{{WeeklyCampInspectionObj.waterTanks_IsAreaCleanAndTidyComment}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                 <div class="col-12" style="font-size: 10px;">
+                  <table class="table table-borderless mb-1"
+                    style="display: flex; align-items: center; justify-content: center;">
+                    <tbody>
+                      <tr>
+                        <td scope="row">
+                          Issue No. 01
+                          <br>
+                          Revision No. 04
+                        </td>
+                        <td scope="row">
+                          Document No. ECDC-QHSE-FM-107
+                          <br>
+                          Page 1 / 1
+                        </td>
+                        <td scope="row">
+                          Issue Date: 1/1/2021
+                          <br>
+                          Revision Date: 00/00/0000
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+
+              </div>
+              <!-- End -->
+            </div>
+          </div>
+          <input *ngIf="Data" type="submit" class="btn btn-primary my-4" value="Print Data" (click)="print()" />
+        </div>
+      </div>
+    </div>
+
+  </div>

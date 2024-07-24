@@ -1,0 +1,1638 @@
+<div class="container mb-5" style="margin-top: 8%;">
+    <div class="heading_container heading_center d-flex">
+      <h2 class="mx-auto my-4">
+        Weekly Inspection
+      </h2>
+  
+    </div>
+  
+    <div class="row">
+      <form [formGroup]="WeeklyInspectionForm" id="print-section" (ngSubmit)="submitData()"
+        class="col-md-10 mx-auto d-flex flex-wrap">
+  
+        <table class="table">
+          <tr>
+            <td>
+              <div class="form-group">
+                <label class="form-label" for="rigId">Rig Number: </label>
+                <select name="rigId" formControlName="rigId" id="rigId" class="form-select"
+                [(ngModel)]="WeeklyInspection.rigId">
+                  <option value="" disabled selected>Choose Rig Number</option>
+                  <option *ngFor="let item of rigList" value="{{item.id}}">Rig - {{item.number}}</option>
+                </select>
+              </div>
+            </td>
+            <td>
+              <div class="form-group">
+                <label>Date :</label>
+                <input id="Date" type="date" formControlName="date" class="form-control" 
+                [ngModel]="WeeklyInspection.date | date: 'yyyy-MM-dd'"/>
+                <div *ngIf="date?.invalid && (date?.dirty || date?.touched)">
+                  <small class="text-danger" *ngIf="date?.errors?.['required']">
+                    Date is required
+                  </small>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="form-group">
+                <label>Well Name :</label>
+                <input type="text" name="wellName" formControlName="wellName" class="form-control"
+                [(ngModel)]="WeeklyInspection.wellName"  />
+                <div *ngIf="wellName?.invalid && (wellName?.dirty || wellName?.touched)">
+                  <small class="text-danger" *ngIf="wellName?.errors?.['required']">
+                    Well Name is required
+                  </small>
+                </div>
+              </div>
+            </td>
+  
+            <td>
+              <div class="form-group   ">
+                <label> Client :</label>
+                <input type="text" name="client" formControlName="client" class="form-control"
+                [(ngModel)]="WeeklyInspection.client" >
+                <div *ngIf="client?.invalid && (client?.dirty || client?.touched)">
+                  <small class="text-danger" *ngIf="client?.errors?.['required']">
+                    Client is required
+                  </small>
+                </div>
+              </div>
+            </td>
+  
+          </tr>
+      
+          <!-- 1 SCBA INSPECTION  -->
+          <tr>
+            <td colspan="4" class="text-center py-4">
+              <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+                <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray; font-weight: bold;">
+                  SCBA INSPECTION
+                </span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+              <label for="comment"> Inspection Instruction
+                <i class="fa-solid" [class.fa-arrow-down]="arrowDown18" [class.fa-arrow-right-long]="!arrowDown18" (click)="toggleInstructions18()"></i>
+              </label>
+              <div class="p-1 mb-2" style="border: 1px solid ; max-width: 100%; overflow: hidden;" *ngIf="showInstructions18">
+                <ul>
+                    Step 1: Check the exterior of the breathing apparatus for any signs of damage, leaks, or corrosion.
+                    Make sure the straps, face-piece, valves, and cylinders are intact and secure12<br>
+                  
+                  
+                    Step 2: Check the pressure in the cylinders. Make sure they are fully charged and have enough air
+                    supply for the intended use12<br>
+                  
+                  
+                    Step 3: Check the volume flow and the quality of the air supplied in the breathing apparatus. Make
+                    sure the air is clean, clear, and free of contaminants.
+                    If the breathing apparatus is a rescue type, make sure the air is compatible with the atmosphere of
+                    the rescue site12<br>
+                 
+                    Step 4: Test the operation of the breathing apparatus by donning it and performing a fit check. The
+                    face-piece should seal tightly against the face and the breathing circuit should function properly.
+                    Test the alarm, the regulator, the control module, the power module, and the HUD if applicable13<br>
+                
+                    Step 5: Record the date and initials of the person who performed the inspection on a log sheet or a
+                    tag. If any issues are found, contact the maintenance department or the manufacturer for repairs or
+                    replacements. Notify the supervisor or the manager of the inspection results and any corrective
+                    actions taken12
+                  
+                </ul>
+              </div>
+            </td>
+          </tr>
+  
+          <tr>
+            <td>
+              <div class="from-group" style="font-weight: bold;">
+                <label for="scba30min" class="form-label"> Avaliable no :</label>
+              </div>
+            </td>
+            <td >
+              <div class="from-group">
+                <label for="scba30min" class="form-label"> 30min :</label>
+                <input name="scba30min" formControlName="scba30min" id="scba30min" class="form-control"
+                [(ngModel)]="WeeklyInspection.scba30min" >
+              </div>
+            </td>
+            <td >
+              <div class="from-group">
+                <label for="scba15min" class="form-label"> 15min :</label>
+                <input name="scba15min" formControlName="scba15min" id="scba15min" class="form-control"
+                [(ngModel)]="WeeklyInspection.scba15min" >
+              </div>
+            </td>
+            <td >
+              <div class="from-group">
+                <label for="scba10min" class="form-label"> 30min :</label>
+                <input name="scba10min" formControlName="scba10min" id="scba10min" class="form-control"
+                [(ngModel)]="WeeklyInspection.scba10min" >
+              </div>
+            </td>
+          </tr>
+          <div>
+            <label for="scbaStatus" class="form-label"> Status :</label>
+          </div>
+          <tr>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="scbaStatus" type="radio" name="scbaStatus"
+                  value="Good"[(ngModel)]="WeeklyInspection.scbaStatus" >
+                  <label for="scbaStatus" class="form-label"style="margin-left: 7px;"> Good </label> 
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="scbaStatus" type="radio" name="scbaStatus"
+                  value="Accepted" [(ngModel)]="WeeklyInspection.scbaStatus">
+                  <label for="scbaStatus" class="form-label"style="margin-left: 7px;"> Accepted</label>
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="scbaStatus" type="radio" name="scbaStatus"
+                  value="Poor"[(ngModel)]="WeeklyInspection.scbaStatus">
+                  <label for="scbaStatus" class="form-label" style="margin-left: 7px;"> Poor</label>  
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="scbaStatus" type="radio" name="scbaStatus"
+                  value="N/A"[(ngModel)]="WeeklyInspection.scbaStatus">
+                  <label for="scbaStatus" class="form-label" style="margin-left: 7px;">N/A</label>  
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+              <label for="scbaWeeklyFindings">Weekly Findings:</label>
+              <textarea class="form-control " formControlName="scbaWeeklyFindings" rows="4" id="scbaWeeklyFindings"
+                name="text" [(ngModel)]="WeeklyInspection.scbaWeeklyFindings" ></textarea>
+            </td>
+          </tr>
+  
+          <!-- 2  EYE WASH STATION  CHECK -->
+  
+          <tr>
+            <td colspan="4" class="text-center py-4">
+              <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+                <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray; font-weight: bold;">
+                  EYE WASH STATION CHECK
+                </span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+                <label for="comment"> Inspection Instruction
+                <i class="fa-solid" [class.fa-arrow-down]="arrowDown1" [class.fa-arrow-right-long]="!arrowDown1" (click)="toggleInstructions1()"></i>
+              </label>
+              <div class="p-1 mb-2" style="border: 1px solid ; max-width: 100%; overflow: hidden;"*ngIf="showInstructions1">
+                <ul>
+                  <li>
+                    Step 1:Check the station for damage, leaks, or corrosion. Make sure it is accessible, uncluttered, and
+                    marked.
+                  </li>
+                  <li>
+                    Step 2: Check the water quality and level. Replace it if it is dirty, discolored, or smelly. Flush the
+                    water for 20 seconds if it is plumbed
+                  </li>
+                  <li>
+                    Step 3: Test the station by activating it with one motion. The water should flow from both nozzles
+                    with the same pressure and cover a large area.
+                    The dust covers should pop off automatically. The water should be tepid, not too hot or cold.
+                  </li>
+                  <li>
+                    Step 4:Check the nozzles for cleanliness and function. The nozzles should be free of dust, debris, or
+                    corrosion.
+                    The water should spray softly and gently. The nozzles should be aligned at the same height and angle.
+                  </li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+          <div>
+            <label for="eyeStatus" class="form-label"> Status :</label>
+          </div>
+          <tr>
+      
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="eyeStatus" type="radio" name="eyeStatus"
+                  value="Good"[(ngModel)]="WeeklyInspection.eyeStatus">
+                  <label for="eyeStatus" class="form-label"style="margin-left: 7px;"> Good </label> 
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="eyeStatus" type="radio" name="eyeStatus"
+                  value="Accepted"[(ngModel)]="WeeklyInspection.eyeStatus">
+                  <label for="eyeStatus" class="form-label"style="margin-left: 7px;"> Accepted</label>
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="eyeStatus" type="radio" name="eyeStatus"
+                  value="Poor"[(ngModel)]="WeeklyInspection.eyeStatus">
+                  <label for="eyeStatus" class="form-label" style="margin-left: 7px;"> Poor</label>  
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="eyeStatus" type="radio" name="eyeStatus"
+                  value="N/A"[(ngModel)]="WeeklyInspection.eyeStatus">
+                  <label for="eyeStatus" class="form-label" style="margin-left: 7px;"> N/A</label>  
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+              <label for="eyeWeeklyFindings"> Weekly Findings:</label>
+              <textarea class="form-control " formControlName="eyeWeeklyFindings" rows="4" id="eyeWeeklyFindings"
+                name="text" [(ngModel)]="WeeklyInspection.eyeWeeklyFindings" ></textarea>
+            </td>
+          </tr>
+  
+          <!-- 3 FIRST AID EQUIPMENT -->
+  
+  
+          <tr>
+            <td colspan="4" class="text-center py-4">
+              <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+                <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray; font-weight: bold;">
+                  FIRST AID EQUIPMENT
+                </span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+                <label for="comment"> Inspection Instruction
+                <i class="fa-solid" [class.fa-arrow-down]="arrowDown2" [class.fa-arrow-right-long]="!arrowDown2" (click)="toggleInstructions2()"></i>
+              </label>
+               <div class="p-1 mb-2" style="border: 1px solid ; max-width: 100%; overflow: hidden;"*ngIf="showInstructions2">
+  
+                <ul>
+                  <li>
+                    Step 1: Check for unsafe or damaged products. Throw away any items that are dirty, used, or broken1.
+                  </li>
+                  <li>
+                    Step 2: Check for expiration dates. Dispose of any items that are past their use-by dates1.
+                  </li>
+                  <li>
+                    Step 3: Review and observe the usage and inventory. Note how much has been used and what types of
+                    injuries have occurred1
+                  </li>
+                  <li>
+                    Step 4: Arrange and organize the products to their appropriate locations. Follow the guidelines for
+                    first aid kit contents and placement23
+                  </li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+          <div>
+            <label for="firstAidStatus" class="form-label"> Status :</label>
+          </div>
+          <tr>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="firstAidStatus" type="radio" name="firstAidStatus"
+                  value="Good"[(ngModel)]="WeeklyInspection.firstAidStatus">
+                  <label for="firstAidStatus" class="form-label"style="margin-left: 7px;"> Good </label> 
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="firstAidStatus" type="radio" name="firstAidStatus"
+                  value="Accepted"[(ngModel)]="WeeklyInspection.firstAidStatus">
+                  <label for="firstAidStatus" class="form-label"style="margin-left: 7px;"> Accepted</label>
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="firstAidStatus" type="radio" name="firstAidStatus"
+                  value="Poor"[(ngModel)]="WeeklyInspection.firstAidStatus">
+                  <label for="firstAidStatus" class="form-label" style="margin-left: 7px;"> Poor</label>  
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="firstAidStatus" type="radio" name="firstAidStatus"
+                  value="N/A"[(ngModel)]="WeeklyInspection.firstAidStatus">
+                  <label for="firstAidStatus" class="form-label" style="margin-left: 7px;"> N/A</label>  
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+              <label for="firstAidWeeklyFindings"> Weekly Findings:</label>
+              <textarea class="form-control " formControlName="firstAidWeeklyFindings" rows="4"
+                id="firstAidWeeklyFindings" name="text"[(ngModel)]="WeeklyInspection.firstAidWeeklyFindings"  ></textarea>
+            </td>
+          </tr>
+  
+          <!-- 4  Portable Gas Detector -->
+  
+  
+          <tr>
+            <td colspan="4" class="text-center py-4">
+              <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+                <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray; font-weight: bold;">
+                  Portable Gas Detector </span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+                <label for="comment"> Inspection Instruction
+                <i class="fa-solid" [class.fa-arrow-down]="arrowDown3" [class.fa-arrow-right-long]="!arrowDown3" (click)="toggleInstructions3()"></i>
+              </label>
+               <div class="p-1 mb-2" style="border: 1px solid ; max-width: 100%; overflow: hidden;"*ngIf="showInstructions3">
+  
+                <ul>
+                  <li>
+                    1. Check the physical condition of the device </li>
+                  <li>
+                    2. Calibrate the device to zero level using clean air </li>
+                  <li>
+                    3. Perform a bump test using a known concentration of gas
+                  </li>
+                  <li>
+                    4. Record the results in a maintenance log
+                  </li>
+                  <li>
+                    5. Replace or repair the device if it fails any test
+                  </li>
+                  <li>
+                    6. Check the due date of calibration
+                  </li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+          <div>
+            <label for="portableGasStatus" class="form-label"> Status :</label>
+          </div>
+          <tr>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="portableGasStatus" type="radio" name="portableGasStatus"
+                  value="Good" [(ngModel)]="WeeklyInspection.portableGasStatus">
+                  <label for="portableGasStatus" class="form-label"style="margin-left: 7px;"> Good </label> 
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="portableGasStatus" type="radio" name="portableGasStatus"
+                  value="Accepted" [(ngModel)]="WeeklyInspection.portableGasStatus">
+                  <label for="portableGasStatus" class="form-label"style="margin-left: 7px;"> Accepted</label>
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="portableGasStatus" type="radio" name="portableGasStatus"
+                  value="Poor" [(ngModel)]="WeeklyInspection.portableGasStatus">
+                  <label for="portableGasStatus" class="form-label" style="margin-left: 7px;"> Poor</label>  
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="portableGasStatus" type="radio" name="portableGasStatus"
+                  value="N/A" [(ngModel)]="WeeklyInspection.portableGasStatus">
+                  <label for="portableGasStatus" class="form-label" style="margin-left: 7px;"> N/A</label>  
+              </div>
+            </td>
+          </tr>
+      
+          <tr>
+            <td>
+              <div class="from-group" style="font-weight: bold;">
+                <label for="scba30min" class="form-label"> Avaliable no </label>
+              </div>
+            </td>
+            <td >
+              <div class="from-group">
+                <label for="portableGasMuti" class="form-label"> Multi :</label>
+                <input name="portableGasMuti" formControlName="portableGasMuti" 
+            id="portableGasMuti" class="form-control" [(ngModel)]="WeeklyInspection.portableGasMuti" >
+              </div>
+            </td>
+            <td >
+              <div class="from-group">
+                <label for="portableGasSingle" class="form-label"> Single :</label>
+                <input name="portableGasSingle" formControlName="portableGasSingle" id="portableGasSingle"
+              class="form-control" [(ngModel)]="WeeklyInspection.portableGasSingle" >
+              </div>
+            </td>
+            <td >
+              <div class="form-group   ">
+                <label> Expiry Date :</label>
+                <input id="Date" type="date" formControlName="expeiryDate" class="form-control" 
+                [ngModel]="WeeklyInspection.expeiryDate | date: 'yyyy-MM-dd'"/>
+                <div *ngIf="expeiryDate?.invalid && (expeiryDate?.dirty || expeiryDate?.touched)">
+                  <small class="text-danger" *ngIf="expeiryDate?.errors?.['required']">
+                    Expiry Date is required
+                  </small>
+                </div>
+              </div>
+            </td>
+          </tr>
+  
+          <tr>
+            <td colspan="4">
+              <label for="portableGasWeeklyFindings"> Weekly Findings:</label>
+              <textarea class="form-control " formControlName="portableGasWeeklyFindings" rows="4"
+                id="portableGasWeeklyFindings" name="text" [(ngModel)]="WeeklyInspection.portableGasWeeklyFindings" ></textarea>
+            </td>
+          </tr>
+  
+          <!-- 5 Fire Pump -->
+  
+  
+          <tr>
+            <td colspan="4" class="text-center py-4">
+              <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+                <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray; font-weight: bold;">
+                  Fire Pump
+                </span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+                <label for="comment"> Inspection Instruction
+                <i class="fa-solid" [class.fa-arrow-down]="arrowDown4" [class.fa-arrow-right-long]="!arrowDown4" (click)="toggleInstructions4()"></i>
+              </label>
+               <div class="p-1 mb-2" style="border: 1px solid ; max-width: 100%; overflow: hidden;"*ngIf="showInstructions4">
+  
+                <ul>
+                  <li>
+                    1. Check the condition of the pump </li>
+                  <li>
+                    2. Check the power supply, valves, piping, and gauges of the fire pump system
+                  </li>
+                  <li>
+                    3. Test the start and the stop of the pump </li>
+                  <li>
+                    4. Test the pump operation and performance </li>
+                  <li>
+                    5. Record the results and report any deficiencies or malfunctions
+                  </li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+          <div>
+            <label for="firePumpStatus" class="form-label"> Status :</label>
+          </div>
+          <tr>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="firePumpStatus" type="radio" name="firePumpStatus"
+                  value="Good"[(ngModel)]="WeeklyInspection.firePumpStatus">
+                  <label for="firePumpStatus" class="form-label"style="margin-left: 7px;"> Good </label> 
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="firePumpStatus" type="radio" name="firePumpStatus"
+                  value="Accepted"[(ngModel)]="WeeklyInspection.firePumpStatus">
+                  <label for="firePumpStatus" class="form-label"style="margin-left: 7px;"> Accepted</label>
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="firePumpStatus" type="radio" name="firePumpStatus"
+                  value="Poor"[(ngModel)]="WeeklyInspection.firePumpStatus">
+                  <label for="firePumpStatus" class="form-label" style="margin-left: 7px;"> Poor</label>  
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="firePumpStatus" type="radio" name="firePumpStatus"
+                  value="N/A"[(ngModel)]="WeeklyInspection.firePumpStatus">
+                  <label for="firePumpStatus" class="form-label" style="margin-left: 7px;"> N/A</label>  
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+              <label for="firePumpWeeklyFindings"> Weekly Findings:</label>
+              <textarea class="form-control " formControlName="firePumpWeeklyFindings" rows="4"
+                id="firePumpWeeklyFindings" name="text" [(ngModel)]="WeeklyInspection.firePumpWeeklyFindings" ></textarea>
+            </td>
+          </tr>
+  
+          <!-- 6 WELDING EQUIPMENT  -->
+  
+  
+          <tr>
+            <td colspan="4" class="text-center py-4">
+              <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+                <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray; font-weight: bold;">
+                  WELDING EQUIPMENT
+                </span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+                <label for="comment"> Inspection Instruction
+                <i class="fa-solid" [class.fa-arrow-down]="arrowDown5" [class.fa-arrow-right-long]="!arrowDown5" (click)="toggleInstructions5()"></i>
+              </label>
+               <div class="p-1 mb-2" style="border: 1px solid ; max-width: 100%; overflow: hidden;"*ngIf="showInstructions5">
+  
+                <p>
+                  1. Maintain a minimum 6-meter separation between oxygen and fuel-gas cylinders.<br>
+                  2. Store unused cylinders with hand-tightened valve covers.<br>
+                  3. Equip oxygen and acetylene cylinders with flashback prevention devices.<br>
+                  4. Store cylinders in a cool, dry area away from heat sources.<br>
+                  5. Secure cylinders upright during storage and transportation.<br>
+                  6. Check labels for accuracy and legibility.<br>
+                  7. Inspect valves for damage, corrosion, and leaks.<br>
+                  8. Verify regulator matches gas type and pressure rating.<br>
+                  9. Check regulator threads for damage and proper seal.<br>
+                  10. Inspect hoses and fittings for wear, cuts, and leaks.<br>
+                  11. Confirm pressure relief devices are functional.<br>
+                  12. Check power cords/plugs, ensuring proper grounding.<br>
+                  13. Inspect electrode holder, welding cables, and ground clamp for damage.<br>
+                  14. Verify welding helmet and protective gear are in good condition.<br>
+                  15. Confirm the availability and functionality of fire extinguishers.<br>
+                  16. Ensure proper ventilation in the work area.<br>
+                </p>
+              </div>
+            </td>
+          </tr>
+          <div>
+            <label for="weldingStatus" class="form-label"> Status :</label>
+          </div>
+          <tr>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="weldingStatus" type="radio" name="weldingStatus"
+                  value="Good"[(ngModel)]="WeeklyInspection.weldingStatus">
+                  <label for="weldingStatus" class="form-label"style="margin-left: 7px;"> Good </label> 
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="weldingStatus" type="radio" name="weldingStatus"
+                  value="Accepted"[(ngModel)]="WeeklyInspection.weldingStatus">
+                  <label for="weldingStatus" class="form-label"style="margin-left: 7px;"> Accepted</label>
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="weldingStatus" type="radio" name="weldingStatus"
+                  value="Poor"[(ngModel)]="WeeklyInspection.weldingStatus">
+                  <label for="weldingStatus" class="form-label" style="margin-left: 7px;"> Poor</label>  
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="weldingStatus" type="radio" name="weldingStatus"
+                  value="N/A"[(ngModel)]="WeeklyInspection.weldingStatus">
+                  <label for="weldingStatus" class="form-label" style="margin-left: 7px;">N/A</label>  
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+              <label for="weldingWeeklyFindings"> Weekly Findings:</label>
+              <textarea class="form-control "rows="4" id="weldingWeeklyFindings"formControlName="weldingWeeklyFindings"
+                name="text" [(ngModel)]="WeeklyInspection.weldingWeeklyFindings"></textarea>
+            </td>
+          </tr>
+         
+          <!-- 7 WIND SOCK -->
+          <tr>
+            <td colspan="4" class="text-center py-4">
+              <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+                <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray; font-weight: bold;">
+                  WIND SOCK
+                </span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+                <label for="comment"> Inspection Instruction
+                <i class="fa-solid" [class.fa-arrow-down]="arrowDown6" [class.fa-arrow-right-long]="!arrowDown6" (click)="toggleInstructions6()"></i>
+              </label>
+               <div class="p-1 mb-2" style="border: 1px solid ; max-width: 100%; overflow: hidden;"*ngIf="showInstructions6">
+  
+                <p>
+                  1. Check the physical condition of the wind sock and the frame.<br>
+                  2. Check the operation of the lowering mechanism and the hinge components.<br>
+                  3. Check the connection points, shackles, eye-bolts, swivels, fixing bolts, and welds.<br>
+                  4. Check the rotation of the wind sock and the swivel system.<br>
+                  5. Record the inspection results and report any damage or wear.<br>
+  
+                </p>
+              </div>
+            </td>
+          </tr>
+          <div>
+            <label for="windStatus" class="form-label"> Status :</label>
+          </div>
+          <tr>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="windStatus" type="radio" name="windStatus"
+                  value="Good"[(ngModel)]="WeeklyInspection.windStatus">
+                  <label for="windStatus" class="form-label"style="margin-left: 7px;"> Good </label> 
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="windStatus" type="radio" name="windStatus"
+                  value="Accepted"[(ngModel)]="WeeklyInspection.windStatus">
+                  <label for="windStatus" class="form-label"style="margin-left: 7px;"> Accepted</label>
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="windStatus" type="radio" name="windStatus"
+                  value="Poor"[(ngModel)]="WeeklyInspection.windStatus">
+                  <label for="windStatus" class="form-label" style="margin-left: 7px;"> Poor</label>  
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="windStatus" type="radio" name="windStatus"
+                  value="N/A"[(ngModel)]="WeeklyInspection.windStatus">
+                  <label for="windStatus" class="form-label" style="margin-left: 7px;"> N/A</label>  
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+              <label for="windWeeklyFindings"> Weekly Findings:</label>
+              <textarea class="form-control " formControlName="windWeeklyFindings" rows="4" id="windWeeklyFindings"
+                name="text" [(ngModel)]="WeeklyInspection.windWeeklyFindings" ></textarea>
+            </td>
+          </tr>
+  
+          <!-- 8 Smoke Detector  -->
+  
+  
+          <tr>
+            <td colspan="4" class="text-center py-4">
+              <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+                <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray; font-weight: bold;">
+                  Smoke Detector
+                </span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+                <label for="comment"> Inspection Instruction
+                <i class="fa-solid" [class.fa-arrow-down]="arrowDown7" [class.fa-arrow-right-long]="!arrowDown7" (click)="toggleInstructions7()"></i>
+              </label>
+               <div class="p-1 mb-2" style="border: 1px solid ; max-width: 100%; overflow: hidden;"*ngIf="showInstructions7">
+  
+                <p>
+                  1. Test alarm: Press the test button to confirm the alarm functions.<br>
+                  2. Warning lights: Check for indicator lights and refer to the manual for interpretation.<br>
+                  3. Check power source: Ensure the detector has batteries or a backup battery.<br>
+                  4. Battery replacement: Change batteries annually or per manufacturer's recommendation.<br>
+                  5. Clean detector: Use a vacuum cleaner to remove dust and debris.<br>
+                  6. Obstructions: Ensure no objects block the detector.<br>
+                  7. Placement: Confirm proper installation in bedrooms, hallways, and on each level.<br>
+                  8. Expiry date: Replace detectors after 10 years or as per the expiration date.<br>
+                </p>
+              </div>
+            </td>
+          </tr>
+          <div>
+            <label for="smokeStatus" class="form-label"> Status :</label>
+          </div>
+          <tr>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="smokeStatus" type="radio" name="smokeStatus"
+                  value="Good"[(ngModel)]="WeeklyInspection.smokeStatus">
+                  <label for="smokeStatus" class="form-label"style="margin-left: 7px;"> Good </label> 
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="smokeStatus" type="radio" name="smokeStatus"
+                  value="Accepted"[(ngModel)]="WeeklyInspection.smokeStatus">
+                  <label for="smokeStatus" class="form-label"style="margin-left: 7px;"> Accepted</label>
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="smokeStatus" type="radio" name="smokeStatus"
+                  value="Poor"[(ngModel)]="WeeklyInspection.smokeStatus">
+                  <label for="smokeStatus" class="form-label" style="margin-left: 7px;"> Poor</label>  
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="smokeStatus" type="radio" name="smokeStatus"
+                  value="N/A"[(ngModel)]="WeeklyInspection.smokeStatus">
+                  <label for="smokeStatus" class="form-label" style="margin-left: 7px;"> N/A</label>  
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+              <label for="smokeWeeklyFindings"> Weekly Findings:</label>
+              <textarea class="form-control " formControlName="smokeWeeklyFindings" rows="4" id="smokeWeeklyFindings"
+                name="text"[(ngModel)]="WeeklyInspection.smokeWeeklyFindings" ></textarea>
+            </td>
+          </tr>
+  
+          <!-- 9 Fire Extinguishers  -->
+  
+  
+          <tr>
+            <td colspan="4" class="text-center py-4">
+              <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+                <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray; font-weight: bold;">
+                  Fire Extinguishers
+                </span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+                <label for="comment"> Inspection Instruction
+                <i class="fa-solid" [class.fa-arrow-down]="arrowDown8" [class.fa-arrow-right-long]="!arrowDown8" (click)="toggleInstructions8()"></i>
+              </label>
+               <div class="p-1 mb-2" style="border: 1px solid ; max-width: 100%; overflow: hidden;"*ngIf="showInstructions8">
+  
+                <p>
+                  1. Check pressure gauge: Ensure the pressure gauge indicates the fire extinguisher is charged and ready.<br>
+                  2. Inspection tag: Confirm the extinguisher has a current inspection tag.<br>
+                  3. Verify accessibility: Ensure the extinguisher is easily accessible and not obstructed.<br>
+                  4. Check for physical damage: Inspect for dents, leaks, or other visible damage.<br>
+                  5. Inspect hose/nozzle: Ensure the hose or nozzle is in good condition and free from blockages.<br>
+                  6. Confirm seal and pin: Check that the tamper seal is intact, and the pull pin is securely in place.<br>
+                  7. Examine the label: Ensure the label provides proper instructions and hasn't faded or become
+                  illegible.<br>
+                  8. Weigh the extinguisher: Confirm the weight is within the specified range as indicated on the label.<br>
+                  9. Shake extinguisher: Periodically shake dry powder extinguishers to prevent powder settling.<br>
+                  10. Employee training: Ensure personnel know the location and proper use of fire extinguishers.<br>
+                </p>
+              </div>
+            </td>
+          </tr>
+          <div>
+            <label for="fireExtinguishersStatus" class="form-label"> Status :</label>
+          </div>
+          <tr>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="fireExtinguishersStatus" type="radio" name="fireExtinguishersStatus"
+                  value="Good"[(ngModel)]="WeeklyInspection.fireExtinguishersStatus">
+                  <label for="fireExtinguishersStatus" class="form-label"style="margin-left: 7px;"> Good </label> 
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="fireExtinguishersStatus" type="radio" name="fireExtinguishersStatus"
+                  value="Accepted"[(ngModel)]="WeeklyInspection.fireExtinguishersStatus">
+                  <label for="fireExtinguishersStatus" class="form-label"style="margin-left: 7px;"> Accepted</label>
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="fireExtinguishersStatus" type="radio" name="fireExtinguishersStatus"
+                  value="Poor"[(ngModel)]="WeeklyInspection.fireExtinguishersStatus">
+                  <label for="fireExtinguishersStatus" class="form-label" style="margin-left: 7px;"> Poor</label>  
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="fireExtinguishersStatus" type="radio" name="fireExtinguishersStatus"
+                  value="N/A"[(ngModel)]="WeeklyInspection.fireExtinguishersStatus">
+                  <label for="fireExtinguishersStatus" class="form-label" style="margin-left: 7px;"> N/A</label>  
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+              <label for="fireExtinguishersWeeklyFindings"> Weekly Findings:</label>
+              <textarea class="form-control " formControlName="fireExtinguishersWeeklyFindings" rows="4"
+                id="fireExtinguishersWeeklyFindings" name="text" [(ngModel)]="WeeklyInspection.fireExtinguishersWeeklyFindings" ></textarea>
+            </td>
+          </tr>
+  
+          <!-- 8 Smoke Detector  -->
+  
+  
+          <tr>
+            <td colspan="4" class="text-center py-4">
+              <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+                <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray; font-weight: bold;">
+                  Derrickman Escape Device
+                </span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+                <label for="comment"> Inspection Instruction
+                <i class="fa-solid" [class.fa-arrow-down]="arrowDown9" [class.fa-arrow-right-long]="!arrowDown9" (click)="toggleInstructions9()"></i>
+              </label>
+               <div class="p-1 mb-2" style="border: 1px solid ; max-width: 100%; overflow: hidden;"*ngIf="showInstructions9">
+  
+                <p>
+                  1. Check the condition and the connection of the device and the cable.<br>
+                  2. Check the operation and the rotation of the device and the swivel system.<br>
+                  3. Perform a functional test by climbing the derrick with the device.<br>
+                  4. Record the results and report any damage or wear.<br>
+  
+                </p>
+              </div>
+            </td>
+          </tr>
+          <div>
+            <label for="derrickmanStatus" class="form-label"> Status :</label>
+          </div>
+          <tr>
+
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="derrickmanStatus" type="radio" name="derrickmanStatus"
+                  value="Good"[(ngModel)]="WeeklyInspection.derrickmanStatus">
+                  <label for="derrickmanStatus" class="form-label"style="margin-left: 7px;"> Good </label> 
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="derrickmanStatus" type="radio" name="derrickmanStatus"
+                  value="Accepted"[(ngModel)]="WeeklyInspection.derrickmanStatus">
+                  <label for="derrickmanStatus" class="form-label"style="margin-left: 7px;"> Accepted</label>
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="derrickmanStatus" type="radio" name="derrickmanStatus"
+                  value="Poor"[(ngModel)]="WeeklyInspection.derrickmanStatus">
+                  <label for="derrickmanStatus" class="form-label" style="margin-left: 7px;"> Poor</label>  
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="derrickmanStatus" type="radio" name="derrickmanStatus"
+                  value="N/A"[(ngModel)]="WeeklyInspection.derrickmanStatus">
+                  <label for="derrickmanStatus" class="form-label" style="margin-left: 7px;"> N/A</label>  
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+              <label for="derrickmanWeeklyFindings"> Weekly Findings:</label>
+              <textarea class="form-control " formControlName="derrickmanWeeklyFindings" rows="4"
+                id="derrickmanWeeklyFindings" name="text" [(ngModel)]="WeeklyInspection.derrickmanWeeklyFindings" ></textarea>
+            </td>
+          </tr>
+  
+          <!-- 9 Working At Height Rescue Kit   -->
+  
+  
+          <tr>
+            <td colspan="4" class="text-center py-4">
+              <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+                <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray; font-weight: bold;">
+                  Working At Height Rescue Kit
+                </span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+                <label for="comment"> Inspection Instruction
+                <i class="fa-solid" [class.fa-arrow-down]="arrowDown10" [class.fa-arrow-right-long]="!arrowDown10" (click)="toggleInstructions10()"></i>
+              </label>
+               <div class="p-1 mb-2" style="border: 1px solid ; max-width: 100%; overflow: hidden;"*ngIf="showInstructions10">
+  
+                <p>
+                  1. Check the condition and the connection of the rescue kit.<br>
+                  2. Check the operation and the rotation of the rescue kit.<br>
+                  3. Perform a functional test by simulating a rescue scenario.<br>
+                  4. Record the results and report any damage or wear.<br>
+  
+                </p>
+              </div>
+            </td>
+          </tr>
+          <div>
+            <label for="workingStatus" class="form-label"> Status :</label>
+          </div>
+          <tr>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="workingStatus" type="radio" name="workingStatus"
+                  value="Good"[(ngModel)]="WeeklyInspection.workingStatus">
+                  <label for="workingStatus" class="form-label"style="margin-left: 7px;"> Good </label> 
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="workingStatus" type="radio" name="workingStatus"
+                  value="Accepted"[(ngModel)]="WeeklyInspection.workingStatus">
+                  <label for="workingStatus" class="form-label"style="margin-left: 7px;"> Accepted</label>
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="workingStatus" type="radio" name="workingStatus"
+                  value="Poor"[(ngModel)]="WeeklyInspection.workingStatus">
+                  <label for="workingStatus" class="form-label" style="margin-left: 7px;"> Poor</label>  
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="workingStatus" type="radio" name="workingStatus"
+                  value="N/A"[(ngModel)]="WeeklyInspection.workingStatus">
+                  <label for="workingStatus" class="form-label" style="margin-left: 7px;"> N/A</label>  
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+              <label for="workingWeeklyFindings"> Weekly Findings:</label>
+              <textarea class="form-control " formControlName="workingWeeklyFindings" rows="4" id="workingWeeklyFindings"
+                name="text" [(ngModel)]="WeeklyInspection.workingWeeklyFindings" ></textarea>
+            </td>
+          </tr>
+  
+          <!-- 10 Portable Ladder   -->
+  
+  
+          <tr>
+            <td colspan="4" class="text-center py-4">
+              <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+                <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray; font-weight: bold;">
+                  Portable Ladder
+                </span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+                <label for="comment"> Inspection Instruction
+                <i class="fa-solid" [class.fa-arrow-down]="arrowDown11" [class.fa-arrow-right-long]="!arrowDown11" (click)="toggleInstructions11()"></i>
+              </label>
+               <div class="p-1 mb-2" style="border: 1px solid ; max-width: 100%; overflow: hidden;"*ngIf="showInstructions11">
+  
+                <p>
+                  1. Inspect ladder rungs for any damage, looseness, or slipperiness.<br>
+                  2. Inspect ladder side rails for any cracks, dents, or sharp edges.<br>
+                  3. Inspect the bottom of the ladder for any anti-slip safety shoes or feet.<br>
+                  4. Inspect all connecting elements such as bolts, nuts, hinges, or locks.<br>
+                  5. Inspect the labels and markings on the ladder for legibility and compliance.<br>
+                  6. Remove or cover any sharp points or edges on the ladder.<br>
+                  7. Make sure the ladder is clean and free of any oil, grease, mud, or other substances.<br>
+  
+                </p>
+              </div>
+            </td>
+          </tr>
+          <div>
+            <label for="portableLadderStatus" class="form-label"> Status :</label>
+          </div>
+          <tr>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="portableLadderStatus" type="radio" name="portableLadderStatus"
+                  value="Good" [(ngModel)]="WeeklyInspection.portableLadderStatus">
+                  <label for="portableLadderStatus" class="form-label"style="margin-left: 7px;"> Good </label> 
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="portableLadderStatus" type="radio" name="portableLadderStatus"
+                  value="Accepted" [(ngModel)]="WeeklyInspection.portableLadderStatus">
+                  <label for="portableLadderStatus" class="form-label"style="margin-left: 7px;"> Accepted</label>
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="portableLadderStatus" type="radio" name="portableLadderStatus"
+                  value="Poor" [(ngModel)]="WeeklyInspection.portableLadderStatus">
+                  <label for="portableLadderStatus" class="form-label" style="margin-left: 7px;"> Poor</label>  
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="portableLadderStatus" type="radio" name="portableLadderStatus"
+                  value="N/A" [(ngModel)]="WeeklyInspection.portableLadderStatus">
+                  <label for="portableLadderStatus" class="form-label" style="margin-left: 7px;"> N/A</label>  
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+              <label for="portableLadderWeeklyFindings"> Weekly Findings:</label>
+              <textarea class="form-control " formControlName="portableLadderWeeklyFindings" rows="4"
+            id="portableLadderWeeklyFindings" name="text" [(ngModel)]="WeeklyInspection.portableLadderWeeklyFindings" ></textarea>
+            </td>
+          </tr>
+  
+  
+          <!-- 11 Safety Harness, Lanyard  -->
+  
+  
+          <tr>
+            <td colspan="4" class="text-center py-4">
+              <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+                <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray; font-weight: bold;">
+                  Safety Harness, Lanyard
+                </span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+                <label for="comment"> Inspection Instruction
+                <i class="fa-solid" [class.fa-arrow-down]="arrowDown12" [class.fa-arrow-right-long]="!arrowDown12" (click)="toggleInstructions12()"></i>
+              </label>
+               <div class="p-1 mb-2" style="border: 1px solid ; max-width: 100%; overflow: hidden;"*ngIf="showInstructions12">
+  
+                <p>
+                  1. Read manual.<br>
+                  2. Check labels.<br>
+                  3. Inspect harness and lanyard.<br>
+                  4. Replace if damaged.<br>
+                </p>
+              </div>
+            </td>
+          </tr>
+          <div>
+            <label for="safetyStatus" class="form-label"> Status :</label>
+          </div>
+          <tr>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="safetyStatus" type="radio" name="safetyStatus"
+                  value="Good"[(ngModel)]="WeeklyInspection.safetyStatus">
+                  <label for="safetyStatus" class="form-label"style="margin-left: 7px;"> Good </label> 
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="safetyStatus" type="radio" name="safetyStatus"
+                  value="Accepted"[(ngModel)]="WeeklyInspection.safetyStatus">
+                  <label for="safetyStatus" class="form-label"style="margin-left: 7px;"> Accepted</label>
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="safetyStatus" type="radio" name="safetyStatus"
+                  value="Poor"[(ngModel)]="WeeklyInspection.safetyStatus">
+                  <label for="safetyStatus" class="form-label" style="margin-left: 7px;"> Poor</label>  
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="safetyStatus" type="radio" name="safetyStatus"
+                  value="N/A"[(ngModel)]="WeeklyInspection.safetyStatus">
+                  <label for="safetyStatus" class="form-label" style="margin-left: 7px;"> N/A</label>  
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+              <label for="safetyWeeklyFindings"> Weekly Findings:</label>
+              <textarea class="form-control " formControlName="safetyWeeklyFindings" rows="4" id="safetyWeeklyFindings"
+                name="text" [(ngModel)]="WeeklyInspection.safetyWeeklyFindings" ></textarea>
+            </td>
+          </tr>
+  
+          <!-- 12  Fall Arrestor  -->
+  
+  
+          <tr>
+            <td colspan="4" class="text-center py-4">
+              <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+                <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray; font-weight: bold;">
+                  Fall Arrestor
+                </span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+                <label for="comment"> Inspection Instruction
+                <i class="fa-solid" [class.fa-arrow-down]="arrowDown13" [class.fa-arrow-right-long]="!arrowDown13" (click)="toggleInstructions13()"></i>
+              </label>
+               <div class="p-1 mb-2" style="border: 1px solid ; max-width: 100%; overflow: hidden;"*ngIf="showInstructions13">
+  
+                <p>
+                  1. Check label for information.<br>
+                  2. Inspect housing or casing for damage..<br>
+                  3. Inspect lifeline or rope for damage.<br>
+                  4. Inspect locking mechanism for function.<br>
+                  5. Inspect connectors and hooks for damage.<br>
+                  6. Replace if damaged.<br>
+                </p>
+              </div>
+            </td>
+          </tr>
+          <div>
+            <label for="fallStatus" class="form-label"> Status :</label>
+          </div>
+          <tr>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="fallStatus" type="radio" name="fallStatus"
+                  value="Good"[(ngModel)]="WeeklyInspection.fallStatus">
+                  <label for="fallStatus" class="form-label"style="margin-left: 7px;"> Good </label> 
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="fallStatus" type="radio" name="fallStatus"
+                  value="Accepted"[(ngModel)]="WeeklyInspection.fallStatus">
+                  <label for="fallStatus" class="form-label"style="margin-left: 7px;"> Accepted</label>
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="fallStatus" type="radio" name="fallStatus"
+                  value="Poor"[(ngModel)]="WeeklyInspection.fallStatus">
+                  <label for="fallStatus" class="form-label" style="margin-left: 7px;"> Poor</label>  
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="fallStatus" type="radio" name="fallStatus"
+                  value="N/A"[(ngModel)]="WeeklyInspection.fallStatus">
+                  <label for="fallStatus" class="form-label" style="margin-left: 7px;"> N/A</label>  
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+              <label for="fallWeeklyFindings"> Weekly Findings:</label>
+              <textarea class="form-control " formControlName="fallWeeklyFindings" rows="4" id="fallWeeklyFindings"
+                name="text" [(ngModel)]="WeeklyInspection.fallWeeklyFindings" ></textarea>
+            </td>
+          </tr>
+  
+          <!-- 13  Crane Inspection  -->
+  
+  
+          <tr>
+            <td colspan="4" class="text-center py-4">
+              <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+                <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray; font-weight: bold;">
+                  Crane Inspection
+                </span>
+              </div>
+            </td>
+          </tr>
+          <div>
+            <label for="craneStatus" class="form-label"> Status :</label>
+          </div>
+          <tr>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="craneStatus" type="radio" name="craneStatus"
+                  value="Good"[(ngModel)]="WeeklyInspection.craneStatus">
+                  <label for="craneStatus" class="form-label"style="margin-left: 7px;"> Good </label> 
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="craneStatus" type="radio" name="craneStatus"
+                  value="Accepted"[(ngModel)]="WeeklyInspection.craneStatus">
+                  <label for="craneStatus" class="form-label"style="margin-left: 7px;"> Accepted</label>
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="craneStatus" type="radio" name="craneStatus"
+                  value="Poor"[(ngModel)]="WeeklyInspection.craneStatus">
+                  <label for="craneStatus" class="form-label" style="margin-left: 7px;"> Poor</label>  
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="craneStatus" type="radio" name="craneStatus"
+                  value="N/A"[(ngModel)]="WeeklyInspection.craneStatus">
+                  <label for="craneStatus" class="form-label" style="margin-left: 7px;"> N/A</label>  
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+              <label for="craneWeeklyFindings"> Weekly Findings:</label>
+              <textarea class="form-control " formControlName="craneWeeklyFindings" rows="4" id="craneWeeklyFindings"
+                name="text" [(ngModel)]="WeeklyInspection.craneWeeklyFindings" ></textarea>
+            </td>
+          </tr>
+  
+          <!-- 14   FORK LIFT INSPECTION   -->
+  
+  
+          <tr>
+            <td colspan="4" class="text-center py-4">
+              <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+                <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray; font-weight: bold;">
+                  FORK LIFT INSPECTION
+                </span>
+              </div>
+            </td>
+          </tr>
+          <div>
+            <label for="forkStatus" class="form-label"> Status :</label>
+          </div>
+          <tr>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="forkStatus" type="radio" name="forkStatus"
+                  value="Good"[(ngModel)]="WeeklyInspection.forkStatus">
+                  <label for="forkStatus" class="form-label"style="margin-left: 7px;"> Good </label> 
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="forkStatus" type="radio" name="forkStatus"
+                  value="Accepted"[(ngModel)]="WeeklyInspection.forkStatus">
+                  <label for="forkStatus" class="form-label"style="margin-left: 7px;"> Accepted</label>
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="forkStatus" type="radio" name="forkStatus"
+                  value="Poor"[(ngModel)]="WeeklyInspection.forkStatus">
+                  <label for="forkStatus" class="form-label" style="margin-left: 7px;"> Poor</label>  
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="forkStatus" type="radio" name="forkStatus"
+                  value="N/A"[(ngModel)]="WeeklyInspection.forkStatus">
+                  <label for="forkStatus" class="form-label" style="margin-left: 7px;"> N/A</label>  
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+              <label for="forkWeeklyFindings"> Weekly Findings:</label>
+              <textarea class="form-control " formControlName="forkWeeklyFindings" rows="4" id="forkWeeklyFindings"
+                name="text" [(ngModel)]="WeeklyInspection.forkWeeklyFindings" ></textarea>
+            </td>
+          </tr>
+  
+          <!-- 15  Dropped Inspection  -->
+          <tr>
+            <td colspan="4" class="text-center py-4">
+              <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+                <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray; font-weight: bold;">
+                  Dropped Inspection
+                </span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+                <label for="comment"> Inspection Instruction
+                <i class="fa-solid" [class.fa-arrow-down]="arrowDown14" [class.fa-arrow-right-long]="!arrowDown14" (click)="toggleInstructions14()"></i>
+              </label>
+               <div class="p-1 mb-2" style="border: 1px solid ; max-width: 100%; overflow: hidden;"*ngIf="showInstructions14">
+  
+                <p>
+                  1. Identify all potential dropped object hazards in the mast area.<br>
+                  2. Ensure all equipment and tools are properly secured and tethered.<br>
+                  3. Verify that all barriers and nets are installed correctly and in good condition.<br>
+                  4. Inspect overhead fixtures and ensure they are secure and free of any potential hazards.<br>
+                  5. Check for any loose or unsecured items in the mast area.<br>
+                  6. Document the equipment location by inspection area, photograph each item surveyed, include a unique
+                  identification number to each item, describe each item surveyed, inspect and document the primary and
+                  secondary securing methods.<br>
+                  7. Use the DROPS Audit checklist to verify the DROPS Management System, the visual mast inspection, and
+                  the inspection of the equipment installed at height.<br>
+                  8. Identify any gaps from industry and client or operator requirements, hazards, and recommendations for
+                  remedial actions. <br>
+                  9. If you find any defects or signs of deterioration on the equipment or the securing methods, do not
+                  use them and remove them from service immediately. Replace them with new ones that meet the safety
+                  standards and requirements.<br>
+                </p>
+              </div>
+            </td>
+          </tr>
+          <div>
+            <label for="droppedInspectionStatus" class="form-label"> Status :</label>
+          </div>
+  
+          <tr>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="droppedInspectionStatus" type="radio" name="droppedInspectionStatus"
+                  value="Good"[(ngModel)]="WeeklyInspection.droppedInspectionStatus">
+                  <label for="droppedInspectionStatus" class="form-label"style="margin-left: 7px;"> Good </label> 
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="droppedInspectionStatus" type="radio" name="droppedInspectionStatus"
+                  value="Accepted"[(ngModel)]="WeeklyInspection.droppedInspectionStatus">
+                  <label for="droppedInspectionStatus" class="form-label"style="margin-left: 7px;"> Accepted</label>
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="droppedInspectionStatus" type="radio" name="droppedInspectionStatus"
+                  value="Poor"[(ngModel)]="WeeklyInspection.droppedInspectionStatus">
+                  <label for="droppedInspectionStatus" class="form-label" style="margin-left: 7px;"> Poor</label>  
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="droppedInspectionStatus" type="radio" name="droppedInspectionStatus"
+                  value="N/A"[(ngModel)]="WeeklyInspection.droppedInspectionStatus">
+                  <label for="droppedInspectionStatus" class="form-label" style="margin-left: 7px;"> N/A</label>  
+              </div>
+            </td>
+          </tr>
+          
+          <tr>
+            <td colspan="4">
+              <label for="droppedInspectionWeeklyFindings"> Weekly Findings:</label>
+              <textarea class="form-control " formControlName="droppedInspectionWeeklyFindings" rows="4"
+                id="droppedInspectionWeeklyFindings" name="text"[(ngModel)]="WeeklyInspection.droppedInspectionWeeklyFindings" ></textarea>
+            </td>
+          </tr>
+  
+          <!-- 15   Electrical Plugs   -->
+          <tr>
+            <td colspan="4" class="text-center py-4">
+              <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+                <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray; font-weight: bold;">
+                  Electrical Plugs
+                </span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+                <label for="comment"> Inspection Instruction
+                <i class="fa-solid" [class.fa-arrow-down]="arrowDown15" [class.fa-arrow-right-long]="!arrowDown15" (click)="toggleInstructions15()"></i>
+              </label>
+               <div class="p-1 mb-2" style="border: 1px solid ; max-width: 100%; overflow: hidden;"*ngIf="showInstructions15">
+  
+                <p>
+                  1. Turn off power.<br>
+                  2. Disconnect plug.<br>
+                  3. Test slots and terminals with multimeter.<br>
+                  4. Replace if faulty.<br>
+                  5. Turn on power and test plug.<br>
+                </p>
+              </div>
+            </td>
+          </tr>
+          <div>
+            <label for="electricalStatus" class="form-label"> Status :</label>
+          </div>
+          <tr>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="electricalStatus" type="radio" name="electricalStatus"
+                  value="Good"[(ngModel)]="WeeklyInspection.electricalStatus">
+                  <label for="electricalStatus" class="form-label"style="margin-left: 7px;"> Good </label> 
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="electricalStatus" type="radio" name="electricalStatus"
+                  value="Accepted"[(ngModel)]="WeeklyInspection.electricalStatus">
+                  <label for="electricalStatus" class="form-label"style="margin-left: 7px;"> Accepted</label>
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="electricalStatus" type="radio" name="electricalStatus"
+                  value="Poor"[(ngModel)]="WeeklyInspection.electricalStatus">
+                  <label for="electricalStatus" class="form-label" style="margin-left: 7px;"> Poor</label>  
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="electricalStatus" type="radio" name="electricalStatus"
+                  value="N/A"[(ngModel)]="WeeklyInspection.electricalStatus">
+                  <label for="electricalStatus" class="form-label" style="margin-left: 7px;"> N/A</label>  
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+              <label for="electricalWeeklyFindings"> Weekly Findings:</label>
+              <textarea class="form-control " formControlName="electricalWeeklyFindings" rows="4"
+                id="electricalWeeklyFindings" name="text" [(ngModel)]="WeeklyInspection.electricalWeeklyFindings " ></textarea>
+            </td>
+          </tr>
+  
+          <!-- 16  Circuit Breaker Check  -->
+  
+  
+          <tr>
+            <td colspan="4" class="text-center py-4">
+              <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+                <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray; font-weight: bold;">
+                  Circuit Breaker Check
+                </span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+                <label for="comment"> Inspection Instruction
+                <i class="fa-solid" [class.fa-arrow-down]="arrowDown16" [class.fa-arrow-right-long]="!arrowDown16" (click)="toggleInstructions16()"></i>
+              </label>
+               <div class="p-1 mb-2" style="border: 1px solid ; max-width: 100%; overflow: hidden;"*ngIf="showInstructions16">
+  
+                <p>
+                  1. Turn off power.<br>
+                  2. Disconnect breaker.<br>
+                  3. Test slots and terminals with multimeter.<br>
+                  4. Replace if faulty.<br>
+                  5. Turn on power and test breaker.<br>
+  
+                </p>
+              </div>
+            </td>
+          </tr>
+          <div>
+            <label for="circuitStatus" class="form-label"> Status :</label>
+          </div>
+          <tr>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="circuitStatus" type="radio" name="circuitStatus"
+                  value="Good"[(ngModel)]="WeeklyInspection.circuitStatus">
+                  <label for="circuitStatus" class="form-label"style="margin-left: 7px;"> Good </label> 
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="circuitStatus" type="radio" name="circuitStatus"
+                  value="Accepted"[(ngModel)]="WeeklyInspection.circuitStatus">
+                  <label for="circuitStatus" class="form-label"style="margin-left: 7px;"> Accepted</label>
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="circuitStatus" type="radio" name="circuitStatus"
+                  value="Poor"[(ngModel)]="WeeklyInspection.circuitStatus">
+                  <label for="circuitStatus" class="form-label" style="margin-left: 7px;"> Poor</label>  
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="circuitStatus" type="radio" name="circuitStatus"
+                  value="N/A"[(ngModel)]="WeeklyInspection.circuitStatus">
+                  <label for="circuitStatus" class="form-label" style="margin-left: 7px;"> N/A</label>  
+              </div>
+            </td>
+          </tr> 
+        
+          <tr>
+            <td colspan="4">
+              <label for="circuitWeeklyFindings"> Weekly Findings:</label>
+              <textarea class="form-control " formControlName="circuitWeeklyFindings" rows="4" id="circuitWeeklyFindings"
+                name="text" [(ngModel)]="WeeklyInspection.circuitWeeklyFindings" ></textarea>
+            </td>
+          </tr>
+  
+          <!-- 17  Earthing  and earth Leakage  INSPECTION  -->
+  
+  
+          <tr>
+            <td colspan="4" class="text-center py-4">
+              <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+                <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray; font-weight: bold;">
+                  Earthing and earth Leakage INSPECTION
+                </span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+                <label for="comment"> Inspection Instruction
+                <i class="fa-solid" [class.fa-arrow-down]="arrowDown17" [class.fa-arrow-right-long]="!arrowDown17" (click)="toggleInstructions17()"></i>
+              </label>
+               <div class="p-1 mb-2" style="border: 1px solid ; max-width: 100%; overflow: hidden;"*ngIf="showInstructions17">
+  
+                <p>
+                  1. Check Earth Electrode Installation:<br>
+                  • Verify proper installation according to regulations.<br>
+                  2. Inspect Electrode Integrity:<br>
+                  • Examine for damage or corrosion<br>
+                  3. Inspect Earth Bars:<br>
+                  • Check the condition and connectivity of earth bars if present.<br>
+                  4. Measure Earth Resistance:<br>
+                  • Use a tester to measure earth resistance.<br>
+  
+                </p>
+              </div>
+            </td>
+          </tr>
+          <div>
+            <label for="earthingStatus" class="form-label"> Status :</label>
+          </div>
+          <tr>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="earthingStatus" type="radio" name="earthingStatus"
+                  value="Good"[(ngModel)]="WeeklyInspection.earthingStatus">
+                  <label for="earthingStatus" class="form-label"style="margin-left: 7px;"> Good </label> 
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="earthingStatus" type="radio" name="earthingStatus"
+                  value="Accepted"[(ngModel)]="WeeklyInspection.earthingStatus">
+                  <label for="earthingStatus" class="form-label"style="margin-left: 7px;"> Accepted</label>
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="earthingStatus" type="radio" name="earthingStatus"
+                  value="Poor"[(ngModel)]="WeeklyInspection.earthingStatus">
+                  <label for="earthingStatus" class="form-label" style="margin-left: 7px;"> Poor</label>  
+              </div>
+            </td>
+            <td >
+              <div>
+                <input class="form-check-input" formControlName="earthingStatus" type="radio" name="earthingStatus"
+                  value="N/A"[(ngModel)]="WeeklyInspection.earthingStatus">
+                  <label for="earthingStatus" class="form-label" style="margin-left: 7px;"> N/A</label>  
+              </div>
+            </td>
+          </tr>
+  
+          <tr>
+            <td>
+              <div class="from-group" style="font-weight: bold;">
+                <label for="scba30min" class="form-label"> Reading </label>
+              </div>
+            </td>
+            <td>
+              <div class="from-group">
+                <label for="earthingMaximum" class="form-label"> Maximum :</label>
+                <input name="earthingMaximum" formControlName="earthingMaximum"
+                 id="earthingMaximum" class="form-control" [(ngModel)]="WeeklyInspection.earthingMaximum" >
+              </div>
+            </td>
+            <td>
+              <div class="from-group">
+                <label for="earthingMin" class="form-label"> Min :</label>
+                <input name="earthingMin" formControlName="earthingMin" 
+                id="earthingMin" class="form-control" [(ngModel)]="WeeklyInspection.earthingMin" >
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+              <label for="earthingWeeklyFindings"> Weekly Findings:</label>
+              <textarea class="form-control " formControlName="earthingWeeklyFindings" rows="4"
+                id="earthingWeeklyFindings" name="text" [(ngModel)]="WeeklyInspection.earthingWeeklyFindings" ></textarea>
+            </td>
+          </tr>
+        <tr>
+          <td>
+            <label class="form-label m-0 pb-0"> Code: </label>
+            <input list="QHSEmenace" autocomplete="off" [(ngModel)]="QHSE_Code" formControlName="code" name="code" class="form-control" (input)="selectedMenace($event)">
+            <datalist id="QHSEmenace">
+              <option *ngFor="let menace of QHSECodeList">{{menace.code}} </option>
+            </datalist>
+          </td>
+          <td>
+            <div class="from-group">
+              <label for="positionName" class="form-label">Position :</label>
+              <input class="form-control" [value]="QHSE_Position" disabled [(ngModel)]="WeeklyInspection.positionName"/>
+              <input name="positionName" formControlName="positionName" id="positionName" class="form-control"
+                [(ngModel)]="QHSE_Position" hidden />
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="name">Name :</label>
+              <input class="form-control" [value]="QHSE_Name" disabled [(ngModel)]="WeeklyInspection.name"/>
+              <input name="name" formControlName="name" id="name"
+                class="form-control" [(ngModel)]="QHSE_Name" hidden />
+            </div>
+          </td>
+        </tr>
+
+        </table>
+  
+        <input type="submit" class="btn btn-success me-3" value="Submit" />
+
+      </form>
+    </div>
+  </div>

@@ -1,0 +1,411 @@
+<div class="container mb-5" style="margin-top: 8%;">
+  <div class="heading_container heading_center d-flex">
+    <h2 class="mx-auto my-4">
+      Vehicle Weekly Checklist Report
+    </h2>
+
+  </div>
+
+  <div class="row">
+    <form [formGroup]="VehicleWeeklyChecklistForm" id="print-section" [class.submitted]="submitted"
+      (ngSubmit)="submitData()" class="col-md-10 mx-auto d-flex flex-wrap">
+
+      <table class="table">
+        <tr>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="rigId">Rig Number: </label>
+              <select name="rigId" id="rigId" class="form-select" [(ngModel)]="VehicleWeeklyChecklist.rigNo"
+                formControlName="rigId">
+                <option value="" disabled selected>Choose Rig Number</option>
+                <option *ngFor="let item of rigList " value="{{item.id}}">Rig - {{item.number}}</option>
+              </select>
+              <div *ngIf="rigId?.invalid && (rigId?.dirty || rigId?.touched)">
+                <small class="text-danger" *ngIf="rigId?.errors?.['required']">
+                  Rig is required
+                </small>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="date">Date: </label>
+              <input type="date" class="form-control" [ngModel]="VehicleWeeklyChecklist.date |date:'yyyy-MM-dd'"
+                formControlName="date" />
+              <div *ngIf="(date?.invalid && (date?.dirty || date?.touched))||submitted">
+                <small class="text-danger" *ngIf="date?.errors?.['required']">
+                  Date is required
+                </small>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="cient">Client: </label>
+              <input type="text" name="cient" id="cient" class="form-control" [(ngModel)]="VehicleWeeklyChecklist.cient"
+                formControlName="cient" />
+              <div *ngIf="(cient?.invalid && (cient?.dirty || cient?.touched))||submitted">
+                <small class="text-danger" *ngIf="cient?.errors?.['required']">
+                  Client is required
+                </small>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="location">Location : </label>
+              <input type="text" class="form-control" [(ngModel)]="VehicleWeeklyChecklist.location"
+                formControlName="location" />
+              <div *ngIf="(location?.invalid && (location?.dirty || location?.touched))||submitted">
+                <small class="text-danger" *ngIf="location?.errors?.['required']">
+                  Location is required
+                </small>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <!-- Light vehicle (Co. Man Pickup) -->
+        <tr>
+          <td colspan="4" class="p-1">
+            <table class="table table-bordered">
+              <td colspan="4" class="text-center pb-4">
+                <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+                  <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+                    Light vehicle (Co. Man Pickup)
+                  </span>
+                </div>
+              </td>
+              <tr>
+                <td colspan="2">
+                  <div class="form-group">
+                    <label class="form-label" for="manPickupVehiclePlateNo">Vehicle Plate No : </label>
+                    <input type="text" name="manPickupVehiclePlateNo" id="cient" class="form-control"
+                      [(ngModel)]="VehicleWeeklyChecklist.manPickupVehiclePlateNo"
+                      formControlName="manPickupVehiclePlateNo" />
+                    <div
+                      *ngIf="manPickupVehiclePlateNo?.invalid && (manPickupVehiclePlateNo?.dirty || manPickupVehiclePlateNo?.touched)">
+                      <small class="text-danger" *ngIf="manPickupVehiclePlateNo?.errors?.['required']">
+                        Vehicle Plate No is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <div class="form-group">
+                    <label class="form-label" for="manPickupDriverName">Driver Name : </label>
+                    <input type="text" name="manPickupDriverName" id="cient" class="form-control"
+                      formControlName="manPickupDriverName" [(ngModel)]="VehicleWeeklyChecklist.manPickupDriverName" />
+                    <div
+                      *ngIf="manPickupDriverName?.invalid && (manPickupDriverName?.dirty || manPickupDriverName?.touched)">
+                      <small class="text-danger" *ngIf="manPickupDriverName?.errors?.['required']">
+                        Driver Name is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="4">
+                  <div class="form-group">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th scope="col" colspan="3">Inspection Item</th>
+                          <th scope="col">Status</th>
+                          <th scope="col">Remarks</th>
+                        </tr>
+                      </thead>
+                      <tbody formArrayName="manPickups">
+                        <ng-container *ngFor="let manPickupsGroup of manPickups.controls; let i = index" [formGroupName]="i">
+                        <tr>
+                          <td colspan="6" style="width: 100%;"><input type="text" class="form-control" autocomplete="off" formControlName="item"
+                            [(ngModel)]="VehicleWeeklyChecklist.manPickups[i].item"></td>
+                        </tr>
+                        <tr >
+                          <td colspan="3" style="width: 50%;"> <select name="status" id="status" class="form-select"
+                              [(ngModel)]="VehicleWeeklyChecklist.manPickups[i].status" formControlName="status">
+                              <option value="" disabled selected>Choose Status</option>
+                              <option value="Yes"> Yes</option>
+                              <option value="No"> No</option>
+                            </select>
+                          </td>
+                          <td colspan="3" style="width: 50%;"><input type="text" class="form-control"
+                              [(ngModel)]="VehicleWeeklyChecklist.manPickups[i].remarks" formControlName="remarks"></td>
+                        </tr>
+                        </ng-container>
+
+                      </tbody>
+                    </table>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <!-- Light vehicle (Rig Pickup) -->
+        <tr>
+          <td colspan="4" class="p-1">
+            <table class="table table-bordered">
+              <td colspan="4" class="text-center pb-4">
+                <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+                  <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+                    Light vehicle (Rig Pickup)
+                  </span>
+                </div>
+              </td>
+              <tr>
+                <td colspan="2">
+                  <div class="form-group">
+                    <label class="form-label" for="rigPickupVehiclePlateNo">Vehicle Plate No : </label>
+                    <input type="text" name="rigPickupVehiclePlateNo" id="cient" class="form-control"
+                      [(ngModel)]="VehicleWeeklyChecklist.rigPickupVehiclePlateNo"
+                      formControlName="rigPickupVehiclePlateNo" />
+                    <div
+                      *ngIf="rigPickupVehiclePlateNo?.invalid && (rigPickupVehiclePlateNo?.dirty || rigPickupVehiclePlateNo?.touched)">
+                      <small class="text-danger" *ngIf="rigPickupVehiclePlateNo?.errors?.['required']">
+                        Vehicle Plate No is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <div class="form-group">
+                    <label class="form-label" for="rigPickupDriverName">Driver Name : </label>
+                    <input type="text" name="rigPickupDriverName" id="cient" class="form-control"
+                      [(ngModel)]="VehicleWeeklyChecklist.rigPickupDriverName" formControlName="rigPickupDriverName" />
+                    <div
+                      *ngIf="rigPickupDriverName?.invalid && (rigPickupDriverName?.dirty || rigPickupDriverName?.touched)">
+                      <small class="text-danger" *ngIf="rigPickupDriverName?.errors?.['required']">
+                        Driver Name is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="4">
+                  <div class="form-group">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th scope="col" colspan="3">Inspection Item</th>
+                          <th scope="col">Status</th>
+                          <th scope="col">Remarks</th>
+                        </tr>
+                      </thead>
+                      <tbody formArrayName="rigPickups">
+                        <ng-container *ngFor="let rigPickupsGroup of rigPickups.controls; let i = index" [formGroupName]="i">
+                         <tr>
+                          <td colspan="6" style="width: 100%;"><input type="text" [(ngModel)]="VehicleWeeklyChecklist.rigPickups[i].item"
+                            class="form-control" autocomplete="off" formControlName="item"></td>
+                          </tr>
+                          <tr >
+                            <td colspan="3" style="width: 50%;"> <select name="status" [(ngModel)]="VehicleWeeklyChecklist.rigPickups[i].status"
+                                id="status" class="form-select" formControlName="status">
+                                <option value="" disabled selected>Choose Status</option>
+                                <option value="Yes"> Yes</option>
+                                <option value="No"> No</option>
+                              </select>
+                            </td>
+                            <td colspan="3" style="width: 50%;"><input type="text" class="form-control"
+                                [(ngModel)]="VehicleWeeklyChecklist.rigPickups[i].remarks" formControlName="remarks"></td>
+                          </tr>
+                        </ng-container>
+
+                      </tbody>
+                    </table>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <!-- Heavy truck (Stand-by) -->
+        <tr>
+          <td colspan="4" class="p-1">
+            <table class="table table-bordered">
+              <td colspan="6" class="text-center pb-4">
+                <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+                  <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+                    Heavy truck (Stand-by)
+                  </span>
+                </div>
+              </td>
+              <tr>
+                <td colspan="2">
+                  <div class="form-group">
+                    <label class="form-label" for="primeMoverPlateNo">Prime mover plate No : </label>
+                    <input type="text" name="primeMoverPlateNo" id="cient" class="form-control"
+                      [(ngModel)]="VehicleWeeklyChecklist.primeMoverPlateNo" formControlName="primeMoverPlateNo" />
+                    <div *ngIf="primeMoverPlateNo?.invalid && (primeMoverPlateNo?.dirty || primeMoverPlateNo?.touched)">
+                      <small class="text-danger" *ngIf="primeMoverPlateNo?.errors?.['required']">
+                        Vehicle Plate No is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <div class="form-group">
+                    <label class="form-label" for="heavyTruckDriverName">Driver Name : </label>
+                    <input type="text" name="heavyTruckDriverName" id="cient" class="form-control"
+                      [(ngModel)]="VehicleWeeklyChecklist.heavyTruckDriverName"
+                      formControlName="heavyTruckDriverName" />
+                    <div
+                      *ngIf="heavyTruckDriverName?.invalid && (heavyTruckDriverName?.dirty || heavyTruckDriverName?.touched)">
+                      <small class="text-danger" *ngIf="heavyTruckDriverName?.errors?.['required']">
+                        Driver Name is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <div class="form-group">
+                    <label class="form-label" for="trailerPlateNo">Teiler No : </label>
+                    <input type="text" name="trailerPlateNo" id="cient" class="form-control"
+                      [(ngModel)]="VehicleWeeklyChecklist.trailerPlateNo" formControlName="trailerPlateNo" />
+                    <div *ngIf="trailerPlateNo?.invalid && (trailerPlateNo?.dirty || trailerPlateNo?.touched)">
+                      <small class="text-danger" *ngIf="trailerPlateNo?.errors?.['required']">
+                        Telair NO is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="5">
+                  <div class="form-group">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th scope="col" colspan="3">Inspection Item</th>
+                          <th scope="col">Status</th>
+                          <th scope="col">Remarks</th>
+                        </tr>
+                      </thead>
+                      <tbody formArrayName="heavyTrucks">
+                        <ng-container *ngFor="let heavyTrucksGroup of heavyTrucks.controls; let i = index" [formGroupName]="i">
+                        <tr>
+                          <td colspan="6" style="width: 100%;"><input type="text" class="form-control" autocomplete="off"
+                            [(ngModel)]="VehicleWeeklyChecklist.heavyTrucks[i].item" formControlName="item"></td>
+                        </tr>
+                        <tr >
+                          <td colspan="3" style="width: 50%;"> <select name="status" id="status" class="form-select"
+                              [(ngModel)]="VehicleWeeklyChecklist.heavyTrucks[i].status" formControlName="status">
+                              <option value="" disabled selected>Choose Status</option>
+                              <option value="Yes"> Yes</option>
+                              <option value="No"> No</option>
+                            </select>
+                          </td>
+                          <td colspan="3" style="width: 50%;"><input type="text" class="form-control"
+                              [(ngModel)]="VehicleWeeklyChecklist.heavyTrucks[i].remarks" formControlName="remarks">
+                          </td>
+                        </tr>
+                        </ng-container>
+
+                      </tbody>
+                    </table>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <!-- Light bus (Crew micro-bus) -->
+        <tr>
+          <td colspan="4" class="p-1">
+            <table class="table table-bordered">
+              <td colspan="4" class="text-center pb-4">
+                <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+                  <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+                    Light bus (Crew micro-bus)
+                  </span>
+                </div>
+              </td>
+              <tr>
+                <td colspan="2">
+                  <div class="form-group">
+                    <label class="form-label" for="lightBusVehiclePlateNo">Vehicle Plate No : </label>
+                    <input type="text" name="lightBusVehiclePlateNo" id="cient" class="form-control"
+                      [(ngModel)]="VehicleWeeklyChecklist.lightBusVehiclePlateNo"
+                      formControlName="lightBusVehiclePlateNo" />
+                    <div
+                      *ngIf="lightBusVehiclePlateNo?.invalid && (lightBusVehiclePlateNo?.dirty || lightBusVehiclePlateNo?.touched)">
+                      <small class="text-danger" *ngIf="lightBusVehiclePlateNo?.errors?.['required']">
+                        Vehicle Plate No is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <div class="form-group">
+                    <label class="form-label" for="lightBusDriverName">Driver Name : </label>
+                    <input type="text" name="lightBusDriverName" id="cient" class="form-control"
+                      [(ngModel)]="VehicleWeeklyChecklist.lightBusDriverName" formControlName="lightBusDriverName" />
+                    <div
+                      *ngIf="lightBusDriverName?.invalid && (lightBusDriverName?.dirty || lightBusDriverName?.touched)">
+                      <small class="text-danger" *ngIf="lightBusDriverName?.errors?.['required']">
+                        Driver Name is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="4">
+                  <div class="form-group">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th scope="col" colspan="3">Inspection Item</th>
+                          <th scope="col">Status</th>
+                          <th scope="col">Remarks</th>
+                        </tr>
+                      </thead>
+                      <tbody formArrayName="lightBus">
+                        <ng-container *ngFor="let lightBusGroup of lightBus.controls; let i = index" [formGroupName]="i">
+<tr>
+  <td colspan="6" style="width: 100%;"><input type="text" class="form-control" autocomplete="off"
+    [(ngModel)]="VehicleWeeklyChecklist.lightBus[i].item" formControlName="item"></td>
+</tr>
+<tr >
+  <td colspan="3" style="width: 50%;"> <select name="status" id="status" class="form-select"
+      [(ngModel)]="VehicleWeeklyChecklist.lightBus[i].status" formControlName="status">
+      <option value="" disabled selected>Choose Status</option>
+      <option value="Yes"> Yes</option>
+      <option value="No"> No</option>
+    </select>
+  </td>
+  <td colspan="3" style="width: 50%;"><input type="text" class="form-control"
+      [(ngModel)]="VehicleWeeklyChecklist.lightBus[i].remarks" formControlName="remarks"></td>
+</tr>
+                        </ng-container>
+
+                      </tbody>
+                    </table>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="4">
+                  <div class="form-group">
+                    <label class="form-label" for="date">HSE Engineer: </label>
+                    <input type="text" formControlName="hseEngineer" [(ngModel)]="VehicleWeeklyChecklist.hseEngineer" class="form-control" />
+                    <div *ngIf="(hseEngineer?.invalid && (hseEngineer?.dirty || hseEngineer?.touched))||submitted">
+                      <small class="text-danger" *ngIf="hseEngineer?.errors?.['required']">
+                        HSE Engineer is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+      </table>
+
+
+      <input type="submit" class="btn btn-success me-3" value="Submit" />
+    </form>
+  </div>
+</div>

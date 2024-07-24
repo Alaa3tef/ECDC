@@ -1,0 +1,248 @@
+<div class="container mb-5" style="margin-top: 8%; overflow: hidden;">
+  <div class="heading_container heading_center d-flex">
+    <h2 class="mx-auto my-4">
+      Medical Report
+    </h2>
+  </div>
+
+  <div class="form-group">
+
+    <select name="name" id="name" class="form-select" (change)="GetDataByRigAndDateAndName($event)">
+      <option value="" disabled selected>Choose Rig Number & Name & job & Date </option>
+      <option *ngFor="let item of MedicalReport"
+        value="{{item.rigId}}/{{item.name}}/{{item.date| date: 'dd-MM-yyyy'}}/{{item.job}}">
+        Rig - {{item.rigId}} / Name : {{item.name}} / Date :{{item.date| date: 'dd-MM-yyyy'}} / Job :{{item.job}}
+      </option>
+    </select>
+  </div>
+
+  <div class="px-4 px-lg-0 m-4">
+    <div class="pb-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 p-3 bg-white rounded shadow-sm mb-4 print-section"
+            *ngFor="let record of MedicalReportRecord">
+            <div class="table-responsive">
+              <tr>
+                <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                  <img style="margin-left: 30px; margin-bottom: 5px;" width="100px"
+                    src="../../assets/img/ECDC Logo png.png" />
+                  <span class="col-12" style="margin-right: 30px;">
+                    <table class="table table-borderless mb-1"
+                      style="display: flex; align-items: center; justify-content: center;">
+                      <tbody>
+                        <tr>
+                          <td scope="row" style="font-size: 12px;">
+                            Safe Work Requirement
+                            <br>
+                            Weekly Inspection Report
+                          </td>
+                          <td scope="row" style="font-size: 12px;">
+                            Document Responsibility:
+                            <br>
+                            QHSE
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </span>
+                </div>
+              </tr>
+              <div>
+                <div style="text-align: center; margin-top: 10px;">
+                  <label class="form-label " style="font-weight: bolder; font-size: large; color: black;">
+                    Medical Report
+                  </label>
+                </div>
+
+                <div style="border: 1px solid black;">
+                  <div class="col-6 d-inline" style="margin-top:3%;margin-left: 3%;">
+                    <tr>
+                      <div style="width: 100%;">
+                        <h6>
+                          <span style="font-weight: bold;">Date: &nbsp;&nbsp;</span>
+                          <span>{{ record.date | date: 'dd-MM-yyyy' }}</span>
+                        </h6>
+                      </div>
+                      <div style="width: 100%;  " class="mt-3">
+                        <h6>
+                          <span style="font-weight: bold;">Name /&nbsp;&nbsp;</span>
+                          <span>{{ record.name }}</span>
+                        </h6>
+                      </div>
+                      <div style="width: 100%;  " class="mt-3">
+                        <h6>
+                          <span style="font-weight: bold;">Date of Birth:&nbsp;&nbsp;</span>
+                          <span>{{ record.dateOfBirth | date: 'dd-MM-yyyy' }}</span>
+                        </h6>
+                      </div>
+                      <div style="width: 100%;  " class="mt-3">
+                        <h6>
+                          <span style="font-weight: bold;">Age / &nbsp;&nbsp;</span>
+                          <span>{{ record.age }}</span>
+                        </h6>
+                      </div>
+                      <div style="width: 100%;  " class="mt-3">
+                        <h6>
+                          <span style="font-weight: bold;">Telephone Number:&nbsp;&nbsp;</span>
+                          <span>{{ record.telephoneNumber }}</span>
+                        </h6>
+                      </div>
+                      <div style="width: 100%;  " class="mt-3">
+                        <h6>
+                          <span style="font-weight: bold;">Address:&nbsp;&nbsp;</span>
+                          <span>{{ record.address }}</span>
+                        </h6>
+                      </div>
+                    </tr>
+                  </div>
+                  <div class="col-6 d-inline" style="margin-top:3%;margin-left: 15%;">
+                    <tr>
+                      <div style="width: 100%;  " class="mt-3">
+                        <h6>
+                          <span style="font-weight: bold;">Rig Number /&nbsp;&nbsp;</span>
+                          <span>{{record.rigId }}</span>
+                        </h6>
+                      </div>
+                      <div style="width: 100%;  " class="mt-3">
+                        <h6>
+                          <span style="font-weight: bold;">Is the ill health related to an
+                            incident?&nbsp;&nbsp;</span>
+                          <span>{{ record.isTheIllHealth }}</span>
+                        </h6>
+                      </div>
+                      <div style="width: 100%;  " class="mt-3">
+                        <h6>
+                          <span style="font-weight: bold;">Type of incident
+                            /&nbsp;&nbsp;</span>
+                          <span>{{ record.typeOfIncidentName }}</span>
+                        </h6>
+                      </div>
+
+                      <div style="width: 100%;" class="mt-3">
+                        <h6>
+                          <span style="font-weight: bold;">Company /&nbsp;&nbsp;</span>
+                          <span>{{ record.company }}</span>
+                        </h6>
+                      </div>
+                      <div style="width: 100%;  " class="mt-3">
+                        <h6>
+                          <span style="font-weight: bold;">Code/ National ID/&nbsp;&nbsp;</span>
+                          <span>{{ record.code }}</span>
+                        </h6>
+                      </div>
+
+                      <div style="width: 100%;  " class="mt-3">
+                        <h6>
+                          <span style="font-weight: bold;">Job:&nbsp;&nbsp;</span>
+                          <span>{{ record.job }}</span>
+                        </h6>
+                      </div>
+                    </tr>
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <table class="table table-borderless">
+                    <tbody>
+                      <tr>
+                        <td scope="row" class="p-0">
+                          <div class="  mt-3">
+                            <h6 class="mb-0">
+                              <span
+                                style="font-weight: bold; color: rgb(38, 38, 202); text-decoration: underline;">Diagnosis:</span>
+                              <div class="p-1 mt-3" style="border: 1px solid black; max-width: 100%; overflow: hidden;">
+                                <ul>
+                                  <li>
+                                    {{ record.diagnosis }}
+                                  </li>
+                                </ul>
+                              </div>
+                            </h6>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="col-12">
+                  <table class="table table-borderless">
+                    <tbody>
+                      <tr>
+                        <td scope="row" class="p-0">
+                          <div class="  mt-3">
+                            <h6 class="mb-0">
+                              <span
+                                style="font-weight: bold; color: rgb(38, 38, 202); text-decoration: underline;">Doctor
+                                Comment :</span>
+                              <div class="p-1 mt-3" style="border: 1px solid black; max-width: 100%; overflow: hidden;">
+                                <ul>
+                                  <li>
+                                    {{ record.doctorComment }}
+                                  </li>
+                                </ul>
+                              </div>
+                            </h6>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="col-12">
+                  <table class="table table-borderless">
+                    <tbody>
+                      <tr>
+                        <td scope="row" class="p-0">
+                          <div class="  mt-3">
+                            <h6 class="mb-0">
+                              <span
+                                style="font-weight: bold; color: rgb(38, 38, 202); text-decoration: underline;">Doctor
+                                Recommendation :</span>
+                              <div class="p-1 mt-3" style="border: 1px solid black; max-width: 100%; overflow: hidden;">
+                                <ul>
+                                  <li>
+                                    {{ record.doctorRecommendation }}
+                                  </li>
+                                </ul>
+                              </div>
+                            </h6>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="col-6 mt-5" style="margin-left: 40%;">
+                  <div style="width: 100%;">
+                    <h6>
+                      <span style="font-weight: bold;">Rig Doctor: &nbsp;&nbsp;</span>
+                      <span>{{ record.rigDoctor}}</span>
+                    </h6>
+                  </div>
+                  <div style="width: 100%;  " class="mt-3">
+                    <h6>
+                      <span style="font-weight: bold;">QHSE Engineer /&nbsp;&nbsp;</span>
+                      <span>{{record.qhseEngineer }}</span>
+                    </h6>
+                  </div>
+                  <div style="width: 100%;  " class="mt-3">
+                    <h6>
+                      <span style="font-weight: bold;">Rig Manager /&nbsp;&nbsp;</span>
+                      <span>{{ record.rigManager }}</span>
+                    </h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <input *ngIf="Data" type="submit" class="btn btn-primary my-4" value="Print Data" (click)="print()" />
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,377 @@
+<div class="container mb-5" style="margin-top: 8%;">
+  <div class="heading_container heading_center d-flex">
+    <h2 class="mx-auto my-4">
+      Daily Lifting Report
+    </h2>
+
+  </div>
+
+  <div class="row">
+    <form [formGroup]="DailyLiftingForm" id="print-section" [class.submitted]="submitted" (ngSubmit)="submitData()"
+      class="col-md-10 mx-auto d-flex flex-wrap">
+
+      <table class="table">
+        <tr>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="rigId">Rig Number: </label>
+              <select name="rigId" formControlName="rigId" id="rigId" class="form-select">
+                <option value="" disabled selected>Choose Rig Number</option>
+                <option *ngFor="let item of rigList " value="{{item.id}}">Rig - {{item.number}}</option>
+              </select>
+              <div *ngIf="rigId?.invalid && (rigId?.dirty || rigId?.touched)">
+                <small class="text-danger" *ngIf="rigId?.errors?.['required']">
+                  Rig is required
+                </small>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="date">Date :</label>
+              <input type="date" formControlName="date" class="form-control">
+              <div *ngIf="(date?.invalid && (date?.dirty || date?.touched))||submitted">
+                <small class="text-danger" *ngIf="date?.errors?.['required']">
+                  Date is required
+                </small>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="liftingEngieerCode">Lifting Engineer Code: </label>
+              <input list="liftingEngieerCode" autocomplete="off" formControlName="liftingEngieerCode"
+                name="liftingEngieerCode" class="form-control" (input)="selectedMenace($event)">
+              <datalist id="liftingEngieerCode">
+                <option *ngFor="let menace of EmpCodeList">{{menace.code}} </option>
+              </datalist>
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="liftingEngieerName">Name :</label>
+              <input class="form-control" [value]="liftingEngieerCode_Name" disabled />
+              <input name="liftingEngieerName" formControlName="liftingEngieerName" id="liftingEngieerName"
+                class="form-control" [(ngModel)]="liftingEngieerCode_Name" hidden />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-center pb-4">
+            <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+              <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+                Rig Heavy Equipment Data
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4">
+            <div class="form-group">
+              <table class="table table-bordered">
+
+                <td scope="col" colspan="2" class="align-middle">Mobile Crane</td>
+                <td>
+                  <div class="form-group">
+                    <select name="mobileCraneName" formControlName="mobileCraneName" id="mobileCraneName"
+                      class="form-select" (change)="selectedMenaceMobileCrane($event)">
+                      <option value="" disabled selected>Choose Mobile Crane</option>
+                      <option *ngFor="let item of MobileCraneList" value="{{item.mobileCraneName}}">
+                        {{item.mobileCraneName}}</option>
+                    </select>
+                    <div *ngIf="mobileCraneName?.invalid && (mobileCraneName?.dirty || mobileCraneName?.touched)">
+                      <small class="text-danger" *ngIf="mobileCraneName?.errors?.['required']">
+                        Mobile Crane is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+                <!-- <td>
+                  <input list="mobileCraneName" autocomplete="off" formControlName="mobileCraneName"
+                    name="mobileCraneName" class="form-control" (input)="selectedMenaceMobileCrane($event)">
+                  <datalist id="mobileCraneName">
+                    <option *ngFor="let menace of MobileCraneList">{{menace.mobileCraneName}} </option>
+                  </datalist>
+                </td> -->
+
+                <tr>
+                  <td scop="col" colspan="2">Type </td>
+                  <td>
+                    <input class="form-control" [value]="MobileCrane_Type" disabled />
+                    <input name="type" formControlName="type" id="type" class="form-control"
+                      [(ngModel)]="MobileCrane_Type" hidden />
+                  </td>
+                </tr>
+                <tr>
+                  <td scop="col" colspan="2"> Capacity</td>
+                  <td>
+
+                    <input class="form-control" [value]="MobileCrane_Capacity" disabled />
+                    <input name="Capacity" formControlName="capacity" id="Capacity" class="form-control"
+                      [(ngModel)]="MobileCrane_Capacity" hidden />
+
+                  </td>
+                </tr>
+                <tr>
+                  <td scope="col" colspan="2">Capacity No</td>
+                  <td>
+                    <input class="form-control" [value]="MobileCrane_ChasisNo" disabled />
+                    <input name="chasisNo" formControlName="chasisNo" id="chasisNo" class="form-control"
+                      [(ngModel)]="MobileCrane_ChasisNo" hidden />
+                  </td>
+                </tr>
+                <tr>
+                  <td scope="col" colspan="2">Date of Last Inspection</td>
+                  <td>
+                    <input class="form-control" [value]="MobileCrane_DateofLastInspection | date: 'dd-MM-yyyy'"
+                      disabled />
+                    <input name="DateofLastInspection" formControlName="dateofLastInspection" id="DateofLastInspection"
+                      class="form-control" [(ngModel)]="MobileCrane_DateofLastInspection " hidden />
+                  </td>
+                </tr>
+                <tr>
+                  <td scope="col" colspan="2">Date of Next Inspection</td>
+                  <td>
+                    <input class="form-control" [value]="MobileCrane_DateofNextInspection  | date: 'dd-MM-yyyy'"
+                      disabled />
+                    <input name="DateofNextInspection " formControlName="dateofNextInspection"
+                      id="DateofNextInspection " class="form-control" [(ngModel)]="MobileCrane_DateofNextInspection "
+                      hidden />
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4">
+            <div class="form-group">
+              <table class="table table-bordered">
+                <tr>
+                  <td scope="col" colspan="2" class="align-middle">Forklift</td>
+                  <td>
+                    <div class="form-group">
+                      <select name="forkName" formControlName="forkName" id="forkName" class="form-select"
+                        (change)="selectedMenaceForkDailyLifting($event)">
+                        <option value="" disabled selected>Choose Forklift</option>
+                        <option *ngFor="let item of ForkDailyLiftingList" value="{{item.forkName}}">{{item.forkName}}
+                        </option>
+                      </select>
+                      <div *ngIf="forkName?.invalid && (forkName?.dirty || forkName?.touched)">
+                        <small class="text-danger" *ngIf="forkName?.errors?.['required']">
+                          Forklift is required
+                        </small>
+                      </div>
+                    </div>
+                  </td>
+                  <!-- <td>
+                    <input list="forkName" autocomplete="off" formControlName="forkName" name="forkName"
+                      class="form-control" (input)="selectedMenaceForkDailyLifting($event)">
+                    <datalist id="forkName">
+                      <option *ngFor="let menace of ForkDailyLiftingList">{{menace.forkName}} </option>
+                    </datalist>
+                  </td> -->
+                </tr>
+                <tr>
+                  <td scop="col" colspan="2">Type </td>
+                  <td>
+                    <input class="form-control" [value]="ForkDailyLifting_Type" disabled />
+                    <input name="forkType" formControlName="forkType" id="forkType" class="form-control"
+                      [(ngModel)]="ForkDailyLifting_Type" hidden />
+                  </td>
+                </tr>
+                <tr>
+                  <td scop="col" colspan="2"> Capacity</td>
+                  <td>
+                    <input class="form-control" [value]="ForkDailyLifting_Capacity" disabled />
+                    <input name="forkCapacity" formControlName="forkCapacity" id="forkCapacity" class="form-control"
+                      [(ngModel)]="ForkDailyLifting_Capacity" hidden />
+                  </td>
+                </tr>
+                <tr>
+                  <td scope="col" colspan="2">Capacity No</td>
+                  <td>
+                    <input class="form-control" [value]="ForkDailyLifting_ChasisNo" disabled />
+                    <input name="forkChasisNo" formControlName="forkChasisNo" id="forkChasisNo" class="form-control"
+                      [(ngModel)]="ForkDailyLifting_ChasisNo" hidden />
+                  </td>
+                </tr>
+                <tr>
+                  <td scope="col" colspan="2">Date of Last Inspection</td>
+                  <td>
+                    <input class="form-control" [value]="ForkDailyLifting_DateofLastInspection | date: 'dd-MM-yyyy'"
+                      disabled />
+                    <input name="forkDateofLastInspection" formControlName="forkDateofLastInspection"
+                      id="forkDateofLastInspection" class="form-control"
+                      [(ngModel)]="ForkDailyLifting_DateofLastInspection " hidden />
+                  </td>
+                </tr>
+                <tr>
+                  <td scope="col" colspan="2">Date of Next Inspection</td>
+                  <td>
+                    <input class="form-control" [value]="ForkDailyLifting_DateofNextInspection  | date: 'dd-MM-yyyy'"
+                      disabled />
+                    <input name="ForkDateofNextInspection" formControlName="forkDateofNextInspection"
+                      id="forkDateofNextInspection" class="form-control"
+                      [(ngModel)]="ForkDailyLifting_DateofNextInspection " hidden />
+                  </td>
+                </tr>
+              </table>
+            </div>
+
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-center pb-4">
+            <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+              <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+                Daily Records & Statistics
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4">
+            <div class="form-group">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col" style="width: 40% !important;">Item</th>
+                    <th scope="col">Daily Record Stactics List Name</th>
+                  </tr>
+                </thead>
+                <tbody formArrayName="dailyRecordStacticsListDTOs">
+                  <tr *ngFor="let dailyRecordStacticsListDTOsobj of dailyRecordStacticsListDTOs.controls; let i = index"
+                    [formGroupName]="i">
+                    <td><input type="text" formControlName="item" class="form-control"></td>
+                    <td><input type="text" formControlName="dailyRecordStacticsListName" class="form-control"></td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+          </td>
+        </tr>
+
+        <!-- Permits to work: -->
+        <tr>
+          <td colspan="4" class="text-center pb-4">
+            <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+              <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+                Permits to work:
+              </span>
+            </div>
+          </td>
+        </tr>
+        <!-- <tr>
+          <td colspan="4">
+            <div class="form-group">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col" style="width: 10% !important;">Item</th>
+                  </tr>
+                </thead>
+                <tbody formArrayName="permitsToWorkListDTOs">
+                  <tr *ngFor="let permitsToWorkListDTOsobj of permitsToWorkListDTOs.controls; let i = index"
+                    [formGroupName]="i">
+                    <td><input  formControlName="item" class="form-control"></td>
+                    <td><input type="text" formControlName="permitsToWorkListName" class="form-control"></td>
+
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </td>
+        </tr> -->
+        <tr>
+          <td colspan="4" class="p-1">
+            <div class="form-group">
+              <table class="table table-bordered" *ngIf="PermitsToWorkListClicked">
+                <thead>
+                  <tr>
+                    <th class="p-1" scope="col">Item</th>
+                    <th class="p-1" scope="col">Name</th>
+                  </tr>
+                </thead>
+                <tbody formArrayName="permitsToWorkListDTOs">
+                  <tr *ngFor="let permitsToWorkList of permitsToWorkListDTOs.controls; let i = index"
+                    [formGroupName]="i">
+                    <td><input type="number" [readonly]="permitsToWorkListDTOs.get('isNewRow')?.value ? null : true"
+                        formControlName="item" class="form-control"></td>
+                    <td><input type="text" formControlName="permitsToWorkListName" class="form-control"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <button type="button" style="position: relative;left: 95%;" class="btn btn-primary"
+                (click)="addPermitsToWorkList()"><i class="fa-solid fa-circle-plus"></i></button>
+            </div>
+          </td>
+        </tr>
+
+        <!-- Summary Day Activities: -->
+        <tr>
+          <td colspan="4" class="text-center pb-4">
+            <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+              <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+                Summary Day Activities:
+              </span>
+            </div>
+          </td>
+        </tr>
+        <!-- <tr>
+          <td colspan="4">
+            <div class="form-group">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col" style="width: 10% !important;">Item</th>
+                  </tr>
+                </thead>
+                <tbody formArrayName="summaryDailyListDTOs">
+                  <tr *ngFor="let summaryDailyListobj of summaryDailyListDTOs.controls; let i = index" [formGroupName]="i">
+                    <td><input  formControlName="item" class="form-control"></td>
+                    <td><input type="text" formControlName="summaryDailyListName" class="form-control"></td>
+
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </td>
+        </tr> -->
+        <tr>
+          <td colspan="4" class="p-1">
+            <div class="form-group">
+              <table class="table table-bordered" *ngIf="SummaryDailyListClicked">
+                <thead>
+                  <tr>
+                    <th class="p-1" scope="col">Item</th>
+                    <th class="p-1" scope="col">Name</th>
+                  </tr>
+                </thead>
+                <tbody formArrayName="summaryDailyListDTOs">
+                  <tr *ngFor="let summaryDailyList of summaryDailyListDTOs.controls; let i = index" [formGroupName]="i">
+                    <!-- <td><input type="text" formControlName="item" class="form-control" value="{{i+1}}"></td> -->
+                    <td><input type="number" [readonly]="summaryDailyListDTOs.get('isNewRow')?.value ? null : true"
+                        formControlName="item" class="form-control" [value]="i+1"></td>
+                    <td><input type="text" formControlName="summaryDailyListName" class="form-control"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <button type="button" style="position: relative;left: 95%;" class="btn btn-primary"
+                (click)="addSummaryDailyList()"><i class="fa-solid fa-circle-plus"></i></button>
+            </div>
+          </td>
+        </tr>
+      </table>
+
+
+      <input type="submit" class="btn btn-success me-3" value="Submit" />
+      <input type="button" class="btn btn-primary me-3" value="Export Data" (click)="Download()" />
+      <input routerLink="/DailyLiftingReport/Print" type="submit" class="btn btn-primary" value="Show Data">
+
+    </form>
+  </div>
+</div>

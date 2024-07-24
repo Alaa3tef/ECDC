@@ -1,0 +1,191 @@
+a<div class="container mb-5" style="margin-top: 8%;">
+  <div class="heading_container heading_center d-flex">
+    <h2 class="mx-auto">
+      Daily Lifting Report
+    </h2>
+  </div>
+
+
+  <div class="px-4 px-lg-0 m-4" *ngIf="DailyLiftingReportObj">
+    <div class="pb-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 p-3 bg-white rounded shadow-sm mb-4 print-section">
+            <div class="table-responsive border p-2">
+              <table style="width: 100%;" class="border">
+                <tr>
+                  <div style="display: flex;">
+                    <img style="margin-left: 30px;" width="100px" src="../../assets/img/ECDC Logo png.png" />
+                    <label class="form-label mt-3"
+                      style="font-weight: bolder; font-size: large; color: black; margin-left: 130px;">
+                      Daily Lifting Report
+                    </label>
+                  </div>
+                </tr>
+              </table>
+
+              <div class="col-12 mt-4">
+                <table class="table table-bordered" style="margin-bottom: 0;font-size: 12px;">
+                  <tbody>
+                    <tr>
+                      <th>Rig</th>
+                      <td>{{DailyLiftingReportObj.rigNumber}}</td>
+                      <th>Date</th>
+                      <td>{{DailyLiftingReportObj.date|date:'dd/MM/yyyy'}}</td>
+                    </tr>
+
+                </table>
+              </div>
+
+              <div class="col-12 mt-4" style="margin-bottom: 10px;">
+                <table class="table " style="font-size: 14px;   width: 100%;">
+                  <div class="table-bordered" style="display: flex;text-align: center; ">
+                    <table class="table" style="border: 1px solid black;">
+                      <tr>
+                        <th colspan="3">Mobile Crane</th>
+                      </tr>
+                      <tr>
+                        <td colspan="3">{{ DailyLiftingReportObj.mobileCraneName }}</td>
+                      </tr>
+                      <tr>
+                        <td style=" width: 50%;">Type</td>
+                        <td>{{ DailyLiftingReportObj.type }}</td>
+                      </tr>
+                      <tr>
+                        <td>Capacity</td>
+                        <td>{{ DailyLiftingReportObj.capacity }}</td>
+                      </tr>
+                      <tr>
+                        <td>Chasis No.</td>
+                        <td>{{ DailyLiftingReportObj.chasisNo }}</td>
+                      </tr>
+                      <tr>
+                        <td>Last Inspection</td>
+                        <td>{{DailyLiftingReportObj.dateofLastInspection |date: 'dd-MM-yyyy'}}</td>
+                      </tr>
+                      <tr>
+                        <td>Next Inspection</td>
+                        <td>{{DailyLiftingReportObj.dateofNextInspection |date: 'dd-MM-yyyy'}}</td>
+                      </tr>
+                    </table>
+                    <table class="table" style="border: 1px solid black;">
+                      <tr>
+                        <th colspan="3">Forklift</th>
+                      </tr>
+                      <tr>
+                        <td colspan="3">{{ DailyLiftingReportObj.forkName }}</td>
+                      </tr>
+                      <tr>
+                        <td>Type</td>
+                        <td>{{ DailyLiftingReportObj.forkType }}</td>
+                      </tr>
+                      <tr>
+                        <td>Capacity</td>
+                        <td>{{ DailyLiftingReportObj.forkCapacity }}</td>
+                      </tr>
+                      <tr>
+                        <td>Chasis No.</td>
+                        <td>{{ DailyLiftingReportObj.forkChasisNo }}</td>
+                      </tr>
+                      <tr>
+                        <td>Last Inspection</td>
+                        <td>{{DailyLiftingReportObj.forkDateofLastInspection |date: 'dd-MM-yyyy'}}</td>
+                      </tr>
+                      <tr>
+                        <td>Next Inspection</td>
+                        <td>{{DailyLiftingReportObj.forkDateofNextInspection |date: 'dd-MM-yyyy'}}</td>
+                      </tr>
+                    </table>
+                  </div>
+                </table>
+
+              </div>
+              <!-- Daily Records & Statistics -->
+              <div class="col-12 mt-4">
+                <table class="table table-bordered" style="margin-bottom: 0;font-size: 12px;">
+                  <thead style="background-color: rgb(209, 207, 207); ">
+                    <tr class="text-align-left">
+                      <th colspan="3">Daily Records & Statistics</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of DailyLiftingReportObj.dailyRecordStacticsListDTOs,let i=index">
+                      <td style="width: 10%;">{{i+1}}</td>
+                      <td style="width: 40%;">{{item.item}}</td>
+                      <td>{{item.dailyRecordStacticsListName}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- Permits to work: -->
+              <div class="col-12 mt-4" *ngIf="DailyLiftingReportObj.permitsToWorkListDTOs.length>0">
+                <table class="table table-bordered" style="margin-bottom: 0;font-size: 12px;">
+                  <thead style="background-color: rgb(209, 207, 207); ">
+                    <tr class="text-align-left">
+                      <th colspan="3">Permits to work:</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of DailyLiftingReportObj.permitsToWorkListDTOs,let i=index">
+                      <td style="width: 10%; text-align: center;">{{item.item}}</td>
+                      <td>{{item.permitsToWorkListName}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Summary Day Activities -->
+              <div class="col-12 mt-4" *ngIf="DailyLiftingReportObj.summaryDailyListDTOs.length>0">
+                <table class="table table-bordered" style="margin-bottom: 0;font-size: 12px;">
+                  <thead style="background-color: rgb(209, 207, 207); ">
+                    <tr class="text-align-left">
+                      <th colspan="3">Summary Day Activities</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of DailyLiftingReportObj.summaryDailyListDTOs,let i=index">
+                      <td style="width: 10%; text-align: center;">{{item.item}}</td>
+                      <td>{{item.summaryDailyListName}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="text-center mt-3">
+                <h1 style="font-size: 16px;"><b>lifting Engieer</b></h1>
+                <h1 style="font-size: 14px;">{{DailyLiftingReportObj.liftingEngieerName}}</h1>
+              </div>
+              <hr class="mt-2">
+              <div class="col-12 mt-3">
+                <table class="table table-borderless mb-1"
+                  style="display: flex; align-items: center; justify-content: center; font-size: 12px;">
+                  <tbody>
+                    <tr>
+                      <td scope="row">
+                        Issue No. 01
+                        <br>
+                        Revision No. 00
+                      </td>
+                      <td scope="row">
+                        Document No. . ECDC-QHSE- FM-H14
+                        <br>
+                        Page 1 / 1
+                      </td>
+                      <td scope="row">
+                        Issue Date: 01/01/2021
+                        <br>
+                        Revision Date: 00/00/0000
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- End -->
+          </div>
+        </div>
+        <input *ngIf="Data" type="submit" class="btn btn-primary my-4" value="Print Data" (click)="print()" />
+      </div>
+    </div>
+  </div>
+</div>

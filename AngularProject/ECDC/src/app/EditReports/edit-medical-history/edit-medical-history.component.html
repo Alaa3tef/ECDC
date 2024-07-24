@@ -1,0 +1,939 @@
+<div class="container mb-5" style="margin-top: 8%;">
+    <div class="heading_container heading_center d-flex">
+      <h2 class="mx-auto my-4">
+        Medical History
+      </h2>
+
+    </div>
+
+    <div class="row">
+      <form [formGroup]="MedicalHistoryForm" id="print-section" (ngSubmit)="submitData()"
+        class="col-md-10 mx-auto d-flex flex-wrap">
+
+
+        <table class="table">
+            <tr>
+              <td>
+                <div class="form-group">
+                  <label class="form-label" for="rigId">Rig Number: </label>
+                  <select name="rigId" formControlName="rigId" id="rigId"
+                  class="form-select" [(ngModel)]="MedicalHistory.rigId">
+                    <option value="" disabled selected>Choose Rig Number</option>
+                    <option *ngFor="let item of rigList" value="{{item.id}}">Rig - {{item.number}}</option>
+                  </select>
+                </div>
+              </td>
+              <td>
+                <div class="form-group">
+                  <label>Date :</label>
+                  <input id="Date" type="date" formControlName="date"
+                   class="form-control" [ngModel]="MedicalHistory.date | date: 'yyyy-MM-dd'"/>
+                  <div *ngIf="date?.invalid && (date?.dirty || date?.touched)">
+                    <small class="text-danger" *ngIf="date?.errors?.['required']">
+                      Date is required
+                    </small>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="form-group">
+                  <label>Company :</label>
+                  <select name="company" formControlName="company" id="general_AreParking" class="form-select"
+                          (change)="onCompanyChange()" [(ngModel)]="MedicalHistory.company">
+                    <option value="" disabled selected>Choose Answer</option>
+                    <option value="ECDC">ECDC</option>
+                    <option value="Other">Other</option>
+                  </select>
+                  <div *ngIf="company?.invalid && (company?.dirty || company?.touched)">
+                    <small class="text-danger" *ngIf="company?.errors?.['required']">
+                      Company is required
+                    </small>
+                  </div>
+                </div>
+              </td>
+
+              <!-- Display controls for 'Other' selected -->
+              <tr *ngIf="MedicalHistory.company === 'Other'">
+                <td>
+                  <label class="form-label m-0 pb-0">Code / National ID: </label>
+                  <input formControlName="code" name="code" class="form-control" autocomplete="off" [(ngModel)]="MedicalHistory.code">
+                </td>
+                <td>
+                  <div class="from-group">
+                    <label for="job" class="form-label"> Job:</label>
+                    <input name="job" formControlName="jop" id="job" class="form-control" [(ngModel)]="MedicalHistory.jop">
+                  </div>
+                </td>
+                <td>
+                  <div class="form-group">
+                    <label class="form-label" for="name">Name :</label>
+                    <input name="name" formControlName="name" id="name" class="form-control" [(ngModel)]="MedicalHistory.name">
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Display controls for 'ECDC' selected -->
+              <tr *ngIf="MedicalHistory.company === 'ECDC'">
+                <td>
+                  <label class="form-label m-0 pb-0">Code: </label>
+                  <input list="QHSEmenace" autocomplete="off" [(ngModel)]="QHSE_Code" formControlName="code" name="code" class="form-control"
+                         (input)="selectedMenace($event)">
+                  <datalist id="QHSEmenace">
+                    <option *ngFor="let menace of QHSECodeList">{{menace.code}} </option>
+                  </datalist>
+                </td>
+                <td>
+                  <div class="from-group">
+                    <label for="job" class="form-label"> Job:</label>
+                    <input class="form-control" [value]="QHSE_Position" disabled [(ngModel)]="MedicalHistory.jop"/>
+                    <input name="job" formControlName="jop" id="job" class="form-control" [(ngModel)]="QHSE_Position" hidden />
+                  </div>
+                </td>
+                <td>
+                  <div class="form-group">
+                    <label class="form-label" for="name">Name :</label>
+                    <input class="form-control" [value]="QHSE_Name" disabled [(ngModel)]="MedicalHistory.name"/>
+                    <input name="name" formControlName="name" id="name" class="form-control" [(ngModel)]="QHSE_Name" hidden />
+                  </div>
+                </td>
+              </tr>
+
+            <tr>
+              <td>
+                <div class="form-group">
+                  <label class="form-label" for="address">Address: </label>
+                  <input id="address" type="address" formControlName="address"
+                  class="form-control" [(ngModel)]="MedicalHistory.address" />
+                  <div *ngIf="address?.invalid && (address?.dirty || address?.touched)">
+                    <small class="text-danger" *ngIf="address?.errors?.['required']">
+                      Address is required
+                    </small>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="form-group">
+                  <label>Date of Birth :</label>
+                  <input id="dateOfBirth" type="date" formControlName="dateOfBirth"
+                   class="form-control"[ngModel]="MedicalHistory.dateOfBirth | date: 'yyyy-MM-dd'" />
+                  <div *ngIf="dateOfBirth?.invalid && (dateOfBirth?.dirty || dateOfBirth?.touched)">
+                    <small class="text-danger" *ngIf="dateOfBirth?.errors?.['required']">
+                      Date Of Birth is required
+                    </small>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="form-group">
+                  <label>Telephone Number :</label>
+                  <input id="telephoneNumber" type="telephoneNumber" formControlName="telephoneNumber"
+                    class="form-control"  [(ngModel)]="MedicalHistory.telephoneNumber"/>
+                  <div *ngIf="telephoneNumber?.invalid && (telephoneNumber?.dirty || telephoneNumber?.touched)">
+                    <small class="text-danger" *ngIf="telephoneNumber?.errors?.['required']">
+                      Telephone Number is required
+                    </small>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="3">
+                <div class="form-group">
+                  <label>Contact Person to be called in case of emergency: :</label>
+                  <input id="contact" type="text" formControlName="contact"
+                  class="form-control" [(ngModel)]="MedicalHistory.contact" />
+                  <div *ngIf="contact?.invalid && (contact?.dirty || contact?.touched)">
+                    <small class="text-danger" *ngIf="contact?.errors?.['required']">
+                      Contact person is required
+                    </small>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+          </table>
+
+          <!-- Social / Occupational History -->
+          <table class="table-bordered table" style="border: 1px solid #000;">
+            <tbody>
+              <th colspan="3" style="text-align: center; border: 1px solid black;">Social / Occupational History</th>
+              <tr style="text-align: center;">
+                <th>Item</th>
+                <th>Answer</th>
+                <th style="width: 35%;">Comment</th>
+              </tr>
+              <tr>
+                <td>Do you smoke? If so, How many per day?</td>
+                <td>
+                  <div class="form-group">
+                    <select name="socia_DoYouSmokeAnswer" formControlName="socia_DoYouSmokeAnswer" id="general_AreParking"
+                      class="form-select" [(ngModel)]="MedicalHistory.socia_DoYouSmokeAnswer">
+                      <option value="" disabled selected>Choose Answer</option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                    <div
+                      *ngIf="socia_DoYouSmokeAnswer?.invalid && (socia_DoYouSmokeAnswer?.dirty || socia_DoYouSmokeAnswer?.touched)">
+                      <small class="text-danger" *ngIf="socia_DoYouSmokeAnswer?.errors?.['required']">
+                        Answer is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="form-group">
+                    <input formControlName="socia_DoYouSmokeComment" type="text"
+                class="form-control"[ngModel]="MedicalHistory.socia_DoYouSmokeComment">
+                    <div
+                      *ngIf="socia_DoYouSmokeComment?.invalid && (socia_DoYouSmokeComment?.dirty || socia_DoYouSmokeComment?.touched)">
+                      <small class="text-danger" *ngIf="socia_DoYouSmokeComment?.errors?.['required']">
+                        Comment is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Do you exercise regularly? Please describe.</td>
+                <td>
+                  <div class="form-group">
+                    <select name="socia_DoYouExerciseRegularlyAnswer" formControlName="socia_DoYouExerciseRegularlyAnswer"
+                      id="socia_DoYouExerciseRegularlyAnswer" class="form-select"[ngModel]="MedicalHistory.socia_DoYouExerciseRegularlyAnswer">
+                      <option value="" disabled selected>Choose Answer</option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                    <div
+                      *ngIf="socia_DoYouExerciseRegularlyAnswer?.invalid && (socia_DoYouExerciseRegularlyAnswer?.dirty || socia_DoYouExerciseRegularlyAnswer?.touched)">
+                      <small class="text-danger" *ngIf="socia_DoYouExerciseRegularlyAnswer?.errors?.['required']">
+                        socia_DoYouExerciseRegularlyAnswer is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="form-group">
+                    <input formControlName="socia_DoYouExerciseRegularlyComment" type="text"
+                    class="form-control" [ngModel]="MedicalHistory.socia_DoYouExerciseRegularlyComment">
+                    <div
+                      *ngIf="socia_DoYouExerciseRegularlyComment?.invalid && (socia_DoYouExerciseRegularlyComment?.dirty || socia_DoYouExerciseRegularlyComment?.touched)">
+                      <small class="text-danger" *ngIf="socia_DoYouExerciseRegularlyComment?.errors?.['required']">
+                        socia_DoYouExerciseRegularlyComment is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Have you been exposed to any known occupational hazard such
+                  as noise, radiation, chemicals, manual handling?</td>
+                <td>
+                  <div class="form-group">
+                    <select name="socia_HaveYouBeenExposedAnswer" formControlName="socia_HaveYouBeenExposedAnswer"
+                      id="socia_HaveYouBeenExposedAnswer" class="form-select"[ngModel]="MedicalHistory.socia_HaveYouBeenExposedAnswer">
+                      <option value="" disabled selected>Choose Answer</option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                    <div
+                      *ngIf="socia_HaveYouBeenExposedAnswer?.invalid && (socia_HaveYouBeenExposedAnswer?.dirty || socia_HaveYouBeenExposedAnswer?.touched)">
+                      <small class="text-danger" *ngIf="socia_HaveYouBeenExposedAnswer?.errors?.['required']">
+                        socia_HaveYouBeenExposedAnswer is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="form-group">
+                    <input formControlName="socia_HaveYouBeenExposedComment" type="text"
+                    class="form-control"[ngModel]="MedicalHistory.socia_HaveYouBeenExposedComment">
+                    <div
+                      *ngIf="socia_HaveYouBeenExposedComment?.invalid && (socia_HaveYouBeenExposedComment?.dirty || socia_HaveYouBeenExposedComment?.touched)">
+                      <small class="text-danger" *ngIf="socia_HaveYouBeenExposedComment?.errors?.['required']">
+                        socia_HaveYouBeenExposedComment is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Have you ever developed any medical condition in connection
+                  with your occupation? If so please give details e.g. hearing loss
+                  / skin condition / wheezes / backache / muscle strain?</td>
+                <td>
+                  <div class="form-group">
+                    <select name="socia_HaveYouEverDevelopedAnswer" formControlName="socia_HaveYouEverDevelopedAnswer"
+                      id="socia_HaveYouEverDevelopedAnswer" class="form-select"[ngModel]="MedicalHistory.socia_HaveYouEverDevelopedAnswer">
+                      <option value="" disabled selected>Choose Answer</option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                    <div
+                      *ngIf="socia_HaveYouEverDevelopedAnswer?.invalid && (socia_HaveYouEverDevelopedAnswer?.dirty || socia_HaveYouEverDevelopedAnswer?.touched)">
+                      <small class="text-danger" *ngIf="socia_HaveYouEverDevelopedAnswer?.errors?.['required']">
+                        socia_HaveYouEverDevelopedAnswer is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="form-group">
+                    <input formControlName="socia_HaveYouEverDevelopedComment" type="text"
+                    class="form-control"[ngModel]="MedicalHistory.socia_HaveYouEverDevelopedComment">
+                    <div
+                      *ngIf="socia_HaveYouEverDevelopedComment?.invalid && (socia_HaveYouEverDevelopedComment?.dirty || socia_HaveYouEverDevelopedComment?.touched)">
+                      <small class="text-danger" *ngIf="socia_HaveYouEverDevelopedComment?.errors?.['required']">
+                        socia_HaveYouEverDevelopedComment is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Have you suffered any industrial injury? If so please give details.</td>
+                <td>
+                  <div class="form-group">
+                    <select name="socia_HaveYouSufferedAnswer" formControlName="socia_HaveYouSufferedAnswer"
+                      id="socia_HaveYouSufferedAnswer" class="form-select"[ngModel]="MedicalHistory.socia_HaveYouSufferedAnswer">
+                      <option value="" disabled selected>Choose Answer</option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                    <div
+                      *ngIf="socia_HaveYouSufferedAnswer?.invalid && (socia_HaveYouSufferedAnswer?.dirty || socia_HaveYouSufferedAnswer?.touched)">
+                      <small class="text-danger" *ngIf="socia_HaveYouSufferedAnswer?.errors?.['required']">
+                        socia_HaveYouSufferedAnswer is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="form-group">
+                    <input formControlName="socia_HaveYouSufferedComment" type="text"
+                    class="form-control"[ngModel]="MedicalHistory.socia_HaveYouSufferedComment">
+                    <div
+                      *ngIf="socia_HaveYouSufferedComment?.invalid && (socia_HaveYouSufferedComment?.dirty || socia_HaveYouSufferedComment?.touched)">
+                      <small class="text-danger" *ngIf="socia_HaveYouSufferedComment?.errors?.['required']">
+                        socia_HaveYouSufferedComment is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- Present/ Past/ Family medical history -->
+          <table class="table-bordered table mt-4" style="border: 1px solid #000;">
+            <tbody>
+              <th colspan="3" style="text-align: center; border: 1px solid black;">Present/ Past/ Family medical history</th>
+              <tr style="text-align: center;">
+                <th>Item</th>
+                <th>Answer</th>
+                <th style="width: 35%;">Comment</th>
+              </tr>
+              <tr>
+                <td>Are you currently being treated by a doctor for any illness or injury? If yes please give details.</td>
+                <td>
+                  <div class="form-group">
+                    <select name="family_AreYouCurrentlyBeingTreatedAnswer"
+                      formControlName="family_AreYouCurrentlyBeingTreatedAnswer"
+                      id="family_AreYouCurrentlyBeingTreatedAnswer" class="form-select"[ngModel]="MedicalHistory.family_AreYouCurrentlyBeingTreatedAnswer">
+                      <option value="" disabled selected>Choose Answer</option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                    <div
+                      *ngIf="family_AreYouCurrentlyBeingTreatedAnswer?.invalid && (family_AreYouCurrentlyBeingTreatedAnswer?.dirty || family_AreYouCurrentlyBeingTreatedAnswer?.touched)">
+                      <small class="text-danger" *ngIf="family_AreYouCurrentlyBeingTreatedAnswer?.errors?.['required']">
+                        the choose is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="form-group">
+                    <input formControlName="family_AreYouCurrentlyBeingTreatedComment" type="text"
+                     class="form-control"[ngModel]="MedicalHistory.family_AreYouCurrentlyBeingTreatedComment">
+                    <div
+                      *ngIf="family_AreYouCurrentlyBeingTreatedComment?.invalid && (family_AreYouCurrentlyBeingTreatedComment?.dirty || family_AreYouCurrentlyBeingTreatedComment?.touched)">
+                      <small class="text-danger" *ngIf="family_AreYouCurrentlyBeingTreatedComment?.errors?.['required']">
+                        Comment is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Are you currently receiving any medical treatment or taking any medication (either prescribed or
+                  otherwise)? If yes please give details. </td>
+                <td>
+                  <div class="form-group">
+                    <select name="family_AreYouCurrentlyReceivingAnyMedicalAnswer"
+                      formControlName="family_AreYouCurrentlyReceivingAnyMedicalAnswer"
+                      id="family_AreYouCurrentlyReceivingAnyMedicalAnswer" class="form-select"[ngModel]="MedicalHistory.family_AreYouCurrentlyReceivingAnyMedicalAnswer">
+                      <option value="" disabled selected>Choose Answer</option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                    <div
+                      *ngIf="family_AreYouCurrentlyReceivingAnyMedicalAnswer?.invalid && (family_AreYouCurrentlyReceivingAnyMedicalAnswer?.dirty || family_AreYouCurrentlyReceivingAnyMedicalAnswer?.touched)">
+                      <small class="text-danger"
+                        *ngIf="family_AreYouCurrentlyReceivingAnyMedicalAnswer?.errors?.['required']">
+                        Answer is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="form-group">
+                    <input formControlName="family_AreYouCurrentlyReceivingAnyMedicalComment" type="text"
+                      class="form-control"[ngModel]="MedicalHistory.family_AreYouCurrentlyReceivingAnyMedicalComment">
+                    <div
+                      *ngIf="family_AreYouCurrentlyReceivingAnyMedicalComment?.invalid && (family_AreYouCurrentlyReceivingAnyMedicalComment?.dirty || family_AreYouCurrentlyReceivingAnyMedicalComment?.touched)">
+                      <small class="text-danger"
+                        *ngIf="family_AreYouCurrentlyReceivingAnyMedicalComment?.errors?.['required']">
+                        Comment is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th colspan='3'> Have you ever had, or been told by a doctor that you had any of the following? If yes
+                  please give details. </th>
+              </tr>
+              <tr>
+                <td>High/ Low blood pressure</td>
+                <td>
+                  <div class="form-group">
+                    <select name="family_HighBloodPressureAnswer" formControlName="family_HighBloodPressureAnswer"
+                      id="family_HighBloodPressureAnswer" class="form-select"[ngModel]="MedicalHistory.family_HighBloodPressureAnswer">
+                      <option value="" disabled selected>Choose Answer</option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                    <div
+                      *ngIf="family_HighBloodPressureAnswer?.invalid && (family_HighBloodPressureAnswer?.dirty || family_HighBloodPressureAnswer?.touched)">
+                      <small class="text-danger" *ngIf="family_HighBloodPressureAnswer?.errors?.['required']">
+                        Answer is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="form-group">
+                    <input formControlName="family_HighBloodPressureComment" type="text"
+                     class="form-control"[ngModel]="MedicalHistory.family_HighBloodPressureComment">
+                    <div
+                      *ngIf="family_HighBloodPressureComment?.invalid && (family_HighBloodPressureComment?.dirty || family_HighBloodPressureComment?.touched)">
+                      <small class="text-danger" *ngIf="family_HighBloodPressureComment?.errors?.['required']">
+                        Comment is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Heart Disease/ Chest pain</td>
+                <td>
+                  <div class="form-group">
+                    <select name="family_HeartDiseaseAnswer" formControlName="family_HeartDiseaseAnswer"
+                      id="family_HeartDiseaseAnswer" class="form-select"[ngModel]="MedicalHistory.family_HeartDiseaseAnswer">
+                      <option value="" disabled selected>Choose Answer</option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                    <div
+                      *ngIf="family_HeartDiseaseAnswer?.invalid && (family_HeartDiseaseAnswer?.dirty || family_HeartDiseaseAnswer?.touched)">
+                      <small class="text-danger" *ngIf="family_HeartDiseaseAnswer?.errors?.['required']">
+                        Answer is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="form-group">
+                    <input formControlName="family_HeartDiseaseComment" type="text"
+                    class="form-control"[ngModel]="MedicalHistory.family_HeartDiseaseComment">
+                    <div
+                      *ngIf="family_HeartDiseaseComment?.invalid && (family_HeartDiseaseComment?.dirty || family_HeartDiseaseComment?.touched)">
+                      <small class="text-danger" *ngIf="family_HeartDiseaseComment?.errors?.['required']">
+                        Comment is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Bronchial Asthma / COPD</td>
+                <td>
+                  <div class="form-group">
+                    <select name="family_COPDAnswer" formControlName="family_COPDAnswer" id="family_COPDAnswer"
+                      class="form-select" [ngModel]="MedicalHistory.family_COPDAnswer">
+                      <option value="" disabled selected>Choose Answer</option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                    <div *ngIf="family_COPDAnswer?.invalid && (family_COPDAnswer?.dirty || family_COPDAnswer?.touched)">
+                      <small class="text-danger" *ngIf="family_COPDAnswer?.errors?.['required']">
+                        Answer is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="form-group">
+                    <input formControlName="family_COPDComment" type="text"
+                    class="form-control"[ngModel]="MedicalHistory.family_COPDComment">
+                    <div *ngIf="family_COPDComment?.invalid && (family_COPDComment?.dirty || family_COPDComment?.touched)">
+                      <small class="text-danger" *ngIf="family_COPDComment?.errors?.['required']">
+                        Comment is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Diabetes.</td>
+                <td>
+                  <div class="form-group">
+                    <select name="family_DiabetesAnswer" formControlName="family_DiabetesAnswer" id="family_DiabetesAnswer"
+                      class="form-select"[ngModel]="MedicalHistory.family_DiabetesAnswer">
+                      <option value="" disabled selected>Choose Answer</option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                    <div
+                      *ngIf="family_DiabetesAnswer?.invalid && (family_DiabetesAnswer?.dirty || family_DiabetesAnswer?.touched)">
+                      <small class="text-danger" *ngIf="family_DiabetesAnswer?.errors?.['required']">
+                        Answer is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="form-group">
+                    <input formControlName="family_DiabetesComment" type="text"
+                     class="form-control"[ngModel]="MedicalHistory.family_DiabetesComment">
+                    <div
+                      *ngIf="family_DiabetesComment?.invalid && (family_DiabetesComment?.dirty || family_DiabetesComment?.touched)">
+                      <small class="text-danger" *ngIf="family_DiabetesComment?.errors?.['required']">
+                        Comment is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>GIT disease (e.g. Liver disease)</td>
+                <td>
+                  <div class="form-group">
+                    <select name="family_GITAnswer" formControlName="family_GITAnswer" id="family_GITAnswer"
+                      class="form-select"[ngModel]="MedicalHistory.family_GITAnswer">
+                      <option value="" disabled selected>Choose Answer</option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                    <div *ngIf="family_GITAnswer?.invalid && (family_GITAnswer?.dirty || family_GITAnswer?.touched)">
+                      <small class="text-danger" *ngIf="family_GITAnswer?.errors?.['required']">
+                        Answer is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="form-group">
+                    <input formControlName="family_GITComment" type="text"
+                    class="form-control"[ngModel]="MedicalHistory.family_GITComment">
+                    <div *ngIf="family_GITComment?.invalid && (family_GITComment?.dirty || family_GITComment?.touched)">
+                      <small class="text-danger" *ngIf="family_GITComment?.errors?.['required']">
+                        Comment is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Kidney disease (e.g. stone)</td>
+                <td>
+                  <div class="form-group">
+                    <select name="family_KidneyAnswer" formControlName="family_KidneyAnswer" id="family_KidneyAnswer"
+                      class="form-select"[ngModel]="MedicalHistory.family_KidneyAnswer">
+                      <option value="" disabled selected>Choose Answer</option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                    <div
+                      *ngIf="family_KidneyAnswer?.invalid && (family_KidneyAnswer?.dirty || family_KidneyAnswer?.touched)">
+                      <small class="text-danger" *ngIf="family_KidneyAnswer?.errors?.['required']">
+                        Answer is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="form-group">
+                    <input formControlName="family_KidneyComment" type="text"
+                     class="form-control"[ngModel]="MedicalHistory.family_KidneyComment">
+                    <div
+                      *ngIf="family_KidneyComment?.invalid && (family_KidneyComment?.dirty || family_KidneyComment?.touched)">
+                      <small class="text-danger" *ngIf="family_KidneyComment?.errors?.['required']">
+                        Comment is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Neurological disorder (e.g. Stroke or epilepsy)</td>
+                <td>
+                  <div class="form-group">
+                    <select name="family_NeurologicalAnswer" formControlName="family_NeurologicalAnswer"
+                      id="family_NeurologicalAnswer" class="form-select"[ngModel]="MedicalHistory.family_NeurologicalAnswer">
+                      <option value="" disabled selected>Choose Answer</option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                    <div
+                      *ngIf="family_NeurologicalAnswer?.invalid && (family_NeurologicalAnswer?.dirty || family_NeurologicalAnswer?.touched)">
+                      <small class="text-danger" *ngIf="family_NeurologicalAnswer?.errors?.['required']">
+                        Answer is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="form-group">
+                    <input formControlName="family_NeurologicalComment" type="text"
+                    class="form-control"[ngModel]="MedicalHistory.family_NeurologicalComment">
+                    <div
+                      *ngIf="family_NeurologicalComment?.invalid && (family_NeurologicalComment?.dirty || family_NeurologicalComment?.touched)">
+                      <small class="text-danger" *ngIf="family_NeurologicalComment?.errors?.['required']">
+                        Comment is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Infectious disease</td>
+                <td>
+                  <div class="form-group">
+                    <select name="family_InfectiousAnswer" formControlName="family_InfectiousAnswer"
+                      id="family_InfectiousAnswer" class="form-select"[ngModel]="MedicalHistory.family_InfectiousAnswer">
+                      <option value="" disabled selected>Choose Answer</option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                    <div
+                      *ngIf="family_InfectiousAnswer?.invalid && (family_InfectiousAnswer?.dirty || family_InfectiousAnswer?.touched)">
+                      <small class="text-danger" *ngIf="family_InfectiousAnswer?.errors?.['required']">
+                        Answer is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="form-group">
+                    <input formControlName="family_InfectiousComment" type="text"
+                     class="form-control"[ngModel]="MedicalHistory.family_InfectiousComment">
+                    <div
+                      *ngIf="family_InfectiousComment?.invalid && (family_InfectiousComment?.dirty || family_InfectiousComment?.touched)">
+                      <small class="text-danger" *ngIf="family_InfectiousComment?.errors?.['required']">
+                        Comment is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Dizziness, vertigo, problems with balance</td>
+                <td>
+                  <div class="form-group">
+                    <select name="family_DizzinessAnswer" formControlName="family_DizzinessAnswer"
+                      id="family_DizzinessAnswer" class="form-select"[ngModel]="MedicalHistory.family_DizzinessAnswer">
+                      <option value="" disabled selected>Choose Answer</option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                    <div
+                      *ngIf="family_DizzinessAnswer?.invalid && (family_DizzinessAnswer?.dirty || family_DizzinessAnswer?.touched)">
+                      <small class="text-danger" *ngIf="family_DizzinessAnswer?.errors?.['required']">
+                        Answer is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="form-group">
+                    <input formControlName="family_DizzinessComment" type="text"
+                    [ngModel]="MedicalHistory.family_DizzinessComment"class="form-control">
+                    <div
+                      *ngIf="family_DizzinessComment?.invalid && (family_DizzinessComment?.dirty || family_DizzinessComment?.touched)">
+                      <small class="text-danger" *ngIf="family_DizzinessComment?.errors?.['required']">
+                        Comment is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Disc prolapse</td>
+                <td>
+                  <div class="form-group">
+                    <select name="family_DiscProlapseAnswer" formControlName="family_DiscProlapseAnswer"
+                      id="family_DiscProlapseAnswer" class="form-select"[ngModel]="MedicalHistory.family_DiscProlapseAnswer">
+                      <option value="" disabled selected>Choose Answer</option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                    <div
+                      *ngIf="family_DiscProlapseAnswer?.invalid && (family_DiscProlapseAnswer?.dirty || family_DiscProlapseAnswer?.touched)">
+                      <small class="text-danger" *ngIf="family_DiscProlapseAnswer?.errors?.['required']">
+                        Answer is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="form-group">
+                    <input formControlName="family_DiscProlapseComment" type="text"
+                     class="form-control"[ngModel]="MedicalHistory.family_DiscProlapseComment">
+                    <div
+                      *ngIf="family_DiscProlapseComment?.invalid && (family_DiscProlapseComment?.dirty || family_DiscProlapseComment?.touched)">
+                      <small class="text-danger" *ngIf="family_DiscProlapseComment?.errors?.['required']">
+                        Comment is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Allergy</td>
+                <td>
+                  <div class="form-group">
+                    <select name="family_AllergyAnswer" formControlName="family_AllergyAnswer" id="family_AllergyAnswer"
+                      class="form-select"[ngModel]="MedicalHistory.family_AllergyAnswer">
+                      <option value="" disabled selected>Choose Answer</option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                    <div
+                      *ngIf="family_AllergyAnswer?.invalid && (family_AllergyAnswer?.dirty || family_AllergyAnswer?.touched)">
+                      <small class="text-danger" *ngIf="family_AllergyAnswer?.errors?.['required']">
+                        Answer is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="form-group">
+                    <input formControlName="family_AllergyComment" type="text"
+                     class="form-control"[ngModel]="MedicalHistory.family_AllergyComment">
+                    <div
+                      *ngIf="family_AllergyComment?.invalid && (family_AllergyComment?.dirty || family_AllergyComment?.touched)">
+                      <small class="text-danger" *ngIf="family_AllergyComment?.errors?.['required']">
+                        Comment is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Hospitalization</td>
+                <td>
+                  <div class="form-group">
+                    <select name="family_HospitalizationAnswer" formControlName="family_HospitalizationAnswer"
+                      id="family_HospitalizationAnswer" class="form-select"[ngModel]="MedicalHistory.family_HospitalizationAnswer">
+                      <option value="" disabled selected>Choose Answer</option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                    <div
+                      *ngIf="family_HospitalizationAnswer?.invalid && (family_HospitalizationAnswer?.dirty || family_HospitalizationAnswer?.touched)">
+                      <small class="text-danger" *ngIf="family_HospitalizationAnswer?.errors?.['required']">
+                        Answer is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="form-group">
+                    <input formControlName="family_HospitalizationComment" type="text"
+                     class="form-control"[ngModel]="MedicalHistory.family_HospitalizationComment">
+                    <div
+                      *ngIf="family_HospitalizationComment?.invalid && (family_HospitalizationComment?.dirty || family_HospitalizationComment?.touched)">
+                      <small class="text-danger" *ngIf="family_HospitalizationComment?.errors?.['required']">
+                        Comment is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Surgery</td>
+                <td>
+                  <div class="form-group">
+                    <select name="family_SurgeryAnswer" formControlName="family_SurgeryAnswer" id="family_SurgeryAnswer"
+                      class="form-select"[ngModel]="MedicalHistory.family_SurgeryAnswer">
+                      <option value="" disabled selected>Choose Answer</option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                    <div
+                      *ngIf="family_SurgeryAnswer?.invalid && (family_SurgeryAnswer?.dirty || family_SurgeryAnswer?.touched)">
+                      <small class="text-danger" *ngIf="family_SurgeryAnswer?.errors?.['required']">
+                        Answer is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="form-group">
+                    <input formControlName="family_SurgeryComment" type="text"
+                     class="form-control"[ngModel]="MedicalHistory.family_SurgeryComment">
+                    <div
+                      *ngIf="family_SurgeryComment?.invalid && (family_SurgeryComment?.dirty || family_SurgeryComment?.touched)">
+                      <small class="text-danger" *ngIf="family_SurgeryComment?.errors?.['required']">
+                        Comment is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Depression or Anxiety disorder</td>
+                <td>
+                  <div class="form-group">
+                    <select name="family_DepressionAnswer" formControlName="family_DepressionAnswer"
+                      id="family_DepressionAnswer" class="form-select"[ngModel]="MedicalHistory.family_DepressionAnswer">
+                      <option value="" disabled selected>Choose Answer</option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                    <div
+                      *ngIf="family_DepressionAnswer?.invalid && (family_DepressionAnswer?.dirty || family_DepressionAnswer?.touched)">
+                      <small class="text-danger" *ngIf="family_DepressionAnswer?.errors?.['required']">
+                        Answer is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="form-group">
+                    <input formControlName="family_DepressionComment" type="text"
+                    class="form-control"[ngModel]="MedicalHistory.family_DepressionComment">
+                    <div
+                      *ngIf="family_DepressionComment?.invalid && (family_DepressionComment?.dirty || family_DepressionComment?.touched)">
+                      <small class="text-danger" *ngIf="family_DepressionComment?.errors?.['required']">
+                        Comment is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Do any of your 1st degree family members have history of any of the above mentioned medical condition? If yes please describe.</td>
+                <td>
+                  <div class="form-group">
+                    <select name="family_DoAnyOfYour1stDegreeFamilyAnswer" formControlName="family_DoAnyOfYour1stDegreeFamilyAnswer"
+                      id="family_DoAnyOfYour1stDegreeFamilyAnswer" class="form-select"[(ngModel)]="MedicalHistory.family_DoAnyOfYour1stDegreeFamilyAnswer">
+                      <option value="" disabled selected>Choose Answer</option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                    <div
+                      *ngIf="family_DoAnyOfYour1stDegreeFamilyAnswer?.invalid && (family_DoAnyOfYour1stDegreeFamilyAnswer?.dirty || family_DoAnyOfYour1stDegreeFamilyAnswer?.touched)">
+                      <small class="text-danger" *ngIf="family_DoAnyOfYour1stDegreeFamilyAnswer?.errors?.['required']">
+                        Answer is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="form-group">
+                    <input formControlName="family_DoAnyOfYour1stDegreeFamilyComment" type="text"
+                    class="form-control"[(ngModel)]="MedicalHistory.family_DoAnyOfYour1stDegreeFamilyComment">
+                    <div
+                      *ngIf="family_DoAnyOfYour1stDegreeFamilyComment?.invalid && (family_DoAnyOfYour1stDegreeFamilyComment?.dirty || family_DoAnyOfYour1stDegreeFamilyComment?.touched)">
+                      <small class="text-danger" *ngIf="family_DoAnyOfYour1stDegreeFamilyComment?.errors?.['required']">
+                        Comment is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+           <!-- General Examination< -->
+           <table class="table-bordered table mt-4" style="border: 1px solid #000;">
+            <tbody>
+              <th colspan="4" style="text-align: center; border: 1px solid black;">General Examination</th>
+              <tr style="text-align: center;">
+                <th>Weight (kg)</th>
+                <th>Height (cm)</th>
+                <th>Blood Pressure</th>
+                <th>Heart Rate</th>
+              </tr>
+              <tr>
+                <td>
+                  <div class="form-group">
+                    <input formControlName="generalExamination_Weight" type="number"
+                    class="form-control"[ngModel]="MedicalHistory.generalExamination_Weight">
+                  </div>
+                </td>
+                <td>
+                  <div class="form-group">
+                    <input formControlName="generalExamination_Height" type="number"
+                     class="form-control"[ngModel]="MedicalHistory.generalExamination_Height">
+                  </div>
+                </td>
+                <td>
+                  <div class="form-group">
+                    <input formControlName="generalExamination_BloodPressure" type="number"
+                    class="form-control"[ngModel]="MedicalHistory.generalExamination_BloodPressure">
+                  </div>
+                </td>
+                <td>
+                  <div class="form-group">
+                    <input formControlName="generalExamination_HeartRate" type="number"
+                    class="form-control"[ngModel]="MedicalHistory.generalExamination_HeartRate">
+                  </div>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+
+          <table class="table-bordered table mt-4" style="border: 1px solid #000;">
+            <tbody>
+              <tr style="text-align: center;">
+                <th colspan="4">Doctor's Comments</th>
+              </tr>
+              <tr>
+                <td colspan="4">
+                  <textarea class="form-control " formControlName="doctorComments" rows="4" id="doctorComments"
+                    name="text"[ngModel]="MedicalHistory.doctorComments"></textarea>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+
+           <table class="table">
+            <tr class=" mt-4">
+              <td colspan="3">
+                <div class="form-group">
+                  <label class="form-label" for="doctorName">Doctor Name: </label>
+                    <input class="form-control " formControlName="doctorName"  id="doctorName"
+                      type="text"[ngModel]="MedicalHistory.doctorName">
+                </div>
+              </td>
+            </tr>
+           </table>
+
+        <input type="submit" class="btn btn-success me-3" value="Submit" />
+
+      </form>
+    </div>
+  </div>

@@ -1,0 +1,478 @@
+<div class="container mb-5" style="margin-top: 8%;">
+  <div class="heading_container heading_center d-flex">
+    <h2 class="mx-auto my-4">
+      Weekly Clinic Report
+    </h2>
+
+  </div>
+
+  <div class="row">
+    <form [formGroup]="WeeklyClinicForm" id="print-section" [class.submitted]="submitted" (ngSubmit)="submitData()"
+      class="col-md-10 mx-auto d-flex flex-wrap">
+
+      <table class="table">
+        <tr>
+          <td colspan="2">
+            <div class="form-group">
+              <label class="form-label" for="rigId">Rig Number: </label>
+              <select name="rigId" formControlName="rigId" id="rigId" class="form-select">
+                <option value="" disabled selected>Choose Rig Number</option>
+                <option *ngFor="let item of rigList " value="{{item.id}}">Rig - {{item.number}}</option>
+              </select>
+              <div *ngIf="rigId?.invalid && (rigId?.dirty || rigId?.touched)">
+                <small class="text-danger" *ngIf="rigId?.errors?.['required']">
+                  Rig is required
+                </small>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="date">Date: </label>
+              <input type="date" formControlName="date" class="form-control" />
+              <div *ngIf="(date?.invalid && (date?.dirty || date?.touched))||submitted">
+                <small class="text-danger" *ngIf="date?.errors?.['required']">
+                  Date is required
+                </small>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <div class="form-group">
+              <label class="form-label" for="topics">Topics: </label>
+              <input type="text" name="topics" formControlName="topics" id="topics" class="form-control" />
+              <div *ngIf="(topics?.invalid && (topics?.dirty || topics?.touched))||submitted">
+                <small class="text-danger" *ngIf="topics?.errors?.['required']">
+                  Topics is required
+                </small>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="healthMeetingNo">No. of Health Meeting with Crew: </label>
+              <input type="number" formControlName="healthMeetingNo" id="healthMeetingNo" class="form-control">
+              <div
+                *ngIf="(healthMeetingNo?.invalid && (healthMeetingNo?.dirty || healthMeetingNo?.touched))||submitted">
+                <small class="text-danger" *ngIf="healthMeetingNo?.errors?.['required']">
+                  Health Meeting Number is required
+                </small>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="weeklyClinicNo">Weekly Clinic Cases: </label>
+              <input type="number" formControlName="weeklyClinicNo" class="form-control">
+              <div *ngIf="(weeklyClinicNo?.invalid && (weeklyClinicNo?.dirty || weeklyClinicNo?.touched))||submitted">
+                <small class="text-danger" *ngIf="weeklyClinicNo?.errors?.['required']">
+                  Weekly Clinic is required
+                </small>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="lastFirstAidDrillNo">Last First Aid Drill: </label>
+              <input type="date" formControlName="lastFirstAidDrillNo" class="form-control" />
+              <div
+                *ngIf="(lastFirstAidDrillNo?.invalid && (lastFirstAidDrillNo?.dirty || lastFirstAidDrillNo?.touched))||submitted">
+                <small class="text-danger" *ngIf="lastFirstAidDrillNo?.errors?.['required']">
+                  Last First Aid Drill is required
+                </small>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="medicalReportNo">Medical Report No: </label>
+              <input type="number" formControlName="medicalReportNo" id="medicalReportNo" class="form-control">
+              <div
+                *ngIf="(medicalReportNo?.invalid && (medicalReportNo?.dirty || medicalReportNo?.touched))||submitted">
+                <small class="text-danger" *ngIf="medicalReportNo?.errors?.['required']">
+                  Medical Report is required
+                </small>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="p-1">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th class="p-1" scope="col">No</th>
+                  <th class="p-1" scope="col">Clinic Checklist</th>
+                  <th class="p-1" scope="col" style="width: 18%;">Status</th>
+                  <th class="p-1" scope="col">Comment</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="p-1">1</td>
+                  <td class="p-1">Health status questionnaires are available for all personnel on rig and implemented.
+                  </td>
+                  <td class="p-1">
+                    <select name="healthStatus" formControlName="healthStatus" id="healthStatus" class="form-select">
+                      <option value="" disabled selected>Choose</option>
+                      <option value="Good">Yes/Good</option>
+                      <option value="Poor">No/Poor</option>
+                      <option value="Not available">Not available</option>
+                    </select>
+                    <div *ngIf="(healthStatus?.invalid && (healthStatus?.dirty || healthStatus?.touched))||submitted">
+                      <small class="text-danger" *ngIf="healthStatus?.errors?.['required']">
+                        Status is required
+                      </small>
+                    </div>
+                  </td>
+                  <td class="p-1">
+                    <input type="text" formControlName="healthStatusComment" class="form-control" />
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-1">2</td>
+                  <td class="p-1">All life saving apparatuses are available and in good condition such as: automated
+                    external
+                    defibrillator (AED), Valid AED Pads, valid AED battery.</td>
+                  <td class="p-1">
+                    <select name="lifeSavingApparatuses" formControlName="lifeSavingApparatuses"
+                      id="lifeSavingApparatuses" class="form-select">
+                      <option value="" disabled selected>Choose</option>
+                      <option value="Good">Yes/Good</option>
+                      <option value="Poor">No/Poor</option>
+                      <option value="Not available">Not available</option>
+                    </select>
+                    <div
+                      *ngIf="(lifeSavingApparatuses?.invalid && (lifeSavingApparatuses?.dirty || lifeSavingApparatuses?.touched))||submitted">
+                      <small class="text-danger" *ngIf="lifeSavingApparatuses?.errors?.['required']">
+                        Status is required
+                      </small>
+                    </div>
+                  </td>
+                  <td class="p-1">
+                    <input type="text" formControlName="lifeSavingApparatusesComment" class="form-control" />
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-1">3</td>
+                  <td class="p-1">Vaccines are available and within their expiry dates; Anti-snake, Anti-scorpion and
+                    Anti-tetanus.
+                  </td>
+                  <td class="p-1">
+                    <select name="vaccinesAvailable" formControlName="vaccinesAvailable" id="vaccinesAvailable"
+                      class="form-select">
+                      <option value="" disabled selected>Choose</option>
+                      <option value="Good">Yes/Good</option>
+                      <option value="Poor">No/Poor</option>
+                      <option value="Not available">Not available</option>
+                    </select>
+                    <div
+                      *ngIf="(vaccinesAvailable?.invalid && (vaccinesAvailable?.dirty || vaccinesAvailable?.touched))||submitted">
+                      <small class="text-danger" *ngIf="vaccinesAvailable?.errors?.['required']">
+                        Status is required
+                      </small>
+                    </div>
+                  </td>
+                  <td class="p-1">
+                    <input type="text" formControlName="vaccinesAvailableComment" class="form-control" />
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-1">4</td>
+                  <td class="p-1">ERP (Emergency Response procedures ) updated and posted.</td>
+                  <td class="p-1">
+                    <select name="erp" formControlName="erp" id="erp" class="form-select">
+                      <option value="" disabled selected>Choose</option>
+                      <option value="Good">Yes/Good</option>
+                      <option value="Poor">No/Poor</option>
+                      <option value="Not available">Not available</option>
+                    </select>
+                    <div *ngIf="(erp?.invalid && (erp?.dirty || erp?.touched))||submitted">
+                      <small class="text-danger" *ngIf="erp?.errors?.['required']">
+                        Status is required
+                      </small>
+                    </div>
+                  </td>
+                  <td class="p-1">
+                    <input type="text" formControlName="erpComment" class="form-control" />
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-1">5</td>
+                  <td class="p-1">Is there medical stretcher and in good condition?</td>
+                  <td class="p-1">
+                    <select name="medicalStretcher" formControlName="medicalStretcher" id="medicalStretcher"
+                      class="form-select">
+                      <option value="" disabled selected>Choose</option>
+                      <option value="Good">Yes/Good</option>
+                      <option value="Poor">No/Poor</option>
+                      <option value="Not available">Not available</option>
+                    </select>
+                    <div
+                      *ngIf="(medicalStretcher?.invalid && (medicalStretcher?.dirty || medicalStretcher?.touched))||submitted">
+                      <small class="text-danger" *ngIf="medicalStretcher?.errors?.['required']">
+                        Status is required
+                      </small>
+                    </div>
+                  </td>
+                  <td class="p-1">
+                    <input type="text" formControlName="medicalStretcherComment" class="form-control" />
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-1">6</td>
+                  <td class="p-1">Water test kit available, and record for tracking water analysis .</td>
+                  <td class="p-1">
+                    <select name="waterTest" formControlName="waterTest" id="waterTest" class="form-select">
+                      <option value="" disabled selected>Choose</option>
+                      <option value="Good">Yes/Good</option>
+                      <option value="Poor">No/Poor</option>
+                      <option value="Not available">Not available</option>
+                    </select>
+                    <div *ngIf="(waterTest?.invalid && (waterTest?.dirty || waterTest?.touched))||submitted">
+                      <small class="text-danger" *ngIf="waterTest?.errors?.['required']">
+                        Status is required
+                      </small>
+                    </div>
+                  </td>
+                  <td class="p-1">
+                    <input type="text" formControlName="waterTestComment" class="form-control" />
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-1">7</td>
+                  <td class="p-1">Blood-sugar, blood-pressure and temperature measurement devices available.</td>
+                  <td class="p-1">
+                    <select name="bloodSugar" formControlName="bloodSugar" id="bloodSugar" class="form-select">
+                      <option value="" disabled selected>Choose</option>
+                      <option value="Good">Yes/Good</option>
+                      <option value="Poor">No/Poor</option>
+                      <option value="Not available">Not available</option>
+                    </select>
+                    <div *ngIf="(bloodSugar?.invalid && (bloodSugar?.dirty || bloodSugar?.touched))||submitted">
+                      <small class="text-danger" *ngIf="bloodSugar?.errors?.['required']">
+                        Status is required
+                      </small>
+                    </div>
+                  </td>
+                  <td class="p-1">
+                    <input type="text" formControlName="bloodSugarComment" class="form-control" />
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-1">8</td>
+                  <td class="p-1">First aid box available with its content.</td>
+                  <td class="p-1">
+                    <select name="firstAidBox" formControlName="firstAidBox" id="firstAidBox" class="form-select">
+                      <option value="" disabled selected>Choose</option>
+                      <option value="Good">Yes/Good</option>
+                      <option value="Poor">No/Poor</option>
+                      <option value="Not available">Not available</option>
+                    </select>
+                    <div *ngIf="(firstAidBox?.invalid && (firstAidBox?.dirty || firstAidBox?.touched))||submitted">
+                      <small class="text-danger" *ngIf="firstAidBox?.errors?.['required']">
+                        Status is required
+                      </small>
+                    </div>
+                  </td>
+                  <td class="p-1">
+                    <input type="text" formControlName="firstAidBoxComment" class="form-control" />
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-1">9</td>
+                  <td class="p-1">Full O<sub>2</sub> cylinder and its regulator with water filter are available and at
+                    least another
+                    spare one.</td>
+                  <td class="p-1">
+                    <select name="fullO2Cylinder" formControlName="fullO2Cylinder" id="fullO2Cylinder"
+                      class="form-select">
+                      <option value="" disabled selected>Choose</option>
+                      <option value="Good">Yes/Good</option>
+                      <option value="Poor">No/Poor</option>
+                      <option value="Not available">Not available</option>
+                    </select>
+                    <div
+                      *ngIf="(fullO2Cylinder?.invalid && (fullO2Cylinder?.dirty || fullO2Cylinder?.touched))||submitted">
+                      <small class="text-danger" *ngIf="fullO2Cylinder?.errors?.['required']">
+                        Status is required
+                      </small>
+                    </div>
+                  </td>
+                  <td class="p-1">
+                    <input type="text" formControlName="fullO2CylinderComment" class="form-control" />
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-1">10</td>
+                  <td class="p-1">Medical waste box available and medical waste collected and sent to Cairo on regular
+                    basis.</td>
+                  <td class="p-1">
+                    <select name="medicalWaste" formControlName="medicalWaste" id="medicalWaste" class="form-select">
+                      <option value="" disabled selected>Choose</option>
+                      <option value="Good">Yes/Good</option>
+                      <option value="Poor">No/Poor</option>
+                      <option value="Not available">Not available</option>
+                    </select>
+                    <div *ngIf="(medicalWaste?.invalid && (medicalWaste?.dirty || medicalWaste?.touched))||submitted">
+                      <small class="text-danger" *ngIf="medicalWaste?.errors?.['required']">
+                        Status is required
+                      </small>
+                    </div>
+                  </td>
+                  <td class="p-1">
+                    <input type="text" formControlName="medicalWasteComment" class="form-control" />
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-1">11</td>
+                  <td class="p-1">All medicines are within their expiry dates. Expired medicines collected and sent back
+                    to Medical
+                    Section.</td>
+                  <td class="p-1">
+                    <select name="medicinesExpiryDate" formControlName="medicinesExpiryDate" id="medicinesExpiryDate"
+                      class="form-select">
+                      <option value="" disabled selected>Choose</option>
+                      <option value="Good">Yes/Good</option>
+                      <option value="Poor">No/Poor</option>
+                      <option value="Not available">Not available</option>
+                    </select>
+                    <div
+                      *ngIf="(medicinesExpiryDate?.invalid && (medicinesExpiryDate?.dirty || medicinesExpiryDate?.touched))||submitted">
+                      <small class="text-danger" *ngIf="medicinesExpiryDate?.errors?.['required']">
+                        Status is required
+                      </small>
+                    </div>
+                  </td>
+                  <td class="p-1">
+                    <input type="text" formControlName="medicinesExpiryDateComment" class="form-control" />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-center pb-4">
+            <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+              <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+                Fridge Components
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4">
+            <div class="form-group">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">Item</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Expiry Date</th>
+                  </tr>
+                </thead>
+                <tbody formArrayName="fridgeComponents">
+                  <tr *ngFor="let fridgeGroup of fridgeComponents.controls; let i = index" [formGroupName]="i">
+                    <td><input type="text" formControlName="item" class="form-control"></td>
+                    <td><input type="number" formControlName="quantity" class="form-control"></td>
+                    <td><input type="date" formControlName="expireDate" class="form-control"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <button type="button" style="position: relative;left: 95%;" class="btn btn-primary"
+                (click)="addFridgeComponents()"><i class="fa-solid fa-circle-plus"></i></button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-center pb-4">
+            <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+              <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+                Drug Inventory
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4">
+            <div class="form-group">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">Item</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Expiry Date</th>
+                  </tr>
+                </thead>
+                <tbody formArrayName="drugInventory">
+                  <tr *ngFor="let drugGroup of drugInventory.controls; let i = index" [formGroupName]="i">
+                    <td><input type="text" formControlName="item" class="form-control"></td>
+                    <td><input type="number" formControlName="quantity" class="form-control"></td>
+                    <td><input type="date" formControlName="expireDate" class="form-control"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <button type="button" style="position: relative;left: 95%;" class="btn btn-primary"
+                (click)="addDrugInventory()"><i class="fa-solid fa-circle-plus"></i></button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-center pb-4">
+            <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+              <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+                Other comments / shortage / urgent requirements
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-center pb-4">
+            <textarea name="otherComments" class="form-control" formControlName="otherComments" rows="3"></textarea>
+            <div *ngIf="(otherComments?.invalid && (otherComments?.dirty || otherComments?.touched))||submitted">
+              <small class="text-danger" *ngIf="otherComments?.errors?.['required']">
+                Comment is required
+              </small>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="doctorName">Doctor Name: </label>
+              <input type="text" formControlName="doctorName" class="form-control" />
+              <div *ngIf="(doctorName?.invalid && (doctorName?.dirty || doctorName?.touched))||submitted">
+                <small class="text-danger" *ngIf="doctorName?.errors?.['required']">
+                  Doctor Name is required
+                </small>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="qhseEngineer">QHSE Engineer: </label>
+              <input type="text" formControlName="qhseEngineer" class="form-control" />
+              <div *ngIf="(qhseEngineer?.invalid && (qhseEngineer?.dirty || qhseEngineer?.touched))||submitted">
+                <small class="text-danger" *ngIf="qhseEngineer?.errors?.['required']">
+                  QHSE Engineer is required
+                </small>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+      </table>
+
+
+      <input type="submit" class="btn btn-success me-3" value="Submit" />
+      <input type="button" class="btn btn-primary me-3" value="Export Data" (click)="Download()" />
+      <input routerLink="/Dashboard/WeeklyClinic/Print" type="submit" class="btn btn-primary" value="Show Data">
+
+    </form>
+  </div>
+</div>

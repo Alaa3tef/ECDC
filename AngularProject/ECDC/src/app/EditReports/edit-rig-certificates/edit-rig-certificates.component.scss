@@ -1,0 +1,33 @@
+td,th{
+  vertical-align: middle;
+}
+
+form.submitted .ng-invalid {
+  border-color: red;
+}
+input,select{
+  font-size: 13px !important;
+}
+.table-borderless td{
+  padding: 5px !important;
+}
+.table-borderless input{
+  padding: 5px 3px !important;
+}
+
+
+.table-bordered{
+  table-layout: fixed;
+}
+
+.width thead th:nth-child(1) {
+  width: 27%;
+}
+
+.width2 thead th:nth-child(1) {
+  width: 40%;
+}
+
+.width thead th:nth-child(2),.width thead th:nth-child(3) {
+  width: 11%;
+}

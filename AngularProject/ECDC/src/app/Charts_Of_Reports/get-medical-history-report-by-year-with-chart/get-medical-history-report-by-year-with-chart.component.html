@@ -1,0 +1,23 @@
+
+<div class="container" style="margin: 8% 0; min-height: 63vh;">
+    <div class="heading_container heading_center d-flex">
+      <h2 class="mx-auto my-4">
+        Medical History Report Compare With Rigs Charts
+      </h2>
+
+    </div>
+    <div class="mb-5">
+      <select name="Rig1" id="Rig1" class="form-select" (change)="onChange($event)">
+        <option value="" disabled selected>Choose Rig Number</option>
+        <option value="{{item.id}}" *ngFor="let item of RigList">Rig - {{item.number}}</option>
+      </select>
+    </div>
+
+    <div id="divChart" #divChart *ngIf="temp">
+      <div class="mb-5" id="chart1">
+
+        <canvas id="myChart"></canvas>
+      </div>
+
+    </div>
+  </div>

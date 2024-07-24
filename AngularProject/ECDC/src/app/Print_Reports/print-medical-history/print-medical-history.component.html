@@ -1,0 +1,370 @@
+<div class="container mb-5" style="margin-top: 8%; overflow: hidden;">
+  <div class="heading_container heading_center d-flex">
+    <h2 class="mx-auto my-4">
+      Medical History Report
+    </h2>
+  </div>
+
+  <div class="form-group">
+
+    <select name="rigId" id="rigId" class="form-select" (change)="MedicalHistoryByRigAndJopAndNameSelected($event)">
+      <option value="" disabled selected>Choose Rig Number, Job And Name </option>
+      <option *ngFor="let item of MedicalHistory " value="{{item.rigId}}/{{item.jop}}/{{item.name}}">
+        Rig - {{item.rigId}} / Job: {{item.jop}} / Name: {{item.name}} </option>
+    </select>
+  </div>
+
+  <div class="px-4 px-lg-0 m-4" *ngIf="Data">
+    <div class="pb-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 p-3 bg-white rounded shadow-sm mb-4 print-section"
+            *ngFor="let record of MedicalHistoryRecord">
+            <div class="table-responsive">
+              <table class="border" style="width: 100%;">
+                <tr>
+                  <div style="display: flex;">
+                    <img style="margin-left: 30px;" width="65px" src="../../assets/img/ECDC Logo png.png" />
+                    <span class="col-12">
+                      <table class="table table-borderless  "
+                        style="display: flex; align-items: center; justify-content: center;">
+                        <tbody style="margin-top: 10px;">
+                          <tr>
+                            <td scope="row" style="font-size: 15px;">
+
+                              Safe Work Requirement
+                              <br>
+                              Emergency Drill Report
+
+                            </td>
+                            <td scope="row">
+                              Document Responsibility:
+                              <br>
+                              QHSE
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </span>
+
+                  </div>
+                </tr>
+              </table>
+              <div style="text-align: center; margin-top: 10px;">
+                <label class="form-label "
+                  style="font-weight: bolder; text-decoration: underline; font-size: large; color: black;">
+                  Medical HistoryReport
+                </label>
+              </div>
+
+              <div class="col-12 mt-3">
+                <table class="table table-bordered " style="border: 1px solid black;width: 100%;">
+                  <tbody>
+                    <tr>
+                      <td style="font-weight: bold; width: 20%;">
+                        Rig Number
+                      </td>
+                      <td>
+                        <span>{{ record.rignumber }}1</span>
+                      </td>
+                      <td style="font-weight: bold; width: 20%;">
+                        Date
+                      </td>
+                      <td style=" width: 30%;">
+                        <span>{{ record.date | date: 'dd-MM-yyyy' }}</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight: bold; width: 20%;">
+                        Name
+                      </td>
+                      <td>
+                        <span>{{ record.name }}</span>
+                      </td>
+                      <td style="font-weight: bold; width: 20%;">
+                        Address
+                      </td>
+                      <td style=" width: 30%;">
+                        <span>{{ record.address}}</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight: bold; width: 20%;">
+                        Code/ National ID </td>
+                      <td>
+                        <span>{{ record.code }}</span>
+                      </td>
+                      <td style="font-weight: bold; width: 20%;">
+                        Date of Birth
+                      </td>
+                      <td style=" width: 30%;">
+                        <span>{{ record.dateOfBirth | date: 'dd-MM-yyyy' }}</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight: bold; width: 20%;">
+                        Job
+                      </td>
+                      <td>
+                        <span>{{ record.jop }}</span>
+                      </td>
+                      <td style="font-weight: bold; width: 20%;">
+                        Telephone Number
+                      </td>
+                      <td style=" width: 30%;">
+                        <span>{{ record.telephoneNumber }}</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight: bold; width: 20%;">
+                        Company
+                      </td>
+                      <td>
+                        <span>{{ record.company }}</span>
+                      </td>
+                      <td style="font-weight: bold; width: 20%;">
+                        Contact person in<br>
+                        case of emergency:
+                      </td>
+                      <td style=" width: 30%;">
+                        <span>{{ record.contact}}</span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div>
+                <h6>
+                  <span style="font-weight: bold;font-size: 17px; color: rgb(38, 38, 202); text-decoration: underline;">
+                    Present/ Past/ Family medical history</span>
+                </h6>
+              </div>
+
+              <div class="col-12">
+
+                <table class="table table-borderless">
+
+                  <tbody>
+                    <tr>
+                      <td scope="row" class="p-0">
+
+                        <div class="col-12 mt-3">
+                          <table class="table table-bordered " style="border: 1px solid black;width: 100%;">
+                            <tbody>
+                              <tr style="text-align: center;">
+                                <th style="width: 50%;">Item</th>
+                                <th style="width: 5%;">Answer</th>
+                                <th colspan="4">Comment</th>
+                              </tr>
+                              <tr style="vertical-align: middle;">
+                                <td>Are you currently being treated by a doctor for any illness or
+                                  injury? If yes please give details. </td>
+                                <td>{{record.family_AreYouCurrentlyBeingTreatedAnswer}}</td>
+                                <td colspan="4" class="comment-cell">
+                                  {{record.family_AreYouCurrentlyBeingTreatedComment}}</td>
+                              </tr>
+                              <tr style="vertical-align: middle;">
+                                <td>Are you currently receiving any medical treatment or taking any
+                                  medication (either prescribed or otherwise)? If yes please give
+                                  details. </td>
+                                <td>{{record.family_AreYouCurrentlyReceivingAnyMedicalAnswer}}</td>
+                                <td colspan="4" class="comment-cell">
+                                  {{record.family_AreYouCurrentlyReceivingAnyMedicalComment}}</td>
+                              </tr>
+                              <tr style="vertical-align: middle;">
+                                <td>High/ Low blood pressure</td>
+                                <td>{{record.family_HighBloodPressureAnswer}}</td>
+                                <td colspan="4" class="comment-cell">
+                                  {{record.family_HighBloodPressureComment}}</td>
+                              </tr>
+                              <tr style="vertical-align: middle;">
+                                <td>Heart Disease/ Chest pain </td>
+                                <td>{{record.family_HeartDiseaseAnswer}}</td>
+                                <td colspan="4" class="comment-cell">{{record.family_HeartDiseaseComment}}
+                                </td>
+                              </tr>
+                              <tr style="vertical-align: middle;">
+                                <td>Bronchial Asthma / COPD</td>
+                                <td>{{record.family_COPDAnswer}}</td>
+                                <td colspan="4" class="comment-cell">{{record.family_COPDComment}}</td>
+                              </tr>
+
+                              <tr style="vertical-align: middle;">
+                                <td>Diabetes </td>
+                                <td>{{record.family_DiabetesAnswer}}</td>
+                                <td colspan="4" class="comment-cell">{{record.family_DiabetesComment}}</td>
+                              </tr>
+                              <tr style="vertical-align: middle;">
+                                <td>Kidney disease (e.g. stone) </td>
+                                <td>{{record.family_KidneyAnswer}}</td>
+                                <td colspan="4" class="comment-cell">{{record.family_KidneyComment}}</td>
+                              </tr>
+                              <tr style="vertical-align: middle;">
+                                <td>Neurological disorder (e.g. Stroke or epilepsy)</td>
+                                <td>{{record.family_NeurologicalAnswer}}</td>
+                                <td colspan="4" class="comment-cell">{{record.family_NeurologicalComment}}
+                                </td>
+                              </tr>
+                              <tr style="vertical-align: middle;">
+                                <td>Infectious disease </td>
+                                <td>{{record.family_InfectiousAnswer}}</td>
+                                <td colspan="4" class="comment-cell">{{record.family_InfectiousComment}}</td>
+                              </tr>
+                              <tr style="vertical-align: middle;">
+                                <td>Dizziness, vertigo, problems with balance</td>
+                                <td>{{record.family_DizzinessAnswer}}</td>
+                                <td colspan="4" class="comment-cell">{{record.family_DizzinessComment}}</td>
+                              </tr>
+
+                              <tr style="vertical-align: middle;">
+                                <td>Disc prolapse </td>
+                                <td>{{record.family_DiscProlapseAnswer}}</td>
+                                <td colspan="4" class="comment-cell">{{record.family_DiscProlapseComment}}
+                                </td>
+                              </tr>
+                              <tr style="vertical-align: middle;">
+                                <td>Allergy </td>
+                                <td>{{record.family_AllergyAnswer}}</td>
+                                <td colspan="4" class="comment-cell">{{record.family_AllergyComment}}</td>
+                              </tr>
+                              <tr style="vertical-align: middle;">
+                                <td>Hospitalization</td>
+                                <td>{{record.family_HospitalizationAnswer}}</td>
+                                <td colspan="4" class="comment-cell">{{record.family_HospitalizationComment}}
+                                </td>
+                              </tr>
+                              <tr style="vertical-align: middle;">
+                                <td>Surgery</td>
+                                <td>{{record.family_SurgeryAnswer}}</td>
+                                <td colspan="4" class="comment-cell">{{record.family_SurgeryComment}}</td>
+                              </tr>
+                              <tr style="vertical-align: middle;">
+                                <td>Depression or Anxiety disorder </td>
+                                <td>{{record.family_DepressionAnswer}}</td>
+                                <td colspan="4" class="comment-cell">{{record.family_DepressionComment}}</td>
+                              </tr>
+                              <tr style="vertical-align: middle;">
+                                <td>Do any of your 1st degree family members have history of any of
+                                  the above mentioned medical condition? If yes please describe. </td>
+                                <td>{{record.family_DoAnyOfYour1stDegreeFamilyAnswer}}</td>
+                                <td colspan="4" class="comment-cell">
+                                  {{record.family_DoAnyOfYour1stDegreeFamilyComment}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-12 mt-2 text-center">
+                <h5>Signature : </h5>
+              </div>
+              <div class="col-12 mt-4">
+                <table class="table table-bordered " style="border: 1px solid black;width: 100%;">
+                  <tbody>
+                    <tr>
+                      <td colspan="4" style="text-align: center; font-weight: bold;">
+                        General Examination
+                      </td>
+                    </tr>
+                    <tr style="text-align: center; vertical-align:middle;">
+                      <td style="font-weight: bold">
+                        Weight
+                      </td>
+                      <td style="font-weight: bold">
+                        Height
+                      </td>
+                      <td style="font-weight: bold">
+                        Blood Pressure
+                      </td>
+                      <td style="font-weight: bold">
+                        Heart Rate
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td style="font-weight: bold">
+                        {{record.generalExamination_Weight}} Kg
+                      </td>
+                      <td style="font-weight: bold">
+                        {{record.generalExamination_Height}} Cm
+
+                      </td>
+                      <td style="font-weight: bold">
+                        {{record.generalExamination_BloodPressure}}
+                      </td>
+                      <td style="font-weight: bold">
+                        {{record.generalExamination_HeartRate}}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="col-12 mt-5">
+                <table class="table table-bordered " style="border: 1px solid black;width: 100%;">
+                  <tbody>
+                    <tr>
+                      <td colspan="4" style="text-align: center; font-weight: bold;">
+                        Doctor's Comment
+                      </td>
+                    </tr>
+
+
+                    <tr>
+                      <td style="font-weight: bold">
+                        {{record.doctorComments}}
+                      </td>
+
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-12">
+                <div class="row">
+                  <div class="col-6 mt-3" style="text-align: center; color: black; ">
+                    <h5>Doctor Name : &nbsp;&nbsp; {{record.doctorName}} </h5>
+                    <!-- <span> {{record.doctorName}} </span> -->
+                  </div>
+
+                  <div class="col-6 mt-3" style="text-align: center; color: black;">
+                    <h5>Doctor Signature : </h5>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 mt-3" style="font-size: 12px;">
+                <table class="table table-borderless mb-1"
+                  style="display: flex; align-items: center; justify-content: center;">
+                  <tbody>
+                    <tr>
+                      <td scope="row">
+                        Issue No. 01
+                        <br>
+                        Revision No. 04
+                      </td>
+                      <td scope="row">
+                        Document No. ECDC-QHSE-FM-107
+                        <br>
+                        Page 1 / 1
+                      </td>
+                      <td scope="row">
+                        Issue Date: 1/1/2021
+                        <br>
+                        Revision Date: 00/00/0000
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <input *ngIf="Data" type="submit" class="btn btn-primary my-4" value="Print Data" (click)="print()" />
+    </div>
+  </div>
+</div>

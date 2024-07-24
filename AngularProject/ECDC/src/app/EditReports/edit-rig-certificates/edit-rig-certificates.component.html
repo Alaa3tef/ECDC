@@ -1,0 +1,792 @@
+<div class="container mb-5" style="margin-top: 8%;">
+  <div class="heading_container heading_center d-flex">
+    <h2 class="mx-auto my-4">
+      Edit Rig Certificates Register
+    </h2>
+
+  </div>
+
+  <div class="row">
+    <form [formGroup]="RigCertificatesForm" id="print-section" [class.submitted]="submitted" (ngSubmit)="submitData()"
+      class="col-md-10 mx-auto d-flex flex-wrap">
+
+      <table class="table">
+        <tr>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="rigId">Rig Number: </label>
+              <select name="rigId" formControlName="rigId" id="rigId" class="form-select">
+                <option value="" disabled selected>Choose Rig Number</option>
+                <option *ngFor="let item of rigList " value="{{item.id}}">Rig - {{item.number}}</option>
+              </select>
+              <div *ngIf="rigId?.invalid && (rigId?.dirty || rigId?.touched)">
+                <small class="text-danger" *ngIf="rigId?.errors?.['required']">
+                  Rig is required
+                </small>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="date">Date: </label>
+              <input type="date" formControlName="date" class="form-control" />
+              <div *ngIf="(date?.invalid && (date?.dirty || date?.touched))||submitted">
+                <small class="text-danger" *ngIf="date?.errors?.['required']">
+                  Date is required
+                </small>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <div class="form-group">
+              <table class="table table-bordered" style="font-size: 14px !important;">
+                <thead>
+                  <tr>
+                    <th class="p-1" scope="col">Inspection</th>
+                    <th class="p-1" scope="col">Lifting Gear</th>
+                    <th class="p-1" scope="col">CAT III</th>
+                    <th class="p-1" scope="col">CAT IV</th>
+                    <th class="p-1" scope="col">Gauge Calibraion</th>
+                    <th class="p-1" scope="col">Wall Thickness</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Certification Date</td>
+                    <td class="p-0 m-0"><input type="date" formControlName="certificationLiftingGear"
+                        class="form-control p-1 m-0"></td>
+                    <td class="p-0 m-0"><input type="date" formControlName="certificationCATIII"
+                        class="form-control p-1 m-0"></td>
+                    <td class="p-0 m-0"><input type="date" formControlName="certificationCATIV"
+                        class="form-control p-1 m-0"></td>
+                    <td class="p-0 m-0"><input type="date" formControlName="certificationGaugeCalibraion"
+                        class="form-control p-1 m-0"></td>
+                    <td class="p-0 m-0"><input type="date" formControlName="certificationWallThickness"
+                        class="form-control p-1 m-0"></td>
+                  </tr>
+                  <tr>
+                    <td>Due Date </td>
+                    <td class="p-0 m-0"><input type="date" formControlName="dueLiftingGear"
+                        class="form-control p-1 m-0"></td>
+                    <td class="p-0 m-0"><input type="date" formControlName="dueCATIII" class="form-control p-1 m-0">
+                    </td>
+                    <td class="p-0 m-0"><input type="date" formControlName="dueCATIV" class="form-control p-1 m-0"></td>
+                    <td class="p-0 m-0"><input type="date" formControlName="dueGaugeCalibraion"
+                        class="form-control p-1 m-0"></td>
+                    <td class="p-0 m-0"><input type="date" formControlName="dueWallThickness"
+                        class="form-control p-1 m-0"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="text-center pb-4">
+            <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+              <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+                Hoisting System and Substructure
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <div class="form-group">
+              <table class="table table-bordered width" style="font-size: 14px !important;">
+                <thead>
+                  <tr>
+                    <th rowspan="2" scope="col">Equipment</th>
+                    <th rowspan="2" scope="col">Serial Number</th>
+                    <th scope="col" class="text-center">COC</th>
+                    <th colspan="2" scope="col" class="text-center">CAT III</th>
+                    <th colspan="2" scope="col" class="text-center">CAT IV</th>
+                  </tr>
+                  <tr>
+                    <th scope="col">Availabilty</th>
+                    <th scope="col">Certification Date</th>
+                    <th scope="col">Expiry Date</th>
+                    <th scope="col">Certification Date</th>
+                    <th scope="col">Expiry Date</th>
+                  </tr>
+                </thead>
+                <tbody formArrayName="hoistingSystem">
+                  <tr *ngFor="let hoistingSystemobj of hoistingSystem.controls; let i = index" [formGroupName]="i">
+                    <td class="p-0 m-0"><input type="text" [readonly]="hoistingSystemobj.get('isNewRow')?.value ? null : true" formControlName="equipment" class="form-control p-1 m-0">
+                    </td>
+                    <td class="p-0 m-0"><input type="text" formControlName="serialNumber" class="form-control p-1 m-0">
+                    </td>
+                    <td class="p-0 m-0"><select name="cocAvailabilty" formControlName="cocAvailabilty"
+                        id="cocAvailabilty" class="form-select p-1 m-0">
+                        <option value="" disabled selected>Choose</option>
+                        <option value=true>Yes</option>
+                        <option value=false>No</option>
+                      </select></td>
+                    <td class="p-0 m-0"><input type="date" formControlName="catiiiCertificationDate"
+                        class="form-control p-1 m-0"></td>
+                    <td class="p-0 m-0"><input type="date" formControlName="catiiiExpiryDate"
+                        class="form-control p-1 m-0"></td>
+                    <td class="p-0 m-0"><input type="date" formControlName="cativCertificationDate"
+                        class="form-control p-1 m-0"></td>
+                    <td class="p-0 m-0"><input type="date" formControlName="cativExpiryDate"
+                        class="form-control p-1 m-0"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <button type="button" style="position: relative;left: 95%;" class="btn btn-primary"
+                (click)="addhoistingSystem()"><i class="fa-solid fa-circle-plus"></i></button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="text-center pb-4">
+            <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+              <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+                Rotary System
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <div class="form-group">
+              <table class="table table-bordered width" style="font-size: 14px !important;">
+                <thead>
+                  <tr>
+                    <th rowspan="2" scope="col">Equipment</th>
+                    <th rowspan="2" scope="col">Serial Number</th>
+                    <th scope="col" class="text-center">COC</th>
+                    <th colspan="2" scope="col" class="text-center">CAT III</th>
+                    <th colspan="2" scope="col" class="text-center">CAT IV</th>
+                  </tr>
+                  <tr>
+                    <th scope="col">Availabilty</th>
+                    <th scope="col">Certification Date</th>
+                    <th scope="col">Expiry Date</th>
+                    <th scope="col">Certification Date</th>
+                    <th scope="col">Expiry Date</th>
+                  </tr>
+                </thead>
+                <tbody formArrayName="rotarySystem">
+                  <tr *ngFor="let rotarySystemobj of rotarySystem.controls; let i = index" [formGroupName]="i">
+                    <td class="p-0 m-0"><input type="text" [readonly]="rotarySystemobj.get('isNewRow')?.value ? null : true" formControlName="equipment" class="form-control p-1 m-0">
+                    </td>
+                    <td class="p-0 m-0"><input type="text" formControlName="serialNumber" class="form-control p-1 m-0">
+                    </td>
+                    <td class="p-0 m-0"><select name="cocAvailabilty" formControlName="cocAvailabilty"
+                        id="cocAvailabilty" class="form-select p-1 m-0">
+                        <option value="" disabled selected>Choose</option>
+                        <option value=true>Yes</option>
+                        <option value=false>No</option>
+                      </select></td>
+                    <td class="p-0 m-0"><input type="date" formControlName="catiiiCertificationDate"
+                        class="form-control p-1 m-0"></td>
+                    <td class="p-0 m-0"><input type="date" formControlName="catiiiExpiryDate"
+                        class="form-control p-1 m-0"></td>
+                    <td class="p-0 m-0"><input type="date" formControlName="cativCertificationDate"
+                        class="form-control p-1 m-0"></td>
+                    <td class="p-0 m-0"><input type="date" formControlName="cativExpiryDate"
+                        class="form-control p-1 m-0"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <button type="button" style="position: relative;left: 95%;" class="btn btn-primary"
+                (click)="addrotarySystem()"><i class="fa-solid fa-circle-plus"></i></button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="text-center pb-4">
+            <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+              <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+                Mud Circulation System
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <div class="form-group">
+              <table class="table table-bordered width" style="font-size: 14px !important;">
+                <thead>
+                  <tr>
+                    <th rowspan="2" scope="col">Equipment</th>
+                    <th rowspan="2" scope="col">Serial Number</th>
+                    <th scope="col" class="text-center">COC</th>
+                    <th colspan="2" scope="col" class="text-center">CAT III</th>
+                    <th colspan="2" scope="col" class="text-center">CAT IV</th>
+                  </tr>
+                  <tr>
+                    <th scope="col">Availabilty</th>
+                    <th scope="col">Certification Date</th>
+                    <th scope="col">Expiry Date</th>
+                    <th scope="col">Certification Date</th>
+                    <th scope="col">Expiry Date</th>
+                  </tr>
+                </thead>
+                <tbody formArrayName="mudCirculationSystem">
+                  <tr *ngFor="let mudCirculationSystemobj of mudCirculationSystem.controls; let i = index"
+                    [formGroupName]="i">
+                    <td class="p-0 m-0"><input type="text" [readonly]="mudCirculationSystemobj.get('isNewRow')?.value ? null : true" formControlName="equipment" class="form-control p-1 m-0">
+                    </td>
+                    <td class="p-0 m-0"><input type="text" formControlName="serialNumber" class="form-control p-1 m-0">
+                    </td>
+                    <td class="p-0 m-0"><select name="cocAvailabilty" formControlName="cocAvailabilty"
+                        id="cocAvailabilty" class="form-select p-1 m-0">
+                        <option value="" disabled selected>Choose</option>
+                        <option value=true>Yes</option>
+                        <option value=false>No</option>
+                      </select></td>
+                    <td class="p-0 m-0"><input type="date" formControlName="catiiiCertificationDate"
+                        class="form-control p-1 m-0"></td>
+                    <td class="p-0 m-0"><input type="date" formControlName="catiiiExpiryDate"
+                        class="form-control p-1 m-0"></td>
+                    <td class="p-0 m-0"><input type="date" formControlName="cativCertificationDate"
+                        class="form-control p-1 m-0"></td>
+                    <td class="p-0 m-0"><input type="date" formControlName="cativExpiryDate"
+                        class="form-control p-1 m-0"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <button type="button" style="position: relative;left: 95%;" class="btn btn-primary"
+                (click)="addmudCirculationSystem()"><i class="fa-solid fa-circle-plus"></i></button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="text-center pb-4">
+            <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+              <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+                Well Control System
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <div class="form-group">
+              <table class="table table-bordered width" style="font-size: 14px !important;">
+                <thead>
+                  <tr>
+                    <th rowspan="2" scope="col">Equipment</th>
+                    <th rowspan="2" scope="col">Serial Number</th>
+                    <th scope="col" class="text-center">COC</th>
+                    <th colspan="2" scope="col" class="text-center">CAT III</th>
+                    <th colspan="2" scope="col" class="text-center">CAT IV</th>
+                  </tr>
+                  <tr>
+                    <th scope="col">Availabilty</th>
+                    <th scope="col">Certification Date</th>
+                    <th scope="col">Expiry Date</th>
+                    <th scope="col">Certification Date</th>
+                    <th scope="col">Expiry Date</th>
+                  </tr>
+                </thead>
+                <tbody formArrayName="wellControlSystem">
+                  <tr *ngFor="let wellControlSystemobj of wellControlSystem.controls; let i = index"
+                    [formGroupName]="i">
+                    <td class="p-0 m-0"><input type="text" [readonly]="wellControlSystemobj.get('isNewRow')?.value ? null : true" formControlName="equipment" class="form-control p-1 m-0">
+                    </td>
+                    <td class="p-0 m-0"><input type="text" formControlName="serialNumber" class="form-control p-1 m-0">
+                    </td>
+                    <td class="p-0 m-0"><select name="cocAvailabilty" formControlName="cocAvailabilty"
+                        id="cocAvailabilty" class="form-select p-1 m-0">
+                        <option value="" disabled selected>Choose</option>
+                        <option value=true>Yes</option>
+                        <option value=false>No</option>
+                      </select></td>
+                    <td class="p-0 m-0"><input type="date" formControlName="catiiiCertificationDate"
+                        class="form-control p-1 m-0"></td>
+                    <td class="p-0 m-0"><input type="date" formControlName="catiiiExpiryDate"
+                        class="form-control p-1 m-0"></td>
+                    <td class="p-0 m-0"><input type="date" formControlName="cativCertificationDate"
+                        class="form-control p-1 m-0"></td>
+                    <td class="p-0 m-0"><input type="date" formControlName="cativExpiryDate"
+                        class="form-control p-1 m-0"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <button type="button" style="position: relative;left: 95%;" class="btn btn-primary"
+                (click)="addwellControlSystem()"><i class="fa-solid fa-circle-plus"></i></button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="text-center pb-4">
+            <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+              <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+                Power System
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <div class="form-group">
+              <table class="table table-bordered width" style="font-size: 14px !important;">
+                <thead>
+                  <tr>
+                    <th rowspan="2" scope="col">Equipment</th>
+                    <th rowspan="2" scope="col">Serial Number</th>
+                    <th scope="col" class="text-center">COC</th>
+                    <th colspan="2" scope="col" class="text-center">CAT III</th>
+                    <th colspan="2" scope="col" class="text-center">CAT IV</th>
+                  </tr>
+                  <tr>
+                    <th scope="col">Availabilty</th>
+                    <th scope="col">Certification Date</th>
+                    <th scope="col">Expiry Date</th>
+                    <th scope="col">Certification Date</th>
+                    <th scope="col">Expiry Date</th>
+                  </tr>
+                </thead>
+                <tbody formArrayName="powerSystem">
+                  <tr *ngFor="let powerSystemobj of powerSystem.controls; let i = index" [formGroupName]="i">
+                    <td class="p-0 m-0"><input type="text" [readonly]="powerSystemobj.get('isNewRow')?.value ? null : true" formControlName="equipment" class="form-control p-1 m-0">
+                    </td>
+                    <td class="p-0 m-0"><input type="text" formControlName="serialNumber" class="form-control p-1 m-0">
+                    </td>
+                    <td class="p-0 m-0"><select name="cocAvailabilty" formControlName="cocAvailabilty"
+                        id="cocAvailabilty" class="form-select p-1 m-0">
+                        <option value="" disabled selected>Choose</option>
+                        <option value=true>Yes</option>
+                        <option value=false>No</option>
+                      </select></td>
+                    <td class="p-0 m-0"><input type="date" formControlName="catiiiCertificationDate"
+                        class="form-control p-1 m-0"></td>
+                    <td class="p-0 m-0"><input type="date" formControlName="catiiiExpiryDate"
+                        class="form-control p-1 m-0"></td>
+                    <td class="p-0 m-0"><input type="date" formControlName="cativCertificationDate"
+                        class="form-control p-1 m-0"></td>
+                    <td class="p-0 m-0"><input type="date" formControlName="cativExpiryDate"
+                        class="form-control p-1 m-0"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <button type="button" style="position: relative;left: 95%;" class="btn btn-primary"
+                (click)="addpowerSystem()"><i class="fa-solid fa-circle-plus"></i></button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="text-center pb-4">
+            <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+              <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+                Others
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <div class="form-group">
+              <table class="table table-bordered width2" style="font-size: 14px !important;">
+                <thead>
+                  <tr>
+                    <th rowspan="2" scope="col">Item</th>
+                    <th colspan="2" scope="col" class="text-center">CAT III</th>
+                    <th colspan="2" scope="col" class="text-center">CAT IV</th>
+                  </tr>
+                  <tr>
+                    <th scope="col">Certification Date</th>
+                    <th scope="col">Expiry Date</th>
+                    <th scope="col">Certification Date</th>
+                    <th scope="col">Expiry Date</th>
+                  </tr>
+                </thead>
+                <tbody formArrayName="otherSystem">
+                  <tr *ngFor="let otherSystemobj of otherSystem.controls; let i = index" [formGroupName]="i">
+                    <td class="p-0 m-0"><input type="text" [readonly]="otherSystemobj.get('isNewRow')?.value ? null : true" formControlName="item" class="form-control p-1 m-0"></td>
+                    <td class="p-0 m-0"><input type="date" formControlName="catiiiCertificationDate"
+                        class="form-control p-1 m-0"></td>
+                    <td class="p-0 m-0"><input type="date" formControlName="catiiiExpiryDate"
+                        class="form-control p-1 m-0"></td>
+                    <td class="p-0 m-0"><input type="date" formControlName="cativCertificationDate"
+                        class="form-control p-1 m-0"></td>
+                    <td class="p-0 m-0"><input type="date" formControlName="cativExpiryDate"
+                        class="form-control p-1 m-0"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <button type="button" style="position: relative;left: 95%;" class="btn btn-primary"
+                (click)="addotherSystem()"><i class="fa-solid fa-circle-plus"></i></button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-center pb-4">
+            <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+              <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+                PRV (Presssure relief valve)
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="p-1">
+            <div class="form-group">
+              <table class="table table-bordered" *ngIf="presssureReliefValveClicked">
+                <thead>
+                  <tr>
+                    <th class="p-1" scope="col">Valves</th>
+                    <th class="p-1" scope="col">Location</th>
+                    <th class="p-1" scope="col">Certification Date</th>
+                    <th class="p-1" scope="col">Expiry Date</th>
+                  </tr>
+                </thead>
+                <tbody formArrayName="presssureReliefValve">
+                  <tr *ngFor="let presssureReliefValve of presssureReliefValve.controls; let i = index"
+                    [formGroupName]="i">
+                    <td><input type="text" formControlName="valves" class="form-control"></td>
+                    <td><input type="text" formControlName="location" class="form-control"></td>
+                    <td><input type="date" formControlName="certificationDate" class="form-control"></td>
+                    <td><input type="date" formControlName="expiryDate" class="form-control"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <button type="button" style="position: relative;left: 95%;" class="btn btn-primary"
+                (click)="addpresssureReliefValve()"><i class="fa-solid fa-circle-plus"></i></button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-center pb-4">
+            <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+              <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+                HSE Equipment
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="p-1">
+            <div class="form-group">
+              <table class="table table-bordered" *ngIf="hseEquipmentTableClicked">
+                <thead>
+                  <tr>
+                    <th class="p-1" scope="col">Equipment</th>
+                    <th class="p-1" scope="col">Model</th>
+                    <th class="p-1" scope="col">Serial Number</th>
+                    <th class="p-1" scope="col">Expiry Date</th>
+                  </tr>
+                </thead>
+                <tbody formArrayName="hseEquipmentTable">
+                  <tr *ngFor="let hseEquipmentTable of hseEquipmentTable.controls; let i = index" [formGroupName]="i">
+                    <td>
+                      <div class="form-group">
+                        <select name="equipmentId" formControlName="equipmentId" id="equipmentId" class="form-select">
+                          <option value="" disabled selected>Choose Equipment</option>
+                          <option *ngFor="let item of equipmentList " value="{{item.id}}">{{item.equipment}}</option>
+                        </select>
+                      </div>
+                    </td>
+                    <td><input type="text" formControlName="model" class="form-control"></td>
+                    <td><input type="text" formControlName="serialNumber" class="form-control"></td>
+                    <td><input type="date" formControlName="expiryDate" class="form-control"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <button type="button" style="position: relative;left: 95%;" class="btn btn-primary"
+                (click)="addhseEquipmentTable()"><i class="fa-solid fa-circle-plus"></i></button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-center pb-4">
+            <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+              <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+                Lifting Equipment
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-center pt-5">
+            <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+              Mobile Crane
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="p-1">
+            <div class="form-group">
+              <table class="table table-bordered" *ngIf="mobileCraneClicked">
+                <thead>
+                  <tr style="font-size: 14px;">
+                    <th class="p-1" scope="col">Model</th>
+                    <th class="p-1" scope="col">Type</th>
+                    <th class="p-1" scope="col">Manufacture Date</th>
+                    <th class="p-1" scope="col">Chassis No.</th>
+                    <th class="p-1" scope="col">Hook Serial No.</th>
+                    <th class="p-1" scope="col">Capacity</th>
+                    <th class="p-1" scope="col">Last Examination Date</th>
+                    <th class="p-1" scope="col">Next Examination Date</th>
+                  </tr>
+                </thead>
+                <tbody formArrayName="mobileCrane">
+                  <tr *ngFor="let mobileCranes of mobileCrane.controls; let i = index" [formGroupName]="i">
+                    <td>
+                      <input type="text" formControlName="model" class="form-control">
+                    </td>
+                    <td>
+                      <input type="text" formControlName="type" class="form-control">
+                    </td>
+                    <td>
+                      <input type="date" formControlName="manufactureDate" class="form-control">
+                    </td>
+                    <td>
+                      <input type="text" formControlName="chassisNo" class="form-control">
+                    </td>
+                    <td><input type="text" formControlName="hookSerialNo" class="form-control"></td>
+                    <td><input type="text" formControlName="capacity" class="form-control"></td>
+                    <td><input type="date" formControlName="lastExaminationDate" class="form-control"></td>
+                    <td><input type="date" formControlName="nextExaminationDate" class="form-control"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <button type="button" style="position: relative;left: 95%;" class="btn btn-primary"
+                (click)="addmobileCrane()"><i class="fa-solid fa-circle-plus"></i></button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-center pb-4">
+            <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+              Forklift
+            </span>
+          </td>
+        </tr>
+        <tr style="font-size: 14px;">
+          <td colspan="4" class="p-1">
+            <div class="form-group">
+              <table class="table table-bordered" *ngIf="forkliftClicked">
+                <thead>
+                  <tr>
+                    <th class="p-1" scope="col">Model</th>
+                    <th class="p-1" scope="col">Type</th>
+                    <th class="p-1" scope="col">Serial NO.</th>
+                    <th class="p-1" scope="col">Capacity</th>
+                    <th class="p-1" scope="col">Last Examination Date</th>
+                    <th class="p-1" scope="col">Next Examination Date</th>
+                  </tr>
+                </thead>
+                <tbody formArrayName="forklift">
+                  <tr *ngFor="let forklift of forklift.controls; let i = index" [formGroupName]="i">
+                    <td>
+                      <input type="text" formControlName="model" class="form-control">
+                    </td>
+                    <td>
+                      <input type="text" formControlName="type" class="form-control">
+                    </td>
+                    <td>
+                      <input type="text" formControlName="serialNo" class="form-control">
+                    </td>
+                    <td>
+                      <input type="text" formControlName="capacity" class="form-control">
+                    </td>
+                    <td><input type="date" formControlName="lastExaminationDate" class="form-control"></td>
+                    <td><input type="date" formControlName="nextExaminationDate" class="form-control"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <button type="button" style="position: relative;left: 95%;" class="btn btn-primary"
+                (click)="addforklift()"><i class="fa-solid fa-circle-plus"></i></button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-center pb-4">
+            <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+              Air Hoist
+            </span>
+          </td>
+        </tr>
+        <tr style="font-size: 14px;">
+          <td colspan="4" class="p-1">
+            <div class="form-group">
+              <table class="table table-bordered" *ngIf="airHoistClicked">
+                <thead>
+                  <tr>
+                    <th class="p-1" scope="col">Serial No.</th>
+                    <th class="p-1" scope="col">Wire size / SWL</th>
+                    <th class="p-1" scope="col">Capacity</th>
+                    <th class="p-1" scope="col">Wire inspection due date</th>
+                    <th class="p-1" scope="col">Last MPI inspection Date</th>
+                    <th class="p-1" scope="col">Next MPI inspection Date</th>
+                    <th class="p-1" scope="col">Next Load Test Date</th>
+                  </tr>
+                </thead>
+                <tbody formArrayName="airHoist">
+                  <tr *ngFor="let airHoist of airHoist.controls; let i = index" [formGroupName]="i">
+                    <td><input type="text" formControlName="serialNo" class="form-control"></td>
+                    <td><input type="text" formControlName="wireSize" class="form-control"></td>
+                    <td><input type="text" formControlName="capacity" class="form-control"></td>
+                    <td><input type="date" formControlName="wireInspectionDueDate" class="form-control"></td>
+                    <td><input type="date" formControlName="lastMPIInspectionDate" class="form-control"></td>
+                    <td><input type="date" formControlName="nextMPIInspectionDate" class="form-control"></td>
+                    <td><input type="date" formControlName="nextLoadTestDate" class="form-control"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <button type="button" style="position: relative;left: 95%;" class="btn btn-primary"
+                (click)="addairHoist()"><i class="fa-solid fa-circle-plus"></i></button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-center pb-4">
+            <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+              Hydraulic Winch
+            </span>
+          </td>
+        </tr>
+        <tr style="font-size: 14px;">
+          <td colspan="4" class="p-1">
+            <div class="form-group">
+              <table class="table table-bordered" *ngIf="hydraulicWinchClicked">
+                <thead>
+                  <tr>
+                    <th class="p-1" scope="col">Serial No.</th>
+                    <th class="p-1" scope="col">Wire size / SWL</th>
+                    <th class="p-1" scope="col">Capacity</th>
+                    <th class="p-1" scope="col">Wire inspection due date</th>
+                    <th class="p-1" scope="col">Last MPI inspection Date</th>
+                    <th class="p-1" scope="col">Next MPI inspection Date</th>
+                    <th class="p-1" scope="col">Next Load Test Date</th>
+                  </tr>
+                </thead>
+                <tbody formArrayName="hydraulicWinch">
+                  <tr *ngFor="let hydraulicWinch of hydraulicWinch.controls; let i = index" [formGroupName]="i">
+                    <td><input type="text" formControlName="serialNo" class="form-control"></td>
+                    <td><input type="text" formControlName="wireSize" class="form-control"></td>
+                    <td><input type="text" formControlName="capacity" class="form-control"></td>
+                    <td><input type="date" formControlName="wireInspectionDueDate" class="form-control"></td>
+                    <td><input type="date" formControlName="lastMPIInspectionDate" class="form-control"></td>
+                    <td><input type="date" formControlName="nextMPIInspectionDate" class="form-control"></td>
+                    <td><input type="date" formControlName="nextLoadTestDate" class="form-control"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <button type="button" style="position: relative;left: 95%;" class="btn btn-primary"
+                (click)="addhydraulicWinch()"><i class="fa-solid fa-circle-plus"></i></button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-center pb-4">
+            <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+              Man Riding Winch
+            </span>
+          </td>
+        </tr>
+        <tr style="font-size: 14px;">
+          <td colspan="4" class="p-1">
+            <div class="form-group">
+              <table class="table table-bordered" *ngIf="manRidingWinchClicked">
+                <thead>
+                  <tr>
+                    <th class="p-1" scope="col">Serial No.</th>
+                    <th class="p-1" scope="col">Wire size / SWL</th>
+                    <th class="p-1" scope="col">Capacity</th>
+                    <th class="p-1" scope="col">Wire inspection due date</th>
+                    <th class="p-1" scope="col">Last MPI inspection Date</th>
+                    <th class="p-1" scope="col">Next MPI inspection Date</th>
+                    <th class="p-1" scope="col">Next Load Test Date</th>
+                  </tr>
+                </thead>
+                <tbody formArrayName="manRidingWinch">
+                  <tr *ngFor="let manRidingWinch of manRidingWinch.controls; let i = index"
+                    [formGroupName]="i">
+                    <td><input type="text" formControlName="serialNo" class="form-control"></td>
+                    <td><input type="text" formControlName="wireSize" class="form-control"></td>
+                    <td><input type="text" formControlName="capacity" class="form-control"></td>
+                    <td><input type="date" formControlName="wireInspectionDueDate" class="form-control"></td>
+                    <td><input type="date" formControlName="lastMPIInspectionDate" class="form-control"></td>
+                    <td><input type="date" formControlName="nextMPIInspectionDate" class="form-control"></td>
+                    <td><input type="date" formControlName="nextLoadTestDate" class="form-control"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <button type="button" style="position: relative;left: 95%;" class="btn btn-primary"
+                (click)="addmanRidingWinch()"><i class="fa-solid fa-circle-plus"></i></button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-center pb-4">
+            <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+              <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+                Personnel Cerificates
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="p-1">
+            <div class="form-group">
+              <table class="table table-bordered" *ngIf="personnelCerificatesClicked">
+                <thead>
+                  <tr>
+                    <th class="p-1" scope="col">Code</th>
+                    <th class="p-1" scope="col">Name</th>
+                    <th class="p-1" scope="col">Position</th>
+                    <th class="p-1" scope="col">Certificate Type</th>
+                    <th class="p-1" scope="col">Certificate Date</th>
+                    <th class="p-1" scope="col">Expiry Date</th>
+                  </tr>
+                </thead>
+                <tbody formArrayName="personnelCerificates">
+                  <tr *ngFor="let personnelCerificates of personnelCerificates.controls; let i = index"
+                    [formGroupName]="i">
+                    <td>
+                      <div class="form-group">
+                        <input list="code" autocomplete="off" formControlName="code" name="code" class="form-control"
+                          (input)="selectedMenace($event, i)">
+                        <datalist id="code">
+                          <option *ngFor="let menace of EmpCodeList">{{menace.code}} </option>
+                        </datalist>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="form-group">
+                        <input class="form-control" [value]="EmpCode_Name[i]" disabled />
+                        <input name="name" formControlName="name" id="name" class="form-control"
+                          [(ngModel)]="EmpCode_Name[i]" hidden />
+                      </div>
+                    </td>
+                    <td>
+                      <div class="form-group">
+                        <input class="form-control" [value]="EmpCode_Position[i]" disabled />
+                        <input name="position" formControlName="position" id="position" class="form-control"
+                          [(ngModel)]="EmpCode_Position[i]" hidden />
+                      </div>
+                    </td>
+                    <td>
+                      <!-- <input type="text" formControlName="certificateType" class="form-control"> -->
+                      <select name="certificateType" formControlName="certificateType" id="certificateType" class="form-select">
+                        <option value="" disabled selected>Choose</option>
+                        <option *ngFor="let item of cetificatesTypeList" value="{{item.type}}">{{item.type}}</option>
+                      </select>
+                    </td>
+                    <td><input type="date" formControlName="certificateDate" class="form-control"></td>
+                    <td><input type="date" formControlName="expiryDate" class="form-control"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <button type="button" style="position: relative;left: 95%;" class="btn btn-primary"
+                (click)="addpersonnelCerificates()"><i class="fa-solid fa-circle-plus"></i></button>
+            </div>
+          </td>
+        </tr>
+      </table>
+
+
+      <input type="submit" style="font-size: 16px !important;" class="btn btn-success me-3" value="Submit" />
+      <input type="button" style="font-size: 16px !important;" class="btn btn-primary me-3" value="Export Data" (click)="Download()" />
+      <input routerLink="/Dashboard/RigCertificates/Print" type="submit" style="font-size: 16px !important;" class="btn btn-primary" value="Show Data">
+
+    </form>
+  </div>
+</div>

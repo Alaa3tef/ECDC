@@ -1,0 +1,299 @@
+<div class="container mb-5" style="margin-top: 8%;">
+  <div class="heading_container heading_center d-flex">
+    <h2 class="mx-auto">
+      Corrective Action Report
+    </h2>
+  </div>
+
+
+  <div class="px-4 px-lg-0 m-4" *ngIf="CorrectiveObj">
+    <div class="pb-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 p-3 bg-white rounded shadow-sm mb-4 print-section">
+            <div class="table-responsive">
+              <table class="border" style="width: 100%;">
+                <tr>
+                  <div style="display: flex;">
+                    <img style="margin-left: 30px;" width="100px" src="../../assets/img/ECDC Logo png.png" />
+                    <label class="form-label mt-3"
+                      style="font-weight: bolder; font-size: large; color: black; margin-left: 130px;">
+                      Corrective Action Report
+                    </label>
+                  </div>
+                </tr>
+              </table>
+
+              <div class="col-12">
+                <table class="table table-bordered" style="margin-bottom: 0;font-size: 12px;">
+                  <tbody>
+                    <tr style="background-color: dimgray;color: white;">
+                      <td class="p-auto" scope="row">
+                        <div>
+                          <div style="font-weight: bold;" class="mb-1">Description Of Non-conformity :</div>
+                          <div>
+                            <span>
+                              {{CorrectiveObj.descriptionOfNonConformity}}
+                            </span>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="p-auto" scope="row">
+                        <div>
+                          <div>
+                            <span style="font-weight: bold;">Report Number : </span>
+                            <span>{{ CorrectiveObj.reportNo }}</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="p-auto" scope="row">
+                        <div>
+                          <div>
+                            <span style="font-weight: bold;" class="mb-1">Standard : </span>
+                            <span>{{ CorrectiveObj.standard }}</span>
+                          </div>
+                          <div>
+                            <span style="font-weight: bold;">Clause Number : </span>
+                            <span>{{ CorrectiveObj.clauseNo }}</span>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="3" scope="row" class="p-1">
+                        <span class="fw-bold">Title</span>
+                        <br>
+                        {{CorrectiveObj.title}}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="3" scope="row" class="p-1">
+                        <div>
+                          <div *ngIf="CorrectiveObj.objectiveEvidence">
+                            <span class="fw-bold">Objective Evidence</span>
+                            <br>
+                            <span [innerHTML]="CorrectiveObj.objectiveEvidence"></span>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <!-- <tr>
+                      <td colspan="2" scope="row" class="p-1">
+                        <div>
+                          <div style="font-weight: bold;">
+                            Title : {{CorrectiveObj.title}}</div>
+                        </div>
+                      </td>
+                      <td scope="row" class="p-1">
+                        <div>
+                          <div style="font-weight: bold;">
+                            Responsability : {{CorrectiveObj.formResponsability}}</div>
+                        </div>
+                      </td>
+                    </tr> -->
+                    <tr>
+                      <td style="font-weight: bold;background-color: dimgray;color: white;" class="p-1 pb-0" colspan="3"
+                        scope="row">
+                        <div>
+                          This Observation/ Nonconformity identified through :
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="3">
+                        <div *ngFor="let item of CorrectiveObj.correctiveAndObservation">
+                          <span *ngIf="item!='Other'">
+                            {{item}}
+                          </span>
+                        </div>
+                        <div *ngIf="CorrectiveObj.ifOtherObservation!=null">
+                          {{CorrectiveObj.ifOtherObservation}}
+                        </div>
+                      </td>
+                    </tr>
+                    <tr
+                      *ngIf="(CorrectiveObj.updateRisk===true&&CorrectiveObj.ifUpdate!=null) || (CorrectiveObj.managementOfChange===true&&CorrectiveObj.ifManagementOfChange!=null)">
+                      <td style="font-weight: bold;background-color: dimgray;color: white;" class="p-1 pb-0" colspan="3"
+                        scope="row">
+                        <div>
+                          Update risks and opportunities & make changes to the quality management system if necessary
+                          :
+                        </div>
+                      </td>
+                    </tr>
+                    <tr *ngIf="(CorrectiveObj.updateRisk===true&&CorrectiveObj.ifUpdate!=null)">
+                      <td colspan="3" class="px-1 py-0 mt-1">
+                        Update Risks & Opportunity :
+                        <span>
+                          {{CorrectiveObj.ifUpdate}}
+                        </span>
+                      </td>
+                    </tr>
+                    <tr *ngIf="(CorrectiveObj.managementOfChange===true&&CorrectiveObj.ifManagementOfChange!=null)">
+                      <td colspan="3" class="px-1 py-0 mt-1">
+                        Make changes to the QMS :
+                        <span>
+                          {{CorrectiveObj.ifManagementOfChange}}
+                        </span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight: bold;background-color: dimgray;color: white;" class="p-1 pb-0" colspan="3"
+                        scope="row">
+                        <div>
+                          NCR Raised By :
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="p-1">
+                        Name : {{CorrectiveObj.nameRasiedBy}}
+                      </td>
+                      <td class="p-1">
+                        Signature :
+                      </td>
+                      <td class="p-1">
+                        Date : {{CorrectiveObj.dateRaisedBy|date: 'dd-MM-yyyy'}}
+                      </td>
+                    </tr>
+                    <tr *ngIf="CorrectiveObj.correctiveAndRootCauses.length>0">
+                      <td style="font-weight: bold;background-color: dimgray;color: white;" class="p-1 pb-0" colspan="3"
+                        scope="row">
+                        <div>
+                          Root Causes :
+                        </div>
+                      </td>
+                    </tr>
+                    <tr *ngIf="CorrectiveObj.correctiveAndRootCauses.length>0">
+                      <td colspan="3">
+                        <div *ngFor="let item of CorrectiveObj.correctiveAndRootCauses" class="mr-5">
+                          <span *ngIf="item!='Other'">
+                            {{item}}
+                          </span>
+                        </div>
+                        <div *ngIf="CorrectiveObj.ifOtherRootCause!=null">
+                          {{CorrectiveObj.ifOtherRootCause}}
+                        </div>
+                      </td>
+                    </tr>
+                    <tr *ngIf="CorrectiveObj.correctiveDataTable.length>0">
+                      <td style="font-weight: bold;background-color: dimgray;color: white;" class="p-1 pb-0" colspan="3"
+                        scope="row">
+                        <div>
+                          Corrective Action :
+                        </div>
+                      </td>
+                    </tr>
+                    <tr *ngIf="CorrectiveObj.correctiveDataTable.length>0">
+                      <td colspan="3" class="p-1">
+                        <table id="table2" class="table table-bordered border-dark text-left">
+                          <tr>
+                            <th>SN</th>
+                            <th>Corrective Actions</th>
+                            <th>Responsible</th>
+                            <th>Suggested date</th>
+                            <th>Achievement date</th>
+                            <th>Follow-up audit</th>
+                            <!-- <th>Status</th> -->
+                          </tr>
+                          <tr *ngFor="let item of CorrectiveObj.correctiveDataTable">
+                            <td>{{item.sn}}</td>
+                            <td>
+                              <span class="fw-bold">{{item.correctiveActionSelected}}</span>
+                              <br>
+                              {{item.action}}
+                            </td>
+                            <td style="text-align: center;">{{item.responsible}}</td>
+                            <td style="text-align: center;">{{item.suggestedDate |date: 'dd-MM-yyyy'}}</td>
+                            <td style="text-align: center;"
+                              *ngIf="item.achievementDate!='1970-01-01T00:00:00'&&item.achievementDate!=null">
+                              {{item.achievementDate|date: 'dd-MM-yyyy'}}</td>
+                            <td style="text-align: center;"
+                              *ngIf="item.achievementDate=='1970-01-01T00:00:00'||item.achievementDate==null">
+                              ----------
+                            </td>
+                            <td style="text-align: center;">
+                              <span *ngIf="item.followUpAudit!=null">
+                                {{item.followUpAudit}}
+                              </span>
+                            </td>
+                            <!-- <td>{{item.status}}</td> -->
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr *ngIf="CorrectiveObj.comment!=null">
+                      <td style="font-weight: bold;background-color: dimgray;color: white;" class="p-1 pb-0" colspan="3"
+                        scope="row">
+                        <div>
+                          Follow-up audit :
+                        </div>
+                      </td>
+                    </tr>
+                    <tr *ngIf="CorrectiveObj.comment!=null">
+                      <td colspan="3" class="p-1">
+                        <span *ngIf="CorrectiveObj.comment!=null">
+                          <span [innerHTML]="CorrectiveObj.comment"></span>
+                        </span>
+                      </td>
+                    </tr>
+                    <tr *ngIf="CorrectiveObj.images.length>0">
+                      <td colspan="3" class="p-1">
+                        <span *ngFor="let item of CorrectiveObj.images" class="mr-3">
+                          <img src="http://localhost:5000/CorrectiveIMG/{{item}}" alt="Image" width="12%" height="auto">
+                        </span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="3" class="p-1">
+                        <div>
+                          <span class="fw-bold">Quality Manager : </span>
+                          <span *ngIf="CorrectiveObj.q_ManagerSig != null" class="w-25">
+                            {{CorrectiveObj.q_ManagerSig}}</span>
+                          <span *ngIf="CorrectiveObj.q_ManagerSig == null" class="w-25"></span>
+                        </div>
+                      </td>
+                      <!-- <td class="p-1">
+                        <div>
+                          <span class="fw-bold">QHSE Engineer : </span>
+                          <span *ngIf="CorrectiveObj.qhseEngineer != null" class="w-25"> {{CorrectiveObj.qhseEngineer}}</span>
+                          <span *ngIf="CorrectiveObj.qhseEngineer == null" class="w-25"></span>
+                        </div>
+                      </td> -->
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-12">
+                <table class="table table-borderless mb-1"
+                  style="display: flex; align-items: center; justify-content: center; font-size: 12px;">
+                  <tbody>
+                    <tr>
+                      <td scope="row">
+                        Issue No. 01
+                        <br>
+                        Revision No. 04
+                      </td>
+                      <td scope="row">
+                        Document No. ECDC-QHSE-FM-107
+                        <br>
+                        Page 1 / 1
+                      </td>
+                      <td scope="row">
+                        Issue Date: 1/1/2021
+                        <br>
+                        Revision Date: 00/00/0000
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- End -->
+          </div>
+        </div>
+        <input *ngIf="Data" type="submit" class="btn btn-primary my-4" value="Print Data" (click)="print()" />
+      </div>
+    </div>
+  </div>
+</div>

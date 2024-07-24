@@ -1,0 +1,670 @@
+<!-- ======= Sidebar ======= -->
+<aside id="sidebar" class="sidebar">
+
+  <ul class="sidebar-nav" id="sidebar-nav">
+
+
+    <li class="nav-item" *ngIf="IsRadio || IsUser || IsAdmin">
+      <a class="nav-link collapsed" routerLink="/Home">
+        <i class="bi bi-house"></i>
+        <span>Home</span>
+      </a>
+    </li><!-- End Dashboard Nav -->
+
+    <li class="nav-item" *ngIf="IsUser || IsAdmin">
+      <a class="nav-link collapsed" routerLink="/Dashboard">
+        <i class="bi bi-grid"></i>
+        <span>Dashboard</span>
+      </a>
+    </li><!-- End Dashboard Nav -->
+
+    <li class="nav-item" *ngIf="IsRadio">
+      <a class="nav-link collapsed" routerLink="/SubDashboard">
+        <i class="bi bi-grid"></i>
+        <span>Dashboard</span>
+      </a>
+    </li><!-- End Dashboard Nav -->
+
+    <!-- Charts -->
+    <li class="nav-item" *ngIf="IsUser || IsAdmin">
+      <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-bar-chart"></i><span>Charts</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a routerLink="/stopCardCharts">
+            <i class="bi bi-circle"></i><span>Stop Card Chart</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/stopCardCompareCharts">
+            <i class="bi bi-circle"></i><span>Stop Card Compare Chart</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/RigMovePerformanceCharts">
+            <i class="bi bi-circle"></i><span>RMPE Chart</span>
+          </a>
+        </li>
+        <li *ngIf="IsAdmin">
+          <a routerLink="/RigMovePerformanceCompareCharts">
+            <i class="bi bi-circle"></i><span>RMPE Compare Chart</span>
+          </a>
+        </li>
+        <li *ngIf="IsAdmin">
+          <a routerLink="/PotentialHazardCharts">
+            <i class="bi bi-circle"></i><span>Potential Hazard Chart</span>
+          </a>
+        </li>
+        <li *ngIf="IsUser">
+          <a routerLink="/DrillChart">
+            <i class="bi bi-circle"></i><span>Drill Chart</span>
+          </a>
+        </li>
+
+        <li *ngIf="IsAdmin">
+          <a routerLink="/DrillCompareCharts">
+            <i class="bi bi-circle"></i><span>Drill Compare By DrillType Chart</span>
+          </a>
+        </li>
+
+        <li *ngIf="IsAdmin">
+          <a routerLink="/DrillCompareWithRigsCharts">
+            <i class="bi bi-circle"></i><span>Drills Compare By All Rigs Chart</span>
+          </a>
+        </li>
+        <li *ngIf="IsUser">
+          <a routerLink="/QHSEChartByMonth">
+            <i class="bi bi-circle"></i><span>QHSE Statics Compare By Month Chart</span>
+          </a>
+        </li>
+        <li *ngIf="IsUser">
+          <a routerLink="/QHSEChartByYear">
+            <i class="bi bi-circle"></i><span>QHSE Statics Compare By Year Chart</span>
+          </a>
+        </li>
+        <li *ngIf="IsAdmin">
+          <a routerLink="/QHSEChartByYearAllRigs">
+            <i class="bi bi-circle"></i><span>QHSE Statics Compare With All Rigs By Year Chart</span>
+          </a>
+        </li>
+        <li *ngIf="IsAdmin">
+          <a routerLink="/QHSEChartByMonthAllRigs">
+            <i class="bi bi-circle"></i><span>QHSE Statics Compare With All Rigs By Month Chart</span>
+          </a>
+        </li>
+        <li *ngIf="IsAdmin">
+          <a routerLink="/CustomerChartByYearAllRigs">
+            <i class="bi bi-circle"></i><span>Customer Satisfaction With Compare All Rigs By Year </span>
+          </a>
+        </li>
+        <li *ngIf="IsAdmin">
+          <a routerLink="/CustomerChartByMonthAllRigs">
+            <i class="bi bi-circle"></i><span>Customer Satisfaction With Compare All Rigs By Month </span>
+          </a>
+        </li>
+        <li *ngIf="IsAdmin">
+          <a routerLink="/CustomerChartByYearTwoRigs">
+            <i class="bi bi-circle"></i><span>Customer Satisfaction With Compare Two Rigs By Year </span>
+          </a>
+        </li>
+        <li *ngIf="IsUser">
+          <a routerLink="/CustomerChartByMonthUser">
+            <i class="bi bi-circle"></i><span>Customer Satisfaction With Compare By Month</span>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="IsUser || IsAdmin">
+          <a class="nav-link collapsed" data-bs-target="#correctiveSystem-nav" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-file-earmark-arrow-down"></i><span>Corrective Action</span><i
+              class="bi bi-chevron-down ms-auto"></i>
+          </a>
+
+          <ul id="correctiveSystem-nav" class="collapse" data-bs-parent=".nav-item">
+            <li>
+              <a routerLink="/Dashboard/CorrectiveAction/ResponsabilityChart">
+                <i class="bi bi-circle"></i><span>Corrective & Responsability Chart</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/Dashboard/CorrectiveAction/ObservationChart">
+                <i class="bi bi-circle"></i><span>Corrective & Observation Chart</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/Dashboard/CorrectiveAction/StandardChart">
+                <i class="bi bi-circle"></i><span>Corrective & Standard Chart</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/Dashboard/CorrectiveAction/SuggestedDateChart">
+                <i class="bi bi-circle"></i><span>Exceeded the Suggested Date</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li *ngIf="IsUser||IsAdmin">
+          <a routerLink="/Dashboard/WeeklyClinic/Chart">
+            <i class="bi bi-circle"></i><span>Weekly Clinic Chart</span>
+          </a>
+        </li>
+        <li *ngIf="IsUser||IsAdmin">
+          <a routerLink="/Dashboard/Handover/Chart">
+            <i class="bi bi-circle"></i><span>QHSE Engineer Shift Handover Chart</span>
+          </a>
+        </li>
+        <li *ngIf="IsUser||IsAdmin">
+          <a routerLink="/MedicalReportChartByYear">
+            <i class="bi bi-circle"></i><span>Medical Report With Compare By Year</span>
+          </a>
+        </li>
+        <li *ngIf="IsUser||IsAdmin">
+          <a routerLink="/MedicalReportChartByMonth">
+            <i class="bi bi-circle"></i><span>Medical Report With Compare By Month</span>
+          </a>
+        </li>
+        <li *ngIf="IsUser||IsAdmin">
+          <a routerLink="/MedicalHistoryReportChartByYear">
+            <i class="bi bi-circle"></i><span>Medical History Report Chart</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+
+    <!-- Reports -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#reports-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-journal-text"></i><span>Reports</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="reports-nav" class="collapse " data-bs-parent=".nav-item">
+        <li>
+          <ul>
+            <a class="nav-link collapsed" data-bs-target="#Daily-nav" data-bs-toggle="collapse" href="#">
+              <i class="bi bi-journal-text" style="margin-left: -40px;"></i><span>Daily
+                Reports</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul style="margin-left: -20px;" id="Daily-nav" class="nav-content collapse" data-bs-parent="#reports-nav">
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="/QHSEDaily/Add">
+                  <i class="bi bi-circle"></i><span>QHSE Daily Report</span>
+                </a>
+              </li>
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="/StopCard">
+                  <i class="bi bi-circle"></i><span>Stop Card Report</span>
+                </a>
+              </li>
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="/Dashboard/PTSM/Add">
+                  <i class="bi bi-circle"></i><span>PTSM Report</span>
+                </a>
+              </li>
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="/Dashboard/BOP/Add">
+                  <i class="bi bi-circle"></i><span>POB Report</span>
+                </a>
+              </li>
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="/DailyLifting/Add">
+                  <i class="bi bi-circle"></i><span>Daily Lifting Report </span>
+                </a>
+              </li>
+            </ul>
+          </ul>
+        </li>
+      </ul>
+      <ul id="reports-nav" class="collapse" data-bs-parent=".nav-item">
+        <li>
+          <ul>
+            <a class="nav-link collapsed" data-bs-target="#Weekly-nav" data-bs-toggle="collapse" href="#">
+              <i class="bi bi-card-list" style="margin-left: -40px;"></i><span>Weekly Reports</span><i
+                class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul style="margin-left: -20px;" id="Weekly-nav" class="nav-content collapse" data-bs-parent="#reports-nav">
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="Dashboard/Crane/Add">
+                  <i class="bi bi-circle"></i><span>Weekly Crane Inspection Report </span>
+                </a>
+              </li>
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="Dashboard/Forklift/Add">
+                  <i class="bi bi-circle"></i><span>Weekly Forklift Inspection Report </span>
+                </a>
+              </li>
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="/WeeklyInspection/Add">
+                  <i class="bi bi-circle"></i><span>Weekly Inspection Report </span>
+                </a>
+              </li>
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="/WeeklyCampInspection/Add">
+                  <i class="bi bi-circle"></i><span>Weekly Camp Inspection Report </span>
+                </a>
+              </li>
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="/VehicleWeeklyCheck/Add">
+                  <i class="bi bi-circle"></i><span>Vehicle Weekly Check Report </span>
+                </a>
+              </li>
+            </ul>
+          </ul>
+        </li>
+      </ul>
+
+      <ul id="reports-nav" class="collapse" data-bs-parent=".nav-item">
+        <li>
+          <ul>
+            <a class="nav-link collapsed" data-bs-target="#Medical-nav" data-bs-toggle="collapse" href="#">
+              <i class="bi bi-card-list" style="margin-left: -40px;"></i><span>Medical Reports</span><i
+                class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul style="margin-left: -20px;" id="Medical-nav" class="nav-content collapse" data-bs-parent="#reports-nav">
+
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="/Dashboard/WeeklyClinic/Add">
+                  <i class="bi bi-circle"></i><span>Weekly Clinic Report </span>
+                </a>
+              </li>
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="/MedicalReport/Add">
+                  <i class="bi bi-circle"></i><span>Medical Report </span>
+                </a>
+              </li>
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="/MedicalHistory/Add">
+                  <i class="bi bi-circle"></i><span>Medical History Report </span>
+                </a>
+              </li>
+            </ul>
+
+          </ul>
+        </li>
+      </ul>
+
+      <ul id="reports-nav" class="collapse" data-bs-parent=".nav-item">
+        <li>
+          <ul>
+            <a class="nav-link collapsed" data-bs-target="#Other-nav" data-bs-toggle="collapse" href="#">
+              <i class="bi bi-card-list" style="margin-left: -40px;"></i><span>Other Reports</span><i
+                class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul style="margin-left: -20px;" id="Other-nav" class="nav-content collapse" data-bs-parent="#reports-nav">
+
+
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="/Accident">
+                  <i class="bi bi-circle"></i><span>Incident Report</span>
+                </a>
+              </li>
+
+              <li *ngIf="IsRadio || IsUser || IsAdmin">
+                <a routerLink="/SJP">
+                  <i class="bi bi-circle"></i><span>SJP Report</span>
+                </a>
+              </li>
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="/RigPerformance/Add">
+                  <i class="bi bi-circle"></i><span>RMPE Report</span>
+                </a>
+              </li>
+
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="/EmployeeCompetencyEvaluation/Add">
+                  <i class="bi bi-circle"></i><span>Employee Competency Evaluation Report</span>
+                </a>
+              </li>
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="/PotentialHazard/Add">
+                  <i class="bi bi-circle"></i><span>Potential Hazards Report</span>
+                </a>
+              </li>
+
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="/PPEReceiving/Add">
+                  <i class="bi bi-circle"></i><span>PPE Receiving Report</span>
+                </a>
+              </li>
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="/Drill/Add">
+                  <i class="bi bi-circle"></i><span>Drills</span>
+                </a>
+              </li>
+
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="/Customer/Add">
+                  <i class="bi bi-circle"></i><span>Customer Satisfaction Evaluation Report </span>
+                </a>
+              </li>
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="Dashboard/CorrectiveAction/Add">
+                  <i class="bi bi-circle"></i><span>Corrective Action Report </span>
+                </a>
+              </li>
+
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="/Dashboard/Handover/Add">
+                  <i class="bi bi-circle"></i><span>QHSE Engineer Shift Handover Report </span>
+                </a>
+              </li>
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="/Dashboard/RigCertificates/Add">
+                  <i class="bi bi-circle"></i><span>Rig Certificates Report</span>
+                </a>
+              </li>
+            </ul>
+
+          </ul>
+        </li>
+      </ul>
+
+    </li>
+
+    <!-- Management System -->
+    <li class="nav-item" *ngIf="IsUser || IsAdmin">
+      <a class="nav-link collapsed" data-bs-target="#managmentSystem-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-file-earmark-arrow-down"></i><span>Management System</span><i
+          class="bi bi-chevron-down ms-auto"></i>
+      </a>
+
+      <ul id="managmentSystem-nav" class="collapse" data-bs-parent=".nav-item">
+        <li>
+          <ul>
+            <a class="nav-link collapsed" data-bs-target="#Forms-nav" data-bs-toggle="collapse" href="#">
+              <i class="bi bi-journal-text" style="margin-left: -40px;"></i><span>Policies</span><i
+                class="bi bi-chevron-down ms-auto"></i>
+            </a>
+
+            <ul style="margin-left: -20px;" id="Forms-nav" class="nav-content collapse"
+              data-bs-parent="#managmentSystem-nav">
+              <li>
+                <a [routerLink]="['/Policy']">
+                  <i class="bi bi-circle"></i><span>Policy</span>
+                </a>
+              </li>
+
+            </ul>
+          </ul>
+        </li>
+      </ul>
+
+      <ul id="managmentSystem-nav" class="collapse" data-bs-parent=".nav-item">
+        <li>
+          <ul>
+            <a class="nav-link collapsed" data-bs-target="#Procedure-nav" data-bs-toggle="collapse" href="#">
+              <i class="bi bi-menu-button-wide" style="margin-left: -40px;"></i><span>Procedure</span><i
+                class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul style="margin-left: -20px;" id="Procedure-nav" class="nav-content collapse"
+              data-bs-parent="#managmentSystem-nav">
+              <li>
+                <a [routerLink]="['/Health']">
+                  <i class="bi bi-circle"></i><span>Health</span>
+                </a>
+              </li>
+              <li *ngIf="IsUser || IsAdmin">
+                <a [routerLink]="['/Safety']">
+                  <i class="bi bi-circle"></i><span>Safety</span>
+                </a>
+              </li>
+              <li *ngIf="IsUser || IsAdmin">
+                <a [routerLink]="['/Environment']">
+                  <i class="bi bi-circle"></i><span>Environment</span>
+                </a>
+              </li>
+              <li *ngIf="IsUser || IsAdmin">
+                <a [routerLink]="['/Quality']">
+                  <i class="bi bi-circle"></i><span>Quality</span>
+                </a>
+              </li>
+            </ul>
+          </ul>
+        </li>
+      </ul>
+
+      <ul id="managmentSystem-nav" class="collapse" data-bs-parent=".nav-item">
+        <li>
+          <ul>
+            <a class="nav-link collapsed" data-bs-target="#Form-nav" data-bs-toggle="collapse" href="#">
+              <i class="bi bi-card-list" style="margin-left: -40px;"></i><span>Form</span><i
+                class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul style="margin-left: -20px;" id="Form-nav" class="nav-content collapse"
+              data-bs-parent="#managmentSystem-nav">
+              <li>
+                <a [routerLink]="['/Clinc']">
+                  <i class="bi bi-circle"></i><span>Clinc Form</span>
+                </a>
+              </li>
+              <li *ngIf="IsUser || IsAdmin">
+                <a [routerLink]="['/QHSE']">
+                  <i class="bi bi-circle"></i><span>QHSE Form</span>
+                </a>
+              </li>
+            </ul>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <!-- Data -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-layout-text-window-reverse"></i><span>Data</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="tables-nav" class="collapse " data-bs-parent=".nav-item">
+        <li>
+          <ul>
+            <a class="nav-link collapsed" data-bs-target="#DailyData-nav" data-bs-toggle="collapse" href="#">
+              <i class="bi bi-journal-text" style="margin-left: -40px;"></i><span>Daily
+                Reports</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul style="margin-left: -20px;" id="DailyData-nav" class="nav-content collapse" data-bs-parent="#tables-nav">
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="/QHSEDaily">
+                  <i class="bi bi-circle"></i><span>QHSE Daily</span>
+                </a>
+              </li>
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="/Dashboard/Stopcard">
+                  <i class="bi bi-circle"></i><span>Stop Card</span>
+                </a>
+              </li>
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="/Dashboard/PTSM">
+                  <i class="bi bi-circle"></i><span>PTSM</span>
+                </a>
+              </li>
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="/BopTable">
+                  <i class="bi bi-circle"></i><span>POB</span>
+                </a>
+              </li>
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="/Dashboard/DailyLifting">
+                  <i class="bi bi-circle"></i><span>Daily Lifting</span>
+                </a>
+              </li>
+            </ul>
+          </ul>
+        </li>
+      </ul>
+      <ul id="tables-nav" class="collapse" data-bs-parent=".nav-item">
+        <li>
+          <ul>
+            <a class="nav-link collapsed" data-bs-target="#WeeklyData-nav" data-bs-toggle="collapse" href="#">
+              <i class="bi bi-card-list" style="margin-left: -40px;"></i><span>Weekly Reports</span><i
+                class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul style="margin-left: -20px;" id="WeeklyData-nav" class="nav-content collapse" data-bs-parent="#reports-nav">
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="Dashboard/Crane">
+                  <i class="bi bi-circle"></i><span>Weekly Crane Inspection</span>
+                </a>
+              </li>
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="Dashboard/Forklift">
+                  <i class="bi bi-circle"></i><span>Weekly Forklift Inspection</span>
+                </a>
+              </li>
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="/Dashboard/WeeklyInspection">
+                  <i class="bi bi-circle"></i><span>Weekly Inspection</span>
+                </a>
+              </li>
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="/Dashboard/WeeklyCampInspection">
+                  <i class="bi bi-circle"></i><span>Weekly Camp Inspection</span>
+                </a>
+              </li>
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="//Dashboard/VehicleWeeklyChecklist">
+                  <i class="bi bi-circle"></i><span>Vehicle Weekly Check</span>
+                </a>
+              </li>
+            </ul>
+          </ul>
+        </li>
+      </ul>
+
+      <ul id="tables-nav" class="collapse" data-bs-parent=".nav-item">
+        <li>
+          <ul>
+            <a class="nav-link collapsed" data-bs-target="#MedicalData-nav" data-bs-toggle="collapse" href="#">
+              <i class="bi bi-card-list" style="margin-left: -40px;"></i><span>Medical Reports</span><i
+                class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul style="margin-left: -20px;" id="MedicalData-nav" class="nav-content collapse" data-bs-parent="#reports-nav">
+
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="/Dashboard/WeeklyClinic">
+                  <i class="bi bi-circle"></i><span>Weekly Clinic</span>
+                </a>
+              </li>
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="Dashboard/MedicalReport">
+                  <i class="bi bi-circle"></i><span>Medical Report</span>
+                </a>
+              </li>
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="/Dashboard/MedicalHistory">
+                  <i class="bi bi-circle"></i><span>Medical History</span>
+                </a>
+              </li>
+            </ul>
+          </ul>
+        </li>
+      </ul>
+      <ul id="tables-nav" class="collapse" data-bs-parent=".nav-item">
+        <li>
+          <ul>
+            <a class="nav-link collapsed" data-bs-target="#OtherData-nav" data-bs-toggle="collapse" href="#">
+              <i class="bi bi-card-list" style="margin-left: -40px;"></i><span>Other Reports</span><i
+                class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul style="margin-left: -20px;" id="OtherData-nav" class="nav-content collapse" data-bs-parent="#reports-nav">
+
+
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="/Dashboard/Accidents">
+                  <i class="bi bi-circle"></i><span>Incident</span>
+                </a>
+              </li>
+
+              <li *ngIf="IsRadio || IsUser || IsAdmin">
+                <a routerLink="/Dashboard/SJPTable">
+                  <i class="bi bi-circle"></i><span>SJP</span>
+                </a>
+              </li>
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="/RigPerformance">
+                  <i class="bi bi-circle"></i><span>RMPE</span>
+                </a>
+              </li>
+
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="/Dashboard/EmployeeCompetencyEvaluations">
+                  <i class="bi bi-circle"></i><span>Employee Competency Evaluation</span>
+                </a>
+              </li>
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="/PotentialHazard">
+                  <i class="bi bi-circle"></i><span>Potential Hazards</span>
+                </a>
+              </li>
+
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="/PPEReceiving">
+                  <i class="bi bi-circle"></i><span>PPE Receiving</span>
+                </a>
+              </li>
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="/Dashboard/Drill">
+                  <i class="bi bi-circle"></i><span>Drills</span>
+                </a>
+              </li>
+
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="/Dashboard/Customer">
+                  <i class="bi bi-circle"></i><span>Customer Satisfaction Evaluation</span>
+                </a>
+              </li>
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="Dashboard/CorrectiveAction">
+                  <i class="bi bi-circle"></i><span>Corrective Action</span>
+                </a>
+              </li>
+
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="/Dashboard/Handover">
+                  <i class="bi bi-circle"></i><span>QHSE Engineer Shift Handover</span>
+                </a>
+              </li>
+              <li *ngIf="IsUser || IsAdmin">
+                <a routerLink="/Dashboard/RigCertificates">
+                  <i class="bi bi-circle"></i><span>Rig Certificates</span>
+                </a>
+              </li>
+            </ul>
+          </ul>
+        </li>
+      </ul>
+    </li>
+
+
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" routerLink="/AboutUs">
+        <i class="bi bi-envelope"></i>
+        <span>About US</span>
+      </a>
+    </li><!-- End Contact Page Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" routerLink="/ArrivalStatusSJP">
+        <i class="fa-solid fa-car-on fa-fade"></i>
+        <span>Arrival Status</span>
+      </a>
+    </li><!-- End Contact Page Nav -->
+
+    <li class="nav-item" *ngIf="IsAdmin">
+      <a class="nav-link collapsed" routerLink="/Register">
+        <i class="bi bi-card-list"></i>
+        <span>Register</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" (click)="SignOut()" routerLink="">
+        <i class="bi bi-box-arrow-in-right"></i>
+        <span>Sign Out</span>
+      </a>
+    </li><!-- End Login Page Nav -->
+
+    <li class="nav-item" *ngIf="IsLoging">
+      <a class="nav-link">
+        <i class="fa fa-user-check"></i>
+        <span>{{UserName}}</span>
+      </a>
+    </li>
+
+  </ul>
+
+</aside><!-- End Sidebar-->

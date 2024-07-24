@@ -1,0 +1,411 @@
+<div class="container mb-5" style="margin-top: 8%;">
+  <div class="heading_container heading_center d-flex">
+    <h2 class="mx-auto my-4">
+      Vehicle Weekly Checklist Report
+    </h2>
+
+  </div>
+
+  <div class="row">
+    <form [formGroup]="VehicleWeeklyChecklistForm" id="print-section" [class.submitted]="submitted"
+      (ngSubmit)="submitData()" class="col-md-10 mx-auto d-flex flex-wrap">
+
+      <table class="table">
+        <tr>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="rigId">Rig Number: </label>
+              <select name="rigId" formControlName="rigId" id="rigId" class="form-select">
+                <option value="" disabled selected>Choose Rig Number</option>
+                <option *ngFor="let item of rigList " value="{{item.id}}">Rig - {{item.number}}</option>
+              </select>
+              <div *ngIf="rigId?.invalid && (rigId?.dirty || rigId?.touched)">
+                <small class="text-danger" *ngIf="rigId?.errors?.['required']">
+                  Rig is required
+                </small>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="date">Date: </label>
+              <input type="date" formControlName="date" class="form-control" />
+              <div *ngIf="(date?.invalid && (date?.dirty || date?.touched))||submitted">
+                <small class="text-danger" *ngIf="date?.errors?.['required']">
+                  Date is required
+                </small>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="cient">Client: </label>
+              <input type="text" name="cient" formControlName="cient" id="cient" class="form-control" />
+              <div *ngIf="(cient?.invalid && (cient?.dirty || cient?.touched))||submitted">
+                <small class="text-danger" *ngIf="cient?.errors?.['required']">
+                  Client is required
+                </small>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="location">Location : </label>
+              <input type="text" formControlName="location" class="form-control" />
+              <div *ngIf="(location?.invalid && (location?.dirty || location?.touched))||submitted">
+                <small class="text-danger" *ngIf="location?.errors?.['required']">
+                  Location is required
+                </small>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <!-- Light vehicle (Co. Man Pickup) -->
+        <tr>
+          <td colspan="4" class="p-1">
+            <table class="table table-bordered">
+              <td colspan="4" class="text-center pb-4">
+                <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+                  <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+                    Light vehicle (Co. Man Pickup)
+                  </span>
+                </div>
+              </td>
+              <tr>
+                <td colspan="2">
+                  <div class="form-group">
+                    <label class="form-label" for="manPickupVehiclePlateNo">Vehicle Plate No : </label>
+                    <input type="text" name="manPickupVehiclePlateNo" formControlName="manPickupVehiclePlateNo"
+                      id="cient" class="form-control" />
+                    <div
+                      *ngIf="manPickupVehiclePlateNo?.invalid && (manPickupVehiclePlateNo?.dirty || manPickupVehiclePlateNo?.touched)">
+                      <small class="text-danger" *ngIf="manPickupVehiclePlateNo?.errors?.['required']">
+                        Vehicle Plate No is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <div class="form-group">
+                    <label class="form-label" for="manPickupDriverName">Driver Name : </label>
+                    <input type="text" name="manPickupDriverName" formControlName="manPickupDriverName" id="cient"
+                      class="form-control" />
+                    <div
+                      *ngIf="manPickupDriverName?.invalid && (manPickupDriverName?.dirty || manPickupDriverName?.touched)">
+                      <small class="text-danger" *ngIf="manPickupDriverName?.errors?.['required']">
+                        Driver Name is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="4">
+                  <div class="form-group">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th scope="col" colspan="3">Inspection Item</th>
+                          <th scope="col">Status</th>
+                          <th scope="col">Remarks</th>
+                        </tr>
+                      </thead>
+                      <tbody formArrayName="manPickups">
+                        <ng-container *ngFor="let manPickupsGroup of manPickups.controls; let i = index" [formGroupName]="i">
+                          <tr>
+                            <td colspan="6" style="width: 100%;">
+                              <input type="text" formControlName="item" class="form-control" autocomplete="off"readonly  />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td colspan="3" style="width: 50%;">
+                              <select name="status" formControlName="status" id="status" class="form-select">
+                                <option value="" disabled selected>Choose</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                              </select>
+                            </td>
+                            <td colspan="3" style="width: 50%;">
+                              <input type="text" formControlName="remarks" class="form-control">
+                            </td>
+                          </tr>
+                        </ng-container>
+                      </tbody>
+
+
+                    </table>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <!-- Light vehicle (Rig Pickup) -->
+        <tr>
+          <td colspan="4" class="p-1">
+            <table class="table table-bordered">
+              <td colspan="4" class="text-center pb-4">
+                <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+                  <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+                    Light vehicle (Rig Pickup)
+                  </span>
+                </div>
+              </td>
+              <tr>
+                <td colspan="2">
+                  <div class="form-group">
+                    <label class="form-label" for="rigPickupVehiclePlateNo">Vehicle Plate No : </label>
+                    <input type="text" name="rigPickupVehiclePlateNo" formControlName="rigPickupVehiclePlateNo"
+                      id="cient" class="form-control" />
+                    <div
+                      *ngIf="rigPickupVehiclePlateNo?.invalid && (rigPickupVehiclePlateNo?.dirty || rigPickupVehiclePlateNo?.touched)">
+                      <small class="text-danger" *ngIf="rigPickupVehiclePlateNo?.errors?.['required']">
+                        Vehicle Plate No is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <div class="form-group">
+                    <label class="form-label" for="rigPickupDriverName">Driver Name : </label>
+                    <input type="text" name="rigPickupDriverName" formControlName="rigPickupDriverName" id="cient"
+                      class="form-control" />
+                    <div
+                      *ngIf="rigPickupDriverName?.invalid && (rigPickupDriverName?.dirty || rigPickupDriverName?.touched)">
+                      <small class="text-danger" *ngIf="rigPickupDriverName?.errors?.['required']">
+                        Driver Name is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="4">
+                  <div class="form-group">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th scope="col" colspan="3">Inspection Item</th>
+                          <th scope="col">Status</th>
+                          <th scope="col">Remarks</th>
+                        </tr>
+                      </thead>
+                      <tbody formArrayName="rigPickups">
+                        <ng-container *ngFor="let rigPickupsGroup of rigPickups.controls; let i = index" [formGroupName]="i">
+                          <tr>
+                            <td colspan="6" style="width: 100%;">
+                              <input type="text" formControlName="item" class="form-control" autocomplete="off"readonly  />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td colspan="3" style="width: 50%;">
+                              <select name="status" formControlName="status" id="status" class="form-select">
+                                <option value="" disabled selected>Choose</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                              </select>
+                            </td>
+                            <td colspan="3" style="width: 50%;">
+                              <input type="text" formControlName="remarks" class="form-control">
+                            </td>
+                          </tr>
+                        </ng-container>
+                      </tbody>
+                    </table>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <!-- Heavy truck (Stand-by) -->
+        <tr>
+          <td colspan="4" class="p-1">
+            <table class="table table-bordered">
+              <td colspan="6" class="text-center pb-4">
+                <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+                  <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+                    Heavy truck (Stand-by)
+                  </span>
+                </div>
+              </td>
+              <tr>
+                <td colspan="2">
+                  <div class="form-group">
+                    <label class="form-label" for="primeMoverPlateNo">Prime mover plate No : </label>
+                    <input type="text" name="primeMoverPlateNo" formControlName="primeMoverPlateNo" id="cient"
+                      class="form-control" />
+                    <div *ngIf="primeMoverPlateNo?.invalid && (primeMoverPlateNo?.dirty || primeMoverPlateNo?.touched)">
+                      <small class="text-danger" *ngIf="primeMoverPlateNo?.errors?.['required']">
+                        Vehicle Plate No is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <div class="form-group">
+                    <label class="form-label" for="heavyTruckDriverName">Driver Name : </label>
+                    <input type="text" name="heavyTruckDriverName" formControlName="heavyTruckDriverName" id="cient"
+                      class="form-control" />
+                    <div
+                      *ngIf="heavyTruckDriverName?.invalid && (heavyTruckDriverName?.dirty || heavyTruckDriverName?.touched)">
+                      <small class="text-danger" *ngIf="heavyTruckDriverName?.errors?.['required']">
+                        Driver Name is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <div class="form-group">
+                    <label class="form-label" for="trailerPlateNo">Teiler No : </label>
+                    <input type="text" name="trailerPlateNo" formControlName="trailerPlateNo" id="cient"
+                      class="form-control" />
+                    <div *ngIf="trailerPlateNo?.invalid && (trailerPlateNo?.dirty || trailerPlateNo?.touched)">
+                      <small class="text-danger" *ngIf="trailerPlateNo?.errors?.['required']">
+                        Telair NO is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="5">
+                  <div class="form-group">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th scope="col" colspan="3">Inspection Item</th>
+                          <th scope="col">Status</th>
+                          <th scope="col">Remarks</th>
+                        </tr>
+                      </thead>
+                      <tbody formArrayName="heavyTrucks">
+                        <ng-container *ngFor="let heavyTrucksGroup of heavyTrucks.controls; let i = index" [formGroupName]="i">
+                          <tr>
+                            <td colspan="6" style="width: 100%;">
+                              <input type="text" formControlName="item" class="form-control" autocomplete="off"readonly  />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td colspan="3" style="width: 50%;">
+                              <select name="status" formControlName="status" id="status" class="form-select">
+                                <option value="" disabled selected>Choose</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                              </select>
+                            </td>
+                            <td colspan="3" style="width: 50%;">
+                              <input type="text" formControlName="remarks" class="form-control">
+                            </td>
+                          </tr>
+                        </ng-container>
+                      </tbody>
+                    </table>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <!-- Light bus (Crew micro-bus) -->
+        <tr>
+          <td colspan="4" class="p-1">
+            <table class="table table-bordered">
+              <td colspan="4" class="text-center pb-4">
+                <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+                  <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+                    Light bus (Crew micro-bus)
+                  </span>
+                </div>
+              </td>
+              <tr>
+                <td colspan="2">
+                  <div class="form-group">
+                    <label class="form-label" for="lightBusVehiclePlateNo">Vehicle Plate No : </label>
+                    <input type="text" name="lightBusVehiclePlateNo" formControlName="lightBusVehiclePlateNo" id="cient"
+                      class="form-control" />
+                    <div
+                      *ngIf="lightBusVehiclePlateNo?.invalid && (lightBusVehiclePlateNo?.dirty || lightBusVehiclePlateNo?.touched)">
+                      <small class="text-danger" *ngIf="lightBusVehiclePlateNo?.errors?.['required']">
+                        Vehicle Plate No is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <div class="form-group">
+                    <label class="form-label" for="lightBusDriverName">Driver Name : </label>
+                    <input type="text" name="lightBusDriverName" formControlName="lightBusDriverName" id="cient"
+                      class="form-control" />
+                    <div
+                      *ngIf="lightBusDriverName?.invalid && (lightBusDriverName?.dirty || lightBusDriverName?.touched)">
+                      <small class="text-danger" *ngIf="lightBusDriverName?.errors?.['required']">
+                        Driver Name is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="4">
+                  <div class="form-group">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th scope="col" colspan="3">Inspection Item</th>
+                          <th scope="col">Status</th>
+                          <th scope="col">Remarks</th>
+                        </tr>
+                      </thead>
+                      <tbody formArrayName="lightBus">
+                        <ng-container *ngFor="let lightBusGroup of lightBus.controls; let i = index" [formGroupName]="i">
+                          <tr>
+                            <td colspan="6" style="width: 100%;">
+                              <input type="text" formControlName="item" class="form-control" autocomplete="off"readonly  />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td colspan="3" style="width: 50%;">
+                              <select name="status" formControlName="status" id="status" class="form-select">
+                                <option value="" disabled selected>Choose</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                              </select>
+                            </td>
+                            <td colspan="3" style="width: 50%;">
+                              <input type="text" formControlName="remarks" class="form-control">
+                            </td>
+                          </tr>
+                        </ng-container>
+                      </tbody>
+                    </table>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="4">
+                  <div class="form-group">
+                    <label class="form-label" for="date">HSE Engineer: </label>
+                    <input type="text" formControlName="hseEngineer" class="form-control" />
+                    <div *ngIf="(hseEngineer?.invalid && (hseEngineer?.dirty || hseEngineer?.touched))||submitted">
+                      <small class="text-danger" *ngIf="hseEngineer?.errors?.['required']">
+                        HSE Engineer is required
+                      </small>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+      </table>
+
+
+      <input type="submit" class="btn btn-success me-3" value="Submit" />
+      <input type="button" class="btn btn-primary me-3" value="Export Data" (click)="Download()" />
+      <input routerLink="/PrintVehicleWeeklyChecklist" type="submit" class="btn btn-primary" value="Show Data">
+
+    </form>
+  </div>
+</div>

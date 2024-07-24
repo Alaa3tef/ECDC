@@ -1,0 +1,1109 @@
+<div class="container mb-5" style="margin-top: 8%;">
+  <div class="heading_container heading_center d-flex">
+    <h2 class="mx-auto my-4">
+      Edit Weekly Crane Inspection
+    </h2>
+
+  </div>
+
+  <div class="row">
+    <form [formGroup]="craneForm" id="print-section" (ngSubmit)="submitData()"
+      class="col-md-10 mx-auto d-flex flex-wrap">
+
+      <table class="table">
+        <tr>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="rigId">Rig Number: </label>
+              <select name="rigId" [(ngModel)]="crane.rigId" formControlName="rigId" id="rigId" class="form-select">
+                <option value="" disabled selected>Choose Rig Number</option>
+                <option *ngFor="let item of rigList" value="{{item.id}}">Rig - {{item.number}}</option>
+              </select>
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label>Date :</label>
+              <input id="Date" type="date" formControlName="date" [(ngModel)]="crane.date"
+              [ngModel]="crane.date | date: 'yyyy-MM-dd'" class="form-control" />
+              <div *ngIf="date?.invalid && (date?.dirty || date?.touched)">
+                <small class="text-danger" *ngIf="date?.errors?.['required']">
+                  Date is required
+                </small>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="form-group   ">
+              <label>Well Name :</label>
+              <input id="wellName" type="text" [(ngModel)]="crane.wellName" formControlName="wellName" class="form-control" />
+              <div *ngIf="wellName?.invalid && (wellName?.dirty || wellName?.touched)">
+                <small class="text-danger" *ngIf="wellName?.errors?.['required']">
+                  Well Name is required
+                </small>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="form-group   ">
+              <label>Unit Number :</label>
+              <input id="unitNo" type="text" formControlName="unitNo" [(ngModel)]="crane.unitNo" class="form-control" />
+              <div *ngIf="unitNo?.invalid && (unitNo?.dirty || unitNo?.touched)">
+                <small class="text-danger" *ngIf="unitNo?.errors?.['required']">
+                  Unit Number is required
+                </small>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <!-- <tr>
+          <td colspan="2">
+            <div class="form-group">
+              <label>Accumulated Running Hours :</label>
+              <input id="accumulatedHrs" type="text" formControlName="accumulatedHrs" [(ngModel)]="crane.accumulatedHrs" class="form-control" />
+              <div *ngIf="accumulatedHrs?.invalid && (accumulatedHrs?.dirty || accumulatedHrs?.touched)">
+                <small class="text-danger" *ngIf="accumulatedHrs?.errors?.['required']">
+                  Accumulated Running Hours is required
+                </small>
+              </div>
+            </div>
+          </td>
+          <td colspan="2">
+            <div class="form-group   ">
+              <label>Hours since Oil Change :</label>
+              <input id="hrsSinceOilChange" type="text" formControlName="hrsSinceOilChange" [(ngModel)]="crane.hrsSinceOilChange" class="form-control" />
+              <div *ngIf="hrsSinceOilChange?.invalid && (hrsSinceOilChange?.dirty || hrsSinceOilChange?.touched)">
+                <small class="text-danger" *ngIf="hrsSinceOilChange?.errors?.['required']">
+                  Hours since Oil Change is required
+                </small>
+              </div>
+            </div>
+          </td>
+        </tr> -->
+        <tr>
+          <td colspan="4" class="pl-3 pr-3">
+            <table class="table" style="font-size: 15px;">
+              <thead>
+                <tr>
+                  <th scope="col">Crane Inspection Checklist</th>
+                  <th scope="col"></th>
+                  <th scope="col" style="width: 10%;">Good</th>
+                  <th scope="col" style="width: 10%;">Poor</th>
+                  <th scope="col" style="width: 20%;">Remark</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Unit clean and tidy</td>
+                  <td dir="auto">الونش بحالة جيدة ونظيفة</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="cleanAndTidy" type="radio" name="cleanAndTidy" [(ngModel)]="crane.cleanAndTidy"
+                        value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="cleanAndTidy" type="radio" name="cleanAndTidy" [(ngModel)]="crane.cleanAndTidy"
+                        value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="cleanAndTidyRemarks" type="text" [(ngModel)]="crane.cleanAndTidyRemarks"
+                        formControlName="cleanAndTidyRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Check Engine Oil Level</td>
+                  <td dir="auto">فحص مستوى زيت المحرك</td>
+                  <td>
+                    <div>
+                      <input class="form-check-input" formControlName="engineOilLevel" type="radio" [(ngModel)]="crane.engineOilLevel"
+                        name="engineOilLevel" value="Good">
+                    </div>
+                  </td>
+                  <td>
+                    <div>
+                      <input class="form-check-input" formControlName="engineOilLevel" type="radio" [(ngModel)]="crane.engineOilLevel"
+                        name="engineOilLevel" value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="engineOilLevelRemarks" type="text" [(ngModel)]="crane.engineOilLevelRemarks"
+                        formControlName="engineOilLevelRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Check Transmission Oil Level</td>
+                  <td dir="auto">فحص مستوى زيت الحركة</td>
+                  <td>
+                    <div>
+                      <input class="form-check-input" formControlName="transmissionOilLevel" type="radio" [(ngModel)]="crane.transmissionOilLevel"
+                        name="transmissionOilLevel" value="Good">
+                    </div>
+                  </td>
+                  <td>
+                    <div>
+                      <input class="form-check-input" formControlName="transmissionOilLevel" type="radio" [(ngModel)]="crane.transmissionOilLevel"
+                        name="transmissionOilLevel" value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="transmissionOilLevelRemarks" type="text" [(ngModel)]="crane.transmissionOilLevelRemarks"
+                        formControlName="transmissionOilLevelRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Check Radiator Water Level</td>
+                  <td dir="auto">فحص مستوى المياه بالردياتير</td>
+                  <td>
+                    <div>
+                      <input class="form-check-input" formControlName="radiatorWaterLevel" type="radio" [(ngModel)]="crane.radiatorWaterLevel"
+                        name="radiatorWaterLevel" value="Good">
+                    </div>
+                  </td>
+                  <td>
+                    <div>
+                      <input class="form-check-input" formControlName="radiatorWaterLevel" type="radio" [(ngModel)]="crane.radiatorWaterLevel"
+                        name="radiatorWaterLevel" value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="radiatorWaterLevelRemarks" type="text" [(ngModel)]="crane.radiatorWaterLevelRemarks"
+                        formControlName="radiatorWaterLevelRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Check Hydraulic Oil Level</td>
+                  <td dir="auto">فحص مستوى زيت الهيدروليك</td>
+                  <td>
+                    <div>
+                      <input class="form-check-input" formControlName="hydraulicOilLevel" type="radio" [(ngModel)]="crane.hydraulicOilLevel"
+                        name="hydraulicOilLevel" value="Good">
+                    </div>
+                  </td>
+                  <td>
+                    <div>
+                      <input class="form-check-input" formControlName="hydraulicOilLevel" type="radio" [(ngModel)]="crane.hydraulicOilLevel"
+                        name="hydraulicOilLevel" value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="hydraulicOilLevelRemarks" type="text" [(ngModel)]="crane.hydraulicOilLevelRemarks"
+                        formControlName="hydraulicOilLevelRemarks" class="form-control" />
+                    </div>
+                  </td>
+
+                </tr>
+                <tr>
+                  <td>Check V-belts Tension</td>
+                  <td dir="auto">تحقق من شد سير المحرك</td>
+                  <td>
+                    <div>
+                      <input class="form-check-input" formControlName="v_beltsTension" type="radio" [(ngModel)]="crane.v_beltsTension"
+                        name="v_beltsTension" value="Good">
+                    </div>
+                  </td>
+                  <td>
+                    <div>
+                      <input class="form-check-input" formControlName="v_beltsTension" type="radio" [(ngModel)]="crane.v_beltsTension"
+                        name="v_beltsTension" value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="v_beltsTensionRemarks" type="text" [(ngModel)]="crane.v_beltsTensionRemarks"
+                        formControlName="v_beltsTensionRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Drain Water from Air Tank</td>
+                  <td dir="auto">تأكد من تصريف المياه من خزان الهواء</td>
+                  <td>
+                    <div>
+                      <input class="form-check-input" formControlName="drainWater" type="radio" name="drainWater" [(ngModel)]="crane.drainWater"
+                        value="Good">
+                    </div>
+                  </td>
+                  <td>
+                    <div>
+                      <input class="form-check-input" formControlName="drainWater" type="radio" name="drainWater" [(ngModel)]="crane.drainWater"
+                        value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="drainWaterRemarks" type="text" [(ngModel)]="crane.drainWaterRemarks"
+                        formControlName="drainWaterRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Check for Leaks, Fuel, Water, Oil, Air</td>
+                  <td dir="auto">تحقق من عدم وجود تسريبات (وقود ، ماء ، زيت ، هواء)</td>
+                  <td>
+                    <div>
+                      <input class="form-check-input" formControlName="leaks" type="radio" name="leaks" value="Good" [(ngModel)]="crane.leaks">
+                    </div>
+                  </td>
+                  <td>
+                    <div>
+                      <input class="form-check-input" formControlName="leaks" type="radio" name="leaks" value="Poor" [(ngModel)]="crane.leaks">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="leaksRemarks" type="text" formControlName="leaksRemarks" [(ngModel)]="crane.leaksRemarks"
+                        class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Check Battery and Battery Holder</td>
+                  <td dir="auto">تحقق من البطاريات وحامل البطارية</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="batteryHolder" type="radio" name="batteryHolder" [(ngModel)]="crane.batteryHolder"
+                        value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="batteryHolder" type="radio" name="batteryHolder" [(ngModel)]="crane.batteryHolder"
+                        value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="batteryHolderRemarks" type="text" [(ngModel)]="crane.batteryHolderRemarks"
+                        formControlName="batteryHolderRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Check Load Computer</td>
+                  <td dir="auto">تحقق من كمبيوتر الونش</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="loadComputer" type="radio" name="loadComputer" [(ngModel)]="crane.loadComputer"
+                        value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="loadComputer" type="radio" name="loadComputer" [(ngModel)]="crane.loadComputer"
+                        value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="loadComputerRemarks" type="text" [(ngModel)]="crane.loadComputerRemarks"
+                        formControlName="loadComputerRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Check all Gauges for correct readings</td>
+                  <td dir="auto">تحقق من صحة قراءة العدادات</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="gaugesForCcorrectReadings" type="radio" [(ngModel)]="crane.gaugesForCcorrectReadings"
+                        name="gaugesForCcorrectReadings" value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="gaugesForCcorrectReadings" type="radio" [(ngModel)]="crane.gaugesForCcorrectReadings"
+                        name="gaugesForCcorrectReadings" value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="gaugesForCcorrectReadingsRemarks" type="text" [(ngModel)]="crane.gaugesForCcorrectReadingsRemarks"
+                        formControlName="gaugesForCcorrectReadingsRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Check Tire Pressure</td>
+                  <td dir="auto">تحقق من ضغط الإطارات</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="tirePressure" type="radio" name="tirePressure" [(ngModel)]="crane.tirePressure"
+                        value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="tirePressure" type="radio" name="tirePressure" [(ngModel)]="crane.tirePressure"
+                        value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="tirePressureRemarks" type="text" [(ngModel)]="crane.tirePressureRemarks"
+                        formControlName="tirePressureRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Check Fuel Tanks full</td>
+                  <td dir="auto">تحقق من مستوى الوقود</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="fuelTanksFull" type="radio" name="fuelTanksFull" [(ngModel)]="crane.fuelTanksFull"
+                        value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="fuelTanksFull" type="radio" name="fuelTanksFull" [(ngModel)]="crane.fuelTanksFull"
+                        value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="fuelTanksFullRemarks" type="text" [(ngModel)]="crane.fuelTanksFullRemarks"
+                        formControlName="fuelTanksFullRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Inspect Wire Ropes for Wear and Kinks</td>
+                  <td dir="auto">افحص الوايرات وتأكد من خلوها من التآكل والتجاعيد</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="wireRopes" type="radio" name="wireRopes" [(ngModel)]="crane.wireRopes"
+                        value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="wireRopes" type="radio" name="wireRopes" [(ngModel)]="crane.wireRopes"
+                        value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="wireRopesRemarks" type="text" formControlName="wireRopesRemarks" [(ngModel)]="crane.wireRopesRemarks"
+                        class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Check Swing Brake</td>
+                  <td dir="auto">تحقق من فرامل الصينية</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="swingBrake" type="radio" name="swingBrake" [(ngModel)]="crane.swingBrake"
+                        value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="swingBrake" type="radio" name="swingBrake" [(ngModel)]="crane.swingBrake"
+                        value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="swingBrakeRemarks" type="text" [(ngModel)]="crane.swingBrakeRemarks"
+                        formControlName="swingBrakeRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Function Test Limit Switches</td>
+                  <td dir="auto">تحقق من فعالية من حساسات نهاية المشوار</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="testLimitSwitches" type="radio" [(ngModel)]="crane.testLimitSwitches"
+                        name="testLimitSwitches" value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="testLimitSwitches" type="radio" [(ngModel)]="crane.testLimitSwitches"
+                        name="testLimitSwitches" value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="testLimitSwitchesRemarks" type="text" [(ngModel)]="crane.testLimitSwitchesRemarks"
+                        formControlName="testLimitSwitchesRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Function Test Outriggers</td>
+                  <td dir="auto">تحقق من سلامة الركائز وخلوها من اي تسريب</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="testOutriggers" type="radio" [(ngModel)]="crane.testOutriggers"
+                        name="testOutriggers" value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="testOutriggers" type="radio" [(ngModel)]="crane.testOutriggers"
+                        name="testOutriggers" value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="testOutriggersRemarks" type="text" [(ngModel)]="crane.testOutriggersRemarks"
+                        formControlName="testOutriggersRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Check for abnormal noise, vibration; report to Senior Mechanic</td>
+                  <td dir="auto">تحقق من عدم وجود ضوضاء غير طبيعية ، والاهتزاز</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="abnormalNoise" type="radio" name="abnormalNoise" [(ngModel)]="crane.abnormalNoise"
+                        value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="abnormalNoise" type="radio" name="abnormalNoise" [(ngModel)]="crane.abnormalNoise"
+                        value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="abnormalNoiseRemarks" type="text" [(ngModel)]="crane.abnormalNoiseRemarks"
+                        formControlName="abnormalNoiseRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Check for service brakes and Hand brakes</td>
+                  <td dir="auto">تحقق من وجود فرامل الخدمة وفرامل اليد</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="serviceBrakes" type="radio" name="serviceBrakes" [(ngModel)]="crane.serviceBrakes"
+                        value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="serviceBrakes" type="radio" name="serviceBrakes" [(ngModel)]="crane.serviceBrakes"
+                        value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="serviceBrakesRemarks" type="text" [(ngModel)]="crane.serviceBrakesRemarks"
+                        formControlName="serviceBrakesRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Wire ropes & sheaves condition</td>
+                  <td dir="auto">حالة الواير والبكرات</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="sheaves" type="radio" name="sheaves" [(ngModel)]="crane.sheaves"
+                        value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="sheaves" type="radio" name="sheaves" [(ngModel)]="crane.sheaves"
+                        value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="sheavesRemarks" type="text" formControlName="sheavesRemarks" [(ngModel)]="crane.sheavesRemarks"
+                        class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Spooling of wire on Drums</td>
+                  <td dir="auto">لف الواير على صندوق الترصيص</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="spoolingOfWire" type="radio" [(ngModel)]="crane.spoolingOfWire"
+                        name="spoolingOfWire" value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="spoolingOfWire" type="radio" [(ngModel)]="crane.spoolingOfWire"
+                        name="spoolingOfWire" value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="spoolingOfWireRemarks" type="text" [(ngModel)]="crane.spoolingOfWireRemarks"
+                        formControlName="spoolingOfWireRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Hook condition, adequate for SWL & Safety Latch</td>
+                  <td dir="auto">حالة الهوك (الخطاف) ومزلاج الأمان</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="hookcondition" type="radio" name="hookcondition" [(ngModel)]="crane.hookcondition"
+                        value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="hookcondition" type="radio" name="hookcondition" [(ngModel)]="crane.hookcondition"
+                        value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input id="hookconditionRemarks" type="text" formControlName="hookconditionRemarks" [(ngModel)]="crane.hookconditionRemarks"
+                        class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Visual Check on Boom Sections, Bolts and Pins conditions</td>
+                  <td dir="auto">الفحص البصرى للوصلات والمسامير والبنوز</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="boomSections" type="radio" name="boomSections" [(ngModel)]="crane.boomSections"
+                        value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="boomSections" type="radio" name="boomSections" [(ngModel)]="crane.boomSections"
+                        value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="boomSectionsRemarks" type="text" [(ngModel)]="crane.boomSectionsRemarks"
+                        formControlName="boomSectionsRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Engine V-belts good condition and adjustment</td>
+                  <td dir="auto">حالة المحرك وضبطة</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="engineV_belts" type="radio" name="engineV_belts" [(ngModel)]="crane.engineV_belts"
+                        value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="engineV_belts" type="radio" name="engineV_belts" [(ngModel)]="crane.engineV_belts"
+                        value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="engineV_beltsRemarks" type="text" [(ngModel)]="crane.engineV_beltsRemarks"
+                        formControlName="engineV_beltsRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Wiring visually in good condition</td>
+                  <td dir="auto">الاسلاك فى حالة جيدة</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="wiringVisually" type="radio" [(ngModel)]="crane.wiringVisually"
+                        name="wiringVisually" value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="wiringVisually" type="radio" [(ngModel)]="crane.wiringVisually"
+                        name="wiringVisually" value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="wiringVisuallyRemarks" type="text" [(ngModel)]="crane.wiringVisuallyRemarks"
+                        formControlName="wiringVisuallyRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Load indicator working</td>
+                  <td dir="auto">عمل مؤشر الحمولة</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="loadIndicator" type="radio" name="loadIndicator" [(ngModel)]="crane.loadIndicator"
+                        value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="loadIndicator" type="radio" name="loadIndicator" [(ngModel)]="crane.loadIndicator"
+                        value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="loadIndicatorRemarks" type="text" [(ngModel)]="crane.loadIndicatorRemarks"
+                        formControlName="loadIndicatorRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Visual & Audible Alarm</td>
+                  <td dir="auto">التنبيهات المرئية والمسموعة</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="audibleAlarm" type="radio" name="audibleAlarm" [(ngModel)]="crane.audibleAlarm"
+                        value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="audibleAlarm" type="radio" name="audibleAlarm" [(ngModel)]="crane.audibleAlarm"
+                        value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="audibleAlarmRemarks" type="text" [(ngModel)]="crane.audibleAlarmRemarks"
+                        formControlName="audibleAlarmRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Load limiting devices working</td>
+                  <td dir="auto">عمل فواصل الوزن</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="loadLimiting" type="radio" name="loadLimiting" [(ngModel)]="crane.loadLimiting"
+                        value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="loadLimiting" type="radio" name="loadLimiting" [(ngModel)]="crane.loadLimiting"
+                        value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="loadLimitingRemarks" type="text" [(ngModel)]="crane.loadLimitingRemarks"
+                        formControlName="loadLimitingRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Boom angle indicator visible</td>
+                  <td dir="auto">وضوح مؤشر زاوية البوم</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="boomAngle" type="radio" name="boomAngle" [(ngModel)]="crane.boomAngle"
+                        value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="boomAngle" type="radio" name="boomAngle" [(ngModel)]="crane.boomAngle"
+                        value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="boomAngleRemarks" type="text" formControlName="boomAngleRemarks" [(ngModel)]="crane.boomAngleRemarks"
+                        class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Limit Switch of the Crane Hooks (Upper and Lower) working</td>
+                  <td dir="auto">عمل فواصل الهوك العلوية والسفلية</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="limitSwitch" type="radio" name="limitSwitch" [(ngModel)]="crane.limitSwitch"
+                        value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="limitSwitch" type="radio" name="limitSwitch" [(ngModel)]="crane.limitSwitch"
+                        value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="limitSwitchRemarks" type="text" [(ngModel)]="crane.limitSwitchRemarks"
+                        formControlName="limitSwitchRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Emergency Shut Down Button</td>
+                  <td dir="auto">عمل مفتاح الطوارىء</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="emergencyShutDown" type="radio" [(ngModel)]="crane.emergencyShutDown"
+                        name="emergencyShutDown" value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="emergencyShutDown" type="radio" [(ngModel)]="crane.emergencyShutDown"
+                        name="emergencyShutDown" value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="emergencyShutDownRemarks" type="text" [(ngModel)]="crane.emergencyShutDownRemarks"
+                        formControlName="emergencyShutDownRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Operating return to neutral when released</td>
+                  <td dir="auto">رجوع أزرعة التحكم الى وضعها الطبيعى فى حالة تركها حُرة</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="operatingReturn" type="radio" [(ngModel)]="crane.operatingReturn"
+                        name="operatingReturn" value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="operatingReturn" type="radio" [(ngModel)]="crane.operatingReturn"
+                        name="operatingReturn" value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="operatingReturnRemarks" type="text" [(ngModel)]="crane.operatingReturnRemarks"
+                        formControlName="operatingReturnRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Operating controls working</td>
+                  <td dir="auto">أزرعة التحكم تعمل بحاله جيده</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="operatingControls" type="radio" [(ngModel)]="crane.operatingControls"
+                        name="operatingControls" value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="operatingControls" type="radio" [(ngModel)]="crane.operatingControls"
+                        name="operatingControls" value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="operatingControlsRemarks" type="text" [(ngModel)]="crane.operatingControlsRemarks"
+                        formControlName="operatingControlsRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Horn, Head light, Light, Indicators</td>
+                  <td dir="auto">صافرة الانزار,والأضواء والمؤشرات</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="headLight" type="radio" name="headLight" [(ngModel)]="crane.headLight"
+                        value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="headLight" type="radio" name="headLight" [(ngModel)]="crane.headLight"
+                        value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="headLightRemarks" type="text" formControlName="headLightRemarks" [(ngModel)]="crane.headLightRemarks"
+                        class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Reverse Alarm</td>
+                  <td dir="auto">تنبيه الرجوع للخلف</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="reverseAlarm" type="radio" name="reverseAlarm" [(ngModel)]="crane.reverseAlarm"
+                        value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="reverseAlarm" type="radio" name="reverseAlarm" [(ngModel)]="crane.reverseAlarm"
+                        value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="reverseAlarmRemarks" type="text" [(ngModel)]="crane.reverseAlarmRemarks"
+                        formControlName="reverseAlarmRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Parking brake working</td>
+                  <td dir="auto">عمل فرامل الركن والوقوف</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="parkingBrake" type="radio" name="parkingBrake" [(ngModel)]="crane.parkingBrake"
+                        value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="parkingBrake" type="radio" name="parkingBrake" [(ngModel)]="crane.parkingBrake"
+                        value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="parkingBrakeRemarks" type="text" [(ngModel)]="crane.parkingBrakeRemarks"
+                        formControlName="parkingBrakeRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Safety Belt, Fire Extinguisher</td>
+                  <td dir="auto">حزام الأمان وطفاية الحريق</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="safetyBelt" type="radio" name="safetyBelt" [(ngModel)]="crane.safetyBelt"
+                        value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="safetyBelt" type="radio" name="safetyBelt" [(ngModel)]="crane.safetyBelt"
+                        value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="safetyBeltRemarks" type="text" [(ngModel)]="crane.safetyBeltRemarks"
+                        formControlName="safetyBeltRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Driver seat condition</td>
+                  <td dir="auto">حالة كرسي السائق</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="driverSeat" type="radio" name="driverSeat" [(ngModel)]="crane.driverSeat"
+                        value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="driverSeat" type="radio" name="driverSeat" [(ngModel)]="crane.driverSeat"
+                        value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="driverSeatRemarks" type="text" [(ngModel)]="crane.driverSeatRemarks"
+                        formControlName="driverSeatRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Wipers condition</td>
+                  <td dir="auto">حالة المساحات</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="wipers" type="radio" name="wipers" value="Good" [(ngModel)]="crane.wipers">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="wipers" type="radio" name="wipers" value="Poor" [(ngModel)]="crane.wipers">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="wipersRemarks" type="text" formControlName="wipersRemarks" [(ngModel)]="crane.wipersRemarks"
+                        class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Existing corrosion in body</td>
+                  <td dir="auto">يوجد تاكل او صدا فى جسم المعدة</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="existingCorrosion" type="radio" [(ngModel)]="crane.existingCorrosion"
+                        name="existingCorrosion" value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="existingCorrosion" type="radio" [(ngModel)]="crane.existingCorrosion"
+                        name="existingCorrosion" value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="existingCorrosionRemarks" type="text" [(ngModel)]="crane.existingCorrosionRemarks"
+                        formControlName="existingCorrosionRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Tire bolts and pins</td>
+                  <td dir="auto">حالة مسامير وصواميل الكاوتش</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="tireBolts" type="radio" name="tireBolts" [(ngModel)]="crane.tireBolts"
+                        value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="tireBolts" type="radio" name="tireBolts" [(ngModel)]="crane.tireBolts"
+                        value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="tireBoltsRemarks" type="text" formControlName="tireBoltsRemarks" [(ngModel)]="crane.tireBoltsRemarks"
+                        class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Indicators(safe load indicator, boom length, angle indicator) are in working condition</td>
+                  <td dir="auto">التاكد من عمل جميع المؤشرات والمبينات الخاصة بالونش (محدد العزوم. طول ذراع البوم. زاوية
+                    ارفع. المسافة الارضية)</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="safeLoadIndicator" type="radio" [(ngModel)]="crane.safeLoadIndicator"
+                        name="safeLoadIndicator" value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="safeLoadIndicator" type="radio" [(ngModel)]="crane.safeLoadIndicator"
+                        name="safeLoadIndicator" value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="safeLoadIndicatorRemarks" type="text" [(ngModel)]="crane.safeLoadIndicatorRemarks"
+                        formControlName="safeLoadIndicatorRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>All screen curtains & view obstructions should be removed from operator’s cabin</td>
+                  <td dir="auto">جميع عوائق الرؤية مزالة من كابينة التشغيل</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="screenCurtains" type="radio" [(ngModel)]="crane.screenCurtains"
+                        name="screenCurtains" value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="screenCurtains" type="radio" [(ngModel)]="crane.screenCurtains"
+                        name="screenCurtains" value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="screenCurtainsRemarks" type="text" [(ngModel)]="crane.screenCurtainsRemarks"
+                        formControlName="screenCurtainsRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Outrigger with spreader mat should be in sound and working condition</td>
+                  <td dir="auto">دخزل وخروج الركائز بدون صوت</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="outrigger" type="radio" name="outrigger" [(ngModel)]="crane.outrigger"
+                        value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="outrigger" type="radio" name="outrigger" [(ngModel)]="crane.outrigger"
+                        value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="outriggerRemarks" type="text" formControlName="outriggerRemarks" [(ngModel)]="crane.outriggerRemarks"
+                        class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>There’s no strange sound during extanding boom and vice versa</td>
+                  <td dir="auto">لا يوجد صوت طقطقة او صوت غريب اثناء فتح البوم والعكس</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="strangeSound" type="radio" name="strangeSound" [(ngModel)]="crane.strangeSound"
+                        value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="strangeSound" type="radio" name="strangeSound" [(ngModel)]="crane.strangeSound"
+                        value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="strangeSoundRemarks" type="text" [(ngModel)]="crane.strangeSoundRemarks"
+                        formControlName="strangeSoundRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            Driver Name :
+            <div class="form-group">
+              <input id="driverName" type="text" formControlName="driverName" class="form-control" [(ngModel)]="crane.driverName" />
+            </div>
+          </td>
+          <td colspan="2">
+            QHSE Engineer :
+            <div class="form-group">
+              <input id="qhseEngineer" type="text" formControlName="qhseEngineer" class="form-control" [(ngModel)]="crane.qhseEngineer" />
+            </div>
+          </td>
+        </tr>
+      </table>
+
+      <input [disabled]="craneForm.invalid" type="submit" class="btn btn-success me-3" value="Submit" />
+      <input type="submit" class="btn btn-primary me-3" value="Export Data" (click)="Download()" />
+      <input routerLink="/Dashboard/Crane/Print" type="submit" class="btn btn-primary" value="Show Data">
+    </form>
+  </div>
+</div>

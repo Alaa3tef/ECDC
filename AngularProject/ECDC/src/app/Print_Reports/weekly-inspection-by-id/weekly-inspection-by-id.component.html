@@ -1,0 +1,1187 @@
+<div class="container mb-5" style="margin-top: 8%; overflow: hidden;">
+  <div class="heading_container heading_center d-flex">
+    <h2 class="mx-auto ">
+      Weekly Inspection Report
+    </h2>
+  </div>
+
+  <div class="px-4 px-lg-0 m-4" *ngIf="Data">
+    <div class="pb-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 p-3 bg-white rounded shadow-sm mb-4 print-section">
+            <div class="table-responsive">
+              <tr>
+                <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                  <img style="margin-left: 30px; margin-bottom: 5px;" width="100px"
+                    src="../../assets/img/ECDC Logo png.png" />
+                  <span class="col-12" style="margin-right: 30px;">
+                    <table class="table table-borderless mb-1"
+                    style="display: flex; align-items: center; justify-content: center;">
+                    <tbody>
+                      <tr>
+                        <td scope="row"style="font-size: 12px;">
+                          Safe Work Requirement
+                          <br>
+                          Weekly Inspection Report
+                        </td>
+                        <td scope="row" style="font-size: 12px;">
+                          Document Responsibility:
+                          <br>
+                          QHSE
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  </span>
+                </div>
+
+
+              </tr>
+              <div style="text-align: center; margin-top: 10px;">
+                <label class="form-label " style="font-weight: bolder; font-size: large; color: black;">
+                  Weekly Inspection Report
+                </label>
+              </div>
+
+              <div class="col-12" style="margin-top:3%;">
+
+                <tr>
+                  <td style="width: 15%;">
+                    <div style="width: 100%;  ">
+                      <h6>
+                        <span style="font-weight: bold;">Rig Number:</span>
+                        <span style="background-color: beige;">{{ WeeklyInspectionObj.rigId }}</span>
+                      </h6>
+                    </div>
+                  </td>
+                  <td style="width: 15%;">
+                    <div style="width: 100%;">
+                      <h6>
+                        <span style="font-weight: bold;width: 50%;">Client:</span>
+                        <span style="background-color: beige;">{{ WeeklyInspectionObj.client }}</span>
+                      </h6>
+                    </div>
+                  </td>
+                  <td style="width: 10%;">
+                    <div style="width: 100%;  ">
+                      <h6>
+                        <span style="font-weight: bold;">Date:</span>
+                        <span style="background-color: beige;">{{ WeeklyInspectionObj.date | date: 'dd-MM-yyyy'
+                          }}</span>
+                      </h6>
+                    </div>
+                  </td>
+                  <td style="width: 10%;">
+                    <div style="width: 100%;  ">
+                      <h6>
+                        <span style="font-weight: bold;">Well Name:</span>
+                        <span style="background-color: beige;">{{ WeeklyInspectionObj.wellName }}</span>
+                      </h6>
+                    </div>
+                  </td>
+                </tr>
+              </div>
+
+              <!-- EYE WASH STATION CHECK -->
+              <div class="col-12" style="margin-top:3%;">
+                <tr>
+                  <th style="font-weight: bold;width: 35%;font-size: 15px;text-decoration: underline;">EYE WASH STATION CHECK
+                  </th>
+                </tr>
+                <table class="table table-bordered border mt-2">
+                  <tr>
+                    <th style="background-color: rgb(212, 226, 241); width: 35%;font-size: 15px;">Status :</th>
+                    <th>{{WeeklyInspectionObj.eyeStatus}}</th>
+                  </tr>
+                </table>
+              </div>
+              <span style="font-weight: bold; color: rgb(18, 18, 19); text-decoration: underline;">Inspection
+                Instruction :</span>
+              <div class="col-12">
+                <ul style="font-size: 10px;">
+                  <li>
+                    Step 1:Check the station for damage, leaks, or corrosion. Make sure it is accessible, uncluttered,
+                    and
+                    marked.
+                  </li>
+                  <li>
+                    Step 2: Check the water quality and level. Replace it if it is dirty, discolored, or smelly. Flush
+                    the
+                    water for 20 seconds if it is plumbed
+                  </li>
+                  <li>
+                    Step 3: Test the station by activating it with one motion. The water should flow from both nozzles
+                    with the same pressure and cover a large area.
+                    The dust covers should pop off automatically. The water should be tepid, not too hot or cold.
+                  </li>
+                  <li>
+                    Step 4:Check the nozzles for cleanliness and function. The nozzles should be free of dust, debris,
+                    or
+                    corrosion.The water should spray softly and gently. The nozzles should be aligned at the same height
+                    and angle.
+                  </li>
+                </ul>
+              </div>
+              <div class="col-12 mt-3">
+                <table class="table table-borderless">
+                  <tbody>
+                    <tr>
+                      <td scope="row" class="p-0">
+                        <div style="border: 1px solid black;">
+                          <h6>
+                            <div style="border: 1px solid black;background-color: rgb(212, 226, 241);">
+                              <span style="font-weight: bold; color:black;margin-left: 45%;">Weekly findings:</span>
+                            </div>
+                            <ul>
+                              <li>
+                                {{ WeeklyInspectionObj.eyeWeeklyFindings }}
+                              </li>
+                            </ul>
+                          </h6>
+                        </div>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- SCBA INSPECTION -->
+              <div class="col-12" style="margin-top:3%;">
+                <tr>
+                  <th style="font-weight: bold;width: 35%;font-size: 15px;text-decoration: underline;">SCBA INSPECTION</th>
+                </tr>
+                <table class="table table-bordered border mt-2 ">
+                  <tr>
+                    <th style="background-color: rgb(212, 226, 241); width: 35%;font-size: 15px;">Status :</th>
+                    <th>{{WeeklyInspectionObj.scbaStatus}}</th>
+                    <th style="background-color: rgb(212, 226, 241);width: 35%;font-size: 15px;">30Min:</th>
+                    <th>{{WeeklyInspectionObj.scba30min}}</th>
+                  </tr>
+                  <tr>
+
+                    <th style="background-color: rgb(212, 226, 241);width: 5%;font-size: 15px;">15Min:</th>
+                    <th>{{WeeklyInspectionObj.scba15min}}</th>
+                    <th style="background-color: rgb(212, 226, 241);width:5%;font-size: 15px;">10Min:</th>
+                    <th>{{WeeklyInspectionObj.scba10min}}</th>
+                  </tr>
+                </table>
+              </div>
+              <span style="font-weight: bold; color: rgb(18, 18, 19); text-decoration: underline;">Inspection
+                Instruction :</span>
+              <div class="col-12">
+                <ul style="font-size: 10px;">
+                  Step 1: Check the exterior of the breathing apparatus for any signs of damage, leaks, or corrosion.
+                  Make sure the straps, face-piece, valves, and cylinders are intact and secure<br>
+
+                  Step 2: Check the pressure in the cylinders. Make sure they are fully charged and have enough air
+                  supply for the intended use<br>
+
+                  Step 3: Check the volume flow and the quality of the air supplied in the breathing apparatus. Make
+                  sure the air is clean, clear, and free of contaminants.
+                  If the breathing apparatus is a rescue type, make sure the air is compatible with the atmosphere of
+                  the rescue site<br>
+
+                  Step 4: Test the operation of the breathing apparatus by donning it and performing a fit check. The
+                  face-piece should seal tightly against the face and the breathing circuit should function properly.
+                  Test the alarm, the regulator, the control module, the power module, and the HUD if applicable<br>
+
+                  Step 5.Record the date and initials of the person who performed the inspection on a log sheet or a
+                  tag. If any issues are found, contact the maintenance department or the manufacturer for repairs or
+                  replacements. Notify the supervisor or the manager of the inspection results and any corrective
+                  actions taken
+
+                </ul>
+              </div>
+              <div class="col-12 mt-3">
+                <table class="table table-borderless">
+                  <tbody>
+                    <tr>
+                      <td scope="row" class="p-0">
+                        <div style="border: 1px solid black;">
+                          <h6>
+                            <div style="border: 1px solid black;background-color: rgb(212, 226, 241);">
+                              <span style="font-weight: bold; color:black;margin-left: 45%;">Weekly findings:</span>
+                            </div>
+                            <ul>
+                              <li>
+                                {{ WeeklyInspectionObj.scbaWeeklyFindings }}
+                              </li>
+                            </ul>
+                          </h6>
+                        </div>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- FIRST AID EQUIPMENT -->
+              <div class="col-12" style="margin-top:3%;">
+                <tr>
+                  <th style="font-weight: bold;width: 35%;font-size: 15px;text-decoration: underline;">FIRST AID EQUIPMENT</th>
+                </tr>
+                <table class="table table-bordered border mt-2 ">
+                  <tr>
+                    <th style="background-color: rgb(212, 226, 241); width: 35%;font-size: 15px;">Status :</th>
+                    <th>{{WeeklyInspectionObj.firstAidStatus}}</th>
+                  </tr>
+                </table>
+              </div>
+              <span style="font-weight: bold; color: rgb(18, 18, 19); text-decoration: underline;">Inspection
+                Instruction :</span>
+              <div class="col-12">
+                <ul style="font-size: 10px;">
+                  <li>
+                    Step 1: Check for unsafe or damaged products. Throw away any items that are dirty, used, or broken.
+                  </li>
+                  <li>
+                    Step 2: Check for expiration dates. Dispose of any items that are past their use-by dates.
+                  </li>
+                  <li>
+                    Step 3: Review and observe the usage and inventory. Note how much has been used and what types of
+                    injuries have occurred
+                  </li>
+                  <li>
+                    Step 4: Arrange and organize the products to their appropriate locations. Follow the guidelines for
+                    first aid kit contents and placement
+                  </li>
+                </ul>
+              </div>
+              <div class="col-12 mt-3">
+                <table class="table table-borderless">
+                  <tbody>
+                    <tr>
+                      <td scope="row" class="p-0">
+                        <div style="border: 1px solid black;">
+                          <h6>
+                            <div style="border: 1px solid black;background-color: rgb(212, 226, 241);">
+                              <span style="font-weight: bold; color:black;margin-left: 45%;">Weekly findings:</span>
+                            </div>
+                            <ul>
+                              <li>
+                                {{ WeeklyInspectionObj.firstAidWeeklyFindings }}
+                              </li>
+                            </ul>
+                          </h6>
+                        </div>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- 4  Portable Gas Detector -->
+              <div class="col-12" style="margin-top:3%;">
+                <tr>
+                  <th style="font-weight: bold;width: 35%;font-size: 15px;text-decoration: underline;"> Portable Gas Detector</th>
+                </tr>
+                <table class="table table-bordered border mt-2">
+                  <tr>
+                    <th style="background-color: rgb(212, 226, 241); width: 35%;font-size: 15px;">Status :</th>
+                    <th>{{WeeklyInspectionObj.portableGasStatus}}</th>
+                    <th style="background-color: rgb(212, 226, 241);font-size: 15px;width: 35%">Expiry Date</th>
+                    <th>{{WeeklyInspectionObj.expeiryDate| date: 'dd-MM-yyyy'}}</th>
+                  </tr>
+                  <tr>
+
+                    <th style="background-color: rgb(212, 226, 241);width: 5%;font-size: 15px;">Single:</th>
+                    <th>{{WeeklyInspectionObj.portableGasSingle}}</th>
+                    <th style="background-color: rgb(212, 226, 241);width:10%;font-size: 15px;">Multi:</th>
+                    <th>{{WeeklyInspectionObj.portableGasMuti}}</th>
+                  </tr>
+                </table>
+              </div>
+              <span style="font-weight: bold; color: rgb(18, 18, 19); text-decoration: underline;">Inspection
+                Instruction :</span>
+              <div class="col-12">
+                <ul style="font-size: 10px;">
+                  <li>
+                    1. Check the physical condition of the device </li>
+                  <li>
+                    2. Calibrate the device to zero level using clean air </li>
+                  <li>
+                    3. Perform a bump test using a known concentration of gas
+                  </li>
+                  <li>
+                    4.Record the results in a maintenance log
+                  </li>
+                  <li>
+                    5. Replace or repair the device if it fails any test
+                  </li>
+                  <li>
+                    6. Check the due date of calibration
+                  </li>
+                </ul>
+              </div>
+              <div class="col-12 mt-3">
+                <table class="table table-borderless">
+                  <tbody>
+                    <tr>
+                      <td scope="row" class="p-0">
+                        <div style="border: 1px solid black;">
+                          <h6>
+                            <div style="border: 1px solid black;background-color: rgb(212, 226, 241);">
+                              <span style="font-weight: bold; color:black;margin-left: 45%;">Weekly findings:</span>
+                            </div>
+                            <ul>
+                              <li>
+                                {{ WeeklyInspectionObj.portableGasWeeklyFindings }}
+                              </li>
+                            </ul>
+                          </h6>
+                        </div>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- 5 Fire Pump -->
+              <div class="col-12" style="margin-top:3%;">
+                <tr>
+                  <th style="font-weight: bold;width: 35%;font-size: 15px;text-decoration: underline;">Fire Pump</th>
+                </tr>
+                <table class="table table-bordered border mt-2">
+                  <tr>
+                    <th style="background-color: rgb(212, 226, 241); width: 35%;font-size: 15px;">Status :</th>
+                    <th>{{WeeklyInspectionObj.firePumpStatus}}</th>
+                  </tr>
+                </table>
+              </div>
+              <span style="font-weight: bold; color: rgb(18, 18, 19); text-decoration: underline;">Inspection
+                Instruction :</span>
+              <div class="col-12">
+                <ul style="font-size: 10px;">
+                  <li>
+                    1. Check the condition of the pump </li>
+                  <li>
+                    2. Check the power supply, valves, piping, and gauges of the fire pump system
+                  </li>
+                  <li>
+                    3. Test the start and the stop of the pump </li>
+                  <li>
+                    4. Test the pump operation and performance </li>
+                  <li>
+                    5.Record the results and report any deficiencies or malfunctions
+                  </li>
+                </ul>
+              </div>
+              <div class="col-12 mt-3">
+                <table class="table table-borderless">
+                  <tbody>
+                    <tr>
+                      <td scope="row" class="p-0">
+                        <div style="border: 1px solid black;">
+                          <h6>
+                            <div style="border: 1px solid black;background-color: rgb(212, 226, 241);">
+                              <span style="font-weight: bold; color:black;margin-left: 45%;">Weekly findings:</span>
+                            </div>
+                            <ul>
+                              <li>
+                                {{ WeeklyInspectionObj.firePumpWeeklyFindings }}
+                              </li>
+                            </ul>
+                          </h6>
+                        </div>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- 6 WELDING EQUIPMENT -->
+              <div class="col-12" style="margin-top:3%;">
+                <tr>
+                  <th style="font-weight: bold;width: 35%;font-size: 15px;text-decoration: underline;">6 WELDING EQUIPMENT
+                  </th>
+                </tr>
+                <table class="table table-bordered border mt-2">
+                  <tr>
+                    <th style="background-color: rgb(212, 226, 241); width: 35%;font-size: 15px;">Status :</th>
+                    <th>{{WeeklyInspectionObj.weldingStatus}}</th>
+                  </tr>
+                </table>
+              </div>
+              <span style="font-weight: bold; color: rgb(18, 18, 19); text-decoration: underline;">Inspection
+                Instruction :</span>
+              <div class="col-12">
+                <ul style="font-size: 10px;">
+                  1. Maintain a minimum 6-meter separation between oxygen and fuel-gas cylinders.<br>
+                  2. Store unused cylinders with hand-tightened valve covers.<br>
+                  3. Equip oxygen and acetylene cylinders with flashback prevention devices.<br>
+                  4. Store cylinders in a cool, dry area away from heat sources.<br>
+                  5. Secure cylinders upright during storage and transportation.<br>
+                  6. Check labels for accuracy and legibility.<br>
+                  7. Inspect valves for damage, corrosion, and leaks.<br>
+                  8. Verify regulator matches gas type and pressure rating.<br>
+                  9. Check regulator threads for damage and proper seal.<br>
+                  10. Inspect hoses and fittings for wear, cuts, and leaks.<br>
+                  11. Confirm pressure relief devices are functional.<br>
+                  12. Check power cords/plugs, ensuring proper grounding.<br>
+                  13. Inspect electrode holder, welding cables, and ground clamp for damage.<br>
+                  14. Verify welding helmet and protective gear are in good condition.<br>
+                  15. Confirm the availability and functionality of fire extinguishers.<br>
+                  16. Ensure proper ventilation in the work area.<br>
+                </ul>
+              </div>
+              <div class="col-12 mt-3">
+                <table class="table table-borderless">
+                  <tbody>
+                    <tr>
+                      <td scope="row" class="p-0">
+                        <div style="border: 1px solid black;">
+                          <h6>
+                            <div style="border: 1px solid black;background-color: rgb(212, 226, 241);">
+                              <span style="font-weight: bold; color:black;margin-left: 45%;">Weekly findings:</span>
+                            </div>
+                            <ul>
+                              <li>
+                                {{ WeeklyInspectionObj.weldingWeeklyFindings }}
+                              </li>
+                            </ul>
+                          </h6>
+                        </div>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- 7 WIND SOCK-->
+              <div class="col-12" style="margin-top:3%;">
+                <tr>
+                  <th style="font-weight: bold;width: 35%;font-size: 15px;text-decoration: underline;">WIND SOCK</th>
+                </tr>
+                <table class="table table-bordered border mt-2">
+                  <tr>
+                    <th style="background-color: rgb(212, 226, 241); width: 35%;font-size: 15px;">Status :</th>
+                    <th>{{WeeklyInspectionObj.windStatus}}</th>
+                  </tr>
+                </table>
+              </div>
+              <span style="font-weight: bold; color: rgb(18, 18, 19); text-decoration: underline;">Inspection
+                Instruction :</span>
+              <div class="col-12">
+                <ul style="font-size: 10px;">
+                  1. Check the physical condition of the wind sock and the frame.<br>
+                  2. Check the operation of the lowering mechanism and the hinge components.<br>
+                  3. Check the connection points, shackles, eye-bolts, swivels, fixing bolts, and welds.<br>
+                  4. Check the rotation of the wind sock and the swivel system.<br>
+                  5.Record the inspection results and report any damage or wear.<br>
+                </ul>
+              </div>
+              <div class="col-12 mt-3">
+                <table class="table table-borderless">
+                  <tbody>
+                    <tr>
+                      <td scope="row" class="p-0">
+                        <div style="border: 1px solid black;">
+                          <h6>
+                            <div style="border: 1px solid black;background-color: rgb(212, 226, 241);">
+                              <span style="font-weight: bold; color:black;margin-left: 45%;">Weekly findings:</span>
+                            </div>
+                            <ul>
+                              <li>
+                                {{ WeeklyInspectionObj.windWeeklyFindings }}
+                              </li>
+                            </ul>
+                          </h6>
+                        </div>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- 8 Smoke Detector  -->
+
+              <div class="col-12" style="margin-top:3%;">
+                <tr>
+                  <th style="font-weight: bold;width: 35%;font-size: 15px;text-decoration: underline;">Smoke Detector</th>
+                </tr>
+                <table class="table table-bordered border mt-2">
+                  <tr>
+                    <th style="background-color: rgb(212, 226, 241); width: 35%;font-size: 15px;">Status :</th>
+                    <th>{{WeeklyInspectionObj.smokeStatus}}</th>
+                  </tr>
+                </table>
+              </div>
+              <span style="font-weight: bold; color: rgb(18, 18, 19); text-decoration: underline;">Inspection
+                Instruction :</span>
+              <div class="col-12">
+                <ul style="font-size: 10px;">
+                  1. Test alarm: Press the test button to confirm the alarm functions.<br>
+                  2. Warning lights: Check for indicator lights and refer to the manual for interpretation.<br>
+                  3. Check power source: Ensure the detector has batteries or a backup battery.<br>
+                  4. Battery replacement: Change batteries annually or per manufacturer's recommendation.<br>
+                  5. Clean detector: Use a vacuum cleaner to remove dust and debris.<br>
+                  6. Obstructions: Ensure no objects block the detector.<br>
+                  7. Placement: Confirm proper installation in bedrooms, hallways, and on each level.<br>
+                  8. Expiry date: Replace detectors after 10 years or as per the expiration date.<br>
+                </ul>
+              </div>
+              <div class="col-12 mt-3">
+                <table class="table table-borderless">
+                  <tbody>
+                    <tr>
+                      <td scope="row" class="p-0">
+                        <div style="border: 1px solid black;">
+                          <h6>
+                            <div style="border: 1px solid black;background-color: rgb(212, 226, 241);">
+                              <span style="font-weight: bold; color:black;margin-left: 45%;">Weekly findings:</span>
+                            </div>
+                            <ul>
+                              <li>
+                                {{ WeeklyInspectionObj.smokeWeeklyFindings }}
+                              </li>
+                            </ul>
+                          </h6>
+                        </div>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Fire Extinguishers  -->
+
+              <div class="col-12" style="margin-top:3%;">
+                <tr>
+                  <th style="font-weight: bold;width: 35%;font-size: 15px;text-decoration: underline;">Fire Extinguishers</th>
+                </tr>
+                <table class="table table-bordered border mt-2">
+                  <tr>
+
+                    <th style="background-color: rgb(212, 226, 241); width: 35%;font-size: 15px;">Status :</th>
+                    <th>{{WeeklyInspectionObj.fireExtinguishersStatus}}</th>
+                  </tr>
+                </table>
+              </div>
+              <span style="font-weight: bold; color: rgb(18, 18, 19); text-decoration: underline;">Inspection
+                Instruction :</span>
+              <div class="col-12">
+                <ul style="font-size: 10px;">
+                  1. Check pressure gauge: Ensure the pressure gauge indicates the fire extinguisher is charged and
+                  ready.<br>
+                  2. Inspection tag: Confirm the extinguisher has a current inspection tag.<br>
+                  3. Verify accessibility: Ensure the extinguisher is easily accessible and not obstructed.<br>
+                  4. Check for physical damage: Inspect for dents, leaks, or other visible damage.<br>
+                  5. Inspect hose/nozzle: Ensure the hose or nozzle is in good condition and free from blockages.<br>
+                  6. Confirm seal and pin: Check that the tamper seal is intact, and the pull pin is securely in
+                  place.<br>
+                  7. Examine the label: Ensure the label provides proper instructions and hasn't faded or become
+                  illegible.<br>
+                  8. Weigh the extinguisher: Confirm the weight is within the specified range as indicated on the
+                  label.<br>
+                  9. Shake extinguisher: Periodically shake dry powder extinguishers to prevent powder settling.<br>
+                  10. Employee training: Ensure personnel know the location and proper use of fire extinguishers.<br>
+                </ul>
+              </div>
+              <div class="col-12 mt-3">
+                <table class="table table-borderless">
+                  <tbody>
+                    <tr>
+                      <td scope="row" class="p-0">
+                        <div style="border: 1px solid black;">
+                          <h6>
+                            <div style="border: 1px solid black;background-color: rgb(212, 226, 241);">
+                              <span style="font-weight: bold; color:black;margin-left: 45%;">Weekly findings:</span>
+                            </div>
+                            <ul>
+                              <li>
+                                {{ WeeklyInspectionObj.fireExtinguishersWeeklyFindings }}
+                              </li>
+                            </ul>
+                          </h6>
+                        </div>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+
+              <!--    Derrickman Escape Device -->
+              <div class="col-12" style="margin-top:3%;">
+                <tr>
+                  <th style="font-weight: bold;width: 35%;font-size: 15px;text-decoration: underline;">Derrickman Escape Device</th>
+                </tr>
+                <table class="table table-bordered border mt-2">
+                  <tr>
+
+                    <th style="background-color: rgb(212, 226, 241); width: 35%;font-size: 15px;">Status :</th>
+                    <th>{{WeeklyInspectionObj.derrickmanStatus}}</th>
+                  </tr>
+                </table>
+              </div>
+              <span style="font-weight: bold; color: rgb(18, 18, 19); text-decoration: underline;">Inspection
+                Instruction :</span>
+              <div class="col-12">
+                <ul style="font-size: 10px;">
+                  1. Check the condition and the connection of the device and the cable.<br>
+                  2. Check the operation and the rotation of the device and the swivel system.<br>
+                  3. Perform a functional test by climbing the derrick with the device.<br>
+                  4.Record the results and report any damage or wear.<br>
+
+                </ul>
+              </div>
+              <div class="col-12 mt-3">
+                <table class="table table-borderless">
+                  <tbody>
+                    <tr>
+                      <td scope="row" class="p-0">
+                        <div style="border: 1px solid black;">
+                          <h6>
+                            <div style="border: 1px solid black;background-color: rgb(212, 226, 241);">
+                              <span style="font-weight: bold; color:black;margin-left: 45%;">Weekly findings:</span>
+                            </div>
+                            <ul>
+                              <li>
+                                {{ WeeklyInspectionObj.derrickmanWeeklyFindings }}
+                              </li>
+                            </ul>
+                          </h6>
+                        </div>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- 9 Working At Height Rescue Kit  -->
+              <div class="col-12" style="margin-top:3%; ">
+                <tr>
+                  <th style="font-weight: bold;width: 35%;font-size: 15px;text-decoration: underline;">Working At Height Rescue Kit</th>
+                </tr>
+                <table class="table table-bordered border mt-2">
+                  <tr>
+                    <th style="background-color: rgb(212, 226, 241); width: 35%;font-size: 15px;">Status :</th>
+                    <th>{{WeeklyInspectionObj.workingStatus}}</th>
+                  </tr>
+
+                </table>
+              </div>
+              <span style="font-weight: bold; color: rgb(18, 18, 19); text-decoration: underline;">Inspection
+                Instruction :</span>
+              <div class="col-12">
+                <ul style="font-size: 10px;">
+                  1. Check the condition and the connection of the rescue kit.<br>
+                  2. Check the operation and the rotation of the rescue kit.<br>
+                  3. Perform a functional test by simulating a rescue scenario.<br>
+                  4.Record the results and report any damage or wear.<br>
+
+                </ul>
+              </div>
+              <div class="col-12 mt-3">
+                <table class="table table-borderless">
+                  <tbody>
+                    <tr>
+                      <td scope="row" class="p-0">
+                        <div style="border: 1px solid black;">
+                          <h6>
+                            <div style="border: 1px solid black;background-color: rgb(212, 226, 241);">
+                              <span style="font-weight: bold; color:black;margin-left: 45%;">Weekly findings:</span>
+                            </div>
+                            <ul>
+                              <li>
+                                {{ WeeklyInspectionObj.workingWeeklyFindings }}
+                              </li>
+                            </ul>
+                          </h6>
+                        </div>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- 10 Portable Ladder  -->
+              <div class="col-12" style="margin-top:3%;">
+                <tr>
+                  <th style="font-weight: bold;width: 35%;font-size: 15px;text-decoration: underline;">Portable Ladder</th>
+                </tr>
+                <table class="table table-bordered border mt-2">
+                  <tr>
+                    <th style="background-color: rgb(212, 226, 241); width: 35%;font-size: 15px;">Status :</th>
+                    <th>{{WeeklyInspectionObj.portableLadderStatus}}</th>
+                  </tr>
+                </table>
+              </div>
+              <span style="font-weight: bold; color: rgb(18, 18, 19); text-decoration: underline;">Inspection
+                Instruction :</span>
+              <div class="col-12">
+                <ul style="font-size: 10px;">
+                  1. Inspect ladder rungs for any damage, looseness, or slipperiness.<br>
+                  2. Inspect ladder side rails for any cracks, dents, or sharp edges.<br>
+                  3. Inspect the bottom of the ladder for any anti-slip safety shoes or feet.<br>
+                  4. Inspect all connecting elements such as bolts, nuts, hinges, or locks.<br>
+                  5. Inspect the labels and markings on the ladder for legibility and compliance.<br>
+                  6. Remove or cover any sharp points or edges on the ladder.<br>
+                  7. Make sure the ladder is clean and free of any oil, grease, mud, or other substances.<br>
+
+                </ul>
+              </div>
+              <div class="col-12 mt-3">
+                <table class="table table-borderless">
+                  <tbody>
+                    <tr>
+                      <td scope="row" class="p-0">
+                        <div style="border: 1px solid black;">
+                          <h6>
+                            <div style="border: 1px solid black;background-color: rgb(212, 226, 241);">
+                              <span style="font-weight: bold; color:black;margin-left: 45%;">Weekly findings:</span>
+                            </div>
+                            <ul>
+                              <li>
+                                {{ WeeklyInspectionObj.portableLadderWeeklyFindings }}
+                              </li>
+                            </ul>
+                          </h6>
+                        </div>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+
+
+              <!-- 11 Safety Harness, Lanyard -->
+              <div class="col-12" style="margin-top:3%;">
+                <tr>
+                  <th style="font-weight: bold;width: 35%;font-size: 15px;text-decoration: underline;">Safety Harness, Lanyard</th>
+                </tr>
+                <table class="table table-bordered border mt-2">
+                  <tr>
+
+                    <th style="background-color: rgb(212, 226, 241); width: 35%;font-size: 15px;">Status :</th>
+                    <th>{{WeeklyInspectionObj.safetyStatus}}</th>
+                  </tr>
+                </table>
+              </div>
+              <span style="font-weight: bold; color: rgb(18, 18, 19); text-decoration: underline;">Inspection
+                Instruction :</span>
+              <div class="col-12">
+                <ul style="font-size: 10px;">
+                  1. Read manual.<br>
+                  2. Check labels.<br>
+                  3. Inspect harness and lanyard.<br>
+                  4. Replace if damaged.<br>
+                </ul>
+              </div>
+              <div class="col-12 mt-3">
+                <table class="table table-borderless">
+                  <tbody>
+                    <tr>
+                      <td scope="row" class="p-0">
+                        <div style="border: 1px solid black;">
+                          <h6>
+                            <div style="border: 1px solid black;background-color: rgb(212, 226, 241);">
+                              <span style="font-weight: bold; color:black;margin-left: 45%;">Weekly findings:</span>
+                            </div>
+                            <ul>
+                              <li>
+                                {{ WeeklyInspectionObj.safetyWeeklyFindings }}
+                              </li>
+                            </ul>
+                          </h6>
+                        </div>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- 12  Fall Arrestor  -->
+              <div class="col-12" style="margin-top:3%;">
+                <tr>
+                  <th style="font-weight: bold;width: 35%;font-size: 15px;text-decoration: underline;">Fall Arrestor </th>
+                </tr>
+                <table class="table table-bordered border mt-2">
+                  <tr>
+                    <th style="background-color: rgb(212, 226, 241); width: 35%;font-size: 15px;">Status :</th>
+                    <th>{{WeeklyInspectionObj.fallStatus}}</th>
+                  </tr>
+                </table>
+              </div>
+              <span style="font-weight: bold; color: rgb(18, 18, 19); text-decoration: underline;">Inspection
+                Instruction :</span>
+              <div class="col-12">
+                <ul style="font-size: 10px;">
+                  1. Check label for information.<br>
+                  2. Inspect housing or casing for damage..<br>
+                  3. Inspect lifeline or rope for damage.<br>
+                  4. Inspect locking mechanism for function.<br>
+                  5. Inspect connectors and hooks for damage.<br>
+                  6. Replace if damaged.<br>
+                </ul>
+              </div>
+              <div class="col-12 mt-3">
+                <table class="table table-borderless">
+                  <tbody>
+                    <tr>
+                      <td scope="row" class="p-0">
+                        <div style="border: 1px solid black;">
+                          <h6>
+                            <div style="border: 1px solid black;background-color: rgb(212, 226, 241);">
+                              <span style="font-weight: bold; color:black;margin-left: 45%;">Weekly findings:</span>
+                            </div>
+                            <ul>
+                              <li>
+                                {{ WeeklyInspectionObj.fallWeeklyFindings }}
+                              </li>
+                            </ul>
+                          </h6>
+                        </div>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- 13  Crane Inspection -->
+              <div class="col-12" style="margin-top:3%;">
+                <tr>
+                  <th style="font-weight: bold;width: 35%;font-size: 15px;text-decoration: underline;">Crane Inspection</th>
+                </tr>
+                <table class="table table-bordered border mt-2">
+                  <tr>
+                    <th style="background-color: rgb(212, 226, 241); width: 35%;font-size: 15px;">Status :</th>
+                    <th>{{WeeklyInspectionObj.craneStatus}}</th>
+                  </tr>
+                </table>
+              </div>
+
+              <div class="col-12 mt-3">
+                <table class="table table-borderless">
+                  <tbody>
+                    <tr>
+                      <td scope="row" class="p-0">
+                        <div style="border: 1px solid black;">
+                          <h6>
+                            <div style="border: 1px solid black;background-color: rgb(212, 226, 241);">
+                              <span style="font-weight: bold; color:black;margin-left: 45%;">Weekly findings:</span>
+                            </div>
+                            <ul>
+                              <li>
+                                {{ WeeklyInspectionObj.craneWeeklyFindings }}
+                              </li>
+                            </ul>
+                          </h6>
+                        </div>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- 14   FORK LIFT INSPECTION  -->
+              <div class="col-12" style="margin-top:3%;">
+                <tr>
+                  <th style="font-weight: bold;width: 35%;font-size: 15px;text-decoration: underline;">FORK LIFT INSPECTION </th>
+                </tr>
+                <table class="table table-bordered border mt-2">
+                  <tr>
+
+                    <th style="background-color: rgb(212, 226, 241); width: 35%;font-size: 15px;">Status :</th>
+                    <th>{{WeeklyInspectionObj.forkStatus}}</th>
+                  </tr>
+                </table>
+              </div>
+
+              <div class="col-12 mt-3">
+                <table class="table table-borderless">
+                  <tbody>
+                    <tr>
+                      <td scope="row" class="p-0">
+                        <div style="border: 1px solid black;">
+                          <h6>
+                            <div style="border: 1px solid black;background-color: rgb(212, 226, 241);">
+                              <span style="font-weight: bold; color:black;margin-left: 45%;">Weekly findings:</span>
+                            </div>
+                            <ul>
+                              <li>
+                                {{ WeeklyInspectionObj.forkWeeklyFindings }}
+                              </li>
+                            </ul>
+                          </h6>
+                        </div>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+
+
+              <!-- 15  Dropped Inspection  -->
+              <div class="col-12" style="margin-top:3%;">
+                <tr>
+                  <th style="font-weight: bold;width: 35%;font-size: 15px;text-decoration: underline;">Dropped Inspection</th>
+                </tr>
+                <table class="table table-bordered border mt-2">
+                  <tr>
+
+                    <th style="background-color: rgb(212, 226, 241); width: 35%;font-size: 15px;">Status :</th>
+                    <th>{{WeeklyInspectionObj.droppedInspectionStatus}}</th>
+                  </tr>
+                </table>
+              </div>
+              <span style="font-weight: bold; color: rgb(18, 18, 19); text-decoration: underline;">Inspection
+                Instruction :</span>
+              <div class="col-12">
+                <ul style="font-size: 10px;">
+                  1. Identify all potential dropped object hazards in the mast area.<br>
+                  2. Ensure all equipment and tools are properly secured and tethered.<br>
+                  3. Verify that all barriers and nets are installed correctly and in good condition.<br>
+                  4. Inspect overhead fixtures and ensure they are secure and free of any potential hazards.<br>
+                  5. Check for any loose or unsecured items in the mast area.<br>
+                  6. Document the equipment location by inspection area, photograph each item surveyed, include a unique
+                  identification number to each item, describe each item surveyed, inspect and document the primary and
+                  secondary securing methods.<br>
+                  7. Use the DROPS Audit checklist to verify the DROPS Management System, the visual mast inspection,
+                  and
+                  the inspection of the equipment installed at height.<br>
+                  8. Identify any gaps from industry and client or operator requirements, hazards, and recommendations
+                  for
+                  remedial actions. <br>
+                  9. If you find any defects or signs of deterioration on the equipment or the securing methods, do not
+                  use them and remove them from service immediately. Replace them with new ones that meet the safety
+                  standards and requirements.<br>
+                </ul>
+              </div>
+              <div class="col-12 mt-3">
+                <table class="table table-borderless">
+                  <tbody>
+                    <tr>
+                      <td scope="row" class="p-0">
+                        <div style="border: 1px solid black;">
+                          <h6>
+                            <div style="border: 1px solid black;background-color: rgb(212, 226, 241);">
+                              <span style="font-weight: bold; color:black;margin-left: 45%;">Weekly findings:</span>
+                            </div>
+                            <ul>
+                              <li>
+                                {{ WeeklyInspectionObj.droppedInspectionWeeklyFindings }}
+                              </li>
+                            </ul>
+                          </h6>
+                        </div>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+
+              <!--   Electrical Plugs  -->
+              <div class="col-12" style="margin-top:3%;">
+                <tr>
+                  <th style="font-weight: bold;width: 35%;font-size: 15px;text-decoration: underline;">Electrical Plugs</th>
+                </tr>
+                <table class="table table-bordered border mt-2 ">
+                  <tr>
+                    <th style="background-color: rgb(212, 226, 241); width: 35%;font-size: 15px;">Status :</th>
+                    <th>{{WeeklyInspectionObj.electricalStatus}}</th>
+                  </tr>
+                </table>
+              </div>
+              <span style="font-weight: bold; color: rgb(18, 18, 19); text-decoration: underline;">Inspection
+                Instruction :</span>
+              <div class="col-12">
+                <ul style="font-size: 10px;">
+                  1. Turn off power.<br>
+                  2. Disconnect plug.<br>
+                  3. Test slots and terminals with multimeter.<br>
+                  4. Replace if faulty.<br>
+                  5. Turn on power and test plug.<br>
+                </ul>
+              </div>
+              <div class="col-12 mt-3">
+                <table class="table table-borderless">
+                  <tbody>
+                    <tr>
+                      <td scope="row" class="p-0">
+                        <div style="border: 1px solid black;">
+                          <h6>
+                            <div style="border: 1px solid black;background-color: rgb(212, 226, 241);">
+                              <span style="font-weight: bold; color:black;margin-left: 45%;">Weekly findings:</span>
+                            </div>
+                            <ul>
+                              <li>
+                                {{ WeeklyInspectionObj.electricalWeeklyFindings }}
+                              </li>
+                            </ul>
+                          </h6>
+                        </div>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+
+              <!--   16  Circuit Breaker Check  -->
+              <div class="col-12" style="margin-top:3%;">
+                <tr>
+                  <th style="font-weight: bold;width: 35%;font-size: 15px;text-decoration: underline;">Circuit Breaker Check</th>
+                </tr>
+                <table class="table table-bordered border mt-2">
+                  <tr>
+
+                    <th style="background-color: rgb(212, 226, 241); width: 35%;font-size: 15px;">Status :</th>
+                    <th>{{WeeklyInspectionObj.circuitStatus}}</th>
+                  </tr>
+                </table>
+              </div>
+              <span style="font-weight: bold; color: rgb(18, 18, 19); text-decoration: underline;">Inspection
+                Instruction :</span>
+              <div class="col-12">
+                <ul style="font-size: 10px;">
+                  1. Turn off power.<br>
+                  2. Disconnect breaker.<br>
+                  3. Test slots and terminals with multimeter.<br>
+                  4. Replace if faulty.<br>
+                  5. Turn on power and test breaker.<br>
+
+                </ul>
+              </div>
+              <div class="col-12 mt-3">
+                <table class="table table-borderless">
+                  <tbody>
+                    <tr>
+                      <td scope="row" class="p-0">
+                        <div style="border: 1px solid black;">
+                          <h6>
+                            <div style="border: 1px solid black;background-color: rgb(212, 226, 241);">
+                              <span style="font-weight: bold; color:black;margin-left: 45%;">Weekly findings:</span>
+                            </div>
+                            <ul>
+                              <li>
+                                {{ WeeklyInspectionObj.circuitWeeklyFindings }}
+                              </li>
+                            </ul>
+                          </h6>
+                        </div>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+
+              <!--  17  Earthing  and earth Leakage  INSPECTION  -->
+              <div class="col-12" style="margin-top:3%;">
+                <tr>
+                  <th style="font-weight: bold;width: 35%;font-size: 15px;text-decoration: underline;">Earthing  and earth Leakage  INSPECTION </th>
+                </tr>
+                <table class="table table-bordered border mt-2">
+                  <tr>
+
+                    <th style="background-color: rgb(212, 226, 241); width: 35%;font-size: 15px;">Status :</th>
+                    <th>{{WeeklyInspectionObj.earthingStatus}}</th>
+                  </tr>
+                  <tr>
+                    <th style="background-color: rgb(212, 226, 241);width: 35%;font-size: 15px;">  Maximum Reading: </th>
+                    <th>{{WeeklyInspectionObj.earthingMaximum}}</th>
+                    <th style="background-color: rgb(212, 226, 241); width: 35%;font-size: 15px;"> Min Reading:</th>
+                    <th>{{WeeklyInspectionObj.earthingMin}}</th>
+                  </tr>
+                </table>
+              </div>
+              <span style="font-weight: bold; color: rgb(18, 18, 19); text-decoration: underline;">Inspection
+                Instruction :</span>
+              <div class="col-12">
+                <ul style="font-size: 10px;">
+                  1. Check Earth Electrode Installation:<br>
+                  • Verify proper installation according to regulations.<br>
+                  2. Inspect Electrode Integrity:<br>
+                  • Examine for damage or corrosion<br>
+                  3. Inspect Earth Bars:<br>
+                  • Check the condition and connectivity of earth bars if present.<br>
+                  4. Measure Earth Resistance:<br>
+                  • Use a tester to measure earth resistance.<br>
+
+                </ul>
+              </div>
+              <div class="col-12 mt-3">
+                <table class="table table-borderless">
+                  <tbody>
+                    <tr>
+                      <td scope="row" class="p-0">
+                        <div style="border: 1px solid black;">
+                          <h6>
+                            <div style="border: 1px solid black;background-color: rgb(212, 226, 241);">
+                              <span style="font-weight: bold; color:black;margin-left: 45%;">Weekly findings:</span>
+                            </div>
+                            <ul>
+                              <li>
+                                {{ WeeklyInspectionObj.earthingWeeklyFindings }}
+                              </li>
+                            </ul>
+                          </h6>
+                        </div>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+
+
+                <div class="col-12" style="text-align: center;">
+                  <div style="font-weight: bold; color: rgb(18, 18, 19);">QHSE Engineer</div>
+
+                  <span style="font-weight: bold; color: rgb(18, 18, 19);">Name :</span>
+                    {{WeeklyInspectionObj.name}}
+                </div>
+
+                <div style="border: 1px solid black; border-left: none; border-right: none; margin-top: 5%;font-size: 10px;">
+                  <table class="table table-borderless mb-1"
+                  style="display: flex; align-items: center; justify-content: center;">
+                  <tbody>
+                    <tr>
+                      <td scope="row">
+                        Issue No. 01
+                        <br>
+                        Revision No. 04
+                      </td>
+                      <td scope="row">
+                        Document No. ECDC-QHSE-FM-01 - Weekly Report
+                        <br>
+                        Page 1 / 1
+                      </td>
+                      <td scope="row">
+                        Issue Date: 1/1/2021
+                        <br>
+                        Revision Date: 00/00/0000
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+
+                </div>
+            </div>
+
+          </div>
+        </div>
+        <input *ngIf="Data" type="submit" class="btn btn-primary my-4" value="Print Data" (click)="print()" />
+      </div>
+    </div>
+  </div>
+</div>

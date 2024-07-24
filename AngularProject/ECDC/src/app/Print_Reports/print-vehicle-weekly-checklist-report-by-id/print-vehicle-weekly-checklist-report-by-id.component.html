@@ -1,0 +1,249 @@
+a<div class="container mb-5" style="margin-top: 8%;">
+  <div class="heading_container heading_center d-flex">
+    <h2 class="mx-auto">
+      Vehicle Weekly Checklist Report
+    </h2>
+  </div>
+
+
+  <div class="px-4 px-lg-0 m-4" *ngIf="VehicleWeeklyChecklistObj">
+    <div class="pb-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 p-3 bg-white rounded shadow-sm mb-4 print-section">
+            <div class="table-responsive border p-2">
+              <table style="width: 100%;" class="border">
+                <tr>
+                  <div style="display: flex;">
+                    <img style="margin-left: 30px;" width="100px" src="../../assets/img/ECDC Logo png.png" />
+                    <label class="form-label mt-3"
+                      style="font-weight: bolder; font-size: large; color: black; margin-left: 130px;">
+                      Vehicle Weekly Checklist Report
+                    </label>
+                  </div>
+                </tr>
+              </table>
+
+
+              <div class="col-12 mt-2">
+                <table class="table table-bordered" style="margin-bottom: 0;font-size: 12px;">
+                  <tbody>
+                    <tr>
+                      <th>Rig</th>
+                      <td>{{VehicleWeeklyChecklistObj.rigNo}}</td>
+                      <th>Date</th>
+                      <td>{{VehicleWeeklyChecklistObj.date|date:'dd/MM/yyyy'}}</td>
+                      <th>Client</th>
+                      <td>{{VehicleWeeklyChecklistObj.cient}}</td>
+                      <th>Location</th>
+                      <td>{{VehicleWeeklyChecklistObj.location}}</td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+              <!-- Light vehicle (Co. Man Pickup) -->
+              <div class="col-12 mt-2">
+                <table class="table table-bordered" style="margin-bottom: 0;font-size: 12px;">
+                  <thead style="background-color: rgb(214, 212, 212); ">
+                    <tr class="text-center">
+                      <th colspan="4">Light vehicle (Co. Man Pickup)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>Vehicle Plate No</th>
+                      <td>{{VehicleWeeklyChecklistObj.manPickupVehiclePlateNo}}</td>
+                      <th>Driver Name</th>
+                      <td>{{VehicleWeeklyChecklistObj.manPickupDriverName}}</td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-12 mt-2">
+                <table class="table table-bordered" style="margin-bottom: 0;font-size: 12px;">
+                  <thead style="background-color: rgb(209, 207, 207); ">
+                    <tr class="text-center">
+                      <th>Inspection Item</th>
+                      <th>Status</th>
+                      <th>Remarks</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    <tr *ngFor="let item of VehicleWeeklyChecklistObj.manPickups,let i=index">
+                      <!-- <td style="width: 10%;">{{i+1}}</td> -->
+                      <td style="width: 40%;">{{item.item}}</td>
+                      <td>{{item.status}}</td>
+                      <td>{{item.remarks}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- Light vehicle (Rig Pickup) -->
+              <div class="col-12 mt-2">
+                <table class="table table-bordered" style="margin-bottom: 0;font-size: 12px;">
+                  <thead style="background-color: rgb(214, 212, 212); ">
+                    <tr class="text-center">
+                      <th colspan="4">Light vehicle (Rig Pickup)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>Vehicle Plate No</th>
+                      <td>{{VehicleWeeklyChecklistObj.rigPickupVehiclePlateNo}}</td>
+                      <th>Driver Name</th>
+                      <td>{{VehicleWeeklyChecklistObj.rigPickupDriverName}}</td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-12 mt-2">
+                <table class="table table-bordered" style="margin-bottom: 0;font-size: 12px;">
+                  <thead style="background-color: rgb(209, 207, 207); ">
+                    <tr class="text-center">
+                      <th>Inspection Item</th>
+                      <th>Status</th>
+                      <th>Remarks</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    <tr *ngFor="let item of VehicleWeeklyChecklistObj.rigPickups,let i=index">
+                      <!-- <td style="width: 10%;">{{i+1}}</td> -->
+                      <td style="width: 40%;">{{item.item}}</td>
+                      <td>{{item.status}}</td>
+                      <td>{{item.remarks}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- Heavy truck (Stand-by) -->
+              <div class="col-12 mt-2">
+                <table class="table table-bordered" style="margin-bottom: 0;font-size: 12px;">
+                  <thead style="background-color: rgb(214, 212, 212); ">
+                    <tr class="text-center">
+                      <th colspan="6">Heavy truck (Stand-by)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>Prime mover plate No. </th>
+                      <td>{{VehicleWeeklyChecklistObj.primeMoverPlateNo}}</td>
+                      <th>Driver Name</th>
+                      <td>{{VehicleWeeklyChecklistObj.heavyTruckDriverName}}</td>
+                      <th>Trailer plate No</th>
+                      <td>{{VehicleWeeklyChecklistObj.trailerPlateNo}}</td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-12 mt-2">
+                <table class="table table-bordered" style="margin-bottom: 0;font-size: 12px;">
+                  <thead style="background-color: rgb(209, 207, 207); ">
+                    <tr class="text-center">
+                      <th colspan="2">Inspection Item</th>
+                      <th>Status</th>
+                      <th>Remarks</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    <tr *ngFor="let item of VehicleWeeklyChecklistObj.heavyTrucks,let i=index">
+                      <!-- <td style="width: 10%;">{{i+1}}</td> -->
+                      <td style="width: 40%;">{{item.item}}</td>
+                      <td>{{item.status}}</td>
+                      <td>{{item.remarks}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- Light bus (Crew micro-bus) -->
+              <div class="col-12 mt-2">
+                <table class="table table-bordered" style="margin-bottom: 0;font-size: 12px;">
+                  <thead style="background-color: rgb(214, 212, 212); ">
+                    <tr class="text-center">
+                      <th colspan="4">Light bus (Crew micro-bus)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>Vehicle Plate No</th>
+                      <td>{{VehicleWeeklyChecklistObj.lightBusVehiclePlateNo}}</td>
+                      <th>Driver Name</th>
+                      <td>{{VehicleWeeklyChecklistObj.lightBusDriverName}}</td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-12 mt-2">
+                <table class="table table-bordered" style="margin-bottom: 0;font-size: 12px;">
+                  <thead style="background-color: rgb(209, 207, 207); ">
+                    <tr class="text-center">
+                      <th>Inspection Item</th>
+                      <th>Status</th>
+                      <th>Remarks</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of VehicleWeeklyChecklistObj.lightBus,let i=index">
+                      <!-- <td style="width: 10%;">{{i+1}}</td> -->
+                      <td style="width: 40%;">{{item.item}}</td>
+                      <td>{{item.status}}</td>
+                      <td>{{item.remarks}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-12 mt-2">
+                <table class="table table-bordered" style="margin-bottom: 0;font-size: 12px;">
+                  <thead style="background-color: rgb(209, 207, 207); ">
+                    <tr class="text-center">
+                      <th>HSE Engineer</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td dir="auto">{{VehicleWeeklyChecklistObj.hseEngineer}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-12">
+                <table class="table table-borderless mb-1"
+                  style="display: flex; align-items: center; justify-content: center; font-size: 12px;">
+                  <tbody>
+                    <tr>
+                      <td scope="row">
+                        Issue No. 01
+                        <br>
+                        Revision No. 00
+                      </td>
+                      <td scope="row">
+                        Document No. . ECDC-QHSE- FM-H14
+                        <br>
+                        Page 1 / 1
+                      </td>
+                      <td scope="row">
+                        Issue Date: 01/01/2021
+                        <br>
+                        Revision Date: 00/00/0000
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+            <!-- End -->
+          </div>
+        </div>
+        <input *ngIf="Data" type="submit" class="btn btn-primary my-4" value="Print Data" (click)="print()" />
+      </div>
+    </div>
+  </div>
+</div>

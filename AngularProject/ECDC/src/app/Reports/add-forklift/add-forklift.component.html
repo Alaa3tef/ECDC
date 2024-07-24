@@ -1,0 +1,793 @@
+<div class="container mb-5" style="margin-top: 8%;">
+  <div class="heading_container heading_center d-flex">
+    <h2 class="mx-auto my-4">
+      Weekly Forklift Inspection Report
+    </h2>
+
+  </div>
+
+  <div class="row">
+    <form [formGroup]="forkliftForm" id="print-section" (ngSubmit)="submitData()"
+      class="col-md-10 mx-auto d-flex flex-wrap">
+
+      <table class="table">
+        <tr>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="rigId">Rig Number: </label>
+              <select name="rigId" formControlName="rigId" id="rigId" class="form-select">
+                <option value="" disabled selected>Choose Rig Number</option>
+                <option *ngFor="let item of rigList" value="{{item.id}}">Rig - {{item.number}}</option>
+              </select>
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label>Date :</label>
+              <input id="Date" type="date" formControlName="date" class="form-control" />
+              <div *ngIf="date?.invalid && (date?.dirty || date?.touched)">
+                <small class="text-danger" *ngIf="date?.errors?.['required']">
+                  Date is required
+                </small>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="form-group   ">
+              <label>Well Name :</label>
+              <input id="wellName" type="text" formControlName="wellName" class="form-control" />
+              <div *ngIf="wellName?.invalid && (wellName?.dirty || wellName?.touched)">
+                <small class="text-danger" *ngIf="wellName?.errors?.['required']">
+                  Well Name is required
+                </small>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="form-group   ">
+              <label>Unit Number :</label>
+              <input id="unitNo" type="text" formControlName="unitNo" class="form-control" />
+              <div *ngIf="unitNo?.invalid && (unitNo?.dirty || unitNo?.touched)">
+                <small class="text-danger" *ngIf="unitNo?.errors?.['required']">
+                  Unit Number is required
+                </small>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <!-- <tr>
+          <td colspan="2">
+            <div class="form-group">
+              <label>Accumulated Running Hours :</label>
+              <input id="accumulatedHrs" type="text" formControlName="accumulatedHrs" class="form-control" />
+              <div *ngIf="accumulatedHrs?.invalid && (accumulatedHrs?.dirty || accumulatedHrs?.touched)">
+                <small class="text-danger" *ngIf="accumulatedHrs?.errors?.['required']">
+                  Accumulated Running Hours is required
+                </small>
+              </div>
+            </div>
+          </td>
+          <td colspan="2">
+            <div class="form-group   ">
+              <label>Hours since Oil Change :</label>
+              <input id="hrsSinceOilChange" type="text" formControlName="hrsSinceOilChange" class="form-control" />
+              <div *ngIf="hrsSinceOilChange?.invalid && (hrsSinceOilChange?.dirty || hrsSinceOilChange?.touched)">
+                <small class="text-danger" *ngIf="hrsSinceOilChange?.errors?.['required']">
+                  Hours since Oil Change is required
+                </small>
+              </div>
+            </div>
+          </td>
+        </tr> -->
+        <tr>
+          <td colspan="4" class="pl-3 pr-3">
+            <table class="table" style="font-size: 15px;">
+              <thead>
+                <tr>
+                  <th scope="col">Forklift Inspection Checklist</th>
+                  <th scope="col"></th>
+                  <th scope="col" style="width: 10%;">Good</th>
+                  <th scope="col" style="width: 10%;">Poor</th>
+                  <th scope="col" style="width: 20%;">Remark</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Unit clean and tidy</td>
+                  <td dir="auto">الونش بحالة جيدة ونظيفة</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="cleanAndTidy" type="radio" name="cleanAndTidy"
+                        value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="cleanAndTidy" type="radio" name="cleanAndTidy"
+                        value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="cleanAndTidyRemarks" type="text"
+                        formControlName="cleanAndTidyRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Check Engine Oil Level</td>
+                  <td dir="auto">فحص مستوى زيت المحرك</td>
+                  <td>
+                    <div>
+                      <input class="form-check-input" formControlName="engineOilLevel" type="radio"
+                        name="engineOilLevel" value="Good">
+                    </div>
+                  </td>
+                  <td>
+                    <div>
+                      <input class="form-check-input" formControlName="engineOilLevel" type="radio"
+                        name="engineOilLevel" value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="engineOilLevelRemarks" type="text"
+                        formControlName="engineOilLevelRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Check Transmission Oil Level</td>
+                  <td dir="auto">فحص مستوى زيت الحركة</td>
+                  <td>
+                    <div>
+                      <input class="form-check-input" formControlName="transmissionOilLevel" type="radio"
+                        name="transmissionOilLevel" value="Good">
+                    </div>
+                  </td>
+                  <td>
+                    <div>
+                      <input class="form-check-input" formControlName="transmissionOilLevel" type="radio"
+                        name="transmissionOilLevel" value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="transmissionOilLevelRemarks" type="text"
+                        formControlName="transmissionOilLevelRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Check Radiator Water Level</td>
+                  <td dir="auto">فحص مستوى المياه بالردياتير</td>
+                  <td>
+                    <div>
+                      <input class="form-check-input" formControlName="radiatorWaterLevel" type="radio"
+                        name="radiatorWaterLevel" value="Good">
+                    </div>
+                  </td>
+                  <td>
+                    <div>
+                      <input class="form-check-input" formControlName="radiatorWaterLevel" type="radio"
+                        name="radiatorWaterLevel" value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="radiatorWaterLevelRemarks" type="text"
+                        formControlName="radiatorWaterLevelRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Check Hydraulic Oil Level</td>
+                  <td dir="auto">فحص مستوى زيت الهيدروليك</td>
+                  <td>
+                    <div>
+                      <input class="form-check-input" formControlName="hydraulicOilLevel" type="radio"
+                        name="hydraulicOilLevel" value="Good">
+                    </div>
+                  </td>
+                  <td>
+                    <div>
+                      <input class="form-check-input" formControlName="hydraulicOilLevel" type="radio"
+                        name="hydraulicOilLevel" value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="hydraulicOilLevelRemarks" type="text"
+                        formControlName="hydraulicOilLevelRemarks" class="form-control" />
+                    </div>
+                  </td>
+
+                </tr>
+                <tr>
+                  <td>Check V-belts Tension</td>
+                  <td dir="auto">تحقق من شد سير المحرك</td>
+                  <td>
+                    <div>
+                      <input class="form-check-input" formControlName="v_beltsTension" type="radio"
+                        name="v_beltsTension" value="Good">
+                    </div>
+                  </td>
+                  <td>
+                    <div>
+                      <input class="form-check-input" formControlName="v_beltsTension" type="radio"
+                        name="v_beltsTension" value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="v_beltsTensionRemarks" type="text"
+                        formControlName="v_beltsTensionRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Drain Water from Air Tank</td>
+                  <td dir="auto">تأكد من تصريف المياه من خزان الهواء</td>
+                  <td>
+                    <div>
+                      <input class="form-check-input" formControlName="drainWater" type="radio" name="drainWater"
+                        value="Good">
+                    </div>
+                  </td>
+                  <td>
+                    <div>
+                      <input class="form-check-input" formControlName="drainWater" type="radio" name="drainWater"
+                        value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="drainWaterRemarks" type="text"
+                        formControlName="drainWaterRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Check for Leaks, Fuel, Water, Oil, Air</td>
+                  <td dir="auto">تحقق من عدم وجود تسريبات (وقود ، ماء ، زيت ، هواء)</td>
+                  <td>
+                    <div>
+                      <input class="form-check-input" formControlName="leaks" type="radio" name="leaks" value="Good">
+                    </div>
+                  </td>
+                  <td>
+                    <div>
+                      <input class="form-check-input" formControlName="leaks" type="radio" name="leaks" value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="leaksRemarks" type="text" formControlName="leaksRemarks"
+                        class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Check Battery and Battery Holder</td>
+                  <td dir="auto">تحقق من البطاريات وحامل البطارية</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="batteryHolder" type="radio" name="batteryHolder"
+                        value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="batteryHolder" type="radio" name="batteryHolder"
+                        value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="batteryHolderRemarks" type="text"
+                        formControlName="batteryHolderRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Check all Gauges for correct readings</td>
+                  <td dir="auto">تحقق من صحة قراءة العدادات</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="gaugesForCorrectReadings" type="radio"
+                        name="gaugesForCorrectReadings" value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="gaugesForCorrectReadings" type="radio"
+                        name="gaugesForCorrectReadings" value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="gaugesForCorrectReadingsRemarks" type="text"
+                        formControlName="gaugesForCorrectReadingsRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Check Tire Pressure</td>
+                  <td dir="auto">تحقق من ضغط الإطارات</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="tirePressure" type="radio" name="tirePressure"
+                        value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="tirePressure" type="radio" name="tirePressure"
+                        value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="tyrePressureRemarks" type="text"
+                        formControlName="tyrePressureRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Check Tire Condition</td>
+                  <td dir="auto">تحقق من حالة الإطارات</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="tireCondition" type="radio" name="tireCondition"
+                        value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="tireCondition" type="radio" name="tireCondition"
+                        value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="tyreConditionRemarks" type="text"
+                        formControlName="tyreConditionRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Check Fuel Tanks full</td>
+                  <td dir="auto">تحقق من مستوى الوقود</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="fuelTanksFull" type="radio" name="fuelTanksFull"
+                        value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="fuelTanksFull" type="radio" name="fuelTanksFull"
+                        value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="fuelTanksFullRemarks" type="text"
+                        formControlName="fuelTanksFullRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Check all Lights</td>
+                  <td dir="auto">تحقق من جميع الأنوار</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="lights" type="radio" name="lights" value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="lights" type="radio" name="lights" value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="lightsRemarks" type="text" formControlName="lightsRemarks"
+                        class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Check all Alarms</td>
+                  <td dir="auto">تحقق من جميع الإنذارات</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="alarms" type="radio" name="alarms" value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="alarms" type="radio" name="alarms" value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="alarmsRemarks" type="text" formControlName="alarmsRemarks"
+                        class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Function Test Hoisting System</td>
+                  <td dir="auto">اختبر جميع وظائف الشوكة</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="hoistingSystem" type="radio"
+                        name="hoistingSystem" value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="hoistingSystem" type="radio"
+                        name="hoistingSystem" value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="hoistingSystemRemarks" type="text"
+                        formControlName="hoistingSystemRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Check for abnormal noise, vibration; report to Senior Mechanic</td>
+                  <td dir="auto">تحقق من عدم وجود ضوضاء غير طبيعية ، والاهتزاز</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="abnormalNoise" type="radio" name="abnormalNoise"
+                        value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="abnormalNoise" type="radio" name="abnormalNoise"
+                        value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="abnormalNoiseRemarks" type="text"
+                        formControlName="abnormalNoiseRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Check for service brakes and Hand brakes</td>
+                  <td dir="auto">تحقق من وجود فرامل الخدمة وفرامل اليد</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="brakes" type="radio" name="brakes" value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="brakes" type="radio" name="brakes" value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="brakesRemarks" type="text" formControlName="brakesRemarks"
+                        class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Battery Liquid Level</td>
+                  <td dir="auto">مستوى زيت البطارية</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="liquidLevel" type="radio" name="liquidLevel"
+                        value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="liquidLevel" type="radio" name="liquidLevel"
+                        value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="liquidLevelRemarks" type="text"
+                        formControlName="liquidLevelRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Gauges& Instruments, Control levers</td>
+                  <td dir="auto">المقاييس & الاجهزة ومقابض التحكم</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="instruments" type="radio" name="instruments"
+                        value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="instruments" type="radio" name="instruments"
+                        value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="instrumentsRemarks" type="text"
+                        formControlName="instrumentsRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Engine drive belts condition</td>
+                  <td dir="auto">حالة سيور المحرك</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="engineDriveBelts" type="radio"
+                        name="engineDriveBelts" value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="engineDriveBelts" type="radio"
+                        name="engineDriveBelts" value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input id="engineDriveBeltsRemarks" type="text" formControlName="engineDriveBeltsRemarks"
+                        class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Mast & Carriage Rollers</td>
+                  <td dir="auto">بكرات التحميل وعمود الاتزان</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="carriageRollers" type="radio"
+                        name="carriageRollers" value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="carriageRollers" type="radio"
+                        name="carriageRollers" value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="carriageRollersRemarks" type="text"
+                        formControlName="carriageRollersRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Steering system</td>
+                  <td dir="auto">نظام التوجيه</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="steeringSystem" type="radio"
+                        name="steeringSystem" value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="steeringSystem" type="radio"
+                        name="steeringSystem" value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="steeringSystemRemarks" type="text"
+                        formControlName="steeringSystemRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Seat belt, Hom & Fire extinguisher</td>
+                  <td dir="auto">حزام الامان , الة التنبيه و طفاية الحريق</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="seatBelt" type="radio" name="seatBelt"
+                        value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="seatBelt" type="radio" name="seatBelt"
+                        value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="seatBeltRemarks" type="text" formControlName="seatBeltRemarks"
+                        class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Hose of coil cooling condition</td>
+                  <td dir="auto">حالة خرطوم التبريد للزيت</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="hoseofCoilCooling" type="radio"
+                        name="hoseofCoilCooling" value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="hoseofCoilCooling" type="radio"
+                        name="hoseofCoilCooling" value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="hoseofCoilCoolingRemarks" type="text"
+                        formControlName="hoseofCoilCoolingRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>First aid box</td>
+                  <td dir="auto">صندوق الاسعافات الاولية</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="firstAidBox" type="radio" name="firstAidBox"
+                        value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="firstAidBox" type="radio" name="firstAidBox"
+                        value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="firstAidBoxRemarks" type="text"
+                        formControlName="firstAidBoxRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Crank shaft condition</td>
+                  <td dir="auto">حالة عمود الكردان</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="crankShaft" type="radio" name="crankShaft"
+                        value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="crankShaft" type="radio" name="crankShaft"
+                        value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="crankShaftRemarks" type="text"
+                        formControlName="crankShaftRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Driver seat condition</td>
+                  <td dir="auto">حالة كرسي السائق</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="driverSeat" type="radio" name="driverSeat"
+                        value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="driverSeat" type="radio" name="driverSeat"
+                        value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="driverSeatRemarks" type="text"
+                        formControlName="driverSeatRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Engine V-belts good condition and adjustment</td>
+                  <td dir="auto">حالة المحرك وضبطة</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="engineV_belts" type="radio" name="engineV_belts"
+                        value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="engineV_belts" type="radio" name="engineV_belts"
+                        value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="engineV_beltsRemarks" type="text"
+                        formControlName="engineV_beltsRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Wipers condition</td>
+                  <td dir="auto">حالة المساحات</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="wipers" type="radio" name="wipers" value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="wipers" type="radio" name="wipers" value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="wipersRemarks" type="text" formControlName="wipersRemarks"
+                        class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Existing corrosion in body</td>
+                  <td dir="auto">يوجد تاكل او صدا فى جسم المعدة</td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="existingCorrosion" type="radio"
+                        name="existingCorrosion" value="Good">
+                    </div>
+                  </td>
+                  <td dir="auto">
+                    <div>
+                      <input class="form-check-input" formControlName="existingCorrosion" type="radio"
+                        name="existingCorrosion" value="Poor">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input style="height: 30px;" id="existingCorrosionRemarks" type="text"
+                        formControlName="existingCorrosionRemarks" class="form-control" />
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            Driver Name :
+            <div class="form-group">
+              <input id="driverName" type="text" formControlName="driverName" class="form-control" />
+            </div>
+          </td>
+          <td colspan="2">
+            QHSE Engineer :
+            <div class="form-group">
+              <input id="qhseEngineer" type="text" formControlName="qhseEngineer" class="form-control" />
+            </div>
+          </td>
+        </tr>
+      </table>
+
+      <input  type="submit" class="btn btn-success me-3" value="Submit" />
+      <input type="submit" class="btn btn-primary me-3" value="Export Data" (click)="Download()" />
+      <input routerLink="/Dashboard/Forklift/Print" type="submit" class="btn btn-primary" value="Show Data">
+    </form>
+  </div>
+</div>

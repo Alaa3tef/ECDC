@@ -1,0 +1,1674 @@
+<div class="container mb-5" style="margin-top: 8%;">
+    <div class="heading_container heading_center d-flex">
+      <h2 class="mx-auto my-4">
+        Weekly Camp Inspection Report
+      </h2>
+  
+    </div>
+  
+    <div class="row">
+      <form [formGroup]="WeeklyCampInspectionForm" id="print-section" (ngSubmit)="submitData()"
+        class="col-md-10 mx-auto d-flex flex-wrap">
+  
+        <table class="table">
+          <tr>
+            <td colspan="2">
+              <div class="form-group">
+                <label class="form-label" for="rigId">Rig Number: </label>
+                <select name="rigId" formControlName="rigId" id="rigId"
+                 class="form-select"[(ngModel)]="WeeklyCampInspection.rigId">
+                  <option value="" disabled selected>Choose Rig Number</option>
+                  <option *ngFor="let item of rigList" value="{{item.id}}">Rig - {{item.number}}</option>
+                </select>
+              </div>
+            </td>
+            <td colspan="2">
+              <div class="form-group">
+                <label>Date :</label>
+                <input id="Date" type="date" formControlName="date" class="form-control"
+                [ngModel]="WeeklyCampInspection.date | date: 'yyyy-MM-dd'" />
+                <div *ngIf="date?.invalid && (date?.dirty || date?.touched)">
+                  <small class="text-danger" *ngIf="date?.errors?.['required']">
+                    Date is required
+                  </small>
+                </div>
+              </div>
+            </td>
+          </tr>
+  
+          <!--general_AreParking  -->
+          <tr>
+            <td>
+              <div class="form-group">
+                <label style="font-weight: bold;">1- General</label>
+            <td>Are parking and courtyard barriers logically situated & signs posted?</td>
+    </div>
+    </td>
+    <td colspan="2">
+      <div class="form-group">
+        <label style="font-weight: bold;">Status</label>
+        <select name="general_AreParking" formControlName="general_AreParking" id="general_AreParking"
+          class="form-select"[(ngModel)]="WeeklyCampInspection.general_AreParking">
+          <option value="" disabled selected>Choose Status</option>
+          <option value="Good">Good</option>
+          <option value="Accepted">Accepted</option>
+          <option value="Bad">Bad</option>
+          <option value="N/A">N/A</option>
+        </select>
+      </div>
+    </td>
+    </tr>
+    <tr>
+      <td colspan="4">
+        <div class="form-group">
+          <textarea class="form-control" formControlName="general_AreParkingComment" rows="4"
+            id="general_AreParkingComment"[(ngModel)]="WeeklyCampInspection.general_AreParkingComment" name="text" placeholder="Write Your Comment"></textarea>
+        </div>
+      </td>
+    </tr>
+  
+    <!--general_IsCampSite  -->
+    <tr>
+      <td>
+        <div class="form-group">
+      <td>Is camp site without rubbish?</td>
+  </div>
+  </td>
+  <td colspan="2">
+    <div class="form-group">
+      <select name="general_IsCampSite" [(ngModel)]="WeeklyCampInspection.general_IsCampSite" 
+      formControlName="general_IsCampSite" id="general_IsCampSite" class="form-select">
+        <option value="" disabled selected>Choose Status</option>
+        <option value="Good">Good</option>
+        <option value="Accepted">Accepted</option>
+        <option value="Bad">Bad</option>
+        <option value="N/A">N/A</option>
+      </select>
+    </div>
+  </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control" formControlName="general_IsCampSiteComment" rows="4" id="general_IsCampSiteComment"
+          name="text" placeholder="Write Your Comment" [(ngModel)]="WeeklyCampInspection.general_IsCampSiteComment"></textarea>
+      </div>
+    </td>
+  </tr>
+  
+  <!--general_IsAllRubbish  -->
+  <tr>
+    <td>
+      <div class="form-group">
+    <td>Is all rubbish properly disposed?</td>
+    </div>
+    </td>
+    <td colspan="2">
+      <div class="form-group">
+        <select name="general_IsAllRubbish" formControlName="general_IsAllRubbish" id="general_IsCampSite"
+          class="form-select" [(ngModel)]="WeeklyCampInspection.general_IsAllRubbish">
+          <option value="" disabled selected>Choose Status</option>
+          <option value="Good">Good</option>
+          <option value="Accepted">Accepted</option>
+          <option value="Bad">Bad</option>
+          <option value="N/A">N/A</option>
+        </select>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control" formControlName="general_IsAllRubbishComment" rows="4"
+          id="general_IsAllRubbishComment" name="text"[(ngModel)]="WeeklyCampInspection.general_IsAllRubbishComment" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  
+  <!--general_AreWater  -->
+  <tr>
+    <td>
+      <div class="form-group">
+    <td>Are water & sewage lines neatly run?</td>
+    </div>
+    </td>
+    <td colspan="2">
+      <div class="form-group">
+        <select name="general_AreWater"[(ngModel)]="WeeklyCampInspection.general_AreWater" formControlName="general_AreWater" id="general_AreWater" class="form-select">
+          <option value="" disabled selected>Choose Status</option>
+          <option value="Good">Good</option>
+          <option value="Accepted">Accepted</option>
+          <option value="Bad">Bad</option>
+          <option value="N/A">N/A</option>
+        </select>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control"[(ngModel)]="WeeklyCampInspection.general_AreWaterComment" formControlName="general_AreWaterComment" rows="4"
+          id="general_AreWaterComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  
+  <!--general_IsGenerator  -->
+  <tr>
+    <td>
+      <div class="form-group">
+    <td>Is generator / water tank area clean & tidy?</td>
+    </div>
+    </td>
+    <td colspan="2">
+      <div class="form-group">
+        <select name="general_IsGenerator" formControlName="general_IsGenerator" id="general_IsGenerator"
+          class="form-select" [(ngModel)]="WeeklyCampInspection.general_IsGenerator">
+          <option value="" disabled selected>Choose Status</option>
+          <option value="Good">Good</option>
+          <option value="Accepted">Accepted</option>
+          <option value="Bad">Bad</option>
+          <option value="N/A">N/A</option>
+        </select>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control" formControlName="general_IsGeneratorComment" rows="4"
+          id="general_IsGeneratorComment"[(ngModel)]="WeeklyCampInspection.general_IsGeneratorComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  
+  <!--general_WhatIsGeneralOpinion  -->
+  <tr>
+    <td>
+      <div class="form-group">
+    <td>What is general opinion of catering service quality?</td>
+    </div>
+    </td>
+    <td colspan="2">
+      <div class="form-group">
+        <select name="general_WhatIsGeneralOpinion" formControlName="general_WhatIsGeneralOpinion"
+          id="general_WhatIsGeneralOpinion"[(ngModel)]="WeeklyCampInspection.general_WhatIsGeneralOpinion" class="form-select">
+          <option value="" disabled selected>Choose Status</option>
+          <option value="Good">Good</option>
+          <option value="Accepted">Accepted</option>
+          <option value="Bad">Bad</option>
+          <option value="N/A">N/A</option>
+        </select>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control" formControlName="general_WhatIsGeneralOpinionComment" rows="4"
+          id="general_WhatIsGeneralOpinionComment"[(ngModel)]="WeeklyCampInspection.general_WhatIsGeneralOpinionComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  
+    <!--safety_DateOfLastCampfireDrill  -->
+    <tr>
+      <td>
+        <label style="font-weight: bold; text-decoration: underline;">2. SAFETY</label>
+  
+        <div class="form-group">
+          <td>Date of last campfire drill?</td>
+        </div>
+      </td>
+  <td colspan="2">
+    <div class="form-group">
+      <select name="safety_DateOfLastCampfireDrill" formControlName="safety_DateOfLastCampfireDrill"
+        id="safety_DateOfLastCampfireDrill" class="form-select"[(ngModel)]="WeeklyCampInspection.safety_DateOfLastCampfireDrill">
+        <option value="" disabled selected>Choose Status</option>
+        <option value="Good">Good</option>
+        <option value="Accepted">Accepted</option>
+        <option value="Bad">Bad</option>
+        <option value="N/A">N/A</option>
+      </select>
+    </div>
+  </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control"[(ngModel)]="WeeklyCampInspection.safety_DateOfLastCampfireDrillComment" formControlName="safety_DateOfLastCampfireDrillComment" rows="4"
+          id="safety_DateOfLastCampfireDrillComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--safety_DateOfLastMedicalDrill  -->
+  <tr>
+    <td>
+      <div class="form-group">
+    <td>Date of last medical drill?</td>
+    </div>
+    </td>
+    <td colspan="2">
+      <div class="form-group">
+        <select name="safety_DateOfLastMedicalDrill" [(ngModel)]="WeeklyCampInspection.safety_DateOfLastMedicalDrill"formControlName="safety_DateOfLastMedicalDrill"
+          id="safety_DateOfLastMedicalDrill" class="form-select">
+          <option value="" disabled selected>Choose Status</option>
+          <option value="Good">Good</option>
+          <option value="Accepted">Accepted</option>
+          <option value="Bad">Bad</option>
+          <option value="N/A">N/A</option>
+        </select>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control"[(ngModel)]="WeeklyCampInspection.safety_DateOfLastMedicalDrillComment" formControlName="safety_DateOfLastMedicalDrillComment" rows="4"
+          id="safety_DateOfLastMedicalDrillComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--safety_AreStaffAwareOfFoodHazards  -->
+  <tr>
+    <td>
+      <div class="form-group">
+    <td>Are staff aware of food hazards?</td>
+    </div>
+    </td>
+    <td colspan="2">
+      <div class="form-group">
+        <select name="safety_AreStaffAwareOfFoodHazards" formControlName="safety_AreStaffAwareOfFoodHazards"
+          id="safety_AreStaffAwareOfFoodHazards"[(ngModel)]="WeeklyCampInspection.safety_AreStaffAwareOfFoodHazards" class="form-select">
+          <option value="" disabled selected>Choose Status</option>
+          <option value="Good">Good</option>
+          <option value="Accepted">Accepted</option>
+          <option value="Bad">Bad</option>
+          <option value="N/A">N/A</option>
+        </select>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control" formControlName="safety_AreStaffAwareOfFoodHazardsComment" rows="4"
+          id="safety_AreStaffAwareOfFoodHazardsComment"[(ngModel)]="WeeklyCampInspection.safety_AreStaffAwareOfFoodHazardsComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--safety_FirePumpInGoodCondition  -->
+  <tr>
+    <td>
+      <div class="form-group">
+    <td>Fire pump in good condition?</td>
+    </div>
+    </td>
+    <td colspan="2">
+      <div class="form-group">
+        <select name="safety_FirePumpInGoodCondition" formControlName="safety_FirePumpInGoodCondition"
+          id="safety_FirePumpInGoodCondition" class="form-select" [(ngModel)]="WeeklyCampInspection.safety_FirePumpInGoodCondition">
+          <option value="" disabled selected>Choose Status</option>
+          <option value="Good">Good</option>
+          <option value="Accepted">Accepted</option>
+          <option value="Bad">Bad</option>
+          <option value="N/A">N/A</option>
+        </select>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control" formControlName="safety_FirePumpInGoodConditionComment" rows="4"
+          id="safety_FirePumpInGoodConditionComment" name="text"[(ngModel)]="WeeklyCampInspection.safety_FirePumpInGoodConditionComment" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--safety_AreThereAnyPotentialHazards  -->
+  <tr>
+    <td>
+      <div class="form-group">
+    <td>Are there any potential hazards in evidence in camp area?</td>
+    </div>
+    </td>
+    <td colspan="2">
+      <div class="form-group">
+        <select name="safety_AreThereAnyPotentialHazards"[(ngModel)]="WeeklyCampInspection.safety_AreThereAnyPotentialHazards" formControlName="safety_AreThereAnyPotentialHazards"
+          id="safety_FirePumpInGoodCondition" class="form-select">
+          <option value="" disabled selected>Choose Status</option>
+          <option value="Good">Good</option>
+          <option value="Accepted">Accepted</option>
+          <option value="Bad">Bad</option>
+          <option value="N/A">N/A</option>
+        </select>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control" formControlName="safety_AreThereAnyPotentialHazardsComment" rows="4"
+          id="safety_AreThereAnyPotentialHazardsComment" [(ngModel)]="WeeklyCampInspection.safety_AreThereAnyPotentialHazardsComment"name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--safety_IsTheDiesel  -->
+  <tr>
+    <td>
+      <div class="form-group">
+    <td>Is the diesel tank grounding wire installed?</td>
+    </div>
+    </td>
+    <td colspan="2">
+      <div class="form-group">
+        <select name="safety_IsTheDiesel" formControlName="safety_IsTheDiesel" id="safety_IsTheDiesel"
+          class="form-select"[(ngModel)]="WeeklyCampInspection.safety_IsTheDiesel">
+          <option value="" disabled selected>Choose Status</option>
+          <option value="Good">Good</option>
+          <option value="Accepted">Accepted</option>
+          <option value="Bad">Bad</option>
+          <option value="N/A">N/A</option>
+        </select>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control"[(ngModel)]="WeeklyCampInspection.safety_IsTheDieselComment" formControlName="safety_IsTheDieselComment" rows="4" id="safety_IsTheDieselComment"
+          name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--safety_AreThereAnyUnsafe  -->
+  <tr>
+    <td>
+      <div class="form-group">
+    <td>Are there any unsafe electrical installations in evidence?</td>
+    </div>
+    </td>
+    <td colspan="2">
+      <div class="form-group">
+        <select name="safety_AreThereAnyUnsafe"[(ngModel)]="WeeklyCampInspection.safety_AreThereAnyUnsafe" formControlName="safety_AreThereAnyUnsafe" id="safety_AreThereAnyUnsafe"
+          class="form-select">
+          <option value="" disabled selected>Choose Status</option>
+          <option value="Good">Good</option>
+          <option value="Accepted">Accepted</option>
+          <option value="Bad">Bad</option>
+          <option value="N/A">N/A</option>
+        </select>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control"[(ngModel)]="WeeklyCampInspection.safety_AreThereAnyUnsafeComment" formControlName="safety_AreThereAnyUnsafeComment" rows="4"
+          id="safety_AreThereAnyUnsafeComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--safety_IsCampEarthing  -->
+  <tr>
+    <td>
+      <div class="form-group">
+    <td>Is camp earthing system as per earthing diagram?</td>
+    </div>
+    </td>
+    <td colspan="2">
+      <div class="form-group">
+        <select name="safety_IsCampEarthing" formControlName="safety_IsCampEarthing" id="safety_IsCampEarthing"
+          class="form-select"[(ngModel)]="WeeklyCampInspection.safety_IsCampEarthing">
+          <option value="" disabled selected>Choose Status</option>
+          <option value="Good">Good</option>
+          <option value="Accepted">Accepted</option>
+          <option value="Bad">Bad</option>
+          <option value="N/A">N/A</option>
+        </select>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control"[(ngModel)]="WeeklyCampInspection.safety_IsCampEarthingComment" formControlName="safety_IsCampEarthingComment" rows="4"
+          id="safety_IsCampEarthingComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--safety_AreFireEmergency  -->
+  <tr>
+    <td>
+      <div class="form-group">
+    <td>Are fire emergency procedures posted?</td>
+    </div>
+    </td>
+    <td colspan="2">
+      <div class="form-group">
+        <select name="safety_AreFireEmergency" formControlName="safety_AreFireEmergency" id="safety_AreFireEmergency"
+          class="form-select"[(ngModel)]="WeeklyCampInspection.safety_AreFireEmergency">
+          <option value="" disabled selected>Choose Status</option>
+          <option value="Good">Good</option>
+          <option value="Accepted">Accepted</option>
+          <option value="Bad">Bad</option>
+          <option value="N/A">N/A</option>
+        </select>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control"[(ngModel)]="WeeklyCampInspection.safety_AreFireEmergencyComment" formControlName="safety_AreFireEmergencyComment" rows="4"
+          id="safety_AreFireEmergencyComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  
+   <!--foodStorage_WhatIsTheGeneralAppearance  -->
+   <tr>
+    <td>
+      <label style="font-weight: bold; text-decoration: underline;">3. FOOD STORAGE AREAS</label>
+  
+      <div class="form-group">
+        <td>What is the general appearance?</td>
+     </div>
+   </td>
+   <td colspan="2">
+    <div class="form-group">
+      <select name="foodStorage_WhatIsTheGeneralAppearance" formControlName="foodStorage_WhatIsTheGeneralAppearance" id="foodStorage_WhatIsTheGeneralAppearance"
+        class="form-select"[(ngModel)]="WeeklyCampInspection.foodStorage_WhatIsTheGeneralAppearance">
+        <option value="" disabled selected>Choose Status</option>
+        <option value="Good">Good</option>
+        <option value="Accepted">Accepted</option>
+        <option value="Bad">Bad</option>
+        <option value="N/A">N/A</option>
+      </select>
+    </div>
+   </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control"[(ngModel)]="WeeklyCampInspection.foodStorage_WhatIsTheGeneralAppearanceComment" formControlName="foodStorage_WhatIsTheGeneralAppearanceComment" rows="4"
+          id="foodStorage_WhatIsTheGeneralAppearanceComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--foodStorage_IsFoodProperlyProtectedFromRisk  -->
+  <tr>
+    <td>
+      <div class="form-group">
+        <td>Is food properly protected from risk of contamination by pests?</td>
+     </div>
+   </td>
+   <td colspan="2">
+    <div class="form-group">
+      <select name="foodStorage_IsFoodProperlyProtectedFromRisk" formControlName="foodStorage_IsFoodProperlyProtectedFromRisk" id="foodStorage_IsFoodProperlyProtectedFromRisk"
+        class="form-select"[(ngModel)]="WeeklyCampInspection.foodStorage_IsFoodProperlyProtectedFromRisk">
+        <option value="" disabled selected>Choose Status</option>
+        <option value="Good">Good</option>
+        <option value="Accepted">Accepted</option>
+        <option value="Bad">Bad</option>
+        <option value="N/A">N/A</option>
+      </select>
+    </div>
+   </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control" [(ngModel)]="WeeklyCampInspection.foodStorage_IsFoodProperlyProtectedFromRiskComment"formControlName="foodStorage_IsFoodProperlyProtectedFromRiskComment" rows="4"
+          id="foodStorage_IsFoodProperlyProtectedFromRiskComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--foodStorage_AreDryFoodsProperlyStored  -->
+  <tr>
+    <td>
+      <div class="form-group">
+        <td>Are dry foods properly stored and area clean & tidy?</td>
+     </div>
+   </td>
+   <td colspan="2">
+    <div class="form-group">
+      <select name="foodStorage_AreDryFoodsProperlyStored" formControlName="foodStorage_AreDryFoodsProperlyStored" id="foodStorage_AreDryFoodsProperlyStored"
+        class="form-select"[(ngModel)]="WeeklyCampInspection.foodStorage_AreDryFoodsProperlyStored">
+        <option value="" disabled selected>Choose Status</option>
+        <option value="Good">Good</option>
+        <option value="Accepted">Accepted</option>
+        <option value="Bad">Bad</option>
+        <option value="N/A">N/A</option>
+      </select>
+    </div>
+   </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control" [(ngModel)]="WeeklyCampInspection.foodStorage_AreDryFoodsProperlyStoredComment"formControlName="foodStorage_AreDryFoodsProperlyStoredComment" rows="4"
+          id="foodStorage_AreDryFoodsProperlyStoredComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--foodStorage_IsThereEnoughDryFood  -->
+  <tr>
+    <td>
+      <div class="form-group">
+        <td>Is There Enough Dry food?</td>
+     </div>
+   </td>
+   <td colspan="2">
+    <div class="form-group">
+      <select name="foodStorage_IsThereEnoughDryFood" formControlName="foodStorage_IsThereEnoughDryFood" id="foodStorage_IsThereEnoughDryFood"
+        class="form-select"[(ngModel)]="WeeklyCampInspection.foodStorage_IsThereEnoughDryFood">
+        <option value="" disabled selected>Choose Status</option>
+        <option value="Good">Good</option>
+        <option value="Accepted">Accepted</option>
+        <option value="Bad">Bad</option>
+        <option value="N/A">N/A</option>
+      </select>
+    </div>
+   </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control" [(ngModel)]="WeeklyCampInspection.foodStorage_IsThereEnoughDryFoodComment"formControlName="foodStorage_IsThereEnoughDryFoodComment" rows="4"
+          id="foodStorage_IsThereEnoughDryFoodComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--foodStorage_FrozenStoredFood  -->
+  <tr>
+    <td>
+      <div class="form-group">
+        <td>Frozen stored food has entrance date stickers</td>
+     </div>
+   </td>
+   <td colspan="2">
+    <div class="form-group">
+      <select name="foodStorage_FrozenStoredFood" formControlName="foodStorage_FrozenStoredFood" id="foodStorage_FrozenStoredFood"
+        class="form-select"[(ngModel)]="WeeklyCampInspection.foodStorage_FrozenStoredFood">
+        <option value="" disabled selected>Choose Status</option>
+        <option value="Good">Good</option>
+        <option value="Accepted">Accepted</option>
+        <option value="Bad">Bad</option>
+        <option value="N/A">N/A</option>
+      </select>
+    </div>
+   </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control"[(ngModel)]="WeeklyCampInspection.foodStorage_FrozenStoredFoodComment" formControlName="foodStorage_FrozenStoredFoodComment" rows="4"
+          id="foodStorage_FrozenStoredFoodComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--foodStorage_AreFrozenFoods  -->
+  <tr>
+    <td>
+      <div class="form-group">
+        <td>Are frozen foods properly stored and segregated?</td>
+     </div>
+   </td>
+   <td colspan="2">
+    <div class="form-group">
+      <select name="foodStorage_AreFrozenFoods" formControlName="foodStorage_AreFrozenFoods" id="foodStorage_AreFrozenFoods"
+        class="form-select"[(ngModel)]="WeeklyCampInspection.foodStorage_AreFrozenFoods">
+        <option value="" disabled selected>Choose Status</option>
+        <option value="Good">Good</option>
+        <option value="Accepted">Accepted</option>
+        <option value="Bad">Bad</option>
+        <option value="N/A">N/A</option>
+      </select>
+    </div>
+   </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control" [(ngModel)]="WeeklyCampInspection.foodStorage_AreFrozenFoodsComment"formControlName="foodStorage_AreFrozenFoodsComment" rows="4"
+          id="foodStorage_AreFrozenFoodsComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--foodStorage_IsFoodProperlyStored  -->
+  <tr>
+    <td>
+      <div class="form-group">
+        <td>Is food properly stored and cleaned?</td>
+     </div>
+   </td>
+   <td colspan="2">
+    <div class="form-group">
+      <select name="foodStorage_IsFoodProperlyStored" formControlName="foodStorage_IsFoodProperlyStored" id="foodStorage_IsFoodProperlyStored"
+        class="form-select"[(ngModel)]="WeeklyCampInspection.foodStorage_IsFoodProperlyStored">
+        <option value="" disabled selected>Choose Status</option>
+        <option value="Good">Good</option>
+        <option value="Accepted">Accepted</option>
+        <option value="Bad">Bad</option>
+        <option value="N/A">N/A</option>
+      </select>
+    </div>
+   </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control" [(ngModel)]="WeeklyCampInspection.foodStorage_IsFoodProperlyStoredComment"formControlName="foodStorage_IsFoodProperlyStoredComment" rows="4"
+          id="foodStorage_IsFoodProperlyStoredComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--foodStorage_AreChillerAndFreezerClean  -->
+  <tr>
+    <td>
+      <div class="form-group">
+        <td>Are chiller and freezer clean and tidy?</td>
+     </div>
+   </td>
+   <td colspan="2">
+    <div class="form-group">
+      <select name="foodStorage_AreChillerAndFreezerClean" formControlName="foodStorage_AreChillerAndFreezerClean" id="foodStorage_AreChillerAndFreezerClean"
+        class="form-select"[(ngModel)]="WeeklyCampInspection.foodStorage_AreChillerAndFreezerClean">
+        <option value="" disabled selected>Choose Status</option>
+        <option value="Good">Good</option>
+        <option value="Accepted">Accepted</option>
+        <option value="Bad">Bad</option>
+        <option value="N/A">N/A</option>
+      </select>
+    </div>
+   </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control"[(ngModel)]="WeeklyCampInspection.foodStorage_AreChillerAndFreezerCleanComment" formControlName="foodStorage_AreChillerAndFreezerCleanComment" rows="4"
+          id="foodStorage_AreChillerAndFreezerCleanComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--galley_IsThereWnyWaterLeaks  -->
+  <tr>
+    <td>
+      <label style="font-weight: bold; text-decoration: underline;">4. Galley</label>
+  
+      <div class="form-group">
+        <td>Is there any water leaks?</td>
+     </div>
+   </td>
+   <td colspan="2">
+    <div class="form-group">
+      <select name="galley_IsThereWnyWaterLeaks" formControlName="galley_IsThereWnyWaterLeaks" id="galley_IsThereWnyWaterLeaks"
+        class="form-select"[(ngModel)]="WeeklyCampInspection.galley_IsThereWnyWaterLeaks">
+        <option value="" disabled selected>Choose Status</option>
+        <option value="Good">Good</option>
+        <option value="Accepted">Accepted</option>
+        <option value="Bad">Bad</option>
+        <option value="N/A">N/A</option>
+      </select>
+    </div>
+   </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control"[(ngModel)]="WeeklyCampInspection.galley_IsThereWnyWaterLeaksComment" formControlName="galley_IsThereWnyWaterLeaksComment" rows="4"
+          id="galley_IsThereWnyWaterLeaksComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--galley_AreAllAppliancesWorking  -->
+  <tr>
+    <td>
+      <div class="form-group">
+        <td>Are all appliances working and in hygienic state?</td>
+     </div>
+   </td>
+   <td colspan="2">
+    <div class="form-group">
+      <select name="galley_AreAllAppliancesWorking" formControlName="galley_AreAllAppliancesWorking" id="galley_AreAllAppliancesWorking"
+        class="form-select"[(ngModel)]="WeeklyCampInspection.galley_AreAllAppliancesWorking">
+        <option value="" disabled selected>Choose Status</option>
+        <option value="Good">Good</option>
+        <option value="Accepted">Accepted</option>
+        <option value="Bad">Bad</option>
+        <option value="N/A">N/A</option>
+      </select>
+    </div>
+   </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control"[(ngModel)]="WeeklyCampInspection.galley_AreAllAppliancesWorkingComment" formControlName="galley_AreAllAppliancesWorkingComment" rows="4"
+          id="galley_AreAllAppliancesWorkingComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  
+  
+  <!--galley_WhenWasExhaustFans  -->
+  <tr>
+    <td>
+      <div class="form-group">
+    <td>When was exhaust fans last cleaned?</td>
+    </div>
+    </td>
+    <td colspan="2">
+      <div class="form-group">
+        <select name="galley_WhenWasExhaustFans" formControlName="galley_WhenWasExhaustFans"
+          id="galley_WhenWasExhaustFans" class="form-select"[(ngModel)]="WeeklyCampInspection.galley_WhenWasExhaustFans">
+          <option value="" disabled selected>Choose Status</option>
+          <option value="Good">Good</option>
+          <option value="Accepted">Accepted</option>
+          <option value="Bad">Bad</option>
+          <option value="N/A">N/A</option>
+        </select>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control"[(ngModel)]="WeeklyCampInspection.galley_WhenWasExhaustFansComment" formControlName="galley_WhenWasExhaustFansComment" rows="4"
+          id="galley_WhenWasExhaustFansComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  
+    <!--galley_AreDishesAndUtensilsClean  -->
+    <tr>
+      <td>
+        <div class="form-group">
+          <td>Are dishes and utensils clean and in good condition?</td>
+        </div>
+      </td>
+      <td colspan="2">
+        <div class="form-group">
+          <select name="galley_AreDishesAndUtensilsClean" formControlName="galley_AreDishesAndUtensilsClean"
+            id="galley_AreDishesAndUtensilsClean" class="form-select"[(ngModel)]="WeeklyCampInspection.galley_AreDishesAndUtensilsClean">
+            <option value="" disabled selected>Choose Status</option>
+            <option value="Good">Good</option>
+            <option value="Accepted">Accepted</option>
+            <option value="Bad">Bad</option>
+            <option value="N/A">N/A</option>
+          </select>
+        </div>
+      </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control" formControlName="galley_AreDishesAndUtensilsCleanComment" rows="4"
+          id="galley_AreDishesAndUtensilsCleanComment" name="text" [(ngModel)]="WeeklyCampInspection.galley_AreDishesAndUtensilsCleanComment"placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--galley_WhatTheConditionOfTheChipPanAndfoodOil  -->
+  <tr>
+    <td>
+      <div class="form-group">
+    <td>What the condition of the chip pan and food oil?</td>
+    </div>
+    </td>
+    <td colspan="2">
+      <div class="form-group">
+        <select name="galley_WhatTheConditionOfTheChipPanAndfoodOil" formControlName="galley_WhatTheConditionOfTheChipPanAndfoodOil"
+          id="galley_WhatTheConditionOfTheChipPanAndfoodOil"[(ngModel)]="WeeklyCampInspection.galley_WhatTheConditionOfTheChipPanAndfoodOil" class="form-select">
+          <option value="" disabled selected>Choose Status</option>
+          <option value="Good">Good</option>
+          <option value="Accepted">Accepted</option>
+          <option value="Bad">Bad</option>
+          <option value="N/A">N/A</option>
+        </select>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control"[(ngModel)]="WeeklyCampInspection.galley_WhatTheConditionOfTheChipPanAndfoodOilComment" formControlName="galley_WhatTheConditionOfTheChipPanAndfoodOilComment" rows="4"
+          id="galley_WhatTheConditionOfTheChipPanAndfoodOilComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--galley_IsTheGalleyAreaClean  -->
+  <tr>
+    <td>
+      <div class="form-group">
+    <td>Is the galley area clean and tidy?</td>
+    </div>
+    </td>
+    <td colspan="2">
+      <div class="form-group">
+        <select name="galley_IsTheGalleyAreaClean" formControlName="galley_IsTheGalleyAreaClean"
+          id="galley_IsTheGalleyAreaClean" class="form-select"[(ngModel)]="WeeklyCampInspection.galley_IsTheGalleyAreaClean">
+          <option value="" disabled selected>Choose Status</option>
+          <option value="Good">Good</option>
+          <option value="Accepted">Accepted</option>
+          <option value="Bad">Bad</option>
+          <option value="N/A">N/A</option>
+        </select>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control" [(ngModel)]="WeeklyCampInspection.galley_IsTheGalleyAreaCleanComment"formControlName="galley_IsTheGalleyAreaCleanComment" rows="4"
+          id="galley_IsTheGalleyAreaCleanComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  
+  <!--messHall_AreWashHandBasins  -->
+  <tr>
+    
+    <td>
+      <label style="font-weight: bold; text-decoration: underline;">5. MESS HALL</label>
+  
+      <div class="form-group">
+    <td>Are wash hand basins clean with hot water, soap and hygienic hand drying facilities?</td>
+    </div>
+    </td>
+    <td colspan="2">
+      <div class="form-group">
+        <select name="messHall_AreWashHandBasins" formControlName="messHall_AreWashHandBasins"
+          id="messHall_AreWashHandBasins"[(ngModel)]="WeeklyCampInspection.messHall_AreWashHandBasins"class="form-select">
+          <option value="" disabled selected>Choose Status</option>
+          <option value="Good">Good</option>
+          <option value="Accepted">Accepted</option>
+          <option value="Bad">Bad</option>
+          <option value="N/A">N/A</option>
+        </select>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control"[(ngModel)]="WeeklyCampInspection.messHall_AreWashHandBasinsComment" formControlName="messHall_AreWashHandBasinsComment" rows="4"
+          id="messHall_AreWashHandBasinsComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--messHall_RegistersForChangingFoodOil  -->
+  <tr>
+    <td>
+      <div class="form-group">
+    <td>Registers for changing food oil </td>
+    </div>
+    </td>
+    <td colspan="2">
+      <div class="form-group">
+        <select name="messHall_RegistersForChangingFoodOil" formControlName="messHall_RegistersForChangingFoodOil"
+          id="messHall_RegistersForChangingFoodOil" class="form-select"[(ngModel)]="WeeklyCampInspection.messHall_RegistersForChangingFoodOil">
+          <option value="" disabled selected>Choose Status</option>
+          <option value="Good">Good</option>
+          <option value="Accepted">Accepted</option>
+          <option value="Bad">Bad</option>
+          <option value="N/A">N/A</option>
+        </select>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control" [(ngModel)]="WeeklyCampInspection.messHall_RegistersForChangingFoodOilComment"formControlName="messHall_RegistersForChangingFoodOilComment" rows="4"
+          id="messHall_RegistersForChangingFoodOilComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--messHall_MessHall_AllElectricalCables  -->
+  <tr>
+    <td>
+      <div class="form-group">
+        <td>All electrical cables are in ducts?</td>
+     </div>
+   </td>
+   <td colspan="2">
+    <div class="form-group">
+      <select name="messHall_AllElectricalCables" formControlName="messHall_AllElectricalCables" id="messHall_AllElectricalCables"
+        class="form-select"[(ngModel)]="WeeklyCampInspection.messHall_AllElectricalCables">
+        <option value="" disabled selected>Choose Status</option>
+        <option value="Good">Good</option>
+        <option value="Accepted">Accepted</option>
+        <option value="Bad">Bad</option>
+        <option value="N/A">N/A</option>
+      </select>
+    </div>
+   </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control"[(ngModel)]="WeeklyCampInspection.messHall_AllElectricalCablesComment" formControlName="messHall_AllElectricalCablesComment" rows="4"
+          id="messHall_AllElectricalCablesComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--messHall_AreAllAppliancesWorking  -->
+  <tr>
+    <td>
+      <div class="form-group">
+    <td>Are all appliances working?</td>
+    </div>
+    </td>
+    <td colspan="2">
+      <div class="form-group">
+        <select name="messHall_AreAllAppliancesWorking" formControlName="messHall_AreAllAppliancesWorking" id="safety_IsTheDiesel"
+          class="form-select"[(ngModel)]="WeeklyCampInspection.messHall_AreAllAppliancesWorking">
+          <option value="" disabled selected>Choose Status</option>
+          <option value="Good">Good</option>
+          <option value="Accepted">Accepted</option>
+          <option value="Bad">Bad</option>
+          <option value="N/A">N/A</option>
+        </select>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control" [(ngModel)]="WeeklyCampInspection.messHall_AreAllAppliancesWorkingComment"
+        formControlName="messHall_AreAllAppliancesWorkingComment" rows="4" id="messHall_AreAllAppliancesWorkingComment"
+          name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--messHall_AreTablesInGoodWorkingCondition  -->
+  <tr>
+    <td>
+      <div class="form-group">
+    <td>Are tables/ chairs/ curtains in good working condition?</td>
+    </div>
+    </td>
+    <td colspan="2">
+      <div class="form-group">
+        <select name="messHall_AreTablesInGoodWorkingCondition" formControlName="messHall_AreTablesInGoodWorkingCondition" id="safety_AreThereAnyUnsafe"
+          class="form-select"[(ngModel)]="WeeklyCampInspection.messHall_AreTablesInGoodWorkingCondition">
+          <option value="" disabled selected>Choose Status</option>
+          <option value="Good">Good</option>
+          <option value="Accepted">Accepted</option>
+          <option value="Bad">Bad</option>
+          <option value="N/A">N/A</option>
+        </select>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control"[(ngModel)]="WeeklyCampInspection.messHall_AreTablesInGoodWorkingConditionComment" formControlName="messHall_AreTablesInGoodWorkingConditionComment" rows="4"
+          id="messHall_AreTablesInGoodWorkingConditionComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--messHall_AreFlyKillersWorking  -->
+  <tr>
+    <td>
+      <div class="form-group">
+    <td>Are fly killers working?</td>
+    </div>
+    </td>
+    <td colspan="2">
+      <div class="form-group">
+        <select name="messHall_AreFlyKillersWorking" formControlName="messHall_AreFlyKillersWorking" id="safety_IsCampEarthing"
+          class="form-select"[(ngModel)]="WeeklyCampInspection.messHall_AreFlyKillersWorking">
+          <option value="" disabled selected>Choose Status</option>
+          <option value="Good">Good</option>
+          <option value="Accepted">Accepted</option>
+          <option value="Bad">Bad</option>
+          <option value="N/A">N/A</option>
+        </select>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control"[(ngModel)]="WeeklyCampInspection.messHall_AreFlyKillersWorkingComment" formControlName="messHall_AreFlyKillersWorkingComment" rows="4"
+          id="messHall_AreFlyKillersWorkingComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--messHall_IsMessHallClean  -->
+  <tr>
+    <td>
+      <div class="form-group">
+    <td>Is mess hall clean and tidy?</td>
+    </div>
+    </td>
+    <td colspan="2">
+      <div class="form-group">
+        <select name="messHall_IsMessHallClean" formControlName="messHall_IsMessHallClean" id="safety_AreFireEmergency"
+          class="form-select"[(ngModel)]="WeeklyCampInspection.messHall_IsMessHallClean">
+          <option value="" disabled selected>Choose Status</option>
+          <option value="Good">Good</option>
+          <option value="Accepted">Accepted</option>
+          <option value="Bad">Bad</option>
+          <option value="N/A">N/A</option>
+        </select>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control" [(ngModel)]="WeeklyCampInspection.messHall_IsMessHallCleanComment"formControlName="messHall_IsMessHallCleanComment" rows="4"
+          id="messHall_IsMessHallCleanComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  
+   <!--accomodations_LockersOfBathroomsAreInstalledWell  -->
+   <tr>
+    <td>
+      <label style="font-weight: bold; text-decoration: underline;">6. ACCOMODATIONS</label>
+  
+      <div class="form-group">
+        <td>Lockers of bathrooms are installed well</td>
+     </div>
+   </td>
+   <td colspan="2">
+    <div class="form-group">
+      <select name="accomodations_LockersOfBathroomsAreInstalledWell" formControlName="accomodations_LockersOfBathroomsAreInstalledWell" id="accomodations_LockersOfBathroomsAreInstalledWell"
+        class="form-select"[(ngModel)]="WeeklyCampInspection.accomodations_LockersOfBathroomsAreInstalledWell">
+        <option value="" disabled selected>Choose Status</option>
+        <option value="Good">Good</option>
+        <option value="Accepted">Accepted</option>
+        <option value="Bad">Bad</option>
+        <option value="N/A">N/A</option>
+      </select>
+    </div>
+   </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control"[(ngModel)]="WeeklyCampInspection.accomodations_LockersOfBathroomsAreInstalledWellComment" formControlName="accomodations_LockersOfBathroomsAreInstalledWellComment" rows="4"
+          id="accomodations_LockersOfBathroomsAreInstalledWellComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--accomodations_TypesOfCleaningMaterialsUsed  -->
+  <tr>
+    <td>
+      <div class="form-group">
+        <td>Types of cleaning materials used</td>
+     </div>
+   </td>
+   <td colspan="2">
+    <div class="form-group">
+      <select name="accomodations_TypesOfCleaningMaterialsUsed" formControlName="accomodations_TypesOfCleaningMaterialsUsed" id="accomodations_TypesOfCleaningMaterialsUsed"
+        class="form-select"[(ngModel)]="WeeklyCampInspection.accomodations_TypesOfCleaningMaterialsUsed">
+        <option value="" disabled selected>Choose Status</option>
+        <option value="Good">Good</option>
+        <option value="Accepted">Accepted</option>
+        <option value="Bad">Bad</option>
+        <option value="N/A">N/A</option>
+      </select>
+    </div>
+   </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control"[(ngModel)]="WeeklyCampInspection.accomodations_TypesOfCleaningMaterialsUsedComment"formControlName="accomodations_TypesOfCleaningMaterialsUsedComment" rows="4"
+          id="accomodations_TypesOfCleaningMaterialsUsedComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--accomodations_AnyLackInCleaning  -->
+  <tr>
+    <td>
+      <div class="form-group">
+        <td>Any lack in cleaning and housekeeping observed?</td>
+     </div>
+   </td>
+   <td colspan="2">
+    <div class="form-group">
+      <select name="accomodations_AnyLackInCleaning" formControlName="accomodations_AnyLackInCleaning" id="accomodations_AnyLackInCleaning"
+        class="form-select"[(ngModel)]="WeeklyCampInspection.accomodations_AnyLackInCleaning">
+        <option value="" disabled selected>Choose Status</option>
+        <option value="Good">Good</option>
+        <option value="Accepted">Accepted</option>
+        <option value="Bad">Bad</option>
+        <option value="N/A">N/A</option>
+      </select>
+    </div>
+   </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control"[(ngModel)]="WeeklyCampInspection.accomodations_AnyLackInCleaningComment" formControlName="accomodations_AnyLackInCleaningComment" rows="4"
+          id="accomodations_AnyLackInCleaningComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--accomodations_AreDoorHingesAndClosures  -->
+  <tr>
+    <td>
+      <div class="form-group">
+        <td>Are door hinges and closures in good working condition?</td>
+     </div>
+   </td>
+   <td colspan="2">
+    <div class="form-group">
+      <select name="accomodations_AreDoorHingesAndClosures" formControlName="accomodations_AreDoorHingesAndClosures" id="accomodations_AreDoorHingesAndClosures"
+        class="form-select"[(ngModel)]="WeeklyCampInspection.accomodations_AreDoorHingesAndClosures">
+        <option value="" disabled selected>Choose Status</option>
+        <option value="Good">Good</option>
+        <option value="Accepted">Accepted</option>
+        <option value="Bad">Bad</option>
+        <option value="N/A">N/A</option>
+      </select>
+    </div>
+   </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control"[(ngModel)]="WeeklyCampInspection.accomodations_AreDoorHingesAndClosuresComment" formControlName="accomodations_AreDoorHingesAndClosuresComment" rows="4"
+          id="accomodations_AreDoorHingesAndClosuresComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--clinic_IsTheClinicCleanAndTidy  -->
+  <tr>
+    <td>
+      <label style="font-weight: bold; text-decoration: underline;">7. CLINC</label>
+  
+      <div class="form-group">
+        <td>Is the clinic clean and tidy?</td>
+     </div>
+   </td>
+   <td colspan="2">
+    <div class="form-group">
+      <select name="clinic_IsTheClinicCleanAndTidy" formControlName="clinic_IsTheClinicCleanAndTidy" id="clinic_IsTheClinicCleanAndTidy"
+        class="form-select"[(ngModel)]="WeeklyCampInspection.clinic_IsTheClinicCleanAndTidy">
+        <option value="" disabled selected>Choose Status</option>
+        <option value="Good">Good</option>
+        <option value="Accepted">Accepted</option>
+        <option value="Bad">Bad</option>
+        <option value="N/A">N/A</option>
+      </select>
+    </div>
+   </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control" [(ngModel)]="WeeklyCampInspection.clinic_IsTheClinicCleanAndTidyComment"formControlName="clinic_IsTheClinicCleanAndTidyComment" rows="4"
+          id="clinic_IsTheClinicCleanAndTidyComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--clinic_RelevantSdsPresent  -->
+  <tr>
+    <td>
+      <div class="form-group">
+        <td>Relevant SDS present?</td>
+     </div>
+   </td>
+   <td colspan="2">
+    <div class="form-group">
+      <select name="clinic_RelevantSdsPresent" formControlName="clinic_RelevantSdsPresent" id="clinic_RelevantSdsPresent"
+        class="form-select"[(ngModel)]="WeeklyCampInspection.clinic_RelevantSdsPresent">
+        <option value="" disabled selected>Choose Status</option>
+        <option value="Good">Good</option>
+        <option value="Accepted">Accepted</option>
+        <option value="Bad">Bad</option>
+        <option value="N/A">N/A</option>
+      </select>
+    </div>
+   </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control" [(ngModel)]="WeeklyCampInspection.clinic_RelevantSdsPresentComment"formControlName="clinic_RelevantSdsPresentComment" rows="4"
+          id="clinic_RelevantSdsPresentComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--clinic_IsMedicalApparatus  -->
+  <tr>
+    <td>
+      <div class="form-group">
+        <td>Is medical apparatus in good condition?</td>
+     </div>
+   </td>
+   <td colspan="2">
+    <div class="form-group">
+      <select name="clinic_IsMedicalApparatus" formControlName="clinic_IsMedicalApparatus" id="clinic_IsMedicalApparatus"
+        class="form-select"[(ngModel)]="WeeklyCampInspection.clinic_IsMedicalApparatus">
+        <option value="" disabled selected>Choose Status</option>
+        <option value="Good">Good</option>
+        <option value="Accepted">Accepted</option>
+        <option value="Bad">Bad</option>
+        <option value="N/A">N/A</option>
+      </select>
+    </div>
+   </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control"[(ngModel)]="WeeklyCampInspection.clinic_IsMedicalApparatusComment" formControlName="clinic_IsMedicalApparatusComment" rows="4"
+          id="clinic_IsMedicalApparatusComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--clinic_IsMedicalStockMaintained  -->
+  <tr>
+    <td>
+      <div class="form-group">
+        <td>Is medical stock maintained at an acceptable level & is it properly stored?</td>
+     </div>
+   </td>
+   <td colspan="2">
+    <div class="form-group">
+      <select name="clinic_IsMedicalStockMaintained" formControlName="clinic_IsMedicalStockMaintained" id="clinic_IsMedicalStockMaintained"
+        class="form-select"[(ngModel)]="WeeklyCampInspection.clinic_IsMedicalStockMaintained">
+        <option value="" disabled selected>Choose Status</option>
+        <option value="Good">Good</option>
+        <option value="Accepted">Accepted</option>
+        <option value="Bad">Bad</option>
+        <option value="N/A">N/A</option>
+      </select>
+    </div>
+   </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control"[(ngModel)]="WeeklyCampInspection.clinic_IsMedicalStockMaintainedComment" formControlName="clinic_IsMedicalStockMaintainedComment" rows="4"
+          id="clinic_IsMedicalStockMaintainedComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--clinic_IsMedicalTreatment  -->
+  <tr>
+    <td>
+      <div class="form-group">
+        <td>Is medical treatment log up to date?</td>
+     </div>
+   </td>
+   <td colspan="2">
+    <div class="form-group">
+      <select name="clinic_IsMedicalTreatment" formControlName="clinic_IsMedicalTreatment" id="clinic_IsMedicalTreatment"
+        class="form-select"[(ngModel)]="WeeklyCampInspection.clinic_IsMedicalTreatment">
+        <option value="" disabled selected>Choose Status</option>
+        <option value="Good">Good</option>
+        <option value="Accepted">Accepted</option>
+        <option value="Bad">Bad</option>
+        <option value="N/A">N/A</option>
+      </select>
+    </div>
+   </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control"[(ngModel)]="WeeklyCampInspection.clinic_IsMedicalTreatmentComment" formControlName="clinic_IsMedicalTreatmentComment" rows="4"
+          id="clinic_IsMedicalTreatmentComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  
+  <!--laundry_IsLaundryAleanAndTidy  -->
+  <tr>
+    <td>
+      <label style="font-weight: bold; text-decoration: underline;">8. LAUNDRY</label>
+  
+      <div class="form-group">
+    <td>Is laundry clean and tidy?</td>
+    </div>
+    </td>
+    <td colspan="2">
+      <div class="form-group">
+        <select name="laundry_IsLaundryAleanAndTidy" formControlName="laundry_IsLaundryAleanAndTidy"
+          id="laundry_IsLaundryAleanAndTidy" class="form-select"[(ngModel)]="WeeklyCampInspection.laundry_IsLaundryAleanAndTidy">
+          <option value="" disabled selected>Choose Status</option>
+          <option value="Good">Good</option>
+          <option value="Accepted">Accepted</option>
+          <option value="Bad">Bad</option>
+          <option value="N/A">N/A</option>
+        </select>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control"[(ngModel)]="WeeklyCampInspection.laundry_IsLaundryAleanAndTidyComment" formControlName="laundry_IsLaundryAleanAndTidyComment" rows="4"
+          id="laundry_IsLaundryAleanAndTidyComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--laundry_TypesOfChemicalsUsedAreRelevant  -->
+  <tr>
+    <td>
+      <div class="form-group">
+    <td>Types of chemicals used are relevant</td>
+    </div>
+    </td>
+    <td colspan="2">
+      <div class="form-group">
+        <select name="laundry_TypesOfChemicalsUsedAreRelevant" formControlName="laundry_TypesOfChemicalsUsedAreRelevant" id="safety_IsTheDiesel"
+          class="form-select"[(ngModel)]="WeeklyCampInspection.laundry_TypesOfChemicalsUsedAreRelevant">
+          <option value="" disabled selected>Choose Status</option>
+          <option value="Good">Good</option>
+          <option value="Accepted">Accepted</option>
+          <option value="Bad">Bad</option>
+          <option value="N/A">N/A</option>
+        </select>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control"[(ngModel)]="WeeklyCampInspection.laundry_TypesOfChemicalsUsedAreRelevantComment"
+         formControlName="laundry_TypesOfChemicalsUsedAreRelevantComment" rows="4" id="laundry_TypesOfChemicalsUsedAreRelevantComment"
+          name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--laundry_AreAllAppliancesSafety  -->
+  <tr>
+    <td>
+      <div class="form-group">
+    <td>Are all appliances safety switches working?</td>
+    </div>
+    </td>
+    <td colspan="2">
+      <div class="form-group">
+        <select name="laundry_AreAllAppliancesSafety" formControlName="laundry_AreAllAppliancesSafety" id="safety_AreThereAnyUnsafe"
+          class="form-select"[(ngModel)]="WeeklyCampInspection.laundry_AreAllAppliancesSafety">
+          <option value="" disabled selected>Choose Status</option>
+          <option value="Good">Good</option>
+          <option value="Accepted">Accepted</option>
+          <option value="Bad">Bad</option>
+          <option value="N/A">N/A</option>
+        </select>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control" [(ngModel)]="WeeklyCampInspection.laundry_AreAllAppliancesSafetyComment"formControlName="laundry_AreAllAppliancesSafetyComment" rows="4"
+          id="laundry_AreAllAppliancesSafetyComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--laundry_AreAllAppliancesWorking  -->
+  <tr>
+    <td>
+      <div class="form-group">
+    <td>Are all appliances working?</td>
+    </div>
+    </td>
+    <td colspan="2">
+      <div class="form-group">
+        <select name="laundry_AreAllAppliancesWorking" formControlName="laundry_AreAllAppliancesWorking" id="laundry_AreAllAppliancesWorking"
+          class="form-select"[(ngModel)]="WeeklyCampInspection.laundry_AreAllAppliancesWorking">
+          <option value="" disabled selected>Choose Status</option>
+          <option value="Good">Good</option>
+          <option value="Accepted">Accepted</option>
+          <option value="Bad">Bad</option>
+          <option value="N/A">N/A</option>
+        </select>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control"[(ngModel)]="WeeklyCampInspection.laundry_AreAllAppliancesWorkingComment" formControlName="laundry_AreAllAppliancesWorkingComment" rows="4"
+          id="laundry_AreAllAppliancesWorkingComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--generalBathRooms_AreAllElectricalFixtures  -->
+  <tr>
+    <td>
+      <label style="font-weight: bold; text-decoration: underline;">9. GENERAL BATHROOMS</label>
+      <div class="form-group">
+    <td>Are all electrical fixtures with covers?</td>
+    </div>
+    </td>
+    <td colspan="2">
+      <div class="form-group">
+        <select name="generalBathRooms_AreAllElectricalFixtures" formControlName="generalBathRooms_AreAllElectricalFixtures" id="safety_AreFireEmergency"
+          class="form-select"[(ngModel)]="WeeklyCampInspection.generalBathRooms_AreAllElectricalFixtures">
+          <option value="" disabled selected>Choose Status</option>
+          <option value="Good">Good</option>
+          <option value="Accepted">Accepted</option>
+          <option value="Bad">Bad</option>
+          <option value="N/A">N/A</option>
+        </select>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control" [(ngModel)]="WeeklyCampInspection.generalBathRooms_AreAllElectricalFixturesComment"formControlName="generalBathRooms_AreAllElectricalFixturesComment" rows="4"
+          id="generalBathRooms_AreAllElectricalFixturesComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  
+   <!--generalBathRooms_AreAllDoorsInGoodWorkingOrder  -->
+   <tr>
+    <td>
+      <div class="form-group">
+        <td>Are all doors in good working order?</td>
+     </div>
+   </td>
+   <td colspan="2">
+    <div class="form-group">
+      <select name="generalBathRooms_AreAllDoorsInGoodWorkingOrder" formControlName="generalBathRooms_AreAllDoorsInGoodWorkingOrder" id="generalBathRooms_AreAllDoorsInGoodWorkingOrder"
+        class="form-select"[(ngModel)]="WeeklyCampInspection.generalBathRooms_AreAllDoorsInGoodWorkingOrder">
+        <option value="" disabled selected>Choose Status</option>
+        <option value="Good">Good</option>
+        <option value="Accepted">Accepted</option>
+        <option value="Bad">Bad</option>
+        <option value="N/A">N/A</option>
+      </select>
+    </div>
+   </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control" [(ngModel)]="WeeklyCampInspection.generalBathRooms_AreAllDoorsInGoodWorkingOrderComment"formControlName="generalBathRooms_AreAllDoorsInGoodWorkingOrderComment" rows="4"
+          id="generalBathRooms_AreAllDoorsInGoodWorkingOrderComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--generalBathRooms_AnyLeaksInPiping  -->
+  <tr>
+    <td>
+      <div class="form-group">
+        <td>Any leaks in piping?</td>
+     </div>
+   </td>
+   <td colspan="2">
+    <div class="form-group">
+      <select name="generalBathRooms_AnyLeaksInPiping" formControlName="generalBathRooms_AnyLeaksInPiping" id="generalBathRooms_AnyLeaksInPiping"
+        class="form-select"[(ngModel)]="WeeklyCampInspection.generalBathRooms_AnyLeaksInPiping">
+        <option value="" disabled selected>Choose Status</option>
+        <option value="Good">Good</option>
+        <option value="Accepted">Accepted</option>
+        <option value="Bad">Bad</option>
+        <option value="N/A">N/A</option>
+      </select>
+    </div>
+   </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control"[(ngModel)]="WeeklyCampInspection.generalBathRooms_AnyLeaksInPipingComment" formControlName="generalBathRooms_AnyLeaksInPipingComment" rows="4"
+          id="generalBathRooms_AnyLeaksInPipingComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--generalBathRooms_IsTheAreaCleanAndTidy  -->
+  <tr>
+    <td>
+      <div class="form-group">
+        <td>Is the area clean and tidy?</td>
+     </div>
+   </td>
+   <td colspan="2">
+    <div class="form-group">
+      <select name="generalBathRooms_IsTheAreaCleanAndTidy" formControlName="generalBathRooms_IsTheAreaCleanAndTidy" id="generalBathRooms_IsTheAreaCleanAndTidy"
+        class="form-select"[(ngModel)]="WeeklyCampInspection.generalBathRooms_IsTheAreaCleanAndTidy">
+        <option value="" disabled selected>Choose Status</option>
+        <option value="Good">Good</option>
+        <option value="Accepted">Accepted</option>
+        <option value="Bad">Bad</option>
+        <option value="N/A">N/A</option>
+      </select>
+    </div>
+   </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control"[(ngModel)]="WeeklyCampInspection.generalBathRooms_IsTheAreaCleanAndTidyComment" formControlName="generalBathRooms_IsTheAreaCleanAndTidyComment" rows="4"
+          id="generalBathRooms_IsTheAreaCleanAndTidyComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--waterTanks_AreWaterTanksHatchesClean  -->
+  <tr>
+    <td>
+      <label style="font-weight: bold; text-decoration: underline;">10. WATER TANKS</label>
+  
+      <div class="form-group">
+        <td>Are water tanks hatches clean and secured?</td>
+     </div>
+   </td>
+   <td colspan="2">
+    <div class="form-group">
+      <select name="waterTanks_AreWaterTanksHatchesClean" formControlName="waterTanks_AreWaterTanksHatchesClean" id="waterTanks_AreWaterTanksHatchesClean"
+        class="form-select"[(ngModel)]="WeeklyCampInspection.waterTanks_AreWaterTanksHatchesClean">
+        <option value="" disabled selected>Choose Status</option>
+        <option value="Good">Good</option>
+        <option value="Accepted">Accepted</option>
+        <option value="Bad">Bad</option>
+        <option value="N/A">N/A</option>
+      </select>
+    </div>
+   </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control"[(ngModel)]="WeeklyCampInspection.waterTanks_AreWaterTanksHatchesCleanComment" formControlName="waterTanks_AreWaterTanksHatchesCleanComment" rows="4"
+          id="waterTanks_AreWaterTanksHatchesCleanComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--waterTanks_AnyWaterLeaks  -->
+  <tr>
+    <td>
+      <div class="form-group">
+        <td>Any water leaks?</td>
+     </div>
+   </td>
+   <td colspan="2">
+    <div class="form-group">
+      <select name="waterTanks_AnyWaterLeaks" formControlName="waterTanks_AnyWaterLeaks" id="waterTanks_AnyWaterLeaks"
+        class="form-select"[(ngModel)]="WeeklyCampInspection.waterTanks_AnyWaterLeaks">
+        <option value="" disabled selected>Choose Status</option>
+        <option value="Good">Good</option>
+        <option value="Accepted">Accepted</option>
+        <option value="Bad">Bad</option>
+        <option value="N/A">N/A</option>
+      </select>
+    </div>
+   </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control"[(ngModel)]="WeeklyCampInspection.waterTanks_AnyWaterLeaksComment"formControlName="waterTanks_AnyWaterLeaksComment" rows="4"
+          id="waterTanks_AnyWaterLeaksComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--waterTanks_WhatIsTheDateOfLastWaterSample  -->
+  <tr>
+    <td>
+      <div class="form-group">
+        <td>What is the date of last water sample?</td>
+     </div>
+   </td>
+   <td colspan="2">
+    <div class="form-group">
+      <select name="waterTanks_WhatIsTheDateOfLastWaterSample" formControlName="waterTanks_WhatIsTheDateOfLastWaterSample" id="waterTanks_WhatIsTheDateOfLastWaterSample"
+        class="form-select"[(ngModel)]="WeeklyCampInspection.waterTanks_WhatIsTheDateOfLastWaterSample">
+        <option value="" disabled selected>Choose Status</option>
+        <option value="Good">Good</option>
+        <option value="Accepted">Accepted</option>
+        <option value="Bad">Bad</option>
+        <option value="N/A">N/A</option>
+      </select>
+    </div>
+   </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control"[(ngModel)]="WeeklyCampInspection.waterTanks_WhatIsTheDateOfLastWaterSampleComment" formControlName="waterTanks_WhatIsTheDateOfLastWaterSampleComment" rows="4"
+          id="waterTanks_WhatIsTheDateOfLastWaterSampleComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  <!--   waterTanks_IsAreaCleanAndTidy-->
+  <tr>
+    <td>
+      <div class="form-group">
+        <td>Is area clean and tidy?</td>
+     </div>
+   </td>
+   <td colspan="2">
+    <div class="form-group">
+      <select name="waterTanks_IsAreaCleanAndTidy" formControlName="waterTanks_IsAreaCleanAndTidy" id="waterTanks_IsAreaCleanAndTidy"
+        class="form-select"[(ngModel)]="WeeklyCampInspection.waterTanks_IsAreaCleanAndTidy">
+        <option value="" disabled selected>Choose Status</option>
+        <option value="Good">Good</option>
+        <option value="Accepted">Accepted</option>
+        <option value="Bad">Bad</option>
+        <option value="N/A">N/A</option>
+      </select>
+    </div>
+   </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="form-group">
+        <textarea class="form-control" [(ngModel)]="WeeklyCampInspection.waterTanks_IsAreaCleanAndTidyComment"formControlName="waterTanks_IsAreaCleanAndTidyComment" rows="4"
+          id="waterTanks_IsAreaCleanAndTidyComment" name="text" placeholder="Write Your Comment"></textarea>
+      </div>
+    </td>
+  </tr>
+  </table>
+  
+  <input  type="submit" class="btn btn-success me-3" value="Submit" />  </form>
+  </div>
+  </div>

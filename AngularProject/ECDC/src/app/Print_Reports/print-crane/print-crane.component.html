@@ -1,0 +1,863 @@
+<div class="container mb-5" style="margin-top: 8%;">
+  <div class="heading_container heading_center d-flex">
+    <h2 class="mx-auto my-4">
+      Weekly Crane Inspection Report
+    </h2>
+  </div>
+  <select class="form-control" (change)="ClassificationSelected($event)">
+    <option value="" disabled selected>Choose Rig Number and Date</option>
+    <option value="{{ item.rigNo }} / {{item.date|date: 'yyyy-MM-dd'}}" *ngFor="let item of cranes">
+      Rig - {{item.rigNo}} / Date: {{ item.date | date: 'dd-MM-yyyy'}}
+    </option>
+  </select>
+
+  <div class="px-4 px-lg-0 m-5">
+    <div class="pb-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 p-5 bg-white rounded shadow-sm mb-4 print-section" *ngFor="let record of craneRecord">
+            <div class="table-responsive">
+              <table class="border" style="width: 100%;">
+                <tr>
+                  <div style="display: flex;">
+                    <img style="margin-left: 30px;" width="100px" src="../../assets/img/ECDC Logo png.png" />
+                    <label class="form-label mt-3"
+                      style="font-weight: bolder; font-size: large; color: black; margin-left: 130px;">
+                      Weekly Crane Inspection Report
+                    </label>
+                  </div>
+                </tr>
+              </table>
+
+              <div class="col-12">
+                <table class="table table-bordered" style="margin-bottom: 0;font-size: 14px;">
+                  <tbody>
+                    <tr style="vertical-align: middle;">
+                      <th class="p-0" colspan="3">Unit No. : {{record.unitNo}}</th>
+                      <!-- <th colspan="2" class="p-0">
+                        Accumulated Running Hours : {{record.accumulatedHrs}}
+                        <hr class="m-0 p-0">
+                        Hours since Oil Change : {{record.hrsSinceOilChange}}
+                      </th> -->
+                      <th class="p-0" colspan="3">Date : {{record.date |date: 'dd-MM-yyyy'}}</th>
+                      <!-- <th class="p-0"></th> -->
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <th class="p-0" colspan="3">Inspection Item</th>
+                      <th class="p-0 text-center">Yes</th>
+                      <th class="p-0 text-center">No</th>
+                      <th class="p-0 text-center w-25">Remarks</th>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">1</td>
+                      <td class="p-0" dir="auto">Unit clean and tidy</td>
+                      <td class="p-0" dir="auto">الونش بحالة جيدة ونظيفة</td>
+                      <ng-container *ngIf="record.cleanAndTidy=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.cleanAndTidyRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">2</td>
+                      <td class="p-0" dir="auto">Check Engine Oil Level</td>
+                      <td class="p-0" dir="auto">فحص مستوى زيت المحرك</td>
+                      <ng-container *ngIf="record.engineOilLevel=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.engineOilLevelRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">3</td>
+                      <td class="p-0" dir="auto">Check Transmission Oil Level</td>
+                      <td class="p-0" dir="auto">فحص مستوى زيت الحركة</td>
+                      <ng-container *ngIf="record.transmissionOilLevel=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.transmissionOilLevelRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">4</td>
+                      <td class="p-0" dir="auto">Check Radiator Water Level</td>
+                      <td class="p-0" dir="auto">فحص مستوى المياه بالردياتير</td>
+                      <ng-container *ngIf="record.radiatorWaterLevel=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.radiatorWaterLevelRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">5</td>
+                      <td class="p-0" dir="auto">Check Hydraulic Oil Leve</td>
+                      <td class="p-0" dir="auto">فحص مستوى زيت الهيدروليك</td>
+                      <ng-container *ngIf="record.hydraulicOilLevel=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.hydraulicOilLevelRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">6</td>
+                      <td class="p-0" dir="auto">Check V-belts Tension</td>
+                      <td class="p-0" dir="auto">تحقق من شد سير المحرك</td>
+                      <ng-container *ngIf="record.v_beltsTension=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.v_beltsTensionRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">7</td>
+                      <td class="p-0" dir="auto">Drain Water from Air Tank</td>
+                      <td class="p-0" dir="auto">تأكد من تصريف المياه من خزان الهواء</td>
+                      <ng-container *ngIf="record.drainWater=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.drainWaterRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">8</td>
+                      <td class="p-0" dir="auto">Check for Leaks, Fuel, Water, Oil, Air</td>
+                      <td class="p-0" dir="auto">تحقق من عدم وجود تسريبات (وقود ، ماء ، زيت ، هواء)</td>
+                      <ng-container *ngIf="record.leaks=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.leaksRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">9</td>
+                      <td class="p-0" dir="auto">Check Battery and Battery Holder</td>
+                      <td class="p-0" dir="auto">تحقق من البطاريات وحامل البطارية</td>
+                      <ng-container *ngIf="record.batteryHolder=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.batteryHolderRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">10</td>
+                      <td class="p-0" dir="auto">Check Load Computer</td>
+                      <td class="p-0" dir="auto">تحقق من كمبيوتر الونش</td>
+                      <ng-container *ngIf="record.loadComputer=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.loadComputerRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">11</td>
+                      <td class="p-0" dir="auto">Check all Gauges for correct readings</td>
+                      <td class="p-0" dir="auto">تحقق من صحة قراءة العدادات</td>
+                      <ng-container *ngIf="record.gaugesForCcorrectReadings=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.gaugesForCcorrectReadingsRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">12</td>
+                      <td class="p-0" dir="auto">Check Tire Pressure</td>
+                      <td class="p-0" dir="auto">تحقق من ضغط الإطارات</td>
+                      <ng-container *ngIf="record.tirePressure=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.tirePressureRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">13</td>
+                      <td class="p-0" dir="auto">Check Fuel Tanks full</td>
+                      <td class="p-0" dir="auto">تحقق من مستوى الوقود</td>
+                      <ng-container *ngIf="record.fuelTanksFull=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.fuelTanksFullRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">14</td>
+                      <td class="p-0" dir="auto">Inspect Wire Ropes for Wear and Kinks</td>
+                      <td class="p-0" dir="auto">افحص الوايرات وتأكد من خلوها من التآكل والتجاعيد</td>
+                      <ng-container *ngIf="record.wireRopes=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.wireRopesRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">15</td>
+                      <td class="p-0" dir="auto">Check Swing Brake</td>
+                      <td class="p-0" dir="auto">تحقق من فرامل الصينية</td>
+                      <ng-container *ngIf="record.swingBrake=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.swingBrakeRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">16</td>
+                      <td class="p-0" dir="auto">Function Test Limit Switches</td>
+                      <td class="p-0" dir="auto">تحقق من فعالية من حساسات نهاية المشوار</td>
+                      <ng-container *ngIf="record.testLimitSwitches=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.testLimitSwitchesRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">17</td>
+                      <td class="p-0" dir="auto">Function Test Outriggers</td>
+                      <td class="p-0" dir="auto">تحقق من سلامة الركائز وخلوها من اي تسريب</td>
+                      <ng-container *ngIf="record.testOutriggers=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.testOutriggersRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">18</td>
+                      <td class="p-0" dir="auto">Check for abnormal noise, vibration; report to Senior Mechanic</td>
+                      <td class="p-0" dir="auto">تحقق من عدم وجود ضوضاء غير طبيعية ، والاهتزاز</td>
+                      <ng-container *ngIf="record.abnormalNoise=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.abnormalNoiseRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">19</td>
+                      <td class="p-0" dir="auto">Check for service brakes and Hand brakes</td>
+                      <td class="p-0" dir="auto">تحقق من وجود فرامل الخدمة وفرامل اليد</td>
+                      <ng-container *ngIf="record.serviceBrakes=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.serviceBrakesRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">20</td>
+                      <td class="p-0" dir="auto">Wire ropes & sheaves condition</td>
+                      <td class="p-0" dir="auto">حالة الواير والبكرات</td>
+                      <ng-container *ngIf="record.sheaves=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.sheavesRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">21</td>
+                      <td class="p-0" dir="auto">Spooling of wire on Drums</td>
+                      <td class="p-0" dir="auto">لف الواير على صندوق الترصيص</td>
+                      <ng-container *ngIf="record.spoolingOfWire=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.spoolingOfWireRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">22</td>
+                      <td>Hook condition, adequate for SWL & Safety LatchCheck Transmission Oil Level</td>
+                      <td class="p-0" dir="auto">حالة الهوك ( الخطاف ) ومزلاج الأمان</td>
+                      <ng-container *ngIf="record.hookcondition=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.hookconditionRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">23</td>
+                      <td class="p-0" dir="auto">Visual Check on Boom Sections, Bolts and Pins conditions</td>
+                      <td class="p-0" dir="auto">الفحص البصرى للوصلات والمسامير والبنوز</td>
+                      <ng-container *ngIf="record.boomSections=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.boomSectionsRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">24</td>
+                      <td class="p-0" dir="auto">Engine V-belts good condition and adjustment</td>
+                      <td class="p-0" dir="auto">حالة المحرك وضبطة</td>
+                      <ng-container *ngIf="record.engineV_belts=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.engineV_beltsRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">25</td>
+                      <td class="p-0" dir="auto">Wiring visually in good condition</td>
+                      <td class="p-0" dir="auto">الاسلاك فى حالة جيدة</td>
+                      <ng-container *ngIf="record.wiringVisually=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.wiringVisuallyRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">26</td>
+                      <td class="p-0" dir="auto">Load indicator working</td>
+                      <td class="p-0" dir="auto">عمل مؤشر الحمولة</td>
+                      <ng-container *ngIf="record.loadIndicator=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.loadIndicatorRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">27</td>
+                      <td class="p-0" dir="auto">Visual & Audible Alarm</td>
+                      <td class="p-0" dir="auto">التنبيهات المرئية والمسموعة</td>
+                      <ng-container *ngIf="record.audibleAlarm=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.audibleAlarmRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">28</td>
+                      <td class="p-0" dir="auto">Load limiting devices working</td>
+                      <td class="p-0" dir="auto">عمل فواصل الوزن</td>
+                      <ng-container *ngIf="record.loadLimiting=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.loadLimitingRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">29</td>
+                      <td class="p-0" dir="auto">Boom angle indicator visible</td>
+                      <td class="p-0" dir="auto">وضوح مؤشر زاوية البوم</td>
+                      <ng-container *ngIf="record.boomAngle=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.boomAngleRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">30</td>
+                      <td class="p-0" dir="auto">Limit Switch of the Crane Hooks (Upper and Lower) working</td>
+                      <td class="p-0" dir="auto">عمل فواصل الهوك العلوية والسفلية</td>
+                      <ng-container *ngIf="record.limitSwitch=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.limitSwitchRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">31</td>
+                      <td class="p-0" dir="auto">Emergency Shut Down Button</td>
+                      <td class="p-0" dir="auto">عمل مفتاح الطوارىء</td>
+                      <ng-container *ngIf="record.emergencyShutDown=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.emergencyShutDownRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">32</td>
+                      <td class="p-0" dir="auto">Operating return to neutral when released</td>
+                      <td class="p-0" dir="auto">رجوع أزرعة التحكم الى وضعها الطبيعى فى حالة تركها حُرة</td>
+                      <ng-container *ngIf="record.operatingReturn=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.operatingReturnRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">33</td>
+                      <td class="p-0" dir="auto">Operating controls working</td>
+                      <td class="p-0" dir="auto">أزرعة التحكم تعمل بحاله جيده</td>
+                      <ng-container *ngIf="record.operatingControls=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.operatingControlsRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">34</td>
+                      <td class="p-0" dir="auto">Horn, Head light, Light, Indicators</td>
+                      <td class="p-0" dir="auto">صافرة الانزار,والأضواء والمؤشرات</td>
+                      <ng-container *ngIf="record.headLight=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.headLightRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">35</td>
+                      <td class="p-0" dir="auto">Reverse Alarm</td>
+                      <td class="p-0" dir="auto">تنبيه الرجوع للخلف</td>
+                      <ng-container *ngIf="record.reverseAlarm=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.reverseAlarmRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">36</td>
+                      <td class="p-0" dir="auto">Parking brake working</td>
+                      <td class="p-0" dir="auto">عمل فرامل الركن والوقوف</td>
+                      <ng-container *ngIf="record.parkingBrake=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.parkingBrakeRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">37</td>
+                      <td class="p-0" dir="auto">Safety Belt, Fire Extinguisher</td>
+                      <td class="p-0" dir="auto">حزام الأمان وطفاية الحريق</td>
+                      <ng-container *ngIf="record.safetyBelt=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.safetyBeltRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">38</td>
+                      <td class="p-0" dir="auto">Driver seat condition</td>
+                      <td class="p-0" dir="auto">حالة كرسي السائق</td>
+                      <ng-container *ngIf="record.driverSeat=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.driverSeatRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">39</td>
+                      <td class="p-0" dir="auto">Wipers condition</td>
+                      <td class="p-0" dir="auto">حالة المساحات</td>
+                      <ng-container *ngIf="record.wipers=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.wipersRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">40</td>
+                      <td class="p-0" dir="auto">Existing corrosion in body</td>
+                      <td class="p-0" dir="auto">يوجد تاكل او صدا فى جسم المعدة</td>
+                      <ng-container *ngIf="record.existingCorrosion=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.existingCorrosionRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">41</td>
+                      <td class="p-0" dir="auto">Tire bolts and pins</td>
+                      <td class="p-0" dir="auto">حالة مسامير وصواميل الكاوتش</td>
+                      <ng-container *ngIf="record.tireBolts=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.tireBoltsRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">42</td>
+                      <td class="p-0" dir="auto">Indicators(safe load indicator, boom length, angle indicator) are in
+                        working condition</td>
+                      <td class="p-0" dir="auto">التاكد من عمل جميع المؤشرات والمبينات الخاصة بالونش (محدد العزوم. طول
+                        ذراع البوم. زاوية
+                        ارفع. المسافة الارضية)</td>
+                      <ng-container *ngIf="record.safeLoadIndicator=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.safeLoadIndicatorRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">43</td>
+                      <td class="p-0" dir="auto">All screen curtains & view obstructions should be removed from
+                        operator’s cabin</td>
+                      <td class="p-0" dir="auto">جميع عوائق الرؤية مزالة من كابينة التشغيل</td>
+                      <ng-container *ngIf="record.screenCurtains=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.screenCurtainsRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">44</td>
+                      <td class="p-0" dir="auto">Outrigger with spreader mat should be in sound and working condition
+                      </td>
+                      <td class="p-0" dir="auto">دخزل وخروج الركائز بدون صوت</td>
+                      <ng-container *ngIf="record.outrigger=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.outriggerRemarks}}</td>
+                    </tr>
+                    <tr style="vertical-align: middle;">
+                      <td class="p-0" dir="auto">45</td>
+                      <td class="p-0" dir="auto">There’s no strange sound during extanding boom and vice versa</td>
+                      <td class="p-0" dir="auto">لا يوجد صوت طقطقة او صوت غريب اثناء فتح البوم والعكس</td>
+                      <ng-container *ngIf="record.strangeSound=='Good'; then loggedIn; else loggedOut">
+                      </ng-container>
+
+                      <ng-template #loggedIn>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                        <td class="p-0 text-center"></td>
+                      </ng-template>
+                      <ng-template #loggedOut>
+                        <td class="p-0 text-center"></td>
+                        <td class="p-0 text-center"><i class="fa-solid fa-check"></i></td>
+                      </ng-template>
+                      <td>{{record.strangeSoundRemarks}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div style="font-size: 14px;" class="d-flex justify-content-between align-items-center my-3 fw-bold">
+                <span>Driver Name : {{record.driverName}}</span>
+                <span>QHSE Engineer : {{record.qhseEngineer}}</span>
+                <span>Signature : </span>
+                <span></span>
+              </div>
+              <div class="col-12" style="font-size: 14px;">
+                <table class="table table-borderless mb-1"
+                  style="display: flex; align-items: center; justify-content: center;">
+                  <tbody>
+                    <tr>
+                      <td scope="row">
+                        Issue No. 01
+                        <br>
+                        Revision No. 00
+                      </td>
+                      <td scope="row">
+                        Document No. ECDC-QHSE-FM-21
+                        <br>
+                        Page 1 / 1
+                      </td>
+                      <td scope="row">
+                        Issue Date: 1/1/2021
+                        <br>
+                        Revision Date: 00/00/0000
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- End -->
+          </div>
+        </div>
+        <input *ngIf="Data&&craneRecord.length!=0" type="submit" class="btn btn-primary my-4" value="Print Data"
+          (click)="print()" />
+      </div>
+    </div>
+  </div>
+</div>

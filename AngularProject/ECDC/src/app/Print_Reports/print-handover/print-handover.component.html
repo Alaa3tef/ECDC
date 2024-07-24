@@ -1,0 +1,278 @@
+<div class="container mb-5" style="margin-top: 8%;">
+  <div class="heading_container heading_center d-flex">
+    <h2 class="mx-auto">
+      QHSE Engineer Shift Handover Report
+    </h2>
+  </div>
+</div>
+<div class="row mt-2">
+  <select class="form-control" (change)="onChange($event)">
+    <option selected disabled value="">Choose Rig Number And Leaving Engineer</option>
+    <option value="{{item.rigNo}} / {{ item.leavingEmpName }}" *ngFor="let item of Handover">
+      Rig - {{item.rigNo}} / Leaving Engineer: {{item.leavingEmpName}}
+    </option>
+  </select>
+</div>
+
+<div class="px-4 px-lg-0 m-4">
+  <div class="pb-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 p-3 bg-white rounded shadow-sm mb-4 print-section" *ngFor="let item of HandoverRecord">
+          <div class="table-responsive border p-2">
+            <table style="width: 100%;" class="border">
+              <tr>
+                <div style="display: flex;">
+                  <img style="margin-left: 30px;" width="100px" src="../../assets/img/ECDC Logo png.png" />
+                  <label class="form-label mt-3"
+                    style="font-weight: bolder; font-size: large; color: black; margin-left: 130px;">
+                    QHSE Engineer Shift Handover Report
+                  </label>
+                </div>
+              </tr>
+            </table>
+
+            <div class="col-12 mt-2">
+              <table class="table table-bordered" style="margin-bottom: 0;font-size: 12px;">
+                <tbody>
+                  <tr>
+                    <th>Rig</th>
+                    <td>{{item.rigNo}}</td>
+                    <th>Shift Date From</th>
+                    <td>{{item.shiftDateFrom|date:'dd/MM/yyyy'}}</td>
+                  </tr>
+                  <tr>
+                    <th>Well Name</th>
+                    <td>{{item.wellName}}</td>
+                    <th>Shift Date To</th>
+                    <td>{{item.shiftDateTo|date:'dd/MM/yyyy'}}</td>
+                  </tr>
+                  <tr>
+                    <th>Client</th>
+                    <td colspan="3">{{item.client}}</td>
+                  </tr>
+                  <tr>
+                    <th>Coming Engineer</th>
+                    <td>{{item.comingEmpName}}</td>
+                    <th>Leaving Engineer</th>
+                    <td>{{item.leavingEmpName}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-12 mt-2">
+              <table class="table table-bordered" style="margin-bottom: 0;font-size: 12px;">
+                <thead style="background-color: dimgray;color:whitesmoke">
+                  <tr class="text-center">
+                    <th colspan="4">Shift Statistics</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Stop Cards</td>
+                    <td>{{item.stopCards}}</td>
+                    <td>Monthly Stop Cards</td>
+                    <td>{{item.monthlyStopCards}}</td>
+                  </tr>
+                  <tr>
+                    <td>Open Stop Cards</td>
+                    <td>{{item.openStopCards}}</td>
+                    <td>Drills</td>
+                    <td>{{item.drills}}</td>
+                  </tr>
+                  <tr>
+                    <td>Monthly Drills</td>
+                    <td>{{item.monthlyDrills }}</td>
+                    <td>Safety Alerts</td>
+                    <td>{{item.safetyAlerts}}</td>
+                  </tr>
+                  <tr>
+                    <td>Monthly Safety alerts</td>
+                    <td>{{item.monthlySafetyAlerts }}</td>
+                    <td>Weekly Inspection</td>
+                    <td>{{item.weeklyInspection}}</td>
+                  </tr>
+                  <tr>
+                    <td>Internal Audit</td>
+                    <td>{{item.internalAudit }}</td>
+                    <td>External Audit</td>
+                    <td>{{item.externalAudit}}</td>
+                  </tr>
+                  <tr>
+                    <td>Medical Report</td>
+                    <td>{{item.medicalReport }}</td>
+                    <td>Training Matrix</td>
+                    <td>{{item.trainingMatrix}}</td>
+                  </tr>
+                  <tr>
+                    <td>Rig move</td>
+                    <td>{{item.rigMove }}</td>
+                    <td>Incident report</td>
+                    <td>{{item.incidentReport}}</td>
+                  </tr>
+                  <tr>
+                    <td>Tracking sheet Closed points</td>
+                    <td>{{item.trackingSheetClosedPoints }}</td>
+                    <td>Potential Hazard Report</td>
+                    <td>{{item.potentialHazardReport}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-12 mt-2" *ngIf="item.shiftDrillTypes.length>0">
+              <table class="table table-bordered" style="margin-bottom: 0;font-size: 12px;">
+                <thead style="background-color: dimgray;color:whitesmoke">
+                  <tr class="text-center">
+                    <th colspan="4">Drills Types During the shift</th>
+                  </tr>
+                  <tr class="text-center">
+                    <th>Date</th>
+                    <th>Drill Type</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of item.shiftDrillTypes,let i=index">
+                    <td>{{item.date|date:'dd/MM/yyyy'}}</td>
+                    <td>{{item.drillType}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-12 mt-2" *ngIf="item.visits.length>0">
+              <table class="table table-bordered" style="margin-bottom: 0;font-size: 12px;">
+                <thead style="background-color: dimgray;color:whitesmoke">
+                  <tr class="text-center">
+                    <th colspan="4">Visits</th>
+                  </tr>
+                  <tr class="text-center">
+                    <th>Date</th>
+                    <th>Visits</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of item.visits,let i=index">
+                    <td>{{item.date|date:'dd/MM/yyyy'}}</td>
+                    <td>{{item.visitName}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-12 mt-2" *ngIf="item.hseInventory.length>0">
+              <table class="table table-bordered" style="margin-bottom: 0;font-size: 12px;">
+                <thead style="background-color: dimgray;color:whitesmoke">
+                  <tr class="text-center">
+                    <th colspan="4">HSE Inventory</th>
+                  </tr>
+                  <tr class="text-center">
+                    <th>Item</th>
+                    <th>Stock at storage</th>
+                    <th>Released from storage</th>
+                    <th>Newly Recieved</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of item.hseInventory,let i=index">
+                    <td>{{item.item}}</td>
+                    <td>{{item.stockAtStorage}}</td>
+                    <td>{{item.releasedFromStorage}}</td>
+                    <td>{{item.newlyRecieved}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-12 mt-2" *ngIf="item.hseEquipment.length>0">
+              <table class="table table-bordered" style="margin-bottom: 0;font-size: 12px;">
+                <thead style="background-color: dimgray;color:whitesmoke">
+                  <tr class="text-center">
+                    <th colspan="4">HSE Equipment & Tools</th>
+                  </tr>
+                  <tr class="text-center">
+                    <th>Item</th>
+                    <th>On site</th>
+                    <th>Sent for maintenance or calibration</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of item.hseEquipment,let i=index">
+                    <td>{{item.item}}</td>
+                    <td>{{item.onSite}}</td>
+                    <td>{{item.sentForMaintenance}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-12 mt-2" *ngIf="item.materialRequested.length>0">
+              <table class="table table-bordered" style="margin-bottom: 0;font-size: 12px;">
+                <thead style="background-color: dimgray;color:whitesmoke">
+                  <tr class="text-center">
+                    <th colspan="4">Material Requested</th>
+                  </tr>
+                  <tr class="text-center">
+                    <th>PR</th>
+                    <th>Required Item</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of item.materialRequested,let i=index">
+                    <td>{{item.pr}}</td>
+                    <td>{{item.requiredItem}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-12 mt-2">
+              <table class="table table-bordered" style="margin-bottom: 0;font-size: 12px;">
+                <thead style="background-color: dimgray;color:whitesmoke">
+                  <tr>
+                    <th colspan="4">Brief Of The Shift</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <!-- <td colspan="4">{{item.shiftBrief}}</td> -->
+                    <td colspan="4" [innerHTML]="item.shiftBrief"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-12 my-2">
+              <table class="table table-borderless" style="margin-bottom: 0;font-size: 14px;">
+                <tbody>
+                  <tr>
+                    <td><span class="fw-bold">QHSE Engineer</span> : {{item.qhseEngineer}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-12">
+              <table class="table table-borderless mb-1"
+                style="display: flex; align-items: center; justify-content: center; font-size: 12px;">
+                <tbody>
+                  <tr>
+                    <td scope="row">
+                      Issue No. 01
+                      <br>
+                      Revision No. 00
+                    </td>
+                    <td scope="row">
+                      Document No. . ECDC-QHSE- FM-H14
+                      <br>
+                      Page 1 / 1
+                    </td>
+                    <td scope="row">
+                      Issue Date: 01/01/2021
+                      <br>
+                      Revision Date: 00/00/0000
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- End -->
+        </div>
+      </div>
+      <input *ngIf="Data" type="submit" class="btn btn-primary my-4" value="Print Data" (click)="print()" />
+    </div>
+  </div>
+</div>

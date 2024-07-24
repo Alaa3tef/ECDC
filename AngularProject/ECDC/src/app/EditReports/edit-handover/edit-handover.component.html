@@ -1,0 +1,589 @@
+<div class="container mb-5" style="margin-top: 8%;">
+  <div class="heading_container heading_center d-flex">
+    <h2 class="mx-auto my-4">
+      Edit QHSE Engineer Shift Handover Report
+    </h2>
+
+  </div>
+
+  <div class="row">
+    <form [formGroup]="HandoverForm" id="print-section" [class.submitted]="submitted" (ngSubmit)="submitData()"
+      class="col-md-10 mx-auto d-flex flex-wrap">
+
+      <table class="table">
+        <tr>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="rigId">Rig Number: </label>
+              <select name="rigId" formControlName="rigId" id="rigId" class="form-select">
+                <option value="" disabled selected>Choose Rig Number</option>
+                <option *ngFor="let item of rigList " value="{{item.id}}">Rig - {{item.number}}</option>
+              </select>
+              <div *ngIf="rigId?.invalid && (rigId?.dirty || rigId?.touched)">
+                <small class="text-danger" *ngIf="rigId?.errors?.['required']">
+                  Rig is required
+                </small>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="wellName">Well Name: </label>
+              <input type="text" formControlName="wellName" class="form-control" />
+              <div *ngIf="(wellName?.invalid && (wellName?.dirty || wellName?.touched))||submitted">
+                <small class="text-danger" *ngIf="wellName?.errors?.['required']">
+                  Well Name is required
+                </small>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <div class="form-group">
+              <label class="form-label" for="client">Client: </label>
+              <input type="text" name="client" formControlName="client" id="client" class="form-control" />
+              <div *ngIf="(client?.invalid && (client?.dirty || client?.touched))||submitted">
+                <small class="text-danger" *ngIf="client?.errors?.['required']">
+                  Client is required
+                </small>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="shiftDateForm">Shift Date From: </label>
+              <input type="date" (change)="ChangeShiftDateFrom($event)" formControlName="shiftDateFrom"
+                class="form-control">
+              <div *ngIf="(shiftDateFrom?.invalid && (shiftDateFrom?.dirty || shiftDateFrom?.touched))||submitted">
+                <small class="text-danger" *ngIf="shiftDateFrom?.errors?.['required']">
+                  Shift Date From is required
+                </small>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="shiftDateTo">Shift Date To: </label>
+              <input type="date" (change)="ChangeShiftDateTo($event)" formControlName="shiftDateTo"
+                class="form-control">
+              <div *ngIf="(shiftDateTo?.invalid && (shiftDateTo?.dirty || shiftDateTo?.touched))||submitted">
+                <small class="text-danger" *ngIf="shiftDateTo?.errors?.['required']">
+                  Shift Date To is required
+                </small>
+              </div>
+              <div *ngIf="!ValidDate">
+                <small class="text-danger">
+                  Shift Date To must be later than Shift Date From
+                </small>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="comingEmpCode">Coming Engineer Code: </label>
+              <input list="comingEmpCode" autocomplete="off" formControlName="comingEmpCode" name="comingEmpCode"
+                class="form-control" (input)="selectedMenace($event)">
+              <datalist id="comingEmpCode">
+                <option *ngFor="let menace of EmpCodeList">{{menace.code}} </option>
+              </datalist>
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="comingEmpName">Name :</label>
+              <input class="form-control" [value]="comingEmpCode_Name" disabled />
+              <input name="comingEmpName" formControlName="comingEmpName" id="comingEmpName" class="form-control"
+                [(ngModel)]="comingEmpCode_Name" hidden />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="leavingEmpCode">Leaving Engineer Code: </label>
+              <input list="leavingEmpCode" autocomplete="off" formControlName="leavingEmpCode" name="leavingEmpCode"
+                class="form-control" (input)="selectedMenace2($event)">
+              <datalist id="leavingEmpCode">
+                <option *ngFor="let menace of EmpCodeList">{{menace.code}} </option>
+              </datalist>
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="leavingEmpName">Name :</label>
+              <input class="form-control" [value]="leavingEmpCode_Name" disabled />
+              <input name="leavingEmpName" formControlName="leavingEmpName" id="leavingEmpName" class="form-control"
+                [(ngModel)]="leavingEmpCode_Name" hidden />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-center pb-4">
+            <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+              <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+                Shift Statistics and Activities
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="p-1">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th class="p-1 text-center" scope="col" colspan="2">Shift Statistics</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="p-1" style="width: 30% !important;">
+                    Stop Cards
+                  </td>
+                  <td class="p-1">
+                    <input type="number" placeholder="number of all stop cards during shift preiod"
+                      formControlName="stopCards" class="form-control" />
+                    <div *ngIf="(stopCards?.invalid && (stopCards?.dirty || stopCards?.touched))||submitted">
+                      <small class="text-danger" *ngIf="stopCards?.errors?.['required']">
+                        Stop Cards is required
+                      </small>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-1">
+                    Monthly Stop Cards
+                  </td>
+                  <td class="p-1">
+                    <input type="number" placeholder="number of all stop cards during the month of end shift date"
+                      formControlName="monthlyStopCards" class="form-control" />
+                    <div
+                      *ngIf="(monthlyStopCards?.invalid && (monthlyStopCards?.dirty || monthlyStopCards?.touched))||submitted">
+                      <small class="text-danger" *ngIf="monthlyStopCards?.errors?.['required']">
+                        Monthly Stop Cards is required
+                      </small>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-1">
+                    Open Stop Cards
+                  </td>
+                  <td class="p-1">
+                    <input type="number" placeholder="number of all open stop cards on end shift date"
+                      formControlName="openStopCards" class="form-control" />
+                    <div
+                      *ngIf="(openStopCards?.invalid && (openStopCards?.dirty || openStopCards?.touched))||submitted">
+                      <small class="text-danger" *ngIf="openStopCards?.errors?.['required']">
+                        Open Stop Cards is required
+                      </small>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-1">
+                    Drills
+                  </td>
+                  <td class="p-1">
+                    <input type="number" placeholder="number of drills during shift preiod" formControlName="drills"
+                      class="form-control" />
+                    <div *ngIf="(drills?.invalid && (drills?.dirty || drills?.touched))||submitted">
+                      <small class="text-danger" *ngIf="drills?.errors?.['required']">
+                        Drills is required
+                      </small>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-1">
+                    Monthly Drills
+                  </td>
+                  <td class="p-1">
+                    <input type="number" placeholder="number of drills during the month of end shift date"
+                      formControlName="monthlyDrills" class="form-control" />
+                    <div
+                      *ngIf="(monthlyDrills?.invalid && (monthlyDrills?.dirty || monthlyDrills?.touched))||submitted">
+                      <small class="text-danger" *ngIf="monthlyDrills?.errors?.['required']">
+                        Monthly Drills is required
+                      </small>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-1">
+                    Safety Alerts
+                  </td>
+                  <td class="p-1">
+                    <input type="number" placeholder="number of alerts discussed during shift"
+                      formControlName="safetyAlerts" class="form-control" />
+                    <div *ngIf="(safetyAlerts?.invalid && (safetyAlerts?.dirty || safetyAlerts?.touched))||submitted">
+                      <small class="text-danger" *ngIf="safetyAlerts?.errors?.['required']">
+                        Safety Alerts is required
+                      </small>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-1">
+                    Monthly Safety alerts
+                  </td>
+                  <td class="p-1">
+                    <input type="number" placeholder="number of alerts during the month till the shift end"
+                      formControlName="monthlySafetyAlerts" class="form-control" />
+                    <div
+                      *ngIf="(monthlySafetyAlerts?.invalid && (monthlySafetyAlerts?.dirty || monthlySafetyAlerts?.touched))||submitted">
+                      <small class="text-danger" *ngIf="monthlySafetyAlerts?.errors?.['required']">
+                        Monthly Safety alerts is required
+                      </small>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-1">
+                    Weekly Inspection
+                  </td>
+                  <td class="p-1">
+                    <input type="number" placeholder="number of weekly inspection during shift preiod"
+                      formControlName="weeklyInspection" class="form-control" />
+                    <div
+                      *ngIf="(weeklyInspection?.invalid && (weeklyInspection?.dirty || weeklyInspection?.touched))||submitted">
+                      <small class="text-danger" *ngIf="weeklyInspection?.errors?.['required']">
+                        Weekly Inspection is required
+                      </small>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-1">
+                    Internal Audit
+                  </td>
+                  <td class="p-1">
+                    <input type="number" placeholder="number of all stop cards during the month of end shift date"
+                      formControlName="internalAudit" class="form-control" />
+                    <div
+                      *ngIf="(internalAudit?.invalid && (internalAudit?.dirty || internalAudit?.touched))||submitted">
+                      <small class="text-danger" *ngIf="internalAudit?.errors?.['required']">
+                        Internal Audit is required
+                      </small>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-1">
+                    External Audit
+                  </td>
+                  <td class="p-1">
+                    <input type="number" placeholder="number of External Audit during shift preiod"
+                      formControlName="externalAudit" class="form-control" />
+                    <div
+                      *ngIf="(externalAudit?.invalid && (externalAudit?.dirty || externalAudit?.touched))||submitted">
+                      <small class="text-danger" *ngIf="externalAudit?.errors?.['required']">
+                        External Audit is required
+                      </small>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-1">
+                    Medical Report
+                  </td>
+                  <td class="p-1">
+                    <input type="number" placeholder="number of Medical Report during shift preiod"
+                      formControlName="medicalReport" class="form-control" />
+                    <div
+                      *ngIf="(medicalReport?.invalid && (medicalReport?.dirty || medicalReport?.touched))||submitted">
+                      <small class="text-danger" *ngIf="medicalReport?.errors?.['required']">
+                        Medical Report is required
+                      </small>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-1">
+                    Training Matrix
+                  </td>
+                  <td class="p-1">
+                    <input type="number" placeholder="Percentage of training matrix" formControlName="trainingMatrix"
+                      class="form-control" />
+                    <div
+                      *ngIf="(trainingMatrix?.invalid && (trainingMatrix?.dirty || trainingMatrix?.touched))||submitted">
+                      <small class="text-danger" *ngIf="trainingMatrix?.errors?.['required']">
+                        Training Matrix is required
+                      </small>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-1">
+                    Rig move
+                  </td>
+                  <td class="p-1">
+                    <input type="number" placeholder="Number of rig moves in shift" formControlName="rigMove"
+                      class="form-control" />
+                    <div *ngIf="(rigMove?.invalid && (rigMove?.dirty || rigMove?.touched))||submitted">
+                      <small class="text-danger" *ngIf="rigMove?.errors?.['required']">
+                        Rig move is required
+                      </small>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-1">
+                    Incident report
+                  </td>
+                  <td class="p-1">
+                    <input type="number" placeholder="number of Incident report during shift preiod"
+                      formControlName="incidentReport" class="form-control" />
+                    <div
+                      *ngIf="(incidentReport?.invalid && (incidentReport?.dirty || incidentReport?.touched))||submitted">
+                      <small class="text-danger" *ngIf="incidentReport?.errors?.['required']">
+                        Incident report is required
+                      </small>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-1">
+                    Tracking sheet Closed points
+                  </td>
+                  <td class="p-1">
+                    <input type="number" placeholder="number of points closed in tracking sheet during the shift"
+                      formControlName="trackingSheetClosedPoints" class="form-control" />
+                    <div
+                      *ngIf="(trackingSheetClosedPoints?.invalid && (trackingSheetClosedPoints?.dirty || trackingSheetClosedPoints?.touched))||submitted">
+                      <small class="text-danger" *ngIf="trackingSheetClosedPoints?.errors?.['required']">
+                        Tracking sheet Closed points is required
+                      </small>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-1">
+                    Potential Hazard Report
+                  </td>
+                  <td class="p-1">
+                    <input type="number" placeholder="number of Potential Hazard Report during shift preiod"
+                      formControlName="potentialHazardReport" class="form-control" />
+                    <div
+                      *ngIf="(potentialHazardReport?.invalid && (potentialHazardReport?.dirty || potentialHazardReport?.touched))||submitted">
+                      <small class="text-danger" *ngIf="potentialHazardReport?.errors?.['required']">
+                        Potential Hazard Report is required
+                      </small>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-center pb-4">
+            <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+              <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+                Drills Types During the shift
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="p-1">
+            <div class="form-group">
+              <table class="table table-bordered" *ngIf="shiftDrillTypesClicked">
+                <thead>
+                  <tr>
+                    <th class="p-1" scope="col">Date</th>
+                    <th class="p-1" scope="col">Drill Type</th>
+                  </tr>
+                </thead>
+                <tbody formArrayName="shiftDrillTypes">
+                  <tr *ngFor="let shiftDrillType of shiftDrillTypes.controls; let i = index" [formGroupName]="i">
+                    <td><input type="date" formControlName="date" class="form-control"></td>
+                    <td><input type="text" formControlName="drillType" class="form-control"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <button type="button" style="position: relative;left: 95%;" class="btn btn-primary"
+                (click)="addshiftDrillTypes()"><i class="fa-solid fa-circle-plus"></i></button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-center pb-4">
+            <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+              <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+                Visits
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="p-1">
+            <div class="form-group">
+              <table class="table table-bordered" *ngIf="visitsClicked">
+                <thead>
+                  <tr>
+                    <th class="p-1" scope="col">Date</th>
+                    <th class="p-1" scope="col">Visit</th>
+                  </tr>
+                </thead>
+                <tbody formArrayName="visits">
+                  <tr *ngFor="let visit of visits.controls; let i = index" [formGroupName]="i">
+                    <td><input type="date" formControlName="date" class="form-control"></td>
+                    <td><input type="text" formControlName="visitName" class="form-control"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <button type="button" style="position: relative;left: 95%;" class="btn btn-primary"
+                (click)="addvisits()"><i class="fa-solid fa-circle-plus"></i></button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-center pb-4">
+            <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+              <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+                HSE Inventory
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4">
+            <div class="form-group">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col" style="width: 40% !important;">Item</th>
+                    <th scope="col">Stock at Storage</th>
+                    <th scope="col">Released From Storage</th>
+                    <th scope="col">Newly Recieved</th>
+                  </tr>
+                </thead>
+                <tbody formArrayName="hseInventory">
+                  <tr *ngFor="let hseInventoryobj of hseInventory.controls; let i = index" [formGroupName]="i">
+                    <td><input type="text" [readonly]="hseInventoryobj.get('isNewRow')?.value ? null : true" formControlName="item" class="form-control"></td>
+                    <td><input type="number" formControlName="stockAtStorage" class="form-control"></td>
+                    <td><input type="number" formControlName="releasedFromStorage" class="form-control"></td>
+                    <td><input type="number" formControlName="newlyRecieved" class="form-control"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <button type="button" style="position: relative;left: 95%;" class="btn btn-primary"
+                (click)="addhseInventory()"><i class="fa-solid fa-circle-plus"></i></button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-center pb-4">
+            <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+              <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+                HSE Equipment & Tools
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4">
+            <div class="form-group">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col" style="width: 40% !important;">Item</th>
+                    <th scope="col">On site</th>
+                    <th scope="col">Sent for maintenance or calibration</th>
+                  </tr>
+                </thead>
+                <tbody formArrayName="hseEquipment">
+                  <tr *ngFor="let hseEquipmentobj of hseEquipment.controls; let i = index" [formGroupName]="i">
+                    <td><input type="text" [readonly]="hseEquipmentobj.get('isNewRow')?.value ? null : true" formControlName="item" class="form-control"></td>
+                    <td><input type="number" formControlName="onSite" class="form-control"></td>
+                    <td><input type="number" formControlName="sentForMaintenance" class="form-control"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <button type="button" style="position: relative;left: 95%;" class="btn btn-primary"
+                (click)="addhseEquipment()"><i class="fa-solid fa-circle-plus"></i></button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-center pb-4">
+            <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+              <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+                Material Requested
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="p-1">
+            <div class="form-group">
+              <table class="table table-bordered" *ngIf="materialRequestedClicked">
+                <thead>
+                  <tr>
+                    <th class="p-1" scope="col">PR</th>
+                    <th class="p-1" scope="col">Required Item</th>
+                  </tr>
+                </thead>
+                <tbody formArrayName="materialRequested">
+                  <tr *ngFor="let materialRequestedobj of materialRequested.controls; let i = index"
+                    [formGroupName]="i">
+                    <td><input type="text" formControlName="pr" class="form-control"></td>
+                    <td><input type="text" formControlName="requiredItem" class="form-control"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <button type="button" style="position: relative;left: 95%;" class="btn btn-primary"
+                (click)="addmaterialRequested()"><i class="fa-solid fa-circle-plus"></i></button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-center pb-4">
+            <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+              <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+                Brief Of The Shift
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-center pb-4">
+            <textarea name="shiftBrief" (change)="onChange($event)" class="form-control" formControlName="shiftBrief"
+              rows="3"></textarea>
+            <div *ngIf="(shiftBrief?.invalid && (shiftBrief?.dirty || shiftBrief?.touched))||submitted">
+              <small class="text-danger" *ngIf="shiftBrief?.errors?.['required']">
+                Brief Of The Shift is required
+              </small>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="4 ">
+            <div class="form-group">
+              <label class="form-label" for="qhseEngineer">QHSE Engineer: </label>
+              <input type="text" formControlName="qhseEngineer" class="form-control" />
+              <div *ngIf="(qhseEngineer?.invalid && (qhseEngineer?.dirty || qhseEngineer?.touched))||submitted">
+                <small class="text-danger" *ngIf="qhseEngineer?.errors?.['required']">
+                  QHSE Engineer is required
+                </small>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+      </table>
+
+
+      <input type="submit" class="btn btn-success me-3" value="Submit" />
+      <input type="button" class="btn btn-primary me-3" value="Export Data" (click)="Download()" />
+      <input routerLink="/Dashboard/Handover/Print" type="submit" class="btn btn-primary" value="Show Data">
+
+    </form>
+  </div>
+</div>

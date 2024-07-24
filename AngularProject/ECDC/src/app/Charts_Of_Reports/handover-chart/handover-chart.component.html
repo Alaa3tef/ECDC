@@ -1,0 +1,23 @@
+<div class="container" style="margin: 8% 0; min-height: 63vh;">
+  <div class="heading_container heading_center d-flex">
+    <h2 class="mx-auto my-4">
+      QHSE Engineer Shift Handover Chart
+    </h2>
+
+  </div>
+  <div class="mb-5">
+    <select class="form-control" id="date" (change)="onChange($event)">
+      <option selected disabled value="">Choose Rig Number</option>
+      <option value="{{item.id}}" *ngFor="let item of rigList">
+        Rig - {{item.number}}
+      </option>
+    </select>
+  </div>
+
+  <div id="divChart" #divChart *ngIf="temp">
+    <div id="chart3">
+      <!-- <p class="display-6 text-center">Corrective Action By Status</p> -->
+      <canvas id="myChart3"></canvas>
+    </div>
+  </div>
+</div>

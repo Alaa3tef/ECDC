@@ -1,0 +1,254 @@
+<div class="container mb-5" style="margin-top: 8%;">
+  <div class="heading_container heading_center d-flex">
+    <h2 class="mx-auto">
+      Weekly Clinic Report
+    </h2>
+  </div>
+  <div class="row mt-2">
+      <select class="form-control" (change)="onChange($event)">
+        <option selected disabled value="">Choose Rig Number And Date</option>
+        <option value="{{item.rigNo}} / {{ item.date| date: 'dd-MM-yyyy' }}" *ngFor="let item of WeeklyClinic">
+          Rig - {{item.rigNo}} / Date: {{item.date| date: 'dd-MM-yyyy'}}
+        </option>
+      </select>
+  </div>
+
+  <div class="px-4 px-lg-0 m-4">
+    <div class="pb-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 p-3 bg-white rounded shadow-sm mb-4 print-section" *ngFor="let item of WeeklyClinicRecord">
+            <div class="table-responsive border p-2">
+              <table style="width: 100%;" class="border">
+                <tr>
+                  <div style="display: flex;">
+                    <img style="margin-left: 30px;" width="100px" src="../../assets/img/ECDC Logo png.png" />
+                    <label class="form-label mt-3"
+                      style="font-weight: bolder; font-size: large; color: black; margin-left: 130px;">
+                      Weekly Clinic Report
+                    </label>
+                  </div>
+                </tr>
+              </table>
+
+              <div class="col-12 mt-2">
+                <table class="table table-bordered" style="margin-bottom: 0;font-size: 12px;">
+                  <tbody>
+                    <tr>
+                      <th>Rig</th>
+                      <td>{{item.rigNo}}</td>
+                      <th>Date</th>
+                      <td>{{item.date|date:'dd/MM/yyyy'}}</td>
+                    </tr>
+                    <tr>
+                      <th>Weekly clinic cases</th>
+                      <td>{{item.weeklyClinicNo}}</td>
+                      <th>Medical Reports No.</th>
+                      <td>{{item.medicalReportNo}}</td>
+                    </tr>
+                    <tr>
+                      <th>No. of Health Meeting with Crew</th>
+                      <td>{{item.healthMeetingNo}}</td>
+                      <th>Last First Aid Drill</th>
+                      <td>{{item.lastFirstAidDrillNo|date:'dd/MM/yyyy'}}</td>
+                    </tr>
+                    <tr>
+                      <th>Topics</th>
+                      <td colspan="3">{{item.topics}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-12 mt-2">
+                <table class="table table-bordered" style="margin-bottom: 0;font-size: 12px;">
+                  <thead>
+                    <tr class="text-center">
+                      <th colspan="2" style="width: 65%;">Clinic checklist</th>
+                      <th style="width: 10%;">Status</th>
+                      <th>Comment</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>Health status questionnaires are available for all personnel on
+                        rig and implemented.</td>
+                      <td>{{item.healthStatus}}</td>
+                      <td>{{item.healthStatusComment}}</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>All life saving apparatuses are available and in good condition
+                        such as: automated external defibrillator (AED), Valid AED
+                        Pads, valid AED battery.</td>
+                      <td>{{item.lifeSavingApparatuses}}</td>
+                      <td>{{item.lifeSavingApparatusesComment}}</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>Vaccines are available and within their expiry dates; Antisnake, Anti-scorpion and
+                        Anti-tetanus.</td>
+                      <td>{{item.vaccinesAvailable}}</td>
+                      <td>{{item.vaccinesAvailableComment}}</td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td>ERP (Emergency Response procedures ) updated and posted.</td>
+                      <td>{{item.erp}}</td>
+                      <td>{{item.erpComment}}</td>
+                    </tr>
+                    <tr>
+                      <td>5</td>
+                      <td>Is there medical stretcher and in good condition?</td>
+                      <td>{{item.medicalStretcher}}</td>
+                      <td>{{item.medicalStretcherComment}}</td>
+                    </tr>
+                    <tr>
+                      <td>6</td>
+                      <td>Water test kit available, and record for tracking water analysis.</td>
+                      <td>{{item.waterTest}}</td>
+                      <td>{{item.waterTestComment}}</td>
+                    </tr>
+                    <tr>
+                      <td>7</td>
+                      <td>Blood-sugar, blood-pressure and temperature measurement
+                        devices available.</td>
+                      <td>{{item.bloodSugar}}</td>
+                      <td>{{item.bloodSugarComment}}</td>
+                    </tr>
+                    <tr>
+                      <td>8</td>
+                      <td>First aid box available with its content.</td>
+                      <td>{{item.firstAidBox}}</td>
+                      <td>{{item.firstAidBoxComment}}</td>
+                    </tr>
+                    <tr>
+                      <td>9</td>
+                      <td>Full O<sub>2</sub> cylinder and its regulator with water filter are
+                        available and at least another spare one.</td>
+                      <td>{{item.fullO2Cylinder}}</td>
+                      <td>{{item.fullO2CylinderComment}}</td>
+                    </tr>
+                    <tr>
+                      <td>10</td>
+                      <td>Medical waste box available and medical waste collected and
+                        sent to Cairo on regular basis.</td>
+                      <td>{{item.medicalWaste}}</td>
+                      <td>{{item.medicalWasteComment}}</td>
+                    </tr>
+                    <tr>
+                      <td>11</td>
+                      <td>All medicines are within their expiry dates. Expired medicines
+                        collected and sent back to Medical Section. </td>
+                      <td>{{item.medicinesExpiryDate}}</td>
+                      <td>{{item.medicinesExpiryDateComment}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-12 mt-2">
+                <table class="table table-bordered" style="margin-bottom: 0;font-size: 12px;">
+                  <thead style="background-color: dimgray;color:whitesmoke">
+                    <tr class="text-center">
+                      <th colspan="4">Fridge Components</th>
+                    </tr>
+                    <tr class="text-center">
+                      <th colspan="2">Item</th>
+                      <th>Quantity</th>
+                      <th>Expire Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of item.fridgeComponents,let i=index">
+                      <td style="width: 10%;">{{i+1}}</td>
+                      <td style="width: 40%;">{{item.item}}</td>
+                      <td>{{item.quantity}}</td>
+                      <td>{{item.expireDate|date:'dd/MM/yyyy'}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-12 mt-2">
+                <table class="table table-bordered" style="margin-bottom: 0;font-size: 12px;">
+                  <thead style="background-color: dimgray;color:whitesmoke">
+                    <tr class="text-center">
+                      <th colspan="4">Drug Inventory</th>
+                    </tr>
+                    <tr class="text-center">
+                      <th colspan="2">Item</th>
+                      <th>Quantity</th>
+                      <th>Expire Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of item.drugInventory,let i=index">
+                      <td style="width: 10%;">{{i+1}}</td>
+                      <td style="width: 40%;">{{item.item}}</td>
+                      <td>{{item.quantity}}</td>
+                      <td>{{item.expireDate|date:'dd/MM/yyyy'}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-12 mt-2">
+                <table class="table table-bordered" style="margin-bottom: 0;font-size: 12px;">
+                  <thead style="background-color: dimgray;color:whitesmoke">
+                    <tr>
+                      <th colspan="4">Other comments / shortage / urgent requirements</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <!-- <td colspan="4">{{item.otherComments}}</td> -->
+                      <td colspan="4">
+                        <span *ngIf="item.otherComments!=null">
+                          <span [innerHTML]="item.otherComments"></span>
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-12 my-2">
+                <table class="table table-borderless" style="margin-bottom: 0;font-size: 14px;">
+                  <tbody>
+                    <tr>
+                      <td><span class="fw-bold">Doctor Name</span> : {{item.doctorName}}</td>
+                      <td><span class="fw-bold">QHSE Engineer</span> : {{item.qhseEngineer}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-12">
+                <table class="table table-borderless mb-1"
+                  style="display: flex; align-items: center; justify-content: center; font-size: 12px;">
+                  <tbody>
+                    <tr>
+                      <td scope="row">
+                        Issue No. 01
+                        <br>
+                        Revision No. 00
+                      </td>
+                      <td scope="row">
+                        Document No. . ECDC-QHSE- FM-H14
+                        <br>
+                        Page 1 / 1
+                      </td>
+                      <td scope="row">
+                        Issue Date: 01/01/2021
+                        <br>
+                        Revision Date: 00/00/0000
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- End -->
+          </div>
+        </div>
+        <input *ngIf="Data" type="submit" class="btn btn-primary my-4" value="Print Data" (click)="print()" />
+      </div>
+    </div>
+  </div>
+</div>

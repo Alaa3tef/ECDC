@@ -1,0 +1,97 @@
+<div class="container mb-5" style="margin-top: 8%;">
+    <div class="heading_container heading_center d-flex">
+      <h2 class="mx-auto my-4">
+        Add Mobile Crane
+      </h2>
+  
+    </div>
+  
+    <div class="row">
+      <form [formGroup]="craneDailyReport" id="print-section" (ngSubmit)="submitData()"
+        class="col-md-10 mx-auto d-flex flex-wrap">
+  
+        <table class="table">
+          <tr>
+            <td>
+              <div class="form-group">
+                <label class="form-label" for="mobileCraneName">Mobile Crane : </label>
+                <input type="text" name="mobileCraneName" formControlName="mobileCraneName" id="mobileCraneName" class="form-control"/>
+                <div *ngIf="mobileCraneName?.invalid && (mobileCraneName?.dirty || mobileCraneName?.touched)">
+                  <small class="text-danger" *ngIf="mobileCraneName?.errors?.['required']">
+                    Mobile Crane is required
+                  </small>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="form-group">
+                <label class="form-label" for="type">type : </label>
+                <input type="text" name="type" formControlName="type" id="type" class="form-control"/>
+                <div *ngIf="type?.invalid && (type?.dirty || type?.touched)">
+                  <small class="text-danger" *ngIf="type?.errors?.['required']">
+                     Type is required
+                  </small>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="form-group">
+                <label class="form-label" for="rigId">Capacity: </label>
+                <input type="text" name="capacity" formControlName="capacity" id="capacity" class="form-control"/>
+                <div *ngIf="capacity?.invalid && (capacity?.dirty || capacity?.touched)">
+                  <small class="text-danger" *ngIf="capacity?.errors?.['required']">
+                     capacity is required
+                  </small>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="from-group">
+                <label for="chasisNo" class="form-label">Chasis No:</label>
+                <input type="number" name="chasisNo" formControlName="chasisNo" id="chasisNo" class="form-control"/>
+                <div *ngIf="chasisNo?.invalid && (chasisNo?.dirty || chasisNo?.touched)">
+                  <small class="text-danger" *ngIf="chasisNo?.errors?.['required']">
+                     Chasis No is required
+                  </small>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="form-group">
+                <label class="form-label" for="rigId">Date Of Last Inspection: </label>
+                <input type="date" name="dateofLastInspection" formControlName="dateofLastInspection" id="dateofLastInspection" class="form-control"/>
+                <div *ngIf="dateofLastInspection?.invalid && (dateofLastInspection?.dirty || dateofLastInspection?.touched)">
+                  <small class="text-danger" *ngIf="dateofLastInspection?.errors?.['required']">
+                     Date Of Last Inspection is required
+                  </small>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="from-group">
+                <label for="dateofNextInspection" class="form-label">Date Of Next Inspection:</label>
+                <input type="date" name="dateofNextInspection" formControlName="dateofNextInspection" id="dateofNextInspection" class="form-control"/>
+                <div *ngIf="dateofNextInspection?.invalid && (dateofNextInspection?.dirty || dateofNextInspection?.touched)">
+                  <small class="text-danger" *ngIf="dateofNextInspection?.errors?.['required']">
+                    Date Of Next Inspection is required
+                  </small>
+                </div>
+              </div>
+            </td>
+
+          </tr>
+        </table>
+  
+        <input type="submit" class="btn btn-success me-3" value="Submit" />
+        <!-- <input type="submit" class="btn btn-primary me-3" value="Export Data" (click)="Download()" /> -->
+        <input routerLink="/Dashboard/CraneDailyReports" type="submit" class="btn btn-primary" value="Show Data">
+  
+      </form>
+    </div>
+  </div>
+  
