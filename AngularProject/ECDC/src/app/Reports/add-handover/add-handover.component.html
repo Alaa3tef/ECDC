@@ -403,6 +403,13 @@
                   <tr *ngFor="let shiftDrillType of shiftDrillTypes.controls; let i = index" [formGroupName]="i">
                     <td><input type="date" formControlName="date" class="form-control"></td>
                     <td><input type="text" formControlName="drillType" class="form-control"></td>
+                    <td> <a (click)="deleteShiftDrillTypes(i)"
+                      class="m-2 h4"
+                      style="color: #f3c93e; cursor: pointer !important;">
+
+                      <i class="fa-solid fa-trash"></i>
+                    </a>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -434,6 +441,13 @@
                   <tr *ngFor="let visit of visits.controls; let i = index" [formGroupName]="i">
                     <td><input type="date" formControlName="date" class="form-control"></td>
                     <td><input type="text" formControlName="visitName" class="form-control"></td>
+                    <td> <a (click)="deleteVisits(i)"
+                      class="m-2 h4"
+                      style="color: #f3c93e; cursor: pointer !important;">
+
+                      <i class="fa-solid fa-trash"></i>
+                    </a>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -470,6 +484,13 @@
                     <td><input type="number" formControlName="stockAtStorage" class="form-control"></td>
                     <td><input type="number" formControlName="releasedFromStorage" class="form-control"></td>
                     <td><input type="number" formControlName="newlyRecieved" class="form-control"></td>
+                    <td> <a (click)="deletehseInventory(i)"
+                      class="m-2 h4"
+                      style="color: #f3c93e; cursor: pointer !important;">
+
+                      <i class="fa-solid fa-trash"></i>
+                    </a>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -504,6 +525,13 @@
                         formControlName="item" class="form-control"></td>
                     <td><input type="number" formControlName="onSite" class="form-control"></td>
                     <td><input type="number" formControlName="sentForMaintenance" class="form-control"></td>
+                    <td> <a (click)="deletehseEquipment(i)"
+                      class="m-2 h4"
+                      style="color: #f3c93e; cursor: pointer !important;">
+
+                      <i class="fa-solid fa-trash"></i>
+                    </a>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -536,6 +564,13 @@
                     [formGroupName]="i">
                     <td><input type="text" formControlName="pr" class="form-control"></td>
                     <td><input type="text" formControlName="requiredItem" class="form-control"></td>
+                    <td> <a (click)="deletematerialRequested(i)"
+                      class="m-2 h4"
+                      style="color: #f3c93e; cursor: pointer !important;">
+
+                      <i class="fa-solid fa-trash"></i>
+                    </a>
+                    </td>
                   </tr>
                 </tbody>
               </table>

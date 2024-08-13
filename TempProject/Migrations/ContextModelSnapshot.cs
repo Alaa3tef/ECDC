@@ -2627,8 +2627,8 @@ namespace TempProject.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("date");
 
-                    b.Property<DateTime>("DepartureDate")
-                        .HasColumnType("date");
+                    b.Property<TimeSpan>("DepartureTime")
+                        .HasColumnType("time");
 
                     b.Property<string>("Destination")
                         .IsRequired()
@@ -2972,8 +2972,9 @@ namespace TempProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Code")
-                        .HasColumnType("int");
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Company")
                         .IsRequired()
@@ -3207,8 +3208,9 @@ namespace TempProject.Migrations
                     b.Property<int>("Age")
                         .HasColumnType("int");
 
-                    b.Property<int>("Code")
-                        .HasColumnType("int");
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Company")
                         .IsRequired()
@@ -3728,13 +3730,13 @@ namespace TempProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PO_No")
+                    b.Property<int?>("PO_No")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("PR_IssueDate")
+                    b.Property<DateTime?>("PR_IssueDate")
                         .HasColumnType("date");
 
-                    b.Property<int>("PR_No")
+                    b.Property<int?>("PR_No")
                         .HasColumnType("int");
 
                     b.Property<int>("ResponibilityId")

@@ -38,7 +38,7 @@ export class AddBOPService {
   }
 
   GeBOPById(id: number,userId:string,UserRole:string): Observable<IAPIResult> {
-    return this.http.get<IAPIResult>(`http://localhost:5000/api/BOP/Edit/${id}?UserID=${userId}&UserRole=${UserRole}`);
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/BOP/GetDataById/${id}?UserID=${userId}&UserRole=${UserRole}`);
   }
 
   DeleteBOP(BOP:IBOP): Observable<IBOP> {

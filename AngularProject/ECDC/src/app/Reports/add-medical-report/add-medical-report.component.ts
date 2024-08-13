@@ -94,7 +94,9 @@ export class AddMedicalReportComponent {
           code: this.fb.control(
             '',
             [
-              Validators.required
+              Validators.required,
+              Validators.minLength(14),
+              Validators.maxLength(14)
             ]
           ),
           name: this.fb.control(
@@ -307,6 +309,19 @@ export class AddMedicalReportComponent {
     this.isEcdcSelected = selectedCompany === 'ECDC';
   }
 
+  validateKeyPress(event: KeyboardEvent): void {
+    const input = event.target as HTMLInputElement;
+    const allowedKeys = ['Backspace', 'ArrowLeft', 'ArrowRight', 'Delete'];
+    const isNumber = /^\d$/.test(event.key);
+
+    if (!isNumber && !allowedKeys.includes(event.key)) {
+      event.preventDefault();
+    }
+
+    if (input.value.length >= 14 && !allowedKeys.includes(event.key)) {
+      event.preventDefault();
+    }
+  }
   submitData() {
 
     if (this.MedicalReportForm.valid) {
@@ -343,7 +358,7 @@ export class AddMedicalReportComponent {
         next: data => {
           console.log('from service')
           console.log(data.data)
-          location.reload();
+          // location.reload();
         },
         error: error => {
           console.log("this.MedicalReportForm");

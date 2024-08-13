@@ -1,16 +1,8 @@
-﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using System.Drawing.Drawing2D;
-using System.Drawing.Printing;
-using System.IO.Pipelines;
 using TempProject.DTO;
 using TempProject.DTO.ResponseDTO;
-using TempProject.Helper;
 using TempProject.Models;
 using TempProject.Repository;
 
@@ -67,9 +59,15 @@ namespace TempProject.Controllers
                         PPEReceivingDTO.ThermalCoverallsSize = PPEReceiving.ThermalCoverallsSize;
                         PPEReceivingDTO.SafetyBootsSize = PPEReceiving.SafetyBootsSize;
                         List<PPEAndPPEReceiving> PPEs = PPERepo.getall().Where(a => a.PPEReceivingId == PPEReceiving.Id).ToList();
-						PPEReceivingDTO.PPE = PPEs;
-						
-						newTemp.Add(PPEReceivingDTO);
+					    PPEReceivingDTO.PPE = PPEs;
+                    foreach (var ppeAndPPEReceiving in PPEReceiving.PPEAndPPEReceiving)
+                    {
+                        string pPEDTO;
+                        pPEDTO = ppeAndPPEReceiving.PPE.Name;
+                        PPEReceivingDTO.PPEs.Add(pPEDTO);
+
+                    }
+                    newTemp.Add(PPEReceivingDTO);
 						
 					}
 					
@@ -395,7 +393,7 @@ namespace TempProject.Controllers
 					orgPPEReceiving.EmployeeCode = newPPEReceiving.EmployeeCode;
 					orgPPEReceiving.EmployeeName = newPPEReceiving.EmployeeName;
 					orgPPEReceiving.EmployeePositionName = newPPEReceiving.EmployeePositionName;
-					orgPPEReceiving.userID = newPPEReceiving.userID;
+					//orgPPEReceiving.userID = newPPEReceiving.userID;
                     orgPPEReceiving.NormalCoverallsSize = newPPEReceiving.NormalCoverallsSize;
                     orgPPEReceiving.ThermalCoverallsSize = newPPEReceiving.ThermalCoverallsSize;
                     orgPPEReceiving.SafetyBootsSize = newPPEReceiving.SafetyBootsSize;

@@ -14,7 +14,7 @@ namespace TempProject.DTO.ResponseDTO
         public int TypeOfIncidentId { get; set; }
         public string Company { get; set; }
         public string Job { get; set; }
-        public int Code { get; set; }
+        public string Code { get; set; }
         public string Name { get; set; }
 
         public string Address { get; set; }

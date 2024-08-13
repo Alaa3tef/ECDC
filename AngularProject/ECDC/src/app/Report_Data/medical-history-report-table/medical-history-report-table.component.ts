@@ -80,38 +80,6 @@ export class MedicalHistoryReportTableComponent {
   SelectMenace(event: any) {
     console.log(event.target.value, +"this.User.Role", this.User.Role);
 
-
-    // this.MedicalHistoryService.GetSearchByDieases(event.target.value, this.User.Role).subscribe({
-    //   next: (data: { data: IMedicalHistory[] }) => {
-    //     if (data && data.data) {
-    //       console.log("Initial Data:", data.data);
-
-    //       let filteredData: IMedicalHistory[] = data.data;
-
-    //       switch (event.target.value) {
-    //         case 'Smokers':
-    //           console.log("Before Filter:", filteredData);
-    //           filteredData = filteredData.filter((item: IMedicalHistory) => item.socia_DoYouSmokeAnswer === 'Yes');
-    //           console.log("After Filter:", filteredData);
-    //           break;
-    //         // ... other cases
-
-    //         default:
-    //           break;
-    //       }
-
-    //       this.ListOfMedicalHistory.next(filteredData);
-    //     } else {
-    //       console.log("API response is null or does not contain data.");
-    //     }
-    //   },
-    //   error: err => {
-    //     this.getpages(1);
-    //     console.log("Error from API:", err);
-    //   }
-    // });
-
-
     this.MedicalHistoryService.GetSearchByDieases(event.target.value, this.User.Role).subscribe({
       next: (data: { data: IMedicalHistory[] }) => {
         if (data && data.data) {

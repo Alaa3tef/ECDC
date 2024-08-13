@@ -1,6 +1,6 @@
 <div class="container mb-5" style="margin-top: 8%;">
   <div class="heading_container heading_center d-flex">
-    <h2 class="mx-auto my-4">
+    <h2 class="mx-auto my-4 header-content">
       Medical History Report
     </h2>
 
@@ -9,140 +9,145 @@
   <div class="row">
     <form [formGroup]="MedicalHistoryForm" id="print-section" (ngSubmit)="submitData()"
       class="col-md-10 mx-auto d-flex flex-wrap">
-
-      <table class="table">
+    <table class="table">
         <tr>
-          <td>
-            <div class="form-group">
-              <label class="form-label" for="rigId">Rig Number: </label>
-              <select name="rigId" formControlName="rigId" id="rigId" class="form-select">
-                <option value="" disabled selected>Choose Rig Number</option>
-                <option *ngFor="let item of rigList" value="{{item.id}}">Rig - {{item.number}}</option>
-              </select>
+        <td class="td-content">
+          <div class="form-group">
+            <label class="form-label" for="rigId">Rig Number: </label>
+            <select name="rigId" formControlName="rigId" id="rigId" class="form-select">
+              <option value="" disabled selected>Choose Rig Number</option>
+              <option *ngFor="let item of rigList" value="{{item.id}}">Rig - {{item.number}}</option>
+            </select>
+          </div>
+        </td>
+        <td class="td-content">
+          <div class="form-group">
+            <label>Date :</label>
+            <input id="Date" type="date" formControlName="date" class="form-control" />
+            <div *ngIf="date?.invalid && (date?.dirty || date?.touched)">
+              <small class="text-danger" *ngIf="date?.errors?.['required']">
+                Date is required
+              </small>
+            </div>
+          </div>
+        </td>
+        <td class="td-content">
+          <div class="form-group">
+            <label>Company :</label>
+            <select name="company" formControlName="company" id="general_AreParking" class="form-select"
+                    (change)="onCompanyChange()">
+              <option value="" disabled selected>Choose Answer</option>
+              <option value="ECDC">ECDC</option>
+              <option value="Other">Other</option>
+            </select>
+            <div *ngIf="company?.invalid && (company?.dirty || company?.touched)">
+              <small class="text-danger" *ngIf="company?.errors?.['required']">
+                Company is required
+              </small>
+            </div>
+          </div>
+        </td>
+        </tr>
+        <tr *ngIf="isOtherSelected">
+          <td class="td-content">
+            <label class="form-label m-0 pb-0">Code / National ID: </label>
+            <input formControlName="code" name="code" class="form-control" autocomplete="off">
+            <div *ngIf="MedicalHistoryForm.get('code')?.invalid && (MedicalHistoryForm.get('code')?.dirty || MedicalHistoryForm.get('code')?.touched)">
+              <small class="text-danger" *ngIf="MedicalHistoryForm.get('code')?.errors?.['required']">Code / National ID is required.</small>
+              <small class="text-danger" *ngIf="MedicalHistoryForm.get('code')?.errors?.['minlength']">Code / National ID must be exactly 14 digits.</small>
+              <small class="text-danger" *ngIf="MedicalHistoryForm.get('code')?.errors?.['maxlength']">Code / National ID must be exactly 14 digits.</small>
+            </div>
+          </td>
+          <td class="td-content">
+            <div class="from-group">
+              <label for="jop" class="form-label"> Job:</label>
+              <input name="jop" formControlName="jop" id="jop" class="form-control">
             </div>
           </td>
           <td>
             <div class="form-group">
-              <label>Date :</label>
-              <input id="Date" type="date" formControlName="date" class="form-control" />
-              <div *ngIf="date?.invalid && (date?.dirty || date?.touched)">
-                <small class="text-danger" *ngIf="date?.errors?.['required']">
-                  Date is required
-                </small>
-              </div>
-            </div>
-          </td>
-          <td>
-            <div class="form-group">
-              <label>Company :</label>
-              <select name="company" formControlName="company" id="general_AreParking" class="form-select"
-                      (change)="onCompanyChange()">
-                <option value="" disabled selected>Choose Answer</option>
-                <option value="ECDC">ECDC</option>
-                <option value="Other">Other</option>
-              </select>
-              <div *ngIf="company?.invalid && (company?.dirty || company?.touched)">
-                <small class="text-danger" *ngIf="company?.errors?.['required']">
-                  Company is required
-                </small>
-              </div>
-            </div>
-          </td>
-          </tr>
-          <tr *ngIf="isOtherSelected">
-            <td>
-              <label class="form-label m-0 pb-0">Code / National ID: </label>
-              <input formControlName="code" name="code" class="form-control" autocomplete="off">
-            </td>
-            <td>
-              <div class="from-group">
-                <label for="jop" class="form-label"> Job:</label>
-                <input name="jop" formControlName="jop" id="jop" class="form-control">
-              </div>
-            </td>
-            <td>
-              <div class="form-group">
-                <label class="form-label" for="name">Name :</label>
-                <input name="name" formControlName="name" id="name" class="form-control">
-              </div>
-            </td>
-          </tr>
-          <tr *ngIf="isEcdcSelected">
-            <td>
-              <label class="form-label m-0 pb-0">Code: </label>
-              <input list="QHSEmenace" autocomplete="off" formControlName="code" name="code" class="form-control"
-                     (input)="selectedMenace($event)">
-              <datalist id="QHSEmenace">
-                <option *ngFor="let menace of CodeList">{{menace.code}} </option>
-              </datalist>
-            </td>
-            <td>
-              <div class="from-group">
-                <label for="jop" class="form-label"> Job:</label>
-                <input class="form-control" [value]="Code_Position" disabled />
-                <input name="jop" formControlName="jop" id="jop" class="form-control" [(ngModel)]="Code_Position" hidden />
-              </div>
-            </td>
-            <td>
-              <div class="form-group">
-                <label class="form-label" for="name">Name :</label>
-                <input class="form-control" [value]="Code_Name" disabled />
-                <input name="name" formControlName="name" id="name" class="form-control" [(ngModel)]="Code_Name" hidden />
-              </div>
-            </td>
-          </tr>
-
-        <tr>
-          <td>
-            <div class="form-group">
-              <label class="form-label" for="address">Address: </label>
-              <input id="address" type="address" formControlName="address" class="form-control" />
-              <div *ngIf="address?.invalid && (address?.dirty || address?.touched)">
-                <small class="text-danger" *ngIf="address?.errors?.['required']">
-                  Address is required
-                </small>
-              </div>
-            </div>
-          </td>
-          <td>
-            <div class="form-group">
-              <label>Date of Birth :</label>
-              <input id="dateOfBirth" type="date" formControlName="dateOfBirth" class="form-control" />
-              <div *ngIf="dateOfBirth?.invalid && (dateOfBirth?.dirty || dateOfBirth?.touched)">
-                <small class="text-danger" *ngIf="dateOfBirth?.errors?.['required']">
-                  Date Of Birth is required
-                </small>
-              </div>
-            </div>
-          </td>
-          <td>
-            <div class="form-group">
-              <label>Telephone Number :</label>
-              <input id="telephoneNumber" type="telephoneNumber" formControlName="telephoneNumber"
-                class="form-control" />
-              <div *ngIf="telephoneNumber?.invalid && (telephoneNumber?.dirty || telephoneNumber?.touched)">
-                <small class="text-danger" *ngIf="telephoneNumber?.errors?.['required']">
-                  Telephone Number is required
-                </small>
-              </div>
+              <label class="form-label" for="name">Name :</label>
+              <input name="name" formControlName="name" id="name" class="form-control">
             </div>
           </td>
         </tr>
-        <tr>
-          <td colspan="3">
+        <tr *ngIf="isEcdcSelected">
+          <td class="td-content">
+            <label class="form-label m-0 pb-0">Code: </label>
+            <input list="QHSEmenace" autocomplete="off" formControlName="code" name="code" class="form-control"
+                   (input)="selectedMenace($event)">
+            <datalist id="QHSEmenace">
+              <option *ngFor="let menace of CodeList">{{menace.code}} </option>
+            </datalist>
+          </td>
+          <td class="td-content">
+            <div class="from-group">
+              <label for="jop" class="form-label"> Job:</label>
+              <input class="form-control" [value]="Code_Position" disabled />
+              <input name="jop" formControlName="jop" id="jop" class="form-control" [(ngModel)]="Code_Position" hidden />
+            </div>
+          </td>
+          <td class="td-content">
             <div class="form-group">
-              <label>Contact Person to be called in case of emergency: :</label>
-              <input id="contact" type="text" formControlName="contact" class="form-control" />
-              <div *ngIf="contact?.invalid && (contact?.dirty || contact?.touched)">
-                <small class="text-danger" *ngIf="contact?.errors?.['required']">
-                  Contact person is required
-                </small>
-              </div>
+              <label class="form-label" for="name">Name :</label>
+              <input class="form-control" [value]="Code_Name" disabled />
+              <input name="name" formControlName="name" id="name" class="form-control" [(ngModel)]="Code_Name" hidden />
             </div>
           </td>
         </tr>
 
-      </table>
+      <tr>
+        <td class="td-content">
+          <div class="form-group">
+            <label class="form-label" for="address">Address: </label>
+            <input id="address" type="address" formControlName="address" class="form-control" />
+            <div *ngIf="address?.invalid && (address?.dirty || address?.touched)">
+              <small class="text-danger" *ngIf="address?.errors?.['required']">
+                Address is required
+              </small>
+            </div>
+          </div>
+        </td>
+        <td class="td-content">
+          <div class="form-group">
+            <label>Date of Birth :</label>
+            <input id="dateOfBirth" type="date" formControlName="dateOfBirth" class="form-control" />
+            <div *ngIf="dateOfBirth?.invalid && (dateOfBirth?.dirty || dateOfBirth?.touched)">
+              <small class="text-danger" *ngIf="dateOfBirth?.errors?.['required']">
+                Date Of Birth is required
+              </small>
+            </div>
+          </div>
+        </td>
+        <td class="td-content">
+          <div class="form-group">
+            <label>Telephone Number :</label>
+            <input id="telephoneNumber" type="telephoneNumber" formControlName="telephoneNumber"
+              class="form-control" />
+            <div *ngIf="telephoneNumber?.invalid && (telephoneNumber?.dirty || telephoneNumber?.touched)">
+              <small class="text-danger" *ngIf="telephoneNumber?.errors?.['required']">
+                Telephone Number is required
+              </small>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3"class="td-content">
+          <div class="form-group">
+            <label>Contact Person to be called in case of emergency: :</label>
+            <input id="contact" type="text" formControlName="contact" class="form-control" />
+            <div *ngIf="contact?.invalid && (contact?.dirty || contact?.touched)">
+              <small class="text-danger" *ngIf="contact?.errors?.['required']">
+                Contact person is required
+              </small>
+            </div>
+          </div>
+        </td>
+      </tr>
+
+    </table>
+
 
       <!-- Social / Occupational History -->
       <table class="table-bordered table" style="border: 1px solid #000;">
@@ -871,7 +876,7 @@
         </tbody>
       </table>
 
-      <table class="table-bordered table mt-4" style="border: 1px solid #000;">
+      <table class="table-bordered-Rate table mt-4" style="border: 1px solid #000;">
         <tbody>
           <tr style="text-align: center;">
             <th colspan="4">Doctor's Comments</th>
@@ -888,7 +893,7 @@
 
        <table class="table">
         <tr class=" mt-4">
-          <td colspan="3">
+          <td colspan="3"class="td-content">
             <div class="form-group">
               <label class="form-label" for="doctorName">Doctor Name: </label>
                 <input class="form-control " formControlName="doctorName"  id="doctorName"
@@ -898,9 +903,12 @@
         </tr>
        </table>
 
-      <input type="submit" class="btn btn-success me-3" value="Submit" />
-      <input type="submit" class="btn btn-primary me-3" value="Export Data" (click)="Download()" />
-      <input routerLink="/PrintMedicalHistory" type="submit" class="btn btn-primary" value="Show Data">
+       <div class="button-container">
+        <input type="submit" class="btn btn-success me-3 " value="Submit" />
+        <input type="submit" class="btn btn-primary me-3 " value="Export Data" (click)="Download()" />
+        <input routerLink="/PrintMedicalHistory" type="submit" class="btn btn-primary me-3 " value="Show Data">
+      </div>
+
     </form>
   </div>
 </div>

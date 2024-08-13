@@ -37,6 +37,7 @@ namespace TempProject.Controllers
                         BOPResponseDTO BOPDTO = new BOPResponseDTO();
                         BOPDTO.Id = bop.Id;
                         BOPDTO.RigId = bop.Rig.Number;
+                        BOPDTO.RigNumber=bop.Rig.Number;
                         BOPDTO.ECDC = bop.ECDC;
                         BOPDTO.Client = bop.Client;
                         BOPDTO.Catering = bop.Catering;
@@ -313,7 +314,8 @@ namespace TempProject.Controllers
 						//result.Data = prod;
 					}
 
-					float countDetails = BOPRepoistory.getall().Count();
+					//float countDetails = BOPRepoistory.getall().Count();
+                    float countDetails=temp.Count;
 					var result = new PageResult<BOPResponseDTO>
 					{
 						Count = (int)Math.Ceiling(countDetails / pagesize),
@@ -513,6 +515,8 @@ namespace TempProject.Controllers
                     BopDTO BOPDTO = new BopDTO();
                     BOPDTO.Id = bop.Id;
                     BOPDTO.RigId = bop.RigId;
+                    //BOPDTO.RigNumber = bop.Rig.Number;
+
                     BOPDTO.ECDC = bop.ECDC;
                     BOPDTO.Client = bop.Client;
                     BOPDTO.Catering = bop.Catering;

@@ -742,7 +742,7 @@ namespace TempProject.Controllers
 		}
 
 		[HttpGet("GetDataByMonth/{date:int}")]
-		public ActionResult<ResultDTO> GetAllWithDataByMonth(int date, string UserId, string UserRole)
+		public ActionResult<ResultDTO> GetAllWithDataByMonth(int date, int year,string UserId, string UserRole)
 		{
 			ResultDTO result = new ResultDTO();
 			try
@@ -750,12 +750,14 @@ namespace TempProject.Controllers
 				if (string.Equals(UserRole, "Admin", StringComparison.OrdinalIgnoreCase))
 				{
 					List<StopCardResponseDTO> StopCardRegisterDTOs = new List<StopCardResponseDTO>();
-					List<StopCardRegister> StopCardRegisters = StopCardRegisterRepoistory.getall().Where(a => a.Date.Month == date).ToList();
+					List<StopCardRegister> StopCardRegisters = StopCardRegisterRepoistory.getall().Where(a => a.Date.Month == date && a.Date.Year == year).ToList();
 					foreach (StopCardRegister StopCardRegister in StopCardRegisters)
 					{
 						StopCardResponseDTO StopCardRegisterDTO = new StopCardResponseDTO();
 						StopCardRegisterDTO.Id = StopCardRegister.Id;
-						StopCardRegisterDTO.ReportedByName = StopCardRegister.ReportedByName;
+                        //StopCardRegisterDTO.RigId = StopCardRegister.Rig.Id;
+
+                        StopCardRegisterDTO.ReportedByName = StopCardRegister.ReportedByName;
 						StopCardRegisterDTO.ReportedByPosition = StopCardRegister.ReportedByPosition;
                         StopCardRegisterDTO.EmployeeCode = StopCardRegister.EmployeeCode;
                         StopCardRegisterDTO.Classification = StopCardRegister.Classification.Name;
@@ -813,7 +815,7 @@ namespace TempProject.Controllers
 
 
 		[HttpGet("GetDataByMonthCompare")]
-        public ActionResult<ResultDTO> GetDataByMonthCompare([FromQuery] int date1, [FromQuery] int date2, string UserId, string UserRole)
+        public ActionResult<ResultDTO> GetDataByMonthCompare([FromQuery] int date1, [FromQuery] int date2,int year, string UserId, string UserRole)
         {
             ResultDTO result = new ResultDTO();
 			try
@@ -821,7 +823,7 @@ namespace TempProject.Controllers
 				if (string.Equals(UserRole, "Admin", StringComparison.OrdinalIgnoreCase))
 				{
 					List<StopCardResponseDTO> StopCardRegisterDTOs = new List<StopCardResponseDTO>();
-					List<StopCardRegister> StopCardRegisters = StopCardRegisterRepoistory.getall().Where(a => a.Date.Month == date1 || a.Date.Month == date2).ToList();
+					List<StopCardRegister> StopCardRegisters = StopCardRegisterRepoistory.getall().Where(a => (a.Date.Month == date1 || a.Date.Month == date2 )&& a.Date.Year == year).ToList();
 					foreach (StopCardRegister StopCardRegister in StopCardRegisters)
 					{
 						StopCardResponseDTO StopCardRegisterDTO = new StopCardResponseDTO();
@@ -848,7 +850,7 @@ namespace TempProject.Controllers
 				else if (string.Equals(UserRole, "User", StringComparison.OrdinalIgnoreCase))
 				{
 					List<StopCardResponseDTO> StopCardRegisterDTOs = new List<StopCardResponseDTO>();
-					List<StopCardRegister> StopCardRegisters = StopCardRegisterRepoistory.getall().Where(a => (a.Date.Month == date1 || a.Date.Month == date2)&&a.user.Id==UserId).ToList();
+					List<StopCardRegister> StopCardRegisters = StopCardRegisterRepoistory.getall().Where(a => ((a.Date.Month == date1 || a.Date.Month == date2 )&& a.Date.Year == year) &&a.user.Id==UserId).ToList();
 					foreach (StopCardRegister StopCardRegister in StopCardRegisters)
 					{
 						StopCardResponseDTO StopCardRegisterDTO = new StopCardResponseDTO();
@@ -880,6 +882,7 @@ namespace TempProject.Controllers
 			}
 			return result;
 		}
+
 
 		[HttpGet]
         public ActionResult<ResultDTO> GetAll(string UserId, string UserRole)

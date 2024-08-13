@@ -188,11 +188,11 @@
         <tr>
           <td>
             <div class="form-group">
-              <label class="form-label" for="departureDate">Departure Date : </label>
-              <input type="date" name="departureDate" formControlName="departureDate" id="departureDate"
+              <label class="form-label" for="departureTime">Departure Time : </label>
+              <input type="time" name="departureTime" formControlName="departureTime" id="departureTime"
                 class="form-control">
-              <div *ngIf="departureDate?.invalid && (departureDate?.dirty || departureDate?.touched)">
-                <small class="text-danger" *ngIf="departureDate?.errors?.['required']">
+              <div *ngIf="departureTime?.invalid && (departureTime?.dirty || departureTime?.touched)">
+                <small class="text-danger" *ngIf="departureTime?.errors?.['required']">
                   Date is required
                 </small>
               </div>
@@ -430,7 +430,7 @@
             <label>QHSE Manager Must Approve : </label>
             <div class="form-check">
               <input class="form-check-input ms-1" formControlName="qHSEManagerMustApprove" type="radio"
-                value="Approved" id="qHSEManagerMustApprove">
+                value="Approved" id="qHSEManagerMustApprove"  [checked]="isApproved"(click)="toggleApproval()">
               <label class="form-check-label ms-1" for="qHSEManagerMustApprove">
                 Approved
               </label>

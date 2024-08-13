@@ -3479,7 +3479,7 @@ namespace TempProject.Controllers
 					orgHandover.TrackingSheetClosedPoints = newHandover.TrackingSheetClosedPoints;
 					orgHandover.ShiftBrief = newHandover.ShiftBrief;
 					orgHandover.QHSEEngineer = newHandover.QHSEEngineer;
-					orgHandover.userID = newHandover.userID;
+					//orgHandover.userID = newHandover.userID;
 					orgHandover.PotentialHazardReport = newHandover.PotentialHazardReport;
 
 					HandoverRepo.update(orgHandover);

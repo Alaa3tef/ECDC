@@ -141,6 +141,12 @@
             <datalist id="teamMemeberCode">
               <option *ngFor="let menace of QHSECodeList">{{menace.code}} </option>
             </datalist>
+            <div
+              *ngIf="teamMemeberCode?.invalid && (teamMemeberCode?.dirty || teamMemeberCode?.touched)">
+              <small class="text-danger" *ngIf="teamMemeberCode?.errors?.['required']">
+                Code is required
+              </small>
+            </div>
           </td>
           <td>
             <div class="from-group">
@@ -148,6 +154,12 @@
               <input class="form-control" [value]="TeamMemeber_Position" disabled />
               <input name="teamMemeberPosition" formControlName="teamMemeberPosition" id="teamMemeberPosition"
                 class="form-control" [(ngModel)]="TeamMemeber_Position" hidden />
+                <div
+              *ngIf="teamMemeberPosition?.invalid && (teamMemeberPosition?.dirty || teamMemeberPosition?.touched)">
+              <small class="text-danger" *ngIf="teamMemeberPosition?.errors?.['required']">
+                POsition is required
+              </small>
+            </div>
             </div>
           </td>
           <td>
@@ -156,6 +168,12 @@
               <input class="form-control" [value]="TeamMemeber_Name" disabled />
               <input name="teamMemeberName" formControlName="teamMemeberName" id="teamMemeberName" class="form-control"
                 [(ngModel)]="TeamMemeber_Name" hidden />
+                <div
+              *ngIf="teamMemeberName?.invalid && (teamMemeberName?.dirty || teamMemeberName?.touched)">
+              <small class="text-danger" *ngIf="teamMemeberName?.errors?.['required']">
+                NAME is required
+              </small>
+            </div>
             </div>
           </td>
         </tr>
@@ -167,6 +185,12 @@
             <datalist id="teamMemeberCode1">
               <option *ngFor="let menace of QHSECodeList">{{menace.code}} </option>
             </datalist>
+            <div
+            *ngIf="teamMemeberCode1?.invalid && (teamMemeberCode1?.dirty || teamMemeberCode1?.touched)">
+            <small class="text-danger" *ngIf="teamMemeberCode1?.errors?.['required']">
+              Code is required
+            </small>
+          </div>
           </td>
           <td>
             <div class="from-group">
@@ -174,6 +198,13 @@
               <input class="form-control" [value]="TeamMemeber1_Position" disabled />
               <input name="teamMemeberPosition1" formControlName="teamMemeberPosition1" id="teamMemeberPosition1"
                 class="form-control" [(ngModel)]="TeamMemeber1_Position" hidden />
+                <div
+                *ngIf="teamMemeberPosition1?.invalid && (teamMemeberPosition1?.dirty || teamMemeberPosition1?.touched)">
+                <small class="text-danger" *ngIf="teamMemeberPosition1?.errors?.['required']">
+                  POsition is required
+                </small>
+              </div>
+
             </div>
           </td>
           <td>
@@ -182,6 +213,12 @@
               <input class="form-control" [value]="TeamMemeber1_Name" disabled />
               <input name="teamMemeberName1" formControlName="teamMemeberName1" id="teamMemeberName1"
                 class="form-control" [(ngModel)]="TeamMemeber1_Name" hidden />
+                <div
+                *ngIf="teamMemeberName1?.invalid && (teamMemeberName1?.dirty || teamMemeberName1?.touched)">
+                <small class="text-danger" *ngIf="teamMemeberName1?.errors?.['required']">
+                  NAME is required
+                </small>
+              </div>
             </div>
           </td>
         </tr>
@@ -193,6 +230,12 @@
             <datalist id="teamMemeberCode2">
               <option *ngFor="let menace of QHSECodeList">{{menace.code}} </option>
             </datalist>
+            <div
+            *ngIf="teamMemeberCode2?.invalid && (teamMemeberCode2?.dirty || teamMemeberCode2?.touched)">
+            <small class="text-danger" *ngIf="teamMemeberCode2?.errors?.['required']">
+              Code is required
+            </small>
+          </div>
           </td>
           <td>
             <div class="from-group">
@@ -200,6 +243,12 @@
               <input class="form-control" [value]="TeamMemeber2_Position" disabled />
               <input name="teamMemeberPosition2" formControlName="teamMemeberPosition2" id="teamMemeberPosition2"
                 class="form-control" [(ngModel)]="TeamMemeber2_Position" hidden />
+                <div
+                *ngIf="teamMemeberPosition2?.invalid && (teamMemeberPosition2?.dirty || teamMemeberPosition2?.touched)">
+                <small class="text-danger" *ngIf="teamMemeberPosition2?.errors?.['required']">
+                  POsition is required
+                </small>
+              </div>
             </div>
           </td>
           <td>
@@ -208,6 +257,12 @@
               <input class="form-control" [value]="TeamMemeber2_Name" disabled />
               <input name="teamMemeberName2" formControlName="teamMemeberName2" id="teamMemeberName2"
                 class="form-control" [(ngModel)]="TeamMemeber2_Name" hidden />
+                <div
+                *ngIf="teamMemeberName2?.invalid && (teamMemeberName2?.dirty || teamMemeberName2?.touched)">
+                <small class="text-danger" *ngIf="teamMemeberName2?.errors?.['required']">
+                  NAME is required
+                </small>
+              </div>
             </div>
           </td>
         </tr>
@@ -219,6 +274,12 @@
             <datalist id="teamMemeberCode3">
               <option *ngFor="let menace of QHSECodeList">{{menace.code}} </option>
             </datalist>
+            <div
+            *ngIf="teamMemeberCode3?.invalid && (teamMemeberCode3?.dirty || teamMemeberCode3?.touched)">
+            <small class="text-danger" *ngIf="teamMemeberCode3?.errors?.['required']">
+              Code is required
+            </small>
+          </div>
           </td>
           <td>
             <div class="from-group">
@@ -226,6 +287,12 @@
               <input class="form-control" [value]="TeamMemeber3_Position" disabled />
               <input name="teamMemeberPosition3" formControlName="teamMemeberPosition3" id="teamMemeberPosition3"
                 class="form-control" [(ngModel)]="TeamMemeber3_Position" hidden />
+                <div
+                *ngIf="teamMemeberPosition3?.invalid && (teamMemeberPosition3?.dirty || teamMemeberPosition3?.touched)">
+                <small class="text-danger" *ngIf="teamMemeberPosition3?.errors?.['required']">
+                  POsition is required
+                </small>
+              </div>
             </div>
           </td>
           <td>
@@ -234,6 +301,12 @@
               <input class="form-control" [value]="TeamMemeber3_Name" disabled />
               <input name="teamMemeberName3" formControlName="teamMemeberName3" id="teamMemeberName3"
                 class="form-control" [(ngModel)]="TeamMemeber3_Name" hidden />
+                <div
+                *ngIf="teamMemeberName3?.invalid && (teamMemeberName3?.dirty || teamMemeberName3?.touched)">
+                <small class="text-danger" *ngIf="teamMemeberName3?.errors?.['required']">
+                  NAME is required
+                </small>
+              </div>
             </div>
           </td>
         </tr>

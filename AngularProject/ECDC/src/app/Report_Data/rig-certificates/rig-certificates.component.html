@@ -1,7 +1,7 @@
 <div class="container mb-5" style="margin-top: 8%;">
   <div class="heading_container heading_center d-flex">
     <h2 class="mx-auto my-4">
-      Rig Certificates Register
+      QHSE Record Rig Certificates System
     </h2>
 
   </div>
@@ -24,8 +24,22 @@
         <td>
           <a routerLink="/Dashboard/RigCertificates/Edit/{{record.id}}/{{record.date}}" class="m-2 h4" style="color: #434F78;"><i class="fa-solid fa-pen-to-square"></i></a>
           <a routerLink="/Dashboard/RigCertificates/Print/{{record.id}}" class="m-2 h4" style="color: #434F78;"><i class="fa-solid fa-print"></i></a>
-          <a (click)="DeleteRigCertificates(record)" class="m-2 h4" style="color: #f3c93e;cursor: pointer !important;"><i class="fa-solid fa-trash"></i></a>
-        </td>
+          <a
+          *ngIf="canDeleteRecord()"
+          (click)="DeleteRigCertificates(record)"
+          class="m-2 h4"
+          style="color: #f3c93e; cursor: pointer !important;">
+          <i class="fa-solid fa-trash"></i>
+        </a>
+        <a
+          *ngIf="!canDeleteRecord()"
+          class="m-2 h4"
+          style="color: #ccc; cursor: not-allowed;"
+        >
+          <i class="fa-solid fa-trash"></i>
+        </a>
+
+      </td>
       </tr>
     </tbody>
   </table>

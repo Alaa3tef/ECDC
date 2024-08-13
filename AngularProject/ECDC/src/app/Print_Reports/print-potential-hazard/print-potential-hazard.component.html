@@ -72,7 +72,7 @@
                           <div class="mb-1">
                             <h6 class="mb-1">
                               <span style="font-weight: bold;">PR - Issue Date: </span>
-                              <span>{{ record.pR_IssueDate|date: 'dd-MM-yyyy' }}</span>
+                              <span>{{ record.pR_IssueDate ? record.pR_IssueDate : '-'|date: 'dd-MM-yyyy' }}</span>
                             </h6>
                           </div>
                         </td>
@@ -91,7 +91,7 @@
                           <div class="mb-1">
                             <h6 class="mb-1">
                               <span style="font-weight: bold;">PR No:</span>
-                              <span>{{ record.pR_No }}</span>
+                              <span>{{ record.pR_No ? record.pR_No : '-'}}</span>
                             </h6>
                           </div>
                         </td>
@@ -110,7 +110,7 @@
                           <div class="mb-1">
                             <h6 class="mb-1">
                               <span style="font-weight: bold;">PO No:</span>
-                              <span>{{ record.pO_No }}</span>
+                              <span>{{ record.pO_No ? record.pO_No : '-' }}</span>
                             </h6>
                           </div>
                         </td>
@@ -126,8 +126,10 @@
                           <div class="mb-1">
                             <h6 class="mb-0">
                               <span style="font-weight: bold;">Description:</span>
-                              <div class="p-1" style="border: 1px solid black;width: 100%;">
-                                {{ record.description }}
+                              <div class="recommendations-container">
+                                <ng-container *ngFor="let description of record.description .split('\n')">
+                                  <div class="recommendation-item">{{ description }}</div>
+                                </ng-container>
                               </div>
                             </h6>
                           </div>
@@ -138,8 +140,10 @@
                           <div class="mb-1">
                             <h6 class="mb-0">
                               <span style="font-weight: bold;">Needed Corrective Action:</span>
-                              <div class="p-1" style="border: 1px solid black;width: 100%;">
-                                {{ record.neededAction }}
+                              <div class="recommendations-container">
+                                <ng-container *ngFor="let neededAction of record.neededAction.split('\n')">
+                                  <div class="recommendation-item">{{ neededAction }}</div>
+                                </ng-container>
                               </div>
                             </h6>
                           </div>

@@ -2164,7 +2164,7 @@ namespace TempProject.Controllers
                         }
                     }
 
-                    orgDrill.userID = newDrill.userID;
+                    //orgDrill.userID = newDrill.userID;
 
 
                     List<DrillImages> drillImages = DrillImagesRepo.getall().Where(p => p.DrillId == newDrill.Id).ToList();

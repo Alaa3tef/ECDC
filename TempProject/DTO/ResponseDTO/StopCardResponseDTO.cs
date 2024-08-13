@@ -6,6 +6,7 @@ namespace TempProject.DTO.ResponseDTO
     public class StopCardResponseDTO
     {
         public int Id { get; set; }
+        //public int RigId { get; set; }
 
         [Column(TypeName = "date")]
         public DateTime Date { get; set; }

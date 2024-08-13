@@ -15,7 +15,7 @@ namespace TempProject.DTO
         [Column(TypeName = "date")]
         public DateTime Date { get; set; }
         public string Company { get; set; }
-        public int Code { get; set; }
+        public string Code { get; set; }
         public string Name { get; set; }
         public string Jop { get; set; }
         public string Address { get; set; }

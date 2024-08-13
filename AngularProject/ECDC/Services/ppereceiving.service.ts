@@ -17,9 +17,10 @@ export class PPEReceivingService {
   GetPPEReceivings(userId:string,userRole:string): Observable<IAPIResult> {
     return this.http.get<IAPIResult>(`http://localhost:5000/api/PPEReceiving/GetData?UserID=${userId}&UserRole=${userRole}`);
   }
+ 
   EditPPEReceiving(PPEReceiving : any, id:number): Observable<any> {
     return this.http.put<any>(`http://localhost:5000/api/PPEReceiving/${id}`, PPEReceiving);
-  }  
+  }
 
   GetPPEReceivingForExel(userId:string,userRole:string): Observable<IAPIResult> {
     return this.http.get<IAPIResult>(`http://localhost:5000/api/PPEReceiving/GetDataForExcel?UserID=${userId}&UserRole=${userRole}`);
@@ -33,7 +34,7 @@ export class PPEReceivingService {
   }
   GetPPEReceivingByPage(pageNumber:number,userId:string,userRole:string):Observable<any>{
     return this.http.get<any>(`http://localhost:5000/api/PPEReceiving/ByPage/${pageNumber}?UserId=${userId}&UserRole=${userRole}`);
-    
+
   }
   PrintPPEReceivingByID(Id: number,userId:string,userRole:string): Observable<IAPIResult> {
     return this.http.get<IAPIResult>(`http://localhost:5000/api/PPEReceiving/PrintDataById/${Id}?UserId=${userId}&UserRole=${userRole}`)
@@ -41,12 +42,12 @@ export class PPEReceivingService {
 
   GetPPEReceivingtByEmpCodeNew(empCode:number,userId:string,userRole:string,date:string):Observable<any>{
     return this.http.get<any>(`http://localhost:5000/api/PPEReceiving/GetDataByEmpCode/New/${empCode}?UserId=${userId}&UserRole=${userRole}&date=${date}`);
-    
+
   }
 
   PPEReceivingtSearchByEmpCode(empCode:number,userId:string,userRole:string):Observable<any>{
     return this.http.get<any>(`http://localhost:5000/api/PPEReceiving/GetDataByEmpCode/${empCode}?UserId=${userId}&UserRole=${userRole}`);
-    
+
   }
 
 }

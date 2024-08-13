@@ -158,7 +158,7 @@ export class AddVehicleWeeklyChecklistReportComponent {
             this.createHeavyTrucksFormGroup('7- To have minimum of ABS fitted on prime mover & ALL brakes (prime mover and trailer) are fully functional.'),
             this.createHeavyTrucksFormGroup('8- A dual-circuit, dual-line service brake system with a secondary braking system. All braking systems to be fail-safe in the event of loss of air pressure.'),
 
-            this.createHeavyTrucksFormGroup('9- All light shall be fully functional.'),
+            this.createHeavyTrucksFormGroup('9- Anti-Lock Braking System (ABS)'),
             this.createHeavyTrucksFormGroup('10- Electrical sockets between trailer and prime mover are compatible and are connected correctly'),
             this.createHeavyTrucksFormGroup('11- Both prime mover and trailer are fitted with a reverse alarm that is audible to the rear of both units.'),
             this.createHeavyTrucksFormGroup('12- Provision of secondary retention (e.g. chain) for the propeller shaft in case of universal joint failure.'),

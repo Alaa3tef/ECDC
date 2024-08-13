@@ -45,8 +45,8 @@ namespace TempProject.DTO.ResponseDTO
 
         public string Status { get; set; }
 
-        [Column(TypeName = "date")]
-        public DateTime DepartureDate { get; set; }
+        public TimeSpan DepartureTime { get; set; }
+
 
         public double Time { get; set; }
 

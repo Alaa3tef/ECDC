@@ -62,8 +62,12 @@
                 class="form-select">
                 <option value="" disabled selected>Choose Classification Of Stop Card</option>
                 <option *ngFor="let item of classificationList" value="{{item.id}}">{{item.name}}</option>
-
               </select>
+              <div *ngIf="classificationID?.invalid && (classificationID?.dirty || classificationID?.touched)">
+                <small class="text-danger" *ngIf="classificationID?.errors?.['required']">
+                  Classification is required
+                </small>
+              </div>
             </div>
           </td>
           <td colspan="3">
@@ -88,6 +92,11 @@
                 <option value="" disabled selected>Choose Observation Category</option>
                 <option *ngFor="let item of typeOfObservationCategoryList" value="{{item.id}}">{{item.name}}</option>
               </select>
+              <div *ngIf="typeOfObservationCategoryID?.invalid && (typeOfObservationCategoryID?.dirty || typeOfObservationCategoryID?.touched)">
+                <small class="text-danger" *ngIf="typeOfObservationCategoryID?.errors?.['required']">
+                  Type Of ObservationCategory is required
+                </small>
+              </div>
             </div>
           </td>
           <td colspan="3">
@@ -98,6 +107,11 @@
                 <option value="Open">Open</option>
                 <option value="Closed">Closed</option>
               </select>
+              <div *ngIf="status?.invalid && (status?.dirty || status?.touched)">
+                <small class="text-danger" *ngIf="status?.errors?.['required']">
+                  status is required
+                </small>
+              </div>
             </div>
           </td>
         </tr>

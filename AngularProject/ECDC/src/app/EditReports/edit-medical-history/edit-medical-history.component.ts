@@ -474,7 +474,9 @@ export class EditMedicalHistoryComponent {
         code: this.fb.control(
           '',
           [
-            Validators.required
+            Validators.required,
+            Validators.minLength(14),
+            Validators.maxLength(14)
           ]
         ),
         jop: this.fb.control(
@@ -503,7 +505,19 @@ export class EditMedicalHistoryComponent {
         }
       })
   }
+  validateKeyPress(event: KeyboardEvent): void {
+    const input = event.target as HTMLInputElement;
+    const allowedKeys = ['Backspace', 'ArrowLeft', 'ArrowRight', 'Delete'];
+    const isNumber = /^\d$/.test(event.key);
 
+    if (!isNumber && !allowedKeys.includes(event.key)) {
+      event.preventDefault();
+    }
+
+    if (input.value.length >= 14 && !allowedKeys.includes(event.key)) {
+      event.preventDefault();
+    }
+  }
   selectedMenace(event: any) {
     console.log("event.target.value")
     console.log(event.target.value)

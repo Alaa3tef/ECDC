@@ -34,14 +34,15 @@
                 <table class="table table-bordered" style="margin-bottom: 0;font-size: 14px;">
                   <tbody>
                     <tr style="vertical-align: middle;">
-                      <th class="p-0" colspan="3">Unit No. : {{record.unitNo}}</th>
+                      <th class="p-0" colspan="2">Unit No. : {{record.unitNo}}</th>
+                      <th class="p-0">Rig :{{record.rigNo}}</th>
+
                       <!-- <th colspan="2" class="p-0">
                         Accumulated Running Hours : {{record.accumulatedHrs}}
                         <hr class="m-0 p-0">
                         Hours since Oil Change : {{record.hrsSinceOilChange}}
                       </th> -->
                       <th class="p-0" colspan="3">Date : {{record.date |date: 'dd-MM-yyyy'}}</th>
-                      <!-- <th class="p-0"></th> -->
                     </tr>
                     <tr style="vertical-align: middle;">
                       <th class="p-0" colspan="3">Inspection Item</th>
@@ -52,7 +53,7 @@
                     <tr style="vertical-align: middle;">
                       <td class="p-0" dir="auto">1</td>
                       <td class="p-0" dir="auto">Unit clean and tidy</td>
-                      <td class="p-0" dir="auto">الونش بحالة جيدة ونظيفة</td>
+                      <td class="p-0" dir="auto">المعدة بحالة جيدة ونظيفة</td>
                       <ng-container *ngIf="record.cleanAndTidy=='Good'; then loggedIn; else loggedOut">
                       </ng-container>
 

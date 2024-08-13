@@ -164,7 +164,9 @@ export class EditMedicalReportComponent {
           code: this.fb.control(
             '',
             [
-              Validators.required
+              Validators.required,
+              Validators.minLength(14),
+              Validators.maxLength(14)
             ]
           ),
           name: this.fb.control(
@@ -313,7 +315,19 @@ export class EditMedicalReportComponent {
     })
   }
 
- 
+  validateKeyPress(event: KeyboardEvent): void {
+    const input = event.target as HTMLInputElement;
+    const allowedKeys = ['Backspace', 'ArrowLeft', 'ArrowRight', 'Delete'];
+    const isNumber = /^\d$/.test(event.key);
+
+    if (!isNumber && !allowedKeys.includes(event.key)) {
+      event.preventDefault();
+    }
+
+    if (input.value.length >= 14 && !allowedKeys.includes(event.key)) {
+      event.preventDefault();
+    }
+  }
  
   get id() {
     return this.MedicalReportForm.get('id');

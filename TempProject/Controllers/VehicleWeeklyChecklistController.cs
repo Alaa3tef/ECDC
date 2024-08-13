@@ -62,6 +62,8 @@ namespace TempProject.Controllers
 						VehicleWeeklyChecklistResponseDTO vehicleWeeklyChecklistResponse = new VehicleWeeklyChecklistResponseDTO();
                         vehicleWeeklyChecklistResponse.Id = vehicleWeeklyChecklist.Id;
                         vehicleWeeklyChecklistResponse.RigNo = vehicleWeeklyChecklist.Rig.Number;
+                        vehicleWeeklyChecklistResponse.RigNumber = vehicleWeeklyChecklist.Rig.Number;
+
                         vehicleWeeklyChecklistResponse.Date = vehicleWeeklyChecklist.Date;
                         vehicleWeeklyChecklistResponse.LightBusDriverName = vehicleWeeklyChecklist.LightBusDriverName;
                         vehicleWeeklyChecklistResponse.LightBusVehiclePlateNo = vehicleWeeklyChecklist.LightBusVehiclePlateNo;
@@ -1488,7 +1490,7 @@ namespace TempProject.Controllers
                     orgVehicleWeeklyChecklist.Location = newVehicleWeeklyChecklist.Location;
                     orgVehicleWeeklyChecklist.Cient = newVehicleWeeklyChecklist.Cient;
 					orgVehicleWeeklyChecklist.HSEEngineer = newVehicleWeeklyChecklist.HSEEngineer;
-					orgVehicleWeeklyChecklist.userID = newVehicleWeeklyChecklist.userID;
+					//orgVehicleWeeklyChecklist.userID = newVehicleWeeklyChecklist.userID;
                     VehicleWeeklyChecklistRepo.update(orgVehicleWeeklyChecklist);
 
                     var oldlightBus = LightBusRepo.getall().Where(o => o.VehicleWeeklyChecklistId == id).ToList();

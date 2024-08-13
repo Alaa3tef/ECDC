@@ -5,7 +5,7 @@ export interface IMedicalHistory{
 
       date:Date ,
       company:string ,
-     code:number ,
+     code:string ,
       name:string ,
       jop:string ,
       address:string ,

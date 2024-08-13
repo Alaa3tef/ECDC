@@ -2564,7 +2564,7 @@ namespace TempProject.Controllers
 					orgweeklyClinic.OtherComments = newWeeklyClinic.OtherComments;
 					orgweeklyClinic.DoctorName = newWeeklyClinic.DoctorName;
 					orgweeklyClinic.QHSEEngineer = newWeeklyClinic.QHSEEngineer;
-					orgweeklyClinic.userID = newWeeklyClinic.userID;
+					//orgweeklyClinic.userID = newWeeklyClinic.userID;
 					WeeklyClinicRepo.update(orgweeklyClinic);
 
 					var oldFridgeComponents = FridgeComponentRepo.getall().Where(o => o.WeeklyClinicId == id).ToList();

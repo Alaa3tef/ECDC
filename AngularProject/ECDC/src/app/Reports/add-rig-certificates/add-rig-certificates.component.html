@@ -1,7 +1,7 @@
 <div class="container mb-5" style="margin-top: 8%;">
   <div class="heading_container heading_center d-flex">
     <h2 class="mx-auto my-4">
-      Rig Certificates Register
+    QHSE Record Rig Certificates System
     </h2>
 
   </div>
@@ -12,7 +12,7 @@
 
       <table class="table">
         <tr>
-          <td>
+          <td class="td-conent">
             <div class="form-group">
               <label class="form-label" for="rigId">Rig Number: </label>
               <select name="rigId" formControlName="rigId" id="rigId" class="form-select">
@@ -26,7 +26,7 @@
               </div>
             </div>
           </td>
-          <td>
+          <td class="td-conent">
             <div class="form-group">
               <label class="form-label" for="date">Date: </label>
               <input type="date" formControlName="date" class="form-control" />
@@ -103,6 +103,7 @@
                     <th scope="col" class="text-center">COC</th>
                     <th colspan="2" scope="col" class="text-center">CAT III</th>
                     <th colspan="2" scope="col" class="text-center">CAT IV</th>
+                    <th></th>
                   </tr>
                   <tr>
                     <th scope="col">Availabilty</th>
@@ -110,6 +111,7 @@
                     <th scope="col">Expiry Date</th>
                     <th scope="col">Certification Date</th>
                     <th scope="col">Expiry Date</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody formArrayName="hoistingSystem">
@@ -134,6 +136,13 @@
                         class="form-control p-1 m-0"></td>
                     <td class="p-0 m-0"><input type="date" formControlName="cativExpiryDate"
                         class="form-control p-1 m-0"></td>
+                        <td> <a (click)="deletehoistingSystem(i)"
+                          class="m-2 h4"
+                          style="color: #f3c93e; cursor: pointer !important;">
+
+                          <i class="fa-solid fa-trash"></i>
+                        </a>
+                        </td>
                   </tr>
                 </tbody>
               </table>
@@ -162,6 +171,7 @@
                     <th scope="col" class="text-center">COC</th>
                     <th colspan="2" scope="col" class="text-center">CAT III</th>
                     <th colspan="2" scope="col" class="text-center">CAT IV</th>
+                    <th></th>
                   </tr>
                   <tr>
                     <th scope="col">Availabilty</th>
@@ -169,6 +179,7 @@
                     <th scope="col">Expiry Date</th>
                     <th scope="col">Certification Date</th>
                     <th scope="col">Expiry Date</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody formArrayName="rotarySystem">
@@ -193,11 +204,21 @@
                         class="form-control p-1 m-0"></td>
                     <td class="p-0 m-0"><input type="date" formControlName="cativExpiryDate"
                         class="form-control p-1 m-0"></td>
+                    <td> <a (click)="deleteRotarySystem(i)"
+                      class="m-2 h4"
+                      style="color: #f3c93e; cursor: pointer !important;">
+
+                      <i class="fa-solid fa-trash"></i>
+                    </a>
+                    </td>
                   </tr>
                 </tbody>
               </table>
               <button type="button" style="position: relative;left: 95%;" class="btn btn-primary"
                 (click)="addrotarySystem()"><i class="fa-solid fa-circle-plus"></i></button>
+
+
+
             </div>
           </td>
         </tr>
@@ -253,6 +274,13 @@
                         class="form-control p-1 m-0"></td>
                     <td class="p-0 m-0"><input type="date" formControlName="cativExpiryDate"
                         class="form-control p-1 m-0"></td>
+                        <td> <a (click)="deletemudCirculationSystem(i)"
+                          class="m-2 h4"
+                          style="color: #f3c93e; cursor: pointer !important;">
+
+                          <i class="fa-solid fa-trash"></i>
+                        </a>
+                        </td>
                   </tr>
                 </tbody>
               </table>
@@ -313,6 +341,13 @@
                         class="form-control p-1 m-0"></td>
                     <td class="p-0 m-0"><input type="date" formControlName="cativExpiryDate"
                         class="form-control p-1 m-0"></td>
+                        <td> <a (click)="deletewellControlSystem(i)"
+                          class="m-2 h4"
+                          style="color: #f3c93e; cursor: pointer !important;">
+
+                          <i class="fa-solid fa-trash"></i>
+                        </a>
+                        </td>
                   </tr>
                 </tbody>
               </table>
@@ -372,6 +407,13 @@
                         class="form-control p-1 m-0"></td>
                     <td class="p-0 m-0"><input type="date" formControlName="cativExpiryDate"
                         class="form-control p-1 m-0"></td>
+                        <td> <a (click)="deletepowerSystem(i)"
+                          class="m-2 h4"
+                          style="color: #f3c93e; cursor: pointer !important;">
+
+                          <i class="fa-solid fa-trash"></i>
+                        </a>
+                        </td>
                   </tr>
                 </tbody>
               </table>
@@ -419,6 +461,13 @@
                         class="form-control p-1 m-0"></td>
                     <td class="p-0 m-0"><input type="date" formControlName="cativExpiryDate"
                         class="form-control p-1 m-0"></td>
+                        <td> <a (click)="deleteotherSystem(i)"
+                          class="m-2 h4"
+                          style="color: #f3c93e; cursor: pointer !important;">
+
+                          <i class="fa-solid fa-trash"></i>
+                        </a>
+                        </td>
                   </tr>
                 </tbody>
               </table>
@@ -455,6 +504,13 @@
                     <td><input type="text" formControlName="location" class="form-control"></td>
                     <td><input type="date" formControlName="certificationDate" class="form-control"></td>
                     <td><input type="date" formControlName="expiryDate" class="form-control"></td>
+                    <td> <a (click)="deletepresssureReliefValve(i)"
+                      class="m-2 h4"
+                      style="color: #f3c93e; cursor: pointer !important;">
+
+                      <i class="fa-solid fa-trash"></i>
+                    </a>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -497,6 +553,13 @@
                     <td><input type="text" formControlName="model" class="form-control"></td>
                     <td><input type="text" formControlName="serialNumber" class="form-control"></td>
                     <td><input type="date" formControlName="expiryDate" class="form-control"></td>
+                    <td> <a (click)="deletehseEquipmentTable(i)"
+                      class="m-2 h4"
+                      style="color: #f3c93e; cursor: pointer !important;">
+
+                      <i class="fa-solid fa-trash"></i>
+                    </a>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -555,6 +618,13 @@
                     <td><input type="text" formControlName="capacity" class="form-control"></td>
                     <td><input type="date" formControlName="lastExaminationDate" class="form-control"></td>
                     <td><input type="date" formControlName="nextExaminationDate" class="form-control"></td>
+                    <td> <a (click)="deletemobileCrane(i)"
+                      class="m-2 h4"
+                      style="color: #f3c93e; cursor: pointer !important;">
+
+                      <i class="fa-solid fa-trash"></i>
+                    </a>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -600,6 +670,13 @@
                     </td>
                     <td><input type="date" formControlName="lastExaminationDate" class="form-control"></td>
                     <td><input type="date" formControlName="nextExaminationDate" class="form-control"></td>
+                    <td> <a (click)="deleteforklift(i)"
+                      class="m-2 h4"
+                      style="color: #f3c93e; cursor: pointer !important;">
+
+                      <i class="fa-solid fa-trash"></i>
+                    </a>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -639,6 +716,13 @@
                     <td><input type="date" formControlName="lastMPIInspectionDate" class="form-control"></td>
                     <td><input type="date" formControlName="nextMPIInspectionDate" class="form-control"></td>
                     <td><input type="date" formControlName="nextLoadTestDate" class="form-control"></td>
+                    <td> <a (click)="deleteairHoist(i)"
+                      class="m-2 h4"
+                      style="color: #f3c93e; cursor: pointer !important;">
+
+                      <i class="fa-solid fa-trash"></i>
+                    </a>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -678,6 +762,13 @@
                     <td><input type="date" formControlName="lastMPIInspectionDate" class="form-control"></td>
                     <td><input type="date" formControlName="nextMPIInspectionDate" class="form-control"></td>
                     <td><input type="date" formControlName="nextLoadTestDate" class="form-control"></td>
+                    <td> <a (click)="deletehydraulicWinch(i)"
+                      class="m-2 h4"
+                      style="color: #f3c93e; cursor: pointer !important;">
+
+                      <i class="fa-solid fa-trash"></i>
+                    </a>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -718,6 +809,13 @@
                     <td><input type="date" formControlName="lastMPIInspectionDate" class="form-control"></td>
                     <td><input type="date" formControlName="nextMPIInspectionDate" class="form-control"></td>
                     <td><input type="date" formControlName="nextLoadTestDate" class="form-control"></td>
+                    <td> <a (click)="deletemanRidingWinch(i)"
+                      class="m-2 h4"
+                      style="color: #f3c93e; cursor: pointer !important;">
+
+                      <i class="fa-solid fa-trash"></i>
+                    </a>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -785,6 +883,13 @@
                     </td>
                     <td><input type="date" formControlName="certificateDate" class="form-control"></td>
                     <td><input type="date" formControlName="expiryDate" class="form-control"></td>
+                    <td> <a (click)="deletepersonnelCerificates(i)"
+                      class="m-2 h4"
+                      style="color: #f3c93e; cursor: pointer !important;">
+
+                      <i class="fa-solid fa-trash"></i>
+                    </a>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -795,13 +900,14 @@
         </tr>
       </table>
 
+      <div class="button-container">
 
-      <input type="submit" style="font-size: 16px !important;" class="btn btn-success me-3" value="Submit" />
-      <input type="button" style="font-size: 16px !important;" class="btn btn-primary me-3" value="Export Data"
+      <input type="submit" style="font-size: 16px !important;" class="btn btn-success me-3 col-sm-6 col-md-4" value="Submit" />
+      <input type="button" style="font-size: 16px !important;" class="btn btn-primary me-3 col-sm-6 col-md-4" value="Export Data"
         (click)="Download()" />
       <input routerLink="/Dashboard/RigCertificates/Print" type="submit" style="font-size: 16px !important;"
-        class="btn btn-primary" value="Show Data">
-
+        class="btn btn-primary col-sm-6 col-md-4" value="Show Data">
+      </div>
     </form>
   </div>
 </div>

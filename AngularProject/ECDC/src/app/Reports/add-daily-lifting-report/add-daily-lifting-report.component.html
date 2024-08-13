@@ -47,6 +47,11 @@
               <datalist id="liftingEngieerCode">
                 <option *ngFor="let menace of EmpCodeList">{{menace.code}} </option>
               </datalist>
+              <div *ngIf="liftingEngieerCode?.invalid && (liftingEngieerCode?.dirty || liftingEngieerCode?.touched)">
+                <small class="text-danger" *ngIf="liftingEngieerCode?.errors?.['required']">
+                  lifting Engieer Code is required
+                </small>
+              </div>
             </div>
           </td>
           <td>
@@ -88,13 +93,6 @@
                     </div>
                   </div>
                 </td>
-                <!-- <td>
-                  <input list="mobileCraneName" autocomplete="off" formControlName="mobileCraneName"
-                    name="mobileCraneName" class="form-control" (input)="selectedMenaceMobileCrane($event)">
-                  <datalist id="mobileCraneName">
-                    <option *ngFor="let menace of MobileCraneList">{{menace.mobileCraneName}} </option>
-                  </datalist>
-                </td> -->
 
                 <tr>
                   <td scop="col" colspan="2">Type </td>

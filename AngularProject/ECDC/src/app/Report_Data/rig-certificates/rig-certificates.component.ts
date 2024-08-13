@@ -51,9 +51,12 @@ export class RigCertificatesComponent {
       error: err => this.ErrorMessage = err
     });
   }
-
+  canDeleteRecord(): boolean {
+    // Check if the user has admin role or other criteria to allow deletion
+    return this.IsAdmin;
+  }
   DeleteRigCertificates(RigCertificates: IRigCertificates) {
-    if (confirm("Are you sure you want to delete this Record?")) {
+    if (confirm("Are you sure you want to delete this Record?") && this.canDeleteRecord()) {
       // user clicked "Yes"
       // do something, such as call an API to delete the item
       this.getDataByPage.DeleteRigCertificates(RigCertificates).subscribe({

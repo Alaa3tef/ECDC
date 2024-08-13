@@ -1645,7 +1645,7 @@ namespace TempProject.Controllers
 					orgMedicalHistoryReport.GeneralExamination_Weight = newMedicalHistoryReport.GeneralExamination_Weight;
 
 
-					orgMedicalHistoryReport.userID = newMedicalHistoryReport.userID;
+					//orgMedicalHistoryReport.userID = newMedicalHistoryReport.userID;
 
 					MedicalHistoryReportRepo.update(orgMedicalHistoryReport);
 					result.Data = orgMedicalHistoryReport;

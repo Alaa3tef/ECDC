@@ -19,6 +19,11 @@
                 <option value="" disabled selected>Choose Rig Number</option>
                 <option *ngFor="let item of rigList" value="{{item.id}}">Rig - {{item.number}}</option>
               </select>
+              <div *ngIf="rigId?.invalid && (rigId?.dirty || rigId?.touched)">
+                <small class="text-danger" *ngIf="rigId?.errors?.['required']">
+                  rig is required
+                </small>
+              </div>
             </div>
           </td>
           <td>
@@ -99,12 +104,22 @@
                     <div>
                       <input class="form-check-input" formControlName="cleanAndTidy" type="radio" name="cleanAndTidy"
                         value="Good">
+                        <div *ngIf="cleanAndTidy?.invalid && (cleanAndTidy?.dirty || cleanAndTidy?.touched)">
+                          <small class="text-danger" *ngIf="cleanAndTidy?.errors?.['required']">
+                            cleanAndTidy is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td dir="auto">
                     <div>
                       <input class="form-check-input" formControlName="cleanAndTidy" type="radio" name="cleanAndTidy"
                         value="Poor">
+                        <div *ngIf="cleanAndTidy?.invalid && (cleanAndTidy?.dirty || cleanAndTidy?.touched)">
+                          <small class="text-danger" *ngIf="cleanAndTidy?.errors?.['required']">
+                            cleanAndTidy is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -121,12 +136,22 @@
                     <div>
                       <input class="form-check-input" formControlName="engineOilLevel" type="radio"
                         name="engineOilLevel" value="Good">
+                        <div *ngIf="engineOilLevel?.invalid && (engineOilLevel?.dirty || engineOilLevel?.touched)">
+                          <small class="text-danger" *ngIf="engineOilLevel?.errors?.['required']">
+                            engineOilLevel is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
                     <div>
                       <input class="form-check-input" formControlName="engineOilLevel" type="radio"
                         name="engineOilLevel" value="Poor">
+                        <div *ngIf="engineOilLevel?.invalid && (engineOilLevel?.dirty || engineOilLevel?.touched)">
+                          <small class="text-danger" *ngIf="engineOilLevel?.errors?.['required']">
+                            engineOilLevel is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -143,12 +168,22 @@
                     <div>
                       <input class="form-check-input" formControlName="transmissionOilLevel" type="radio"
                         name="transmissionOilLevel" value="Good">
+                        <div *ngIf="transmissionOilLevel?.invalid && (transmissionOilLevel?.dirty || transmissionOilLevel?.touched)">
+                          <small class="text-danger" *ngIf="transmissionOilLevel?.errors?.['required']">
+                            transmission Oil Level is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
                     <div>
                       <input class="form-check-input" formControlName="transmissionOilLevel" type="radio"
                         name="transmissionOilLevel" value="Poor">
+                        <div *ngIf="transmissionOilLevel?.invalid && (transmissionOilLevel?.dirty || transmissionOilLevel?.touched)">
+                          <small class="text-danger" *ngIf="transmissionOilLevel?.errors?.['required']">
+                            transmission Oil Level is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -165,12 +200,22 @@
                     <div>
                       <input class="form-check-input" formControlName="radiatorWaterLevel" type="radio"
                         name="radiatorWaterLevel" value="Good">
+                        <div *ngIf="radiatorWaterLevel?.invalid && (radiatorWaterLevel?.dirty || radiatorWaterLevel?.touched)">
+                          <small class="text-danger" *ngIf="radiatorWaterLevel?.errors?.['required']">
+                            radiatorWaterLevel is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
                     <div>
                       <input class="form-check-input" formControlName="radiatorWaterLevel" type="radio"
                         name="radiatorWaterLevel" value="Poor">
+                        <div *ngIf="radiatorWaterLevel?.invalid && (radiatorWaterLevel?.dirty || radiatorWaterLevel?.touched)">
+                          <small class="text-danger" *ngIf="radiatorWaterLevel?.errors?.['required']">
+                            radiatorWaterLevel is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -187,12 +232,22 @@
                     <div>
                       <input class="form-check-input" formControlName="hydraulicOilLevel" type="radio"
                         name="hydraulicOilLevel" value="Good">
+                        <div *ngIf="hydraulicOilLevel?.invalid && (hydraulicOilLevel?.dirty || hydraulicOilLevel?.touched)">
+                          <small class="text-danger" *ngIf="hydraulicOilLevel?.errors?.['required']">
+                            hydraulicOilLevel is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
                     <div>
                       <input class="form-check-input" formControlName="hydraulicOilLevel" type="radio"
                         name="hydraulicOilLevel" value="Poor">
+                        <div *ngIf="hydraulicOilLevel?.invalid && (hydraulicOilLevel?.dirty || hydraulicOilLevel?.touched)">
+                          <small class="text-danger" *ngIf="hydraulicOilLevel?.errors?.['required']">
+                            hydraulicOilLevel is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -210,12 +265,22 @@
                     <div>
                       <input class="form-check-input" formControlName="v_beltsTension" type="radio"
                         name="v_beltsTension" value="Good">
+                        <div *ngIf="v_beltsTension?.invalid && (v_beltsTension?.dirty || v_beltsTension?.touched)">
+                          <small class="text-danger" *ngIf="v_beltsTension?.errors?.['required']">
+                            v_beltsTension is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
                     <div>
                       <input class="form-check-input" formControlName="v_beltsTension" type="radio"
                         name="v_beltsTension" value="Poor">
+                        <div *ngIf="v_beltsTension?.invalid && (v_beltsTension?.dirty || v_beltsTension?.touched)">
+                          <small class="text-danger" *ngIf="v_beltsTension?.errors?.['required']">
+                            v_beltsTension is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -232,12 +297,22 @@
                     <div>
                       <input class="form-check-input" formControlName="drainWater" type="radio" name="drainWater"
                         value="Good">
+                        <div *ngIf="drainWater?.invalid && (drainWater?.dirty || drainWater?.touched)">
+                          <small class="text-danger" *ngIf="drainWater?.errors?.['required']">
+                            drainWater is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
                     <div>
                       <input class="form-check-input" formControlName="drainWater" type="radio" name="drainWater"
                         value="Poor">
+                        <div *ngIf="drainWater?.invalid && (drainWater?.dirty || drainWater?.touched)">
+                          <small class="text-danger" *ngIf="drainWater?.errors?.['required']">
+                            drainWater is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -253,11 +328,21 @@
                   <td>
                     <div>
                       <input class="form-check-input" formControlName="leaks" type="radio" name="leaks" value="Good">
+                      <div *ngIf="leaks?.invalid && (leaks?.dirty || leaks?.touched)">
+                        <small class="text-danger" *ngIf="leaks?.errors?.['required']">
+                          leaks is required
+                        </small>
+                      </div>
                     </div>
                   </td>
                   <td>
                     <div>
                       <input class="form-check-input" formControlName="leaks" type="radio" name="leaks" value="Poor">
+                      <div *ngIf="leaks?.invalid && (leaks?.dirty || leaks?.touched)">
+                        <small class="text-danger" *ngIf="leaks?.errors?.['required']">
+                          leaks is required
+                        </small>
+                      </div>
                     </div>
                   </td>
                   <td>
@@ -274,12 +359,22 @@
                     <div>
                       <input class="form-check-input" formControlName="batteryHolder" type="radio" name="batteryHolder"
                         value="Good">
+                        <div *ngIf="batteryHolder?.invalid && (batteryHolder?.dirty || batteryHolder?.touched)">
+                          <small class="text-danger" *ngIf="batteryHolder?.errors?.['required']">
+                            batteryHolder is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td dir="auto">
                     <div>
                       <input class="form-check-input" formControlName="batteryHolder" type="radio" name="batteryHolder"
                         value="Poor">
+                        <div *ngIf="batteryHolder?.invalid && (batteryHolder?.dirty || batteryHolder?.touched)">
+                          <small class="text-danger" *ngIf="batteryHolder?.errors?.['required']">
+                            batteryHolder is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -296,12 +391,22 @@
                     <div>
                       <input class="form-check-input" formControlName="loadComputer" type="radio" name="loadComputer"
                         value="Good">
+                        <div *ngIf="loadComputer?.invalid && (loadComputer?.dirty || loadComputer?.touched)">
+                          <small class="text-danger" *ngIf="loadComputer?.errors?.['required']">
+                            loadComputer is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td dir="auto">
                     <div>
                       <input class="form-check-input" formControlName="loadComputer" type="radio" name="loadComputer"
                         value="Poor">
+                        <div *ngIf="loadComputer?.invalid && (loadComputer?.dirty || loadComputer?.touched)">
+                          <small class="text-danger" *ngIf="loadComputer?.errors?.['required']">
+                            loadComputer is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -318,12 +423,22 @@
                     <div>
                       <input class="form-check-input" formControlName="gaugesForCcorrectReadings" type="radio"
                         name="gaugesForCcorrectReadings" value="Good">
+                        <div *ngIf="gaugesForCcorrectReadings?.invalid && (gaugesForCcorrectReadings?.dirty || gaugesForCcorrectReadings?.touched)">
+                          <small class="text-danger" *ngIf="gaugesForCcorrectReadings?.errors?.['required']">
+                            gaugesForCcorrectReadings is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td dir="auto">
                     <div>
                       <input class="form-check-input" formControlName="gaugesForCcorrectReadings" type="radio"
                         name="gaugesForCcorrectReadings" value="Poor">
+                        <div *ngIf="gaugesForCcorrectReadings?.invalid && (gaugesForCcorrectReadings?.dirty || gaugesForCcorrectReadings?.touched)">
+                          <small class="text-danger" *ngIf="gaugesForCcorrectReadings?.errors?.['required']">
+                            gaugesForCcorrectReadings is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -340,12 +455,22 @@
                     <div>
                       <input class="form-check-input" formControlName="tirePressure" type="radio" name="tirePressure"
                         value="Good">
+                        <div *ngIf="tirePressure?.invalid && (tirePressure?.dirty || tirePressure?.touched)">
+                          <small class="text-danger" *ngIf="tirePressure?.errors?.['required']">
+                            tirePressure is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td dir="auto">
                     <div>
                       <input class="form-check-input" formControlName="tirePressure" type="radio" name="tirePressure"
                         value="Poor">
+                        <div *ngIf="tirePressure?.invalid && (tirePressure?.dirty || tirePressure?.touched)">
+                          <small class="text-danger" *ngIf="tirePressure?.errors?.['required']">
+                            tirePressure is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -362,12 +487,22 @@
                     <div>
                       <input class="form-check-input" formControlName="fuelTanksFull" type="radio" name="fuelTanksFull"
                         value="Good">
+                        <div *ngIf="fuelTanksFull?.invalid && (fuelTanksFull?.dirty || fuelTanksFull?.touched)">
+                          <small class="text-danger" *ngIf="fuelTanksFull?.errors?.['required']">
+                            fuelTanksFull is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td dir="auto">
                     <div>
                       <input class="form-check-input" formControlName="fuelTanksFull" type="radio" name="fuelTanksFull"
                         value="Poor">
+                        <div *ngIf="fuelTanksFull?.invalid && (fuelTanksFull?.dirty || fuelTanksFull?.touched)">
+                          <small class="text-danger" *ngIf="fuelTanksFull?.errors?.['required']">
+                            fuelTanksFull is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -384,12 +519,22 @@
                     <div>
                       <input class="form-check-input" formControlName="wireRopes" type="radio" name="wireRopes"
                         value="Good">
+                        <div *ngIf="wireRopes?.invalid && (wireRopes?.dirty || wireRopes?.touched)">
+                          <small class="text-danger" *ngIf="wireRopes?.errors?.['required']">
+                            wireRopes is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td dir="auto">
                     <div>
                       <input class="form-check-input" formControlName="wireRopes" type="radio" name="wireRopes"
                         value="Poor">
+                        <div *ngIf="wireRopes?.invalid && (wireRopes?.dirty || wireRopes?.touched)">
+                          <small class="text-danger" *ngIf="wireRopes?.errors?.['required']">
+                            wireRopes is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -406,12 +551,22 @@
                     <div>
                       <input class="form-check-input" formControlName="swingBrake" type="radio" name="swingBrake"
                         value="Good">
+                        <div *ngIf="swingBrake?.invalid && (swingBrake?.dirty || swingBrake?.touched)">
+                          <small class="text-danger" *ngIf="swingBrake?.errors?.['required']">
+                            swingBrake is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td dir="auto">
                     <div>
                       <input class="form-check-input" formControlName="swingBrake" type="radio" name="swingBrake"
                         value="Poor">
+                        <div *ngIf="swingBrake?.invalid && (swingBrake?.dirty || swingBrake?.touched)">
+                          <small class="text-danger" *ngIf="swingBrake?.errors?.['required']">
+                            swingBrake is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -428,12 +583,22 @@
                     <div>
                       <input class="form-check-input" formControlName="testLimitSwitches" type="radio"
                         name="testLimitSwitches" value="Good">
+                        <div *ngIf="testLimitSwitches?.invalid && (testLimitSwitches?.dirty || testLimitSwitches?.touched)">
+                          <small class="text-danger" *ngIf="testLimitSwitches?.errors?.['required']">
+                            testLimitSwitches is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td dir="auto">
                     <div>
                       <input class="form-check-input" formControlName="testLimitSwitches" type="radio"
                         name="testLimitSwitches" value="Poor">
+                        <div *ngIf="testLimitSwitches?.invalid && (testLimitSwitches?.dirty || testLimitSwitches?.touched)">
+                          <small class="text-danger" *ngIf="testLimitSwitches?.errors?.['required']">
+                            testLimitSwitches is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -450,12 +615,22 @@
                     <div>
                       <input class="form-check-input" formControlName="testOutriggers" type="radio"
                         name="testOutriggers" value="Good">
+                        <div *ngIf="testOutriggers?.invalid && (testOutriggers?.dirty || testOutriggers?.touched)">
+                          <small class="text-danger" *ngIf="testOutriggers?.errors?.['required']">
+                            testOutriggers is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td dir="auto">
                     <div>
                       <input class="form-check-input" formControlName="testOutriggers" type="radio"
                         name="testOutriggers" value="Poor">
+                        <div *ngIf="testOutriggers?.invalid && (testOutriggers?.dirty || testOutriggers?.touched)">
+                          <small class="text-danger" *ngIf="testOutriggers?.errors?.['required']">
+                            testOutriggers is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -472,12 +647,22 @@
                     <div>
                       <input class="form-check-input" formControlName="abnormalNoise" type="radio" name="abnormalNoise"
                         value="Good">
+                        <div *ngIf="abnormalNoise?.invalid && (abnormalNoise?.dirty || abnormalNoise?.touched)">
+                          <small class="text-danger" *ngIf="abnormalNoise?.errors?.['required']">
+                            abnormalNoise is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td dir="auto">
                     <div>
                       <input class="form-check-input" formControlName="abnormalNoise" type="radio" name="abnormalNoise"
                         value="Poor">
+                        <div *ngIf="abnormalNoise?.invalid && (abnormalNoise?.dirty || abnormalNoise?.touched)">
+                          <small class="text-danger" *ngIf="abnormalNoise?.errors?.['required']">
+                            abnormalNoise is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -494,12 +679,22 @@
                     <div>
                       <input class="form-check-input" formControlName="serviceBrakes" type="radio" name="serviceBrakes"
                         value="Good">
+                        <div *ngIf="serviceBrakes?.invalid && (serviceBrakes?.dirty || serviceBrakes?.touched)">
+                          <small class="text-danger" *ngIf="serviceBrakes?.errors?.['required']">
+                            serviceBrakes is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td dir="auto">
                     <div>
                       <input class="form-check-input" formControlName="serviceBrakes" type="radio" name="serviceBrakes"
                         value="Poor">
+                        <div *ngIf="serviceBrakes?.invalid && (serviceBrakes?.dirty || serviceBrakes?.touched)">
+                          <small class="text-danger" *ngIf="serviceBrakes?.errors?.['required']">
+                            serviceBrakes is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -516,12 +711,22 @@
                     <div>
                       <input class="form-check-input" formControlName="sheaves" type="radio" name="sheaves"
                         value="Good">
+                        <div *ngIf="sheaves?.invalid && (sheaves?.dirty || sheaves?.touched)">
+                          <small class="text-danger" *ngIf="sheaves?.errors?.['required']">
+                            sheaves is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td dir="auto">
                     <div>
                       <input class="form-check-input" formControlName="sheaves" type="radio" name="sheaves"
                         value="Poor">
+                        <div *ngIf="sheaves?.invalid && (sheaves?.dirty || sheaves?.touched)">
+                          <small class="text-danger" *ngIf="sheaves?.errors?.['required']">
+                            sheaves is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -538,12 +743,22 @@
                     <div>
                       <input class="form-check-input" formControlName="spoolingOfWire" type="radio"
                         name="spoolingOfWire" value="Good">
+                        <div *ngIf="spoolingOfWire?.invalid && (spoolingOfWire?.dirty || spoolingOfWire?.touched)">
+                          <small class="text-danger" *ngIf="spoolingOfWire?.errors?.['required']">
+                            spoolingOfWire is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td dir="auto">
                     <div>
                       <input class="form-check-input" formControlName="spoolingOfWire" type="radio"
                         name="spoolingOfWire" value="Poor">
+                        <div *ngIf="spoolingOfWire?.invalid && (spoolingOfWire?.dirty || spoolingOfWire?.touched)">
+                          <small class="text-danger" *ngIf="spoolingOfWire?.errors?.['required']">
+                            spoolingOfWire is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -560,12 +775,22 @@
                     <div>
                       <input class="form-check-input" formControlName="hookcondition" type="radio" name="hookcondition"
                         value="Good">
+                        <div *ngIf="hookcondition?.invalid && (hookcondition?.dirty || hookcondition?.touched)">
+                          <small class="text-danger" *ngIf="hookcondition?.errors?.['required']">
+                            hookcondition is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td dir="auto">
                     <div>
                       <input class="form-check-input" formControlName="hookcondition" type="radio" name="hookcondition"
                         value="Poor">
+                        <div *ngIf="hookcondition?.invalid && (hookcondition?.dirty || hookcondition?.touched)">
+                          <small class="text-danger" *ngIf="hookcondition?.errors?.['required']">
+                            hookcondition is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -582,12 +807,22 @@
                     <div>
                       <input class="form-check-input" formControlName="boomSections" type="radio" name="boomSections"
                         value="Good">
+                        <div *ngIf="boomSections?.invalid && (boomSections?.dirty || boomSections?.touched)">
+                          <small class="text-danger" *ngIf="boomSections?.errors?.['required']">
+                            boomSections is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td dir="auto">
                     <div>
                       <input class="form-check-input" formControlName="boomSections" type="radio" name="boomSections"
                         value="Poor">
+                        <div *ngIf="boomSections?.invalid && (boomSections?.dirty || boomSections?.touched)">
+                          <small class="text-danger" *ngIf="boomSections?.errors?.['required']">
+                            boomSections is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -604,12 +839,22 @@
                     <div>
                       <input class="form-check-input" formControlName="engineV_belts" type="radio" name="engineV_belts"
                         value="Good">
+                        <div *ngIf="engineV_belts?.invalid && (engineV_belts?.dirty || engineV_belts?.touched)">
+                          <small class="text-danger" *ngIf="engineV_belts?.errors?.['required']">
+                            engineV_belts is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td dir="auto">
                     <div>
                       <input class="form-check-input" formControlName="engineV_belts" type="radio" name="engineV_belts"
                         value="Poor">
+                        <div *ngIf="engineV_belts?.invalid && (engineV_belts?.dirty || engineV_belts?.touched)">
+                          <small class="text-danger" *ngIf="engineV_belts?.errors?.['required']">
+                            engineV_belts is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -626,12 +871,22 @@
                     <div>
                       <input class="form-check-input" formControlName="wiringVisually" type="radio"
                         name="wiringVisually" value="Good">
+                        <div *ngIf="wiringVisually?.invalid && (wiringVisually?.dirty || wiringVisually?.touched)">
+                          <small class="text-danger" *ngIf="wiringVisually?.errors?.['required']">
+                            wiringVisually is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td dir="auto">
                     <div>
                       <input class="form-check-input" formControlName="wiringVisually" type="radio"
                         name="wiringVisually" value="Poor">
+                        <div *ngIf="wiringVisually?.invalid && (wiringVisually?.dirty || wiringVisually?.touched)">
+                          <small class="text-danger" *ngIf="wiringVisually?.errors?.['required']">
+                            wiringVisually is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -648,12 +903,22 @@
                     <div>
                       <input class="form-check-input" formControlName="loadIndicator" type="radio" name="loadIndicator"
                         value="Good">
+                        <div *ngIf="loadIndicator?.invalid && (loadIndicator?.dirty || loadIndicator?.touched)">
+                          <small class="text-danger" *ngIf="loadIndicator?.errors?.['required']">
+                            loadIndicator is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td dir="auto">
                     <div>
                       <input class="form-check-input" formControlName="loadIndicator" type="radio" name="loadIndicator"
                         value="Poor">
+                        <div *ngIf="loadIndicator?.invalid && (loadIndicator?.dirty || loadIndicator?.touched)">
+                          <small class="text-danger" *ngIf="loadIndicator?.errors?.['required']">
+                            loadIndicator is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -670,12 +935,22 @@
                     <div>
                       <input class="form-check-input" formControlName="audibleAlarm" type="radio" name="audibleAlarm"
                         value="Good">
+                        <div *ngIf="audibleAlarm?.invalid && (audibleAlarm?.dirty || audibleAlarm?.touched)">
+                          <small class="text-danger" *ngIf="audibleAlarm?.errors?.['required']">
+                            audibleAlarm is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td dir="auto">
                     <div>
                       <input class="form-check-input" formControlName="audibleAlarm" type="radio" name="audibleAlarm"
                         value="Poor">
+                        <div *ngIf="audibleAlarm?.invalid && (audibleAlarm?.dirty || audibleAlarm?.touched)">
+                          <small class="text-danger" *ngIf="audibleAlarm?.errors?.['required']">
+                            audibleAlarm is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -692,12 +967,22 @@
                     <div>
                       <input class="form-check-input" formControlName="loadLimiting" type="radio" name="loadLimiting"
                         value="Good">
+                        <div *ngIf="loadLimiting?.invalid && (loadLimiting?.dirty || loadLimiting?.touched)">
+                          <small class="text-danger" *ngIf="loadLimiting?.errors?.['required']">
+                            loadLimiting is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td dir="auto">
                     <div>
                       <input class="form-check-input" formControlName="loadLimiting" type="radio" name="loadLimiting"
                         value="Poor">
+                        <div *ngIf="loadLimiting?.invalid && (loadLimiting?.dirty || loadLimiting?.touched)">
+                          <small class="text-danger" *ngIf="loadLimiting?.errors?.['required']">
+                            loadLimiting is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -714,12 +999,22 @@
                     <div>
                       <input class="form-check-input" formControlName="boomAngle" type="radio" name="boomAngle"
                         value="Good">
+                        <div *ngIf="boomAngle?.invalid && (boomAngle?.dirty || boomAngle?.touched)">
+                          <small class="text-danger" *ngIf="boomAngle?.errors?.['required']">
+                            boomAngle is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td dir="auto">
                     <div>
                       <input class="form-check-input" formControlName="boomAngle" type="radio" name="boomAngle"
                         value="Poor">
+                        <div *ngIf="boomAngle?.invalid && (boomAngle?.dirty || boomAngle?.touched)">
+                          <small class="text-danger" *ngIf="boomAngle?.errors?.['required']">
+                            boomAngle is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -736,12 +1031,22 @@
                     <div>
                       <input class="form-check-input" formControlName="limitSwitch" type="radio" name="limitSwitch"
                         value="Good">
+                        <div *ngIf="limitSwitch?.invalid && (limitSwitch?.dirty || limitSwitch?.touched)">
+                          <small class="text-danger" *ngIf="limitSwitch?.errors?.['required']">
+                            limitSwitch is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td dir="auto">
                     <div>
                       <input class="form-check-input" formControlName="limitSwitch" type="radio" name="limitSwitch"
                         value="Poor">
+                        <div *ngIf="limitSwitch?.invalid && (limitSwitch?.dirty || limitSwitch?.touched)">
+                          <small class="text-danger" *ngIf="limitSwitch?.errors?.['required']">
+                            limitSwitch is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -758,12 +1063,22 @@
                     <div>
                       <input class="form-check-input" formControlName="emergencyShutDown" type="radio"
                         name="emergencyShutDown" value="Good">
+                        <div *ngIf="emergencyShutDown?.invalid && (emergencyShutDown?.dirty || emergencyShutDown?.touched)">
+                          <small class="text-danger" *ngIf="emergencyShutDown?.errors?.['required']">
+                            emergencyShutDown is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td dir="auto">
                     <div>
                       <input class="form-check-input" formControlName="emergencyShutDown" type="radio"
                         name="emergencyShutDown" value="Poor">
+                        <div *ngIf="emergencyShutDown?.invalid && (emergencyShutDown?.dirty || emergencyShutDown?.touched)">
+                          <small class="text-danger" *ngIf="emergencyShutDown?.errors?.['required']">
+                            emergencyShutDown is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -780,12 +1095,22 @@
                     <div>
                       <input class="form-check-input" formControlName="operatingReturn" type="radio"
                         name="operatingReturn" value="Good">
+                        <div *ngIf="operatingReturn?.invalid && (operatingReturn?.dirty || operatingReturn?.touched)">
+                          <small class="text-danger" *ngIf="operatingReturn?.errors?.['required']">
+                            operatingReturn is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td dir="auto">
                     <div>
                       <input class="form-check-input" formControlName="operatingReturn" type="radio"
                         name="operatingReturn" value="Poor">
+                        <div *ngIf="operatingReturn?.invalid && (operatingReturn?.dirty || operatingReturn?.touched)">
+                          <small class="text-danger" *ngIf="operatingReturn?.errors?.['required']">
+                            operatingReturn is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -802,12 +1127,22 @@
                     <div>
                       <input class="form-check-input" formControlName="operatingControls" type="radio"
                         name="operatingControls" value="Good">
+                        <div *ngIf="operatingControls?.invalid && (operatingControls?.dirty || operatingControls?.touched)">
+                          <small class="text-danger" *ngIf="operatingControls?.errors?.['required']">
+                            operatingControls is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td dir="auto">
                     <div>
                       <input class="form-check-input" formControlName="operatingControls" type="radio"
                         name="operatingControls" value="Poor">
+                        <div *ngIf="operatingControls?.invalid && (operatingControls?.dirty || operatingControls?.touched)">
+                          <small class="text-danger" *ngIf="operatingControls?.errors?.['required']">
+                            operatingControls is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -824,12 +1159,22 @@
                     <div>
                       <input class="form-check-input" formControlName="headLight" type="radio" name="headLight"
                         value="Good">
+                        <div *ngIf="headLight?.invalid && (headLight?.dirty || headLight?.touched)">
+                          <small class="text-danger" *ngIf="headLight?.errors?.['required']">
+                            headLight is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td dir="auto">
                     <div>
                       <input class="form-check-input" formControlName="headLight" type="radio" name="headLight"
                         value="Poor">
+                        <div *ngIf="headLight?.invalid && (headLight?.dirty || headLight?.touched)">
+                          <small class="text-danger" *ngIf="headLight?.errors?.['required']">
+                            headLight is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -846,12 +1191,22 @@
                     <div>
                       <input class="form-check-input" formControlName="reverseAlarm" type="radio" name="reverseAlarm"
                         value="Good">
+                        <div *ngIf="reverseAlarm?.invalid && (reverseAlarm?.dirty || reverseAlarm?.touched)">
+                          <small class="text-danger" *ngIf="reverseAlarm?.errors?.['required']">
+                            reverseAlarm is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td dir="auto">
                     <div>
                       <input class="form-check-input" formControlName="reverseAlarm" type="radio" name="reverseAlarm"
                         value="Poor">
+                        <div *ngIf="reverseAlarm?.invalid && (reverseAlarm?.dirty || reverseAlarm?.touched)">
+                          <small class="text-danger" *ngIf="reverseAlarm?.errors?.['required']">
+                            reverseAlarm is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -868,12 +1223,22 @@
                     <div>
                       <input class="form-check-input" formControlName="parkingBrake" type="radio" name="parkingBrake"
                         value="Good">
+                        <div *ngIf="parkingBrake?.invalid && (parkingBrake?.dirty || parkingBrake?.touched)">
+                          <small class="text-danger" *ngIf="parkingBrake?.errors?.['required']">
+                            parkingBrake is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td dir="auto">
                     <div>
                       <input class="form-check-input" formControlName="parkingBrake" type="radio" name="parkingBrake"
                         value="Poor">
+                        <div *ngIf="parkingBrake?.invalid && (parkingBrake?.dirty || parkingBrake?.touched)">
+                          <small class="text-danger" *ngIf="parkingBrake?.errors?.['required']">
+                            parkingBrake is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -890,12 +1255,22 @@
                     <div>
                       <input class="form-check-input" formControlName="safetyBelt" type="radio" name="safetyBelt"
                         value="Good">
+                        <div *ngIf="safetyBelt?.invalid && (safetyBelt?.dirty || safetyBelt?.touched)">
+                          <small class="text-danger" *ngIf="safetyBelt?.errors?.['required']">
+                            safetyBelt is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td dir="auto">
                     <div>
                       <input class="form-check-input" formControlName="safetyBelt" type="radio" name="safetyBelt"
                         value="Poor">
+                        <div *ngIf="safetyBelt?.invalid && (safetyBelt?.dirty || safetyBelt?.touched)">
+                          <small class="text-danger" *ngIf="safetyBelt?.errors?.['required']">
+                            safetyBelt is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -912,12 +1287,22 @@
                     <div>
                       <input class="form-check-input" formControlName="driverSeat" type="radio" name="driverSeat"
                         value="Good">
+                        <div *ngIf="driverSeat?.invalid && (driverSeat?.dirty || driverSeat?.touched)">
+                          <small class="text-danger" *ngIf="driverSeat?.errors?.['required']">
+                            driverSeat is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td dir="auto">
                     <div>
                       <input class="form-check-input" formControlName="driverSeat" type="radio" name="driverSeat"
                         value="Poor">
+                        <div *ngIf="driverSeat?.invalid && (driverSeat?.dirty || driverSeat?.touched)">
+                          <small class="text-danger" *ngIf="driverSeat?.errors?.['required']">
+                            driverSeat is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -933,11 +1318,21 @@
                   <td dir="auto">
                     <div>
                       <input class="form-check-input" formControlName="wipers" type="radio" name="wipers" value="Good">
+                      <div *ngIf="wipers?.invalid && (wipers?.dirty || wipers?.touched)">
+                        <small class="text-danger" *ngIf="wipers?.errors?.['required']">
+                          wipers is required
+                        </small>
+                      </div>
                     </div>
                   </td>
                   <td dir="auto">
                     <div>
                       <input class="form-check-input" formControlName="wipers" type="radio" name="wipers" value="Poor">
+                      <div *ngIf="wipers?.invalid && (wipers?.dirty || wipers?.touched)">
+                        <small class="text-danger" *ngIf="wipers?.errors?.['required']">
+                          wipers is required
+                        </small>
+                      </div>
                     </div>
                   </td>
                   <td>
@@ -954,12 +1349,22 @@
                     <div>
                       <input class="form-check-input" formControlName="existingCorrosion" type="radio"
                         name="existingCorrosion" value="Good">
+                        <div *ngIf="existingCorrosion?.invalid && (existingCorrosion?.dirty || existingCorrosion?.touched)">
+                          <small class="text-danger" *ngIf="existingCorrosion?.errors?.['required']">
+                            existingCorrosion is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td dir="auto">
                     <div>
                       <input class="form-check-input" formControlName="existingCorrosion" type="radio"
                         name="existingCorrosion" value="Poor">
+                        <div *ngIf="existingCorrosion?.invalid && (existingCorrosion?.dirty || existingCorrosion?.touched)">
+                          <small class="text-danger" *ngIf="existingCorrosion?.errors?.['required']">
+                            existingCorrosion is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -976,12 +1381,22 @@
                     <div>
                       <input class="form-check-input" formControlName="tireBolts" type="radio" name="tireBolts"
                         value="Good">
+                        <div *ngIf="tireBolts?.invalid && (tireBolts?.dirty || tireBolts?.touched)">
+                          <small class="text-danger" *ngIf="tireBolts?.errors?.['required']">
+                            tireBolts is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td dir="auto">
                     <div>
                       <input class="form-check-input" formControlName="tireBolts" type="radio" name="tireBolts"
                         value="Poor">
+                        <div *ngIf="tireBolts?.invalid && (tireBolts?.dirty || tireBolts?.touched)">
+                          <small class="text-danger" *ngIf="tireBolts?.errors?.['required']">
+                            tireBolts is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -999,12 +1414,22 @@
                     <div>
                       <input class="form-check-input" formControlName="safeLoadIndicator" type="radio"
                         name="safeLoadIndicator" value="Good">
+                        <div *ngIf="safeLoadIndicator?.invalid && (safeLoadIndicator?.dirty || safeLoadIndicator?.touched)">
+                          <small class="text-danger" *ngIf="safeLoadIndicator?.errors?.['required']">
+                            safeLoadIndicator is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td dir="auto">
                     <div>
                       <input class="form-check-input" formControlName="safeLoadIndicator" type="radio"
                         name="safeLoadIndicator" value="Poor">
+                        <div *ngIf="safeLoadIndicator?.invalid && (safeLoadIndicator?.dirty || safeLoadIndicator?.touched)">
+                          <small class="text-danger" *ngIf="safeLoadIndicator?.errors?.['required']">
+                            safeLoadIndicator is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -1021,12 +1446,22 @@
                     <div>
                       <input class="form-check-input" formControlName="screenCurtains" type="radio"
                         name="screenCurtains" value="Good">
+                        <div *ngIf="screenCurtains?.invalid && (screenCurtains?.dirty || screenCurtains?.touched)">
+                          <small class="text-danger" *ngIf="screenCurtains?.errors?.['required']">
+                            screenCurtains is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td dir="auto">
                     <div>
                       <input class="form-check-input" formControlName="screenCurtains" type="radio"
                         name="screenCurtains" value="Poor">
+                        <div *ngIf="screenCurtains?.invalid && (screenCurtains?.dirty || screenCurtains?.touched)">
+                          <small class="text-danger" *ngIf="screenCurtains?.errors?.['required']">
+                            screenCurtains is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -1043,12 +1478,22 @@
                     <div>
                       <input class="form-check-input" formControlName="outrigger" type="radio" name="outrigger"
                         value="Good">
+                        <div *ngIf="outrigger?.invalid && (outrigger?.dirty || outrigger?.touched)">
+                          <small class="text-danger" *ngIf="outrigger?.errors?.['required']">
+                            outrigger is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td dir="auto">
                     <div>
                       <input class="form-check-input" formControlName="outrigger" type="radio" name="outrigger"
                         value="Poor">
+                        <div *ngIf="outrigger?.invalid && (outrigger?.dirty || outrigger?.touched)">
+                          <small class="text-danger" *ngIf="outrigger?.errors?.['required']">
+                            outrigger is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -1065,12 +1510,22 @@
                     <div>
                       <input class="form-check-input" formControlName="strangeSound" type="radio" name="strangeSound"
                         value="Good">
+                        <div *ngIf="strangeSound?.invalid && (strangeSound?.dirty || strangeSound?.touched)">
+                          <small class="text-danger" *ngIf="strangeSound?.errors?.['required']">
+                            strangeSound is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td dir="auto">
                     <div>
                       <input class="form-check-input" formControlName="strangeSound" type="radio" name="strangeSound"
                         value="Poor">
+                        <div *ngIf="strangeSound?.invalid && (strangeSound?.dirty || strangeSound?.touched)">
+                          <small class="text-danger" *ngIf="strangeSound?.errors?.['required']">
+                            strangeSound is required
+                          </small>
+                        </div>
                     </div>
                   </td>
                   <td>
@@ -1089,12 +1544,22 @@
             Driver Name :
             <div class="form-group">
               <input id="driverName" type="text" formControlName="driverName" class="form-control" />
+              <div *ngIf="driverName?.invalid && (driverName?.dirty || driverName?.touched)">
+                <small class="text-danger" *ngIf="driverName?.errors?.['required']">
+                  driverName is required
+                </small>
+              </div>
             </div>
           </td>
           <td colspan="2">
             QHSE Engineer :
             <div class="form-group">
               <input id="qhseEngineer" type="text" formControlName="qhseEngineer" class="form-control" />
+              <div *ngIf="qhseEngineer?.invalid && (qhseEngineer?.dirty || qhseEngineer?.touched)">
+                <small class="text-danger" *ngIf="qhseEngineer?.errors?.['required']">
+                  qhseEngineer is required
+                </small>
+              </div>
             </div>
           </td>
         </tr>

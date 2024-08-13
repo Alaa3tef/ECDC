@@ -39,6 +39,7 @@ export class PPEReceivingTableComponent {
       next: data => {
         console.log("EmployeeeCode")
         console.log(data.data)
+        this.ListOfPPEReceiving.next(data.data);  // Update the BehaviorSubject with fetched data
         data.data.forEach((element: {employeeCode: string; }) => {
 
           this.SearchList.push(element.employeeCode)
@@ -58,9 +59,14 @@ export class PPEReceivingTableComponent {
      })
 
      this.PPEReceivingService.GetPPEReceivings(this.User.ID,this.User.Role).subscribe({
-      next: data => this.json_data = data.data,
+      next: data => {this.json_data = data.data
+        console.log("this.json_data",data.data)
+        this.ListOfPPEReceiving.next(this.json_data);  // Update the BehaviorSubject with fetched data
+
+      },
       error: err => this.ErrorMessage = err
     })
+
   }
 
 
@@ -68,7 +74,10 @@ export class PPEReceivingTableComponent {
   {
     console.log(event.target.value)
     this.PPEReceivingService.PPEReceivingtSearchByEmpCode(event.target.value,this.User.ID,this.User.Role).subscribe({
-      next:data=> this.ListOfPPEReceiving.next(data.data),
+      next:data=> {
+        this.ListOfPPEReceiving.next(data.data)
+        console.log("ListOfPPEReceiving",this.ListOfPPEReceiving)
+      },
       error: err => {
         this.getpages(1)
         console.log(err);

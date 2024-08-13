@@ -704,6 +704,8 @@ namespace TempProject.Controllers
 
                     customerReportResponseDTO.Id = temp.Id;
                     customerReportResponseDTO.RigId = temp.Rig.Id;
+                    customerReportResponseDTO.RigNumber = temp.Rig.Number;
+
                     customerReportResponseDTO.DateFrom = temp.DateFrom;
                     customerReportResponseDTO.DateTo = temp.DateTo;
                     customerReportResponseDTO.Year = temp.Year;

@@ -1269,7 +1269,7 @@ namespace TempProject.Controllers
 					orgweeklyInspection.CircuitWeeklyFindings = newweeklyInspection.CircuitWeeklyFindings;
 					orgweeklyInspection.EarthingStatus = newweeklyInspection.EarthingStatus;
 
-					orgweeklyInspection.userID = newweeklyInspection.userID;
+					//orgweeklyInspection.userID = newweeklyInspection.userID;
 					//orgweeklyInspection.user.UserName= newweeklyInspection.userName;
 
 

@@ -2474,7 +2474,7 @@ namespace TempProject.Controllers
 					orgCorrective.Comment = newCorrective.Comment!="null"?newCorrective.Comment:null;
 					orgCorrective.Q_ManagerSig = newCorrective.Q_ManagerSig!="null"? newCorrective.Q_ManagerSig:null;
 					//orgCorrective.QHSEEngineer = newCorrective.QHSEEngineer!="null"? newCorrective.QHSEEngineer:null;
-					orgCorrective.userID = newCorrective.userID;
+					//orgCorrective.userID = newCorrective.userID;
 					orgCorrective.FormStatus = newCorrective.FormStatus;
 
 					CorrectiveActionRepo.update(orgCorrective);

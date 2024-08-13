@@ -527,24 +527,46 @@ export class AddHandoverComponent {
   addhseEquipment() {
     this.hseEquipment.push(this.createhseEquipmentFormGroup('',true));
   }
+  deletehseEquipment(index: any) {
+    if (confirm("Are you sure you want to delete this record?")) {
+      this.hseEquipment.removeAt(index);
+    }
+  }
   addhseInventory() {
     this.hseInventory.push(this.createhseInventoryFormGroup('',true));
   }
-
+  deletehseInventory(index: any) {
+    if (confirm("Are you sure you want to delete this record?")) {
+      this.hseInventory.removeAt(index);
+    }
+  }
   addvisits() {
     this.visits.push(this.createvisitsFormGroup());
     this.visitsClicked=true;
+  }
+  deleteVisits(index: any) {
+    if (confirm("Are you sure you want to delete this record?")) {
+      this.visits.removeAt(index);
+    }
   }
   addshiftDrillTypes() {
     this.shiftDrillTypes.push(this.createshiftDrillTypesFormGroup());
     this.shiftDrillTypesClicked=true;
   }
-
+  deleteShiftDrillTypes(index: any) {
+    if (confirm("Are you sure you want to delete this record?")) {
+      this.shiftDrillTypes.removeAt(index);
+    }
+  }
   addmaterialRequested() {
     this.materialRequested.push(this.creatematerialRequestedFormGroup());
     this.materialRequestedClicked=true;
   }
-
+  deletematerialRequested(index: any) {
+    if (confirm("Are you sure you want to delete this record?")) {
+      this.materialRequested.removeAt(index);
+    }
+  }
   submitData() {
     console.log("this.HandoverForm.value")
     console.log(this.HandoverForm.value)
@@ -572,15 +594,18 @@ export class AddHandoverComponent {
   }
 
   ChangeShiftDateTo(event: any) {
-    console.log(event.target.value)
-    this.selectedShiftDateTo = new Date(event.target.value)
-    if ((this.selectedShiftDateTo.getDate()) >= (this.selectedShiftDateFrom.getDate())) {
+    console.log(event.target.value);
+    this.selectedShiftDateTo = new Date(event.target.value);
+
+    if (this.selectedShiftDateTo >= this.selectedShiftDateFrom) {
       this.ValidDate = true;
-    } else if((this.selectedShiftDateTo.getDate()) < (this.selectedShiftDateFrom.getDate())) {
+    } else {
       this.ValidDate = false;
     }
-    console.log(this.ValidDate)
+
+    console.log(this.ValidDate);
   }
+
 
   selectedMenace(event: any) {
     console.log("event.target.value")

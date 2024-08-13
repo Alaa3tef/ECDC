@@ -47,8 +47,8 @@ export class DataService {
     return this.http.get<any>(`http://localhost:5000/api/JMP/notifyStatus/${pageNumber}?pagesize=10`);
   }
 
-  GetStopCardsByMonth(month: number, userId: string, userRole: string): Observable<IAPIResult> {
-    return this.http.get<IAPIResult>(`http://localhost:5000/api/StopCardRegister/GetDataByMonth/${month}?UserId=${userId}&UserRole=${userRole}`);
+  GetStopCardsByMonth(month: number,year:number, userId: string, userRole: string): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/StopCardRegister/GetDataByMonth/${month}?year=${year}&UserId=${userId}&UserRole=${userRole}`);
   }
 
   GetJMPs(): Observable<IAPIResult> {
@@ -273,8 +273,8 @@ GetMedicalHistoryReportAnalysisWithCompareByYear(rig:number,userRole:string): Ob
     return this.http.get<any>(`http://localhost:5000/api/RigMovePerformance/GetAllForCompareAnalysis?RigID1=${RigNo1}&RigID2=${RigNo2}&Year=${Year}&UserID=${UserID}&UserRole=${userRole}`);
   }
 
-  GetDataForChartsCompare(month1: number, month2: number, userId: string, userRole: string): Observable<any> {
-    return this.http.get<any>(`http://localhost:5000/api/StopCardRegister/GetDataByMonthCompare?date1=${month1}&date2=${month2}&UserId=${userId}&UserRole=${userRole}`);
+  GetDataForChartsCompare(month1: number, month2: number, Year:number,userId: string, userRole: string): Observable<any> {
+    return this.http.get<any>(`http://localhost:5000/api/StopCardRegister/GetDataByMonthCompare?date1=${month1}&date2=${month2}&year=${Year}&UserId=${userId}&UserRole=${userRole}`);
   }
 
   GetEmpCode(): Observable<IAPIResult> {

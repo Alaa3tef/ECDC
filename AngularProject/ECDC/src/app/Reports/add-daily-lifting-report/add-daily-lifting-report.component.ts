@@ -256,21 +256,6 @@ export class AddDailyLiftingReportComponent {
         ),
         permitsToWorkListDTOs: this.fb.array(
           [
-            // this.createPermitsToWorkListFormGroup('1'),
-            // this.createPermitsToWorkListFormGroup('2'),
-            // this.createPermitsToWorkListFormGroup('3'),
-            // this.createPermitsToWorkListFormGroup('4'),
-            // this.createPermitsToWorkListFormGroup('5'),
-            // this.createPermitsToWorkListFormGroup('6'),
-            // this.createPermitsToWorkListFormGroup('7'),
-            // this.createPermitsToWorkListFormGroup('8'),
-            // this.createPermitsToWorkListFormGroup('9'),
-            // this.createPermitsToWorkListFormGroup('10'),
-            // this.createPermitsToWorkListFormGroup('11'),
-            // this.createPermitsToWorkListFormGroup('12'),
-            // this.createPermitsToWorkListFormGroup('13'),
-            // this.createPermitsToWorkListFormGroup('14'),
-            // this.createPermitsToWorkListFormGroup('15'),
           ],
           [
             //  Validators.required
@@ -278,21 +263,6 @@ export class AddDailyLiftingReportComponent {
         ),
         summaryDailyListDTOs: this.fb.array(
           [
-            // this.createSummaryDailyListFormGroup('1'),
-            // this.createSummaryDailyListFormGroup('2'),
-            // this.createSummaryDailyListFormGroup('3'),
-            // this.createSummaryDailyListFormGroup('4'),
-            // this.createSummaryDailyListFormGroup('5'),
-            // this.createSummaryDailyListFormGroup('6'),
-            // this.createSummaryDailyListFormGroup('7'),
-            // this.createSummaryDailyListFormGroup('8'),
-            // this.createSummaryDailyListFormGroup('9'),
-            // this.createSummaryDailyListFormGroup('10'),
-            // this.createSummaryDailyListFormGroup('11'),
-            // this.createSummaryDailyListFormGroup('12'),
-            // this.createSummaryDailyListFormGroup('13'),
-            // this.createSummaryDailyListFormGroup('14'),
-            // this.createSummaryDailyListFormGroup('15'),
           ],
           [
             //  Validators.required
@@ -301,7 +271,7 @@ export class AddDailyLiftingReportComponent {
         dailyRecordStacticsListDTOs : this.fb.array(
           [
             this.createDailyRecordStacticsListFormGroup('Number of lifting permits to work'),
-            this.createDailyRecordStacticsListFormGroup('Permit of total permit to work'),
+            this.createDailyRecordStacticsListFormGroup('Number of total permit to work'),
             this.createDailyRecordStacticsListFormGroup('Number of open lifting observation'),
             this.createDailyRecordStacticsListFormGroup('Number of closed audit lifting observations'),
             this.createDailyRecordStacticsListFormGroup('Date of next CAT III Inspection'),
@@ -476,7 +446,7 @@ export class AddDailyLiftingReportComponent {
           }
 
           // Optionally, perform further actions based on the server response
-          location.reload();
+          // location.reload();
         },
         error: error => {
           console.log("Error from service:", error);

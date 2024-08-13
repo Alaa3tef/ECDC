@@ -33,6 +33,7 @@ export class BOPComponent {
       error: err => this.ErrorMessage = err
     }),
     this.UserJsonString=JSON.stringify(this.loginService.currentUser.getValue())
+    
     this.UserJsonObj=JSON.parse(this.UserJsonString);
     this.BOPForm = this.fb.group(
       {

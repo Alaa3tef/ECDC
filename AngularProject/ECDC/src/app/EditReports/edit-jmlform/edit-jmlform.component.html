@@ -192,12 +192,12 @@
         <tr>
           <td>
             <div class="form-group">
-              <label class="form-label" for="departureDate">Departure Date : </label>
-              <input type="date" name="departureDate" [(ngModel)]="jmp.departureDate"
-                [ngModel]="jmp.departureDate| date: 'yyyy-MM-dd'" formControlName="departureDate" id="departureDate"
+              <label class="form-label" for="departureTime">Departure Date : </label>
+              <input type="date" name="departureTime" [(ngModel)]="jmp.departureTime"
+                [ngModel]="jmp.departureTime" formControlName="departureTime" id="departureTime"
                 class="form-control">
-              <div *ngIf="departureDate?.invalid && (departureDate?.dirty || departureDate?.touched)">
-                <small class="text-danger" *ngIf="departureDate?.errors?.['required']">
+              <div *ngIf="departureTime?.invalid && (departureTime?.dirty || departureTime?.touched)">
+                <small class="text-danger" *ngIf="departureTime?.errors?.['required']">
                   Date is required
                 </small>
               </div>

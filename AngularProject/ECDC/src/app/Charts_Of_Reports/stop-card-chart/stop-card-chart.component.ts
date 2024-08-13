@@ -38,6 +38,11 @@ export class StopCardChartComponent {
     this.OtherCategory= []
     this.SWA_yes = []
     this.SWA_no = []
+    this.pushingListCounthing = []
+    this.PotentialList = [];
+    this.pushingList = [];
+    this.Colors = [];
+    this.ColorsBackground = [];
   }
 
   AddCanvas(ID_Name:string,DIV_Name:string) {
@@ -99,8 +104,18 @@ export class StopCardChartComponent {
   SWA_yesCount: number = 0;
   SWA_no: any[] = [];
   SWA_noCount: number = 0;
-
-  User:any;
+  ErrorMessage: string = '';
+  Year:number[]=[];
+  YearsList:number[]=[];
+  SelectedYear:number=0;
+  ColorsBackground: any[] = []
+  Rigs: any[] = [];
+  PotentialList: any[] = [];
+  pushingList: any[][] = []//any[]=[];
+  pushingListCounthing: any[] = [];
+  User: any;
+  RigNames: string[] = [];
+  Colors: string[] = [];
 
   constructor(private loginService:LoginService,private dataService: DataService) {}
 
@@ -108,6 +123,18 @@ export class StopCardChartComponent {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     this.User=this.loginService.currentUser.getValue();
+    // this.dataService.GetRig().subscribe({
+    //   next: data => {
+    //     this.Rigs = data.data;
+    //     this.Rigs.forEach(element => {
+    //       // var name= 'Rig-'+element.number
+    //       this.RigNames.push('Rig-' + element.number)
+
+    //     });
+    //     console.log('this.RigNames')
+    //     console.log(this.RigNames)
+    //   }
+    // })
     this.dataService.GetClassification().subscribe({
       next: data => {
         data.data.forEach((element: { name: string; }) => {
@@ -122,17 +149,53 @@ export class StopCardChartComponent {
         });
       }
     })
+    this.dataService.GetStopCards(this.User.ID, this.User.Role).subscribe({
+      next:data=>{
+        data.data.forEach((ele: any) => {
+          this.Year.push(ele.date)
+        });
+
+        this.Year.forEach((ele: any) => {
+          const dateObject = new Date(ele);
+          const year = dateObject.getFullYear();
+          this.YearsList.push(year)
+          this.YearsList= Array.from(new Set(this.YearsList))
+
+        });
+      }
+    })
+    this.dataService.GetStopCards(this.User.ID, this.User.Role).subscribe({
+      next: data => {
+        this.Rigs = data.data;
+        this.Rigs.forEach(element => {
+          // var name= 'Rig-'+element.number
+          this.RigNames.push(element.userName)
+
+        });
+        console.log('this.RigNamessssssssssssssssssssssssssssss')
+        console.log(this.RigNames)
+      }
+    })
   }
+  onYearChange(event: any) {
+    this.SelectedYear = event.target.value
+    console.log("this.yearrr", this.Year)
 
+  }
+onMonth(event:any){
 
+}
   onChange(event: any) {
     console.log("event")
     console.log(event)
     const myComboBox = document.getElementById('month') as HTMLSelectElement;
     const selectedOption = myComboBox.options[myComboBox.selectedIndex];
     const selectedText = selectedOption.text;
+    console.log("Year:", this.Year);
+
     this.temp = true;
-    this.dataService.GetStopCardsByMonth(event.target.value,this.User.ID,this.User.Role).subscribe({
+
+    this.dataService.GetStopCardsByMonth(event.target.value,this.SelectedYear,this.User.ID,this.User.Role).subscribe({
       next: data => {
         console.log(data.data)
         this.clearChart("myChart")
@@ -202,7 +265,7 @@ export class StopCardChartComponent {
       }
     });
 
-    this.dataService.GetStopCardsByMonth(event.target.value,this.User.ID,this.User.Role).subscribe({
+    this.dataService.GetStopCardsByMonth(event.target.value,this.SelectedYear,this.User.ID,this.User.Role).subscribe({
       next: data => {
         console.log(data.data)
         this.clearChart("myChart2")
@@ -376,7 +439,7 @@ export class StopCardChartComponent {
 
       }
     });
-    this.dataService.GetStopCardsByMonth(event.target.value,this.User.ID,this.User.Role).subscribe({
+    this.dataService.GetStopCardsByMonth(event.target.value,this.SelectedYear,this.User.ID,this.User.Role).subscribe({
       next: data => {
         console.log(data.data)
         this.clearChart("myChart3")
@@ -436,6 +499,111 @@ export class StopCardChartComponent {
         });
 
         myChart3.update();
+
+      }
+    });
+    this.dataService.GetStopCardsByMonth(event.target.value, this.SelectedYear, this.User.ID, this.User.Role).subscribe({
+      next: data => {
+        this.clearChart("myChart4");
+        this.PotentialList = data.data;
+        this.pushingList = [];
+
+        // Organize the data by username
+        this.PotentialList.forEach(item => {
+          let found = false;
+          for (let row of this.pushingList) {
+            if (row.some(r => r.userName === item.userName)) {
+              row.push(item);
+              found = true;
+              break;
+            }
+          }
+          if (!found) {
+            this.pushingList.push([item]);
+          }
+        });
+
+        // Count reports per username
+        this.pushingListCounthing = this.RigNames.map(userName =>
+          this.pushingList.find(row => row.some(item => item.userName === userName))?.length || 0
+        );
+
+        // Generate random colors
+        this.ColorsBackground = [];
+        this.Colors = [];
+        for (let i = 0; i < this.pushingListCounthing.length; i++) {
+          const red = Math.floor(Math.random() * 256);
+          const green = Math.floor(Math.random() * 200);
+          const blue = Math.floor(Math.random() * 256);
+          this.ColorsBackground.push(`rgba(${red}, ${green}, ${blue}, 0.2)`);
+          this.Colors.push(`rgba(${red}, ${green}, ${blue}, 1)`);
+        }
+
+        // Create or update the chart
+        this.AddCanvas("myChart4", "chart4");
+
+        const myChart4 = new Chart("myChart4", {
+          type: 'bar',
+          data: {
+            labels: this.RigNames, // Usernames
+            datasets: [{
+              label: selectedText,
+              data: this.pushingListCounthing, // Number of reports per user
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+              ], // Example: Light blue
+              borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+              ],// Example: Dark blue
+              borderWidth: 1,
+              datalabels: {
+                display: false, // Hide labels by default
+                color: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                ],
+                anchor: 'end',
+                align: 'end',
+                font: {
+                  size: 18,
+                }
+              }
+            }]
+          },
+          // options: {
+          //   responsive: true,
+          //   scales: {
+
+          //     x: {
+          //       ticks: {
+          //         autoSkip: true, // Enable auto-skip to avoid overcrowding
+          //         maxRotation: 60, // Increase label rotation angle
+          //         minRotation: 60,
+          //         maxTicksLimit: 10, // Limit number of ticks on X-axis
+          //       },
+          //       title: {
+          //         display: true,
+          //         text: 'Usernames',
+          //       },
+          //     },
+          //   },
+          //   plugins: {
+          //     legend: {
+          //       display: true,
+          //       position: 'top',
+          //     },
+          //     datalabels: {
+          //       display: false, // Disable all data labels initially
+          //     },
+          //     tooltip: {
+          //       enabled: true, // Enable tooltips to show data on hover
+          //     },
+          //   },
+          // }
+        });
+
 
       }
     });

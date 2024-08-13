@@ -2248,7 +2248,7 @@ namespace TempProject.Controllers
                     orgweeklyCampInspection.MessHall_AllElectricalCables = newweeklyCampInspection.MessHall_AllElectricalCables;
                     orgweeklyCampInspection.MessHall_AllElectricalCablesComment = newweeklyCampInspection.MessHall_AllElectricalCablesComment;
 
-                    orgweeklyCampInspection.userID = newweeklyCampInspection.userID;
+                    //orgweeklyCampInspection.userID = newweeklyCampInspection.userID;
                     //orgweeklyCampInspection.user.UserName= newweeklyCampInspection.userName;
 
 

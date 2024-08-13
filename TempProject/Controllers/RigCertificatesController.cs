@@ -3846,7 +3846,7 @@ namespace TempProject.Controllers
 					orgRigCertificates.DueCATIV = newRigCertificates.DueCATIV;
 					orgRigCertificates.DueGaugeCalibraion = newRigCertificates.DueGaugeCalibraion;
 					orgRigCertificates.DueWallThickness = newRigCertificates.DueWallThickness;
-					orgRigCertificates.userID = newRigCertificates.userID;
+					//orgRigCertificates.userID = newRigCertificates.userID;
 					orgRigCertificates.IsDeleted = newRigCertificates.IsDeleted;
 
 					RigCertificatesRepo.update(orgRigCertificates);

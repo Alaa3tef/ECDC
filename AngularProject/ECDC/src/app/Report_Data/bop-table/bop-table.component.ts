@@ -54,16 +54,7 @@ export class BopTableComponent {
         console.log(this.IsAdmin)
       }
     })
-    this.loginService.isRadio.subscribe({
-      next: data => {
-        this.IsRadio = data
-      }
-    })
-    this.loginService.isUser.subscribe({
-      next: data => {
-        this.IsUser = data
-      }
-    })
+
 
     this.BopService.GetBOPForExcel(this.User.ID,this.User.Role).subscribe({
       next: data => this.json_data = data.data,
@@ -98,6 +89,7 @@ export class BopTableComponent {
         console.log(data.items);
         this.countOfPage = data.count;
         this.TempArray = new Array(this.countOfPage);
+        console.log("countOfPage",data.count)
       },
       error: err => {
         console.log(err)
@@ -108,7 +100,7 @@ export class BopTableComponent {
     console.log("getpages" + this.indexofPages);
     console.log("getpages vvvvvvvvvv list");
 
-    console.log(this.ListOfBOP.getValue());
+    console.log("listtttboppppppppp",this.ListOfBOP.getValue());
 
   }
   gotleft() {

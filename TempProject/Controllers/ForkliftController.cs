@@ -1991,7 +1991,7 @@ namespace TempProject.Controllers
 					orgForklift.ExistingCorrosionRemarks = newForklift.ExistingCorrosionRemarks;
 
 					orgForklift.DriverName = newForklift.DriverName;
-					orgForklift.userID = newForklift.userID;
+					//orgForklift.userID = newForklift.userID;
 
 
 					forkliftRepo.update(orgForklift);

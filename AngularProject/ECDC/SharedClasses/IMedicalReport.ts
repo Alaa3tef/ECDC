@@ -7,7 +7,7 @@ export interface IMedicalReport {
   typeOfIncidentId: number,
   company: string,
   job: string,
-  code: number,
+  code: string,
   name: string,
   address: string,
   telephoneNumber: number,

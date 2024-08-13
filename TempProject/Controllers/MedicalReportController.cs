@@ -822,7 +822,7 @@ namespace TempProject.Controllers
                     orgMedicalReport.RigManager = newMedicalReport.RigManager;
                     orgMedicalReport.RigDoctor = newMedicalReport.RigDoctor;
                     orgMedicalReport.QHSEEngineer = newMedicalReport.QHSEEngineer;
-                    orgMedicalReport.userID = newMedicalReport.UserId;
+                    //orgMedicalReport.userID = newMedicalReport.UserId;
 
                         MedicalReportRepo.update(orgMedicalReport);
                         result.Data = orgMedicalReport;

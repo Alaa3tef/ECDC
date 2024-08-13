@@ -3,7 +3,7 @@
       <h2 class="mx-auto my-4">
          Daily Lifting Report
       </h2>
-  
+
     </div>
     <a routerLink="/DailyLifting/Add" class="btn btn-primary me-3">Add New Daily Lifting Report</a>
     <a (click)="Download()" class="btn btn-primary">Export Data</a>
@@ -24,7 +24,7 @@
           <td>{{record.date | date: 'dd-MM-yyyy'}}</td>
           <td>{{record.liftingEngieerName}}</td>
           <td >
-            <a routerLink="/DailyLifting/Edit/{{record.id}}" class="m-2 h4" style="color: #434F78;"><i class="fa-solid fa-pen-to-square"></i></a>
+            <a routerLink="/DailyLifting/Edit/{{record.id}}/{{record.date}}" class="m-2 h4" style="color: #434F78;"><i class="fa-solid fa-pen-to-square"></i></a>
             <a routerLink="/DailyLiftingReport/Print/{{record.id}}" class="m-2 h4" style="color: #434F78;"><i class="fa-solid fa-print"></i></a>
             <a (click)="DeleteDailyLiftingReport(record)" class="m-2 h4" style="color: #f3c93e;cursor: pointer !important;"><i class="fa-solid fa-trash"></i></a>
           </td>
@@ -38,9 +38,9 @@
       <button class="btn  btn-outline-primary me-3" (click)="gotleft()">
         <i class="fa-solid fa-angle-left"></i>
       </button>
-  
+
       <div class="me-3">{{indexofPages}} of {{countOfPage}}</div>
-  
+
       <button class="btn  btn-outline-primary me-3" (click)="gotoright()">
         <i class="fa-solid fa-angle-right"></i>
       </button>
@@ -49,4 +49,3 @@
       </button>
     </div>
   </div>
-  

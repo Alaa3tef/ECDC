@@ -112,18 +112,33 @@
             <div class="from-group">
               <label for="scba30min" class="form-label"> 30min :</label>
               <input name="scba30min" formControlName="scba30min" id="scba30min" class="form-control">
+              <div *ngIf="scba30min?.invalid && (scba30min?.dirty || scba30min?.touched)">
+                <small class="text-danger" *ngIf="scba30min?.errors?.['required']">
+                  scba30min is required
+                </small>
+              </div>
             </div>
           </td>
           <td >
             <div class="from-group">
               <label for="scba15min" class="form-label"> 15min :</label>
               <input name="scba15min" formControlName="scba15min" id="scba15min" class="form-control">
+              <div *ngIf="scba15min?.invalid && (scba15min?.dirty || scba15min?.touched)">
+                <small class="text-danger" *ngIf="scba15min?.errors?.['required']">
+                  scba15min is required
+                </small>
+              </div>
             </div>
           </td>
           <td >
             <div class="from-group">
               <label for="scba10min" class="form-label"> 10min :</label>
               <input name="scba10min" formControlName="scba10min" id="scba10min" class="form-control">
+              <div *ngIf="scba10min?.invalid && (scba10min?.dirty || scba10min?.touched)">
+                <small class="text-danger" *ngIf="scba10min?.errors?.['required']">
+                  scba10min is required
+                </small>
+              </div>
             </div>
           </td>
         </tr>
@@ -136,6 +151,11 @@
               <input class="form-check-input" formControlName="scbaStatus" type="radio" name="scbaStatus"
                 value="Good">
                 <label for="earthingStatus" class="form-label"style="margin-left: 7px;"> Good </label>
+                <div *ngIf="scbaStatus?.invalid && (scbaStatus?.dirty || scbaStatus?.touched)">
+                  <small class="text-danger" *ngIf="scbaStatus?.errors?.['required']">
+                    scbaStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -143,6 +163,11 @@
               <input class="form-check-input" formControlName="scbaStatus" type="radio" name="scbaStatus"
                 value="Accepted">
                 <label for="earthingStatus" class="form-label"style="margin-left: 7px;"> Accepted</label>
+                <div *ngIf="scbaStatus?.invalid && (scbaStatus?.dirty || scbaStatus?.touched)">
+                  <small class="text-danger" *ngIf="scbaStatus?.errors?.['required']">
+                    scbaStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -150,6 +175,11 @@
               <input class="form-check-input" formControlName="scbaStatus" type="radio" name="scbaStatus"
                 value="Poor">
                 <label for="earthingStatus" class="form-label" style="margin-left: 7px;"> Poor</label>
+                <div *ngIf="scbaStatus?.invalid && (scbaStatus?.dirty || scbaStatus?.touched)">
+                  <small class="text-danger" *ngIf="scbaStatus?.errors?.['required']">
+                    scbaStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -157,6 +187,11 @@
               <input class="form-check-input" formControlName="scbaStatus" type="radio" name="scbaStatus"
                 value="N/A">
                 <label for="scbaStatus" class="form-label" style="margin-left: 7px;"> N/A</label>
+                <div *ngIf="scbaStatus?.invalid && (scbaStatus?.dirty || scbaStatus?.touched)">
+                  <small class="text-danger" *ngIf="scbaStatus?.errors?.['required']">
+                    scbaStatus is required
+                  </small>
+                </div>
             </div>
           </td>
         </tr>
@@ -218,6 +253,11 @@
               <input class="form-check-input" formControlName="eyeStatus" type="radio" name="eyeStatus"
                 value="Good">
                 <label for="eyeStatus" class="form-label"style="margin-left: 7px;"> Good </label>
+                <div *ngIf="eyeStatus?.invalid && (eyeStatus?.dirty || eyeStatus?.touched)">
+                  <small class="text-danger" *ngIf="eyeStatus?.errors?.['required']">
+                    eyeStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -225,6 +265,11 @@
               <input class="form-check-input" formControlName="eyeStatus" type="radio" name="eyeStatus"
                 value="Accepted">
                 <label for="eyeStatus" class="form-label"style="margin-left: 7px;"> Accepted</label>
+                <div *ngIf="eyeStatus?.invalid && (eyeStatus?.dirty || eyeStatus?.touched)">
+                  <small class="text-danger" *ngIf="eyeStatus?.errors?.['required']">
+                    eyeStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -232,6 +277,11 @@
               <input class="form-check-input" formControlName="eyeStatus" type="radio" name="eyeStatus"
                 value="Poor">
                 <label for="eyeStatus" class="form-label" style="margin-left: 7px;"> Poor</label>
+                <div *ngIf="eyeStatus?.invalid && (eyeStatus?.dirty || eyeStatus?.touched)">
+                  <small class="text-danger" *ngIf="eyeStatus?.errors?.['required']">
+                    eyeStatus is required
+                  </small>
+                </div>
             </div>
           </td>
 
@@ -240,6 +290,11 @@
               <input class="form-check-input" formControlName="eyeStatus" type="radio" name="eyeStatus"
                 value="N/A">
                 <label for="eyeStatus" class="form-label" style="margin-left: 7px;"> N/A</label>
+                <div *ngIf="eyeStatus?.invalid && (eyeStatus?.dirty || eyeStatus?.touched)">
+                  <small class="text-danger" *ngIf="eyeStatus?.errors?.['required']">
+                    eyeStatus is required
+                  </small>
+                </div>
             </div>
           </td>
         </tr>
@@ -297,6 +352,11 @@
               <input class="form-check-input" formControlName="firstAidStatus" type="radio" name="firstAidStatus"
                 value="Good">
                 <label for="firstAidStatus" class="form-label"style="margin-left: 7px;"> Good </label>
+                <div *ngIf="firstAidStatus?.invalid && (firstAidStatus?.dirty || firstAidStatus?.touched)">
+                  <small class="text-danger" *ngIf="firstAidStatus?.errors?.['required']">
+                    firstAidStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -304,6 +364,11 @@
               <input class="form-check-input" formControlName="firstAidStatus" type="radio" name="firstAidStatus"
                 value="Accepted">
                 <label for="firstAidStatus" class="form-label"style="margin-left: 7px;"> Accepted</label>
+                <div *ngIf="firstAidStatus?.invalid && (firstAidStatus?.dirty || firstAidStatus?.touched)">
+                  <small class="text-danger" *ngIf="firstAidStatus?.errors?.['required']">
+                    firstAidStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -311,6 +376,11 @@
               <input class="form-check-input" formControlName="firstAidStatus" type="radio" name="firstAidStatus"
                 value="Poor">
                 <label for="firstAidStatus" class="form-label" style="margin-left: 7px;"> Poor</label>
+                <div *ngIf="firstAidStatus?.invalid && (firstAidStatus?.dirty || firstAidStatus?.touched)">
+                  <small class="text-danger" *ngIf="firstAidStatus?.errors?.['required']">
+                    firstAidStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -318,6 +388,11 @@
               <input class="form-check-input" formControlName="firstAidStatus" type="radio" name="firstAidStatus"
                 value="N/A">
                 <label for="firstAidStatus" class="form-label" style="margin-left: 7px;"> N/A</label>
+                <div *ngIf="firstAidStatus?.invalid && (firstAidStatus?.dirty || firstAidStatus?.touched)">
+                  <small class="text-danger" *ngIf="firstAidStatus?.errors?.['required']">
+                    firstAidStatus is required
+                  </small>
+                </div>
             </div>
           </td>
         </tr>
@@ -378,6 +453,11 @@
               <input class="form-check-input" formControlName="portableGasStatus" type="radio" name="portableGasStatus"
                 value="Good">
                 <label for="portableGasStatus" class="form-label"style="margin-left: 7px;"> Good </label>
+                <div *ngIf="portableGasStatus?.invalid && (portableGasStatus?.dirty || portableGasStatus?.touched)">
+                  <small class="text-danger" *ngIf="portableGasStatus?.errors?.['required']">
+                    portableGasStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -385,6 +465,11 @@
               <input class="form-check-input" formControlName="portableGasStatus" type="radio" name="portableGasStatus"
                 value="Accepted">
                 <label for="portableGasStatus" class="form-label"style="margin-left: 7px;"> Accepted</label>
+                <div *ngIf="portableGasStatus?.invalid && (portableGasStatus?.dirty || portableGasStatus?.touched)">
+                  <small class="text-danger" *ngIf="portableGasStatus?.errors?.['required']">
+                    portableGasStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -392,6 +477,11 @@
               <input class="form-check-input" formControlName="portableGasStatus" type="radio" name="portableGasStatus"
                 value="Poor">
                 <label for="portableGasStatus" class="form-label" style="margin-left: 7px;"> Poor</label>
+                <div *ngIf="portableGasStatus?.invalid && (portableGasStatus?.dirty || portableGasStatus?.touched)">
+                  <small class="text-danger" *ngIf="portableGasStatus?.errors?.['required']">
+                    portableGasStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -399,6 +489,11 @@
               <input class="form-check-input" formControlName="portableGasStatus" type="radio" name="portableGasStatus"
                 value="N/A">
                 <label for="portableGasStatus" class="form-label" style="margin-left: 7px;"> N/A</label>
+                <div *ngIf="portableGasStatus?.invalid && (portableGasStatus?.dirty || portableGasStatus?.touched)">
+                  <small class="text-danger" *ngIf="portableGasStatus?.errors?.['required']">
+                    portableGasStatus is required
+                  </small>
+                </div>
             </div>
           </td>
         </tr>
@@ -412,6 +507,11 @@
             <div class="from-group">
               <label for="portableGasMuti" class="form-label"> Multi :</label>
               <input name="portableGasMuti" formControlName="portableGasMuti" id="portableGasMuti" class="form-control">
+              <div *ngIf="portableGasMuti?.invalid && (portableGasMuti?.dirty || portableGasMuti?.touched)">
+                <small class="text-danger" *ngIf="portableGasMuti?.errors?.['required']">
+                  portableGasMuti is required
+                </small>
+              </div>
             </div>
           </td>
           <td >
@@ -419,6 +519,11 @@
               <label for="portableGasSingle" class="form-label"> Single :</label>
               <input name="portableGasSingle" formControlName="portableGasSingle" id="portableGasSingle"
                 class="form-control">
+                <div *ngIf="portableGasSingle?.invalid && (portableGasSingle?.dirty || portableGasSingle?.touched)">
+                  <small class="text-danger" *ngIf="portableGasSingle?.errors?.['required']">
+                    portableGasSingle is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -439,6 +544,11 @@
             <label for="portableGasWeeklyFindings"> Weekly Findings:</label>
             <textarea class="form-control " formControlName="portableGasWeeklyFindings" rows="4"
               id="portableGasWeeklyFindings" name="text"></textarea>
+              <div *ngIf="portableGasWeeklyFindings?.invalid && (portableGasWeeklyFindings?.dirty || portableGasWeeklyFindings?.touched)">
+                <small class="text-danger" *ngIf="portableGasWeeklyFindings?.errors?.['required']">
+                  portableGasWeeklyFindings is required
+                </small>
+              </div>
           </td>
         </tr>
 
@@ -488,6 +598,11 @@
               <input class="form-check-input" formControlName="firePumpStatus" type="radio" name="firePumpStatus"
                 value="Good">
                 <label for="firePumpStatus" class="form-label"style="margin-left: 7px;"> Good </label>
+                <div *ngIf="firePumpStatus?.invalid && (firePumpStatus?.dirty || firePumpStatus?.touched)">
+                  <small class="text-danger" *ngIf="firePumpStatus?.errors?.['required']">
+                    firePumpStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -495,6 +610,11 @@
               <input class="form-check-input" formControlName="firePumpStatus" type="radio" name="firePumpStatus"
                 value="Accepted">
                 <label for="firePumpStatus" class="form-label"style="margin-left: 7px;"> Accepted</label>
+                <div *ngIf="firePumpStatus?.invalid && (firePumpStatus?.dirty || firePumpStatus?.touched)">
+                  <small class="text-danger" *ngIf="firePumpStatus?.errors?.['required']">
+                    firePumpStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -502,6 +622,11 @@
               <input class="form-check-input" formControlName="firePumpStatus" type="radio" name="firePumpStatus"
                 value="Poor">
                 <label for="firePumpStatus" class="form-label" style="margin-left: 7px;"> Poor</label>
+                <div *ngIf="firePumpStatus?.invalid && (firePumpStatus?.dirty || firePumpStatus?.touched)">
+                  <small class="text-danger" *ngIf="firePumpStatus?.errors?.['required']">
+                    firePumpStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -509,6 +634,11 @@
               <input class="form-check-input" formControlName="firePumpStatus" type="radio" name="firePumpStatus"
                 value="N/A">
                 <label for="firePumpStatus" class="form-label" style="margin-left: 7px;"> N/A</label>
+                <div *ngIf="firePumpStatus?.invalid && (firePumpStatus?.dirty || firePumpStatus?.touched)">
+                  <small class="text-danger" *ngIf="firePumpStatus?.errors?.['required']">
+                    firePumpStatus is required
+                  </small>
+                </div>
             </div>
           </td>
         </tr>
@@ -517,6 +647,11 @@
             <label for="firePumpWeeklyFindings"> Weekly Findings:</label>
             <textarea class="form-control " formControlName="firePumpWeeklyFindings" rows="4"
               id="firePumpWeeklyFindings" name="text"></textarea>
+              <div *ngIf="firePumpWeeklyFindings?.invalid && (firePumpWeeklyFindings?.dirty || firePumpWeeklyFindings?.touched)">
+                <small class="text-danger" *ngIf="firePumpWeeklyFindings?.errors?.['required']">
+                  firePumpWeeklyFindings is required
+                </small>
+              </div>
           </td>
         </tr>
 
@@ -570,6 +705,11 @@
               <input class="form-check-input" formControlName="weldingStatus" type="radio" name="weldingStatus"
                 value="Good">
                 <label for="weldingStatus" class="form-label"style="margin-left: 7px;"> Good </label>
+                <div *ngIf="weldingStatus?.invalid && (weldingStatus?.dirty || weldingStatus?.touched)">
+                  <small class="text-danger" *ngIf="weldingStatus?.errors?.['required']">
+                    weldingStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -577,6 +717,11 @@
               <input class="form-check-input" formControlName="weldingStatus" type="radio" name="weldingStatus"
                 value="Accepted">
                 <label for="weldingStatus" class="form-label"style="margin-left: 7px;"> Accepted</label>
+                <div *ngIf="weldingStatus?.invalid && (weldingStatus?.dirty || weldingStatus?.touched)">
+                  <small class="text-danger" *ngIf="weldingStatus?.errors?.['required']">
+                    weldingStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -584,6 +729,11 @@
               <input class="form-check-input" formControlName="weldingStatus" type="radio" name="weldingStatus"
                 value="Poor">
                 <label for="weldingStatus" class="form-label" style="margin-left: 7px;"> Poor</label>
+                <div *ngIf="weldingStatus?.invalid && (weldingStatus?.dirty || weldingStatus?.touched)">
+                  <small class="text-danger" *ngIf="weldingStatus?.errors?.['required']">
+                    weldingStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -591,6 +741,11 @@
               <input class="form-check-input" formControlName="weldingStatus" type="radio" name="weldingStatus"
                 value="N/A">
                 <label for="weldingStatus" class="form-label" style="margin-left: 7px;"> N/A</label>
+                <div *ngIf="weldingStatus?.invalid && (weldingStatus?.dirty || weldingStatus?.touched)">
+                  <small class="text-danger" *ngIf="weldingStatus?.errors?.['required']">
+                    weldingStatus is required
+                  </small>
+                </div>
             </div>
           </td>
         </tr>
@@ -599,6 +754,11 @@
             <label for="weldingWeeklyFindings"> Weekly Findings:</label>
             <textarea class="form-control " formControlName="weldingWeeklyFindings" rows="4" id="weldingWeeklyFindings"
               name="text"></textarea>
+              <div *ngIf="weldingWeeklyFindings?.invalid && (weldingWeeklyFindings?.dirty || weldingWeeklyFindings?.touched)">
+                <small class="text-danger" *ngIf="weldingWeeklyFindings?.errors?.['required']">
+                  weldingWeeklyFindings is required
+                </small>
+              </div>
           </td>
         </tr>
 
@@ -640,6 +800,11 @@
               <input class="form-check-input" formControlName="windStatus" type="radio" name="windStatus"
                 value="Good">
                 <label for="windStatus" class="form-label"style="margin-left: 7px;"> Good </label>
+                <div *ngIf="windStatus?.invalid && (windStatus?.dirty || windStatus?.touched)">
+                  <small class="text-danger" *ngIf="windStatus?.errors?.['required']">
+                    windStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -647,6 +812,11 @@
               <input class="form-check-input" formControlName="windStatus" type="radio" name="windStatus"
                 value="Accepted">
                 <label for="windStatus" class="form-label"style="margin-left: 7px;"> Accepted</label>
+                <div *ngIf="windStatus?.invalid && (windStatus?.dirty || windStatus?.touched)">
+                  <small class="text-danger" *ngIf="windStatus?.errors?.['required']">
+                    windStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -654,6 +824,11 @@
               <input class="form-check-input" formControlName="windStatus" type="radio" name="windStatus"
                 value="Poor">
                 <label for="windStatus" class="form-label" style="margin-left: 7px;"> Poor</label>
+                <div *ngIf="windStatus?.invalid && (windStatus?.dirty || windStatus?.touched)">
+                  <small class="text-danger" *ngIf="windStatus?.errors?.['required']">
+                    windStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -661,6 +836,11 @@
               <input class="form-check-input" formControlName="windStatus" type="radio" name="windStatus"
                 value="N/A">
                 <label for="windStatus" class="form-label" style="margin-left: 7px;"> N/A</label>
+                <div *ngIf="windStatus?.invalid && (windStatus?.dirty || windStatus?.touched)">
+                  <small class="text-danger" *ngIf="windStatus?.errors?.['required']">
+                    windStatus is required
+                  </small>
+                </div>
             </div>
           </td>
         </tr>
@@ -669,6 +849,11 @@
             <label for="windWeeklyFindings"> Weekly Findings:</label>
             <textarea class="form-control " formControlName="windWeeklyFindings" rows="4" id="windWeeklyFindings"
               name="text"></textarea>
+              <div *ngIf="windWeeklyFindings?.invalid && (windWeeklyFindings?.dirty || windWeeklyFindings?.touched)">
+                <small class="text-danger" *ngIf="windWeeklyFindings?.errors?.['required']">
+                  windWeeklyFindings is required
+                </small>
+              </div>
           </td>
         </tr>
 
@@ -714,6 +899,11 @@
               <input class="form-check-input" formControlName="smokeStatus" type="radio" name="smokeStatus"
                 value="Good">
                 <label for="smokeStatus" class="form-label"style="margin-left: 7px;"> Good </label>
+                <div *ngIf="smokeStatus?.invalid && (smokeStatus?.dirty || smokeStatus?.touched)">
+                  <small class="text-danger" *ngIf="smokeStatus?.errors?.['required']">
+                    smokeStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -721,6 +911,11 @@
               <input class="form-check-input" formControlName="smokeStatus" type="radio" name="smokeStatus"
                 value="Accepted">
                 <label for="smokeStatus" class="form-label"style="margin-left: 7px;"> Accepted</label>
+                <div *ngIf="smokeStatus?.invalid && (smokeStatus?.dirty || smokeStatus?.touched)">
+                  <small class="text-danger" *ngIf="smokeStatus?.errors?.['required']">
+                    smokeStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -728,6 +923,11 @@
               <input class="form-check-input" formControlName="smokeStatus" type="radio" name="smokeStatus"
                 value="Poor">
                 <label for="smokeStatus" class="form-label" style="margin-left: 7px;"> Poor</label>
+                <div *ngIf="smokeStatus?.invalid && (smokeStatus?.dirty || smokeStatus?.touched)">
+                  <small class="text-danger" *ngIf="smokeStatus?.errors?.['required']">
+                    smokeStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -735,6 +935,11 @@
               <input class="form-check-input" formControlName="smokeStatus" type="radio" name="smokeStatus"
                 value="N/A">
                 <label for="smokeStatus" class="form-label" style="margin-left: 7px;"> N/A</label>
+                <div *ngIf="smokeStatus?.invalid && (smokeStatus?.dirty || smokeStatus?.touched)">
+                  <small class="text-danger" *ngIf="smokeStatus?.errors?.['required']">
+                    smokeStatus is required
+                  </small>
+                </div>
             </div>
           </td>
         </tr>
@@ -743,6 +948,11 @@
             <label for="smokeWeeklyFindings"> Weekly Findings:</label>
             <textarea class="form-control " formControlName="smokeWeeklyFindings" rows="4" id="smokeWeeklyFindings"
               name="text"></textarea>
+              <div *ngIf="smokeWeeklyFindings?.invalid && (smokeWeeklyFindings?.dirty || smokeWeeklyFindings?.touched)">
+                <small class="text-danger" *ngIf="smokeWeeklyFindings?.errors?.['required']">
+                  smokeWeeklyFindings is required
+                </small>
+              </div>
           </td>
         </tr>
 
@@ -791,6 +1001,11 @@
               <input class="form-check-input" formControlName="fireExtinguishersStatus" type="radio" name="fireExtinguishersStatus"
                 value="Good">
                 <label for="fireExtinguishersStatus" class="form-label"style="margin-left: 7px;"> Good </label>
+                <div *ngIf="fireExtinguishersStatus?.invalid && (fireExtinguishersStatus?.dirty || fireExtinguishersStatus?.touched)">
+                  <small class="text-danger" *ngIf="fireExtinguishersStatus?.errors?.['required']">
+                    fireExtinguishersStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -798,6 +1013,11 @@
               <input class="form-check-input" formControlName="fireExtinguishersStatus" type="radio" name="fireExtinguishersStatus"
                 value="Accepted">
                 <label for="fireExtinguishersStatus" class="form-label"style="margin-left: 7px;"> Accepted</label>
+                <div *ngIf="fireExtinguishersStatus?.invalid && (fireExtinguishersStatus?.dirty || fireExtinguishersStatus?.touched)">
+                  <small class="text-danger" *ngIf="fireExtinguishersStatus?.errors?.['required']">
+                    fireExtinguishersStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -805,6 +1025,11 @@
               <input class="form-check-input" formControlName="fireExtinguishersStatus" type="radio" name="fireExtinguishersStatus"
                 value="Poor">
                 <label for="fireExtinguishersStatus" class="form-label" style="margin-left: 7px;"> Poor</label>
+                <div *ngIf="fireExtinguishersStatus?.invalid && (fireExtinguishersStatus?.dirty || fireExtinguishersStatus?.touched)">
+                  <small class="text-danger" *ngIf="fireExtinguishersStatus?.errors?.['required']">
+                    fireExtinguishersStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -812,6 +1037,11 @@
               <input class="form-check-input" formControlName="fireExtinguishersStatus" type="radio" name="fireExtinguishersStatus"
                 value="N/A">
                 <label for="fireExtinguishersStatus" class="form-label" style="margin-left: 7px;"> N/A</label>
+                <div *ngIf="fireExtinguishersStatus?.invalid && (fireExtinguishersStatus?.dirty || fireExtinguishersStatus?.touched)">
+                  <small class="text-danger" *ngIf="fireExtinguishersStatus?.errors?.['required']">
+                    fireExtinguishersStatus is required
+                  </small>
+                </div>
             </div>
           </td>
         </tr>
@@ -820,6 +1050,11 @@
             <label for="fireExtinguishersWeeklyFindings"> Weekly Findings:</label>
             <textarea class="form-control " formControlName="fireExtinguishersWeeklyFindings" rows="4"
               id="fireExtinguishersWeeklyFindings" name="text"></textarea>
+              <div *ngIf="fireExtinguishersWeeklyFindings?.invalid && (fireExtinguishersWeeklyFindings?.dirty || fireExtinguishersWeeklyFindings?.touched)">
+                <small class="text-danger" *ngIf="fireExtinguishersWeeklyFindings?.errors?.['required']">
+                  fireExtinguishersWeeklyFindings is required
+                </small>
+              </div>
           </td>
         </tr>
 
@@ -862,6 +1097,11 @@
               <input class="form-check-input" formControlName="derrickmanStatus" type="radio" name="derrickmanStatus"
                 value="Good">
                 <label for="derrickmanStatus" class="form-label"style="margin-left: 7px;"> Good </label>
+                <div *ngIf="derrickmanStatus?.invalid && (derrickmanStatus?.dirty || derrickmanStatus?.touched)">
+                  <small class="text-danger" *ngIf="derrickmanStatus?.errors?.['required']">
+                    derrickmanStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -869,6 +1109,11 @@
               <input class="form-check-input" formControlName="derrickmanStatus" type="radio" name="derrickmanStatus"
                 value="Accepted">
                 <label for="derrickmanStatus" class="form-label"style="margin-left: 7px;"> Accepted</label>
+                <div *ngIf="derrickmanStatus?.invalid && (derrickmanStatus?.dirty || derrickmanStatus?.touched)">
+                  <small class="text-danger" *ngIf="derrickmanStatus?.errors?.['required']">
+                    derrickmanStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -876,6 +1121,11 @@
               <input class="form-check-input" formControlName="derrickmanStatus" type="radio" name="derrickmanStatus"
                 value="Poor">
                 <label for="derrickmanStatus" class="form-label" style="margin-left: 7px;"> Poor</label>
+                <div *ngIf="derrickmanStatus?.invalid && (derrickmanStatus?.dirty || derrickmanStatus?.touched)">
+                  <small class="text-danger" *ngIf="derrickmanStatus?.errors?.['required']">
+                    derrickmanStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -883,6 +1133,11 @@
               <input class="form-check-input" formControlName="derrickmanStatus" type="radio" name="derrickmanStatus"
                 value="N/A">
                 <label for="derrickmanStatus" class="form-label" style="margin-left: 7px;"> N/A</label>
+                <div *ngIf="derrickmanStatus?.invalid && (derrickmanStatus?.dirty || derrickmanStatus?.touched)">
+                  <small class="text-danger" *ngIf="derrickmanStatus?.errors?.['required']">
+                    derrickmanStatus is required
+                  </small>
+                </div>
             </div>
           </td>
         </tr>
@@ -891,6 +1146,11 @@
             <label for="derrickmanWeeklyFindings"> Weekly Findings:</label>
             <textarea class="form-control " formControlName="derrickmanWeeklyFindings" rows="4"
               id="derrickmanWeeklyFindings" name="text"></textarea>
+              <div *ngIf="derrickmanWeeklyFindings?.invalid && (derrickmanWeeklyFindings?.dirty || derrickmanWeeklyFindings?.touched)">
+                <small class="text-danger" *ngIf="derrickmanWeeklyFindings?.errors?.['required']">
+                  derrickmanWeeklyFindings is required
+                </small>
+              </div>
           </td>
         </tr>
 
@@ -933,6 +1193,11 @@
               <input class="form-check-input" formControlName="workingStatus" type="radio" name="workingStatus"
                 value="Good">
                 <label for="workingStatus" class="form-label"style="margin-left: 7px;"> Good </label>
+                <div *ngIf="workingStatus?.invalid && (workingStatus?.dirty || workingStatus?.touched)">
+                  <small class="text-danger" *ngIf="workingStatus?.errors?.['required']">
+                    workingStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -940,6 +1205,11 @@
               <input class="form-check-input" formControlName="workingStatus" type="radio" name="workingStatus"
                 value="Accepted">
                 <label for="workingStatus" class="form-label"style="margin-left: 7px;"> Accepted</label>
+                <div *ngIf="workingStatus?.invalid && (workingStatus?.dirty || workingStatus?.touched)">
+                  <small class="text-danger" *ngIf="workingStatus?.errors?.['required']">
+                    workingStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -947,6 +1217,11 @@
               <input class="form-check-input" formControlName="workingStatus" type="radio" name="workingStatus"
                 value="Poor">
                 <label for="workingStatus" class="form-label" style="margin-left: 7px;"> Poor</label>
+                <div *ngIf="workingStatus?.invalid && (workingStatus?.dirty || workingStatus?.touched)">
+                  <small class="text-danger" *ngIf="workingStatus?.errors?.['required']">
+                    workingStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -954,6 +1229,11 @@
               <input class="form-check-input" formControlName="workingStatus" type="radio" name="workingStatus"
                 value="N/A">
                 <label for="workingStatus" class="form-label" style="margin-left: 7px;"> N/A</label>
+                <div *ngIf="workingStatus?.invalid && (workingStatus?.dirty || workingStatus?.touched)">
+                  <small class="text-danger" *ngIf="workingStatus?.errors?.['required']">
+                    workingStatus is required
+                  </small>
+                </div>
             </div>
           </td>
         </tr>
@@ -962,6 +1242,11 @@
             <label for="workingWeeklyFindings"> Weekly Findings:</label>
             <textarea class="form-control " formControlName="workingWeeklyFindings" rows="4" id="workingWeeklyFindings"
               name="text"></textarea>
+              <div *ngIf="workingWeeklyFindings?.invalid && (workingWeeklyFindings?.dirty || workingWeeklyFindings?.touched)">
+                <small class="text-danger" *ngIf="workingWeeklyFindings?.errors?.['required']">
+                  workingWeeklyFindings is required
+                </small>
+              </div>
           </td>
         </tr>
 
@@ -1007,6 +1292,11 @@
               <input class="form-check-input" formControlName="portableLadderStatus" type="radio" name="portableLadderStatus"
                 value="Good">
                 <label for="portableLadderStatus" class="form-label"style="margin-left: 7px;"> Good </label>
+                <div *ngIf="portableLadderStatus?.invalid && (portableLadderStatus?.dirty || portableLadderStatus?.touched)">
+                  <small class="text-danger" *ngIf="portableLadderStatus?.errors?.['required']">
+                    portableLadderStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -1014,6 +1304,11 @@
               <input class="form-check-input" formControlName="portableLadderStatus" type="radio" name="portableLadderStatus"
                 value="Accepted">
                 <label for="portableLadderStatus" class="form-label"style="margin-left: 7px;"> Accepted</label>
+                <div *ngIf="portableLadderStatus?.invalid && (portableLadderStatus?.dirty || portableLadderStatus?.touched)">
+                  <small class="text-danger" *ngIf="portableLadderStatus?.errors?.['required']">
+                    portableLadderStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -1021,6 +1316,11 @@
               <input class="form-check-input" formControlName="portableLadderStatus" type="radio" name="portableLadderStatus"
                 value="Poor">
                 <label for="portableLadderStatus" class="form-label" style="margin-left: 7px;"> Poor</label>
+                <div *ngIf="portableLadderStatus?.invalid && (portableLadderStatus?.dirty || portableLadderStatus?.touched)">
+                  <small class="text-danger" *ngIf="portableLadderStatus?.errors?.['required']">
+                    portableLadderStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -1028,6 +1328,11 @@
               <input class="form-check-input" formControlName="portableLadderStatus" type="radio" name="portableLadderStatus"
                 value="N/A">
                 <label for="portableLadderStatus" class="form-label" style="margin-left: 7px;"> N/A</label>
+                <div *ngIf="portableLadderStatus?.invalid && (portableLadderStatus?.dirty || portableLadderStatus?.touched)">
+                  <small class="text-danger" *ngIf="portableLadderStatus?.errors?.['required']">
+                    portableLadderStatus is required
+                  </small>
+                </div>
             </div>
           </td>
         </tr>
@@ -1036,6 +1341,11 @@
             <label for="portableLadderWeeklyFindings"> Weekly Findings:</label>
             <textarea class="form-control " formControlName="portableLadderWeeklyFindings" rows="4"
               id="portableLadderWeeklyFindings" name="text"></textarea>
+              <div *ngIf="portableLadderWeeklyFindings?.invalid && (portableLadderWeeklyFindings?.dirty || portableLadderWeeklyFindings?.touched)">
+                <small class="text-danger" *ngIf="portableLadderWeeklyFindings?.errors?.['required']">
+                  portableLadderWeeklyFindings is required
+                </small>
+              </div>
           </td>
         </tr>
 
@@ -1078,6 +1388,11 @@
               <input class="form-check-input" formControlName="safetyStatus" type="radio" name="safetyStatus"
                 value="Good">
                 <label for="safetyStatus" class="form-label"style="margin-left: 7px;"> Good </label>
+                <div *ngIf="safetyStatus?.invalid && (safetyStatus?.dirty || safetyStatus?.touched)">
+                  <small class="text-danger" *ngIf="safetyStatus?.errors?.['required']">
+                    safetyStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -1085,6 +1400,11 @@
               <input class="form-check-input" formControlName="safetyStatus" type="radio" name="safetyStatus"
                 value="Accepted">
                 <label for="safetyStatus" class="form-label"style="margin-left: 7px;"> Accepted</label>
+                <div *ngIf="safetyStatus?.invalid && (safetyStatus?.dirty || safetyStatus?.touched)">
+                  <small class="text-danger" *ngIf="safetyStatus?.errors?.['required']">
+                    safetyStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -1092,6 +1412,11 @@
               <input class="form-check-input" formControlName="safetyStatus" type="radio" name="safetyStatus"
                 value="Poor">
                 <label for="safetyStatus" class="form-label" style="margin-left: 7px;"> Poor</label>
+                <div *ngIf="safetyStatus?.invalid && (safetyStatus?.dirty || safetyStatus?.touched)">
+                  <small class="text-danger" *ngIf="safetyStatus?.errors?.['required']">
+                    safetyStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -1099,6 +1424,11 @@
               <input class="form-check-input" formControlName="safetyStatus" type="radio" name="safetyStatus"
                 value="N/A">
                 <label for="safetyStatus" class="form-label" style="margin-left: 7px;"> N/A</label>
+                <div *ngIf="safetyStatus?.invalid && (safetyStatus?.dirty || safetyStatus?.touched)">
+                  <small class="text-danger" *ngIf="safetyStatus?.errors?.['required']">
+                    safetyStatus is required
+                  </small>
+                </div>
             </div>
           </td>
         </tr>
@@ -1107,6 +1437,11 @@
             <label for="safetyWeeklyFindings"> Weekly Findings:</label>
             <textarea class="form-control " formControlName="safetyWeeklyFindings" rows="4" id="safetyWeeklyFindings"
               name="text"></textarea>
+              <div *ngIf="safetyWeeklyFindings?.invalid && (safetyWeeklyFindings?.dirty || safetyWeeklyFindings?.touched)">
+                <small class="text-danger" *ngIf="safetyWeeklyFindings?.errors?.['required']">
+                  safetyWeeklyFindings is required
+                </small>
+              </div>
           </td>
         </tr>
 
@@ -1150,6 +1485,11 @@
               <input class="form-check-input" formControlName="fallStatus" type="radio" name="fallStatus"
                 value="Good">
                 <label for="fallStatus" class="form-label"style="margin-left: 7px;"> Good </label>
+                <div *ngIf="fallStatus?.invalid && (fallStatus?.dirty || fallStatus?.touched)">
+                  <small class="text-danger" *ngIf="fallStatus?.errors?.['required']">
+                    fallStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -1157,6 +1497,11 @@
               <input class="form-check-input" formControlName="fallStatus" type="radio" name="fallStatus"
                 value="Accepted">
                 <label for="fallStatus" class="form-label"style="margin-left: 7px;"> Accepted</label>
+                <div *ngIf="fallStatus?.invalid && (fallStatus?.dirty || fallStatus?.touched)">
+                  <small class="text-danger" *ngIf="fallStatus?.errors?.['required']">
+                    fallStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -1164,6 +1509,11 @@
               <input class="form-check-input" formControlName="fallStatus" type="radio" name="fallStatus"
                 value="Poor">
                 <label for="fallStatus" class="form-label" style="margin-left: 7px;"> Poor</label>
+                <div *ngIf="fallStatus?.invalid && (fallStatus?.dirty || fallStatus?.touched)">
+                  <small class="text-danger" *ngIf="fallStatus?.errors?.['required']">
+                    fallStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -1171,6 +1521,11 @@
               <input class="form-check-input" formControlName="fallStatus" type="radio" name="fallStatus"
                 value="N/A">
                 <label for="fallStatus" class="form-label" style="margin-left: 7px;"> N/A</label>
+                <div *ngIf="fallStatus?.invalid && (fallStatus?.dirty || fallStatus?.touched)">
+                  <small class="text-danger" *ngIf="fallStatus?.errors?.['required']">
+                    fallStatus is required
+                  </small>
+                </div>
             </div>
           </td>
         </tr>
@@ -1179,6 +1534,11 @@
             <label for="fallWeeklyFindings"> Weekly Findings:</label>
             <textarea class="form-control " formControlName="fallWeeklyFindings" rows="4" id="fallWeeklyFindings"
               name="text"></textarea>
+              <div *ngIf="fallWeeklyFindings?.invalid && (fallWeeklyFindings?.dirty || fallWeeklyFindings?.touched)">
+                <small class="text-danger" *ngIf="fallWeeklyFindings?.errors?.['required']">
+                  fallWeeklyFindings is required
+                </small>
+              </div>
           </td>
         </tr>
 
@@ -1204,6 +1564,11 @@
               <input class="form-check-input" formControlName="craneStatus" type="radio" name="craneStatus"
                 value="Good">
                 <label for="craneStatus" class="form-label"style="margin-left: 7px;"> Good </label>
+                <div *ngIf="craneStatus?.invalid && (craneStatus?.dirty || craneStatus?.touched)">
+                  <small class="text-danger" *ngIf="craneStatus?.errors?.['required']">
+                    craneStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -1211,6 +1576,11 @@
               <input class="form-check-input" formControlName="craneStatus" type="radio" name="craneStatus"
                 value="Accepted">
                 <label for="craneStatus" class="form-label"style="margin-left: 7px;"> Accepted</label>
+                <div *ngIf="craneStatus?.invalid && (craneStatus?.dirty || craneStatus?.touched)">
+                  <small class="text-danger" *ngIf="craneStatus?.errors?.['required']">
+                    craneStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -1218,6 +1588,11 @@
               <input class="form-check-input" formControlName="craneStatus" type="radio" name="craneStatus"
                 value="Poor">
                 <label for="craneStatus" class="form-label" style="margin-left: 7px;"> Poor</label>
+                <div *ngIf="craneStatus?.invalid && (craneStatus?.dirty || craneStatus?.touched)">
+                  <small class="text-danger" *ngIf="craneStatus?.errors?.['required']">
+                    craneStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -1225,6 +1600,11 @@
               <input class="form-check-input" formControlName="craneStatus" type="radio" name="craneStatus"
                 value="N/A">
                 <label for="craneStatus" class="form-label" style="margin-left: 7px;"> N/A</label>
+                <div *ngIf="craneStatus?.invalid && (craneStatus?.dirty || craneStatus?.touched)">
+                  <small class="text-danger" *ngIf="craneStatus?.errors?.['required']">
+                    craneStatus is required
+                  </small>
+                </div>
             </div>
           </td>
         </tr>
@@ -1233,6 +1613,11 @@
             <label for="craneWeeklyFindings"> Weekly Findings:</label>
             <textarea class="form-control " formControlName="craneWeeklyFindings" rows="4" id="craneWeeklyFindings"
               name="text"></textarea>
+              <div *ngIf="craneWeeklyFindings?.invalid && (craneWeeklyFindings?.dirty || craneWeeklyFindings?.touched)">
+                <small class="text-danger" *ngIf="craneWeeklyFindings?.errors?.['required']">
+                  craneWeeklyFindings is required
+                </small>
+              </div>
           </td>
         </tr>
 
@@ -1258,6 +1643,11 @@
               <input class="form-check-input" formControlName="forkStatus" type="radio" name="forkStatus"
                 value="Good">
                 <label for="forkStatus" class="form-label"style="margin-left: 7px;"> Good </label>
+                <div *ngIf="forkStatus?.invalid && (forkStatus?.dirty || forkStatus?.touched)">
+                  <small class="text-danger" *ngIf="forkStatus?.errors?.['required']">
+                    forkStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -1265,6 +1655,11 @@
               <input class="form-check-input" formControlName="forkStatus" type="radio" name="forkStatus"
                 value="Accepted">
                 <label for="forkStatus" class="form-label"style="margin-left: 7px;"> Accepted</label>
+                <div *ngIf="forkStatus?.invalid && (forkStatus?.dirty || forkStatus?.touched)">
+                  <small class="text-danger" *ngIf="forkStatus?.errors?.['required']">
+                    forkStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -1272,6 +1667,11 @@
               <input class="form-check-input" formControlName="forkStatus" type="radio" name="forkStatus"
                 value="Poor">
                 <label for="forkStatus" class="form-label" style="margin-left: 7px;"> Poor</label>
+                <div *ngIf="forkStatus?.invalid && (forkStatus?.dirty || forkStatus?.touched)">
+                  <small class="text-danger" *ngIf="forkStatus?.errors?.['required']">
+                    forkStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -1279,6 +1679,11 @@
               <input class="form-check-input" formControlName="forkStatus" type="radio" name="forkStatus"
                 value="N/A">
                 <label for="forkStatus" class="form-label" style="margin-left: 7px;"> N/A</label>
+                <div *ngIf="forkStatus?.invalid && (forkStatus?.dirty || forkStatus?.touched)">
+                  <small class="text-danger" *ngIf="forkStatus?.errors?.['required']">
+                    forkStatus is required
+                  </small>
+                </div>
             </div>
           </td>
         </tr>
@@ -1287,6 +1692,11 @@
             <label for="forkWeeklyFindings"> Weekly Findings:</label>
             <textarea class="form-control " formControlName="forkWeeklyFindings" rows="4" id="forkWeeklyFindings"
               name="text"></textarea>
+              <div *ngIf="forkWeeklyFindings?.invalid && (forkWeeklyFindings?.dirty || forkWeeklyFindings?.touched)">
+                <small class="text-danger" *ngIf="forkWeeklyFindings?.errors?.['required']">
+                  forkWeeklyFindings is required
+                </small>
+              </div>
           </td>
         </tr>
 
@@ -1337,6 +1747,11 @@
               <input class="form-check-input" formControlName="droppedInspectionStatus" type="radio" name="droppedInspectionStatus"
                 value="Good">
                 <label for="droppedInspectionStatus" class="form-label"style="margin-left: 7px;"> Good </label>
+                <div *ngIf="droppedInspectionStatus?.invalid && (droppedInspectionStatus?.dirty || droppedInspectionStatus?.touched)">
+                  <small class="text-danger" *ngIf="droppedInspectionStatus?.errors?.['required']">
+                    droppedInspectionStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -1344,6 +1759,11 @@
               <input class="form-check-input" formControlName="droppedInspectionStatus" type="radio" name="droppedInspectionStatus"
                 value="Accepted">
                 <label for="droppedInspectionStatus" class="form-label"style="margin-left: 7px;"> Accepted</label>
+                <div *ngIf="droppedInspectionStatus?.invalid && (droppedInspectionStatus?.dirty || droppedInspectionStatus?.touched)">
+                  <small class="text-danger" *ngIf="droppedInspectionStatus?.errors?.['required']">
+                    droppedInspectionStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -1351,6 +1771,11 @@
               <input class="form-check-input" formControlName="droppedInspectionStatus" type="radio" name="droppedInspectionStatus"
                 value="Poor">
                 <label for="droppedInspectionStatus" class="form-label" style="margin-left: 7px;"> Poor</label>
+                <div *ngIf="droppedInspectionStatus?.invalid && (droppedInspectionStatus?.dirty || droppedInspectionStatus?.touched)">
+                  <small class="text-danger" *ngIf="droppedInspectionStatus?.errors?.['required']">
+                    droppedInspectionStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -1358,6 +1783,11 @@
               <input class="form-check-input" formControlName="droppedInspectionStatus" type="radio" name="droppedInspectionStatus"
                 value="N/A">
                 <label for="droppedInspectionStatus" class="form-label" style="margin-left: 7px;"> N/A</label>
+                <div *ngIf="droppedInspectionStatus?.invalid && (droppedInspectionStatus?.dirty || droppedInspectionStatus?.touched)">
+                  <small class="text-danger" *ngIf="droppedInspectionStatus?.errors?.['required']">
+                    droppedInspectionStatus is required
+                  </small>
+                </div>
             </div>
           </td>
         </tr>
@@ -1366,6 +1796,11 @@
             <label for="droppedInspectionWeeklyFindings"> Weekly Findings:</label>
             <textarea class="form-control " formControlName="droppedInspectionWeeklyFindings" rows="4"
               id="droppedInspectionWeeklyFindings" name="text"></textarea>
+              <div *ngIf="droppedInspectionWeeklyFindings?.invalid && (droppedInspectionWeeklyFindings?.dirty || droppedInspectionWeeklyFindings?.touched)">
+                <small class="text-danger" *ngIf="droppedInspectionWeeklyFindings?.errors?.['required']">
+                  droppedInspectionWeeklyFindings is required
+                </small>
+              </div>
           </td>
         </tr>
 
@@ -1406,6 +1841,11 @@
               <input class="form-check-input" formControlName="electricalStatus" type="radio" name="electricalStatus"
                 value="Good">
                 <label for="electricalStatus" class="form-label"style="margin-left: 7px;"> Good </label>
+                <div *ngIf="electricalStatus?.invalid && (electricalStatus?.dirty || electricalStatus?.touched)">
+                  <small class="text-danger" *ngIf="electricalStatus?.errors?.['required']">
+                    electricalStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -1413,6 +1853,11 @@
               <input class="form-check-input" formControlName="electricalStatus" type="radio" name="electricalStatus"
                 value="Accepted">
                 <label for="electricalStatus" class="form-label"style="margin-left: 7px;"> Accepted</label>
+                <div *ngIf="electricalStatus?.invalid && (electricalStatus?.dirty || electricalStatus?.touched)">
+                  <small class="text-danger" *ngIf="electricalStatus?.errors?.['required']">
+                    electricalStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -1420,6 +1865,11 @@
               <input class="form-check-input" formControlName="electricalStatus" type="radio" name="electricalStatus"
                 value="Poor">
                 <label for="electricalStatus" class="form-label" style="margin-left: 7px;"> Poor</label>
+                <div *ngIf="electricalStatus?.invalid && (electricalStatus?.dirty || electricalStatus?.touched)">
+                  <small class="text-danger" *ngIf="electricalStatus?.errors?.['required']">
+                    electricalStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -1427,6 +1877,11 @@
               <input class="form-check-input" formControlName="electricalStatus" type="radio" name="electricalStatus"
                 value="N/A">
                 <label for="electricalStatus" class="form-label" style="margin-left: 7px;"> N/A</label>
+                <div *ngIf="electricalStatus?.invalid && (electricalStatus?.dirty || electricalStatus?.touched)">
+                  <small class="text-danger" *ngIf="electricalStatus?.errors?.['required']">
+                    electricalStatus is required
+                  </small>
+                </div>
             </div>
           </td>
         </tr>
@@ -1435,6 +1890,11 @@
             <label for="electricalWeeklyFindings"> Weekly Findings:</label>
             <textarea class="form-control " formControlName="electricalWeeklyFindings" rows="4"
               id="electricalWeeklyFindings" name="text"></textarea>
+              <div *ngIf="electricalWeeklyFindings?.invalid && (electricalWeeklyFindings?.dirty || electricalWeeklyFindings?.touched)">
+                <small class="text-danger" *ngIf="electricalWeeklyFindings?.errors?.['required']">
+                  electricalWeeklyFindings is required
+                </small>
+              </div>
           </td>
         </tr>
 
@@ -1478,6 +1938,11 @@
               <input class="form-check-input" formControlName="circuitStatus" type="radio" name="circuitStatus"
                 value="Good">
                 <label for="circuitStatus" class="form-label"style="margin-left: 7px;"> Good </label>
+                <div *ngIf="circuitStatus?.invalid && (circuitStatus?.dirty || circuitStatus?.touched)">
+                  <small class="text-danger" *ngIf="circuitStatus?.errors?.['required']">
+                    circuitStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -1485,6 +1950,11 @@
               <input class="form-check-input" formControlName="circuitStatus" type="radio" name="circuitStatus"
                 value="Accepted">
                 <label for="circuitStatus" class="form-label"style="margin-left: 7px;"> Accepted</label>
+                <div *ngIf="circuitStatus?.invalid && (circuitStatus?.dirty || circuitStatus?.touched)">
+                  <small class="text-danger" *ngIf="circuitStatus?.errors?.['required']">
+                    circuitStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -1492,6 +1962,11 @@
               <input class="form-check-input" formControlName="circuitStatus" type="radio" name="circuitStatus"
                 value="Poor">
                 <label for="circuitStatus" class="form-label" style="margin-left: 7px;"> Poor</label>
+                <div *ngIf="circuitStatus?.invalid && (circuitStatus?.dirty || circuitStatus?.touched)">
+                  <small class="text-danger" *ngIf="circuitStatus?.errors?.['required']">
+                    circuitStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -1499,6 +1974,11 @@
               <input class="form-check-input" formControlName="circuitStatus" type="radio" name="circuitStatus"
                 value="N/A">
                 <label for="circuitStatus" class="form-label" style="margin-left: 7px;"> N/A</label>
+                <div *ngIf="circuitStatus?.invalid && (circuitStatus?.dirty || circuitStatus?.touched)">
+                  <small class="text-danger" *ngIf="circuitStatus?.errors?.['required']">
+                    circuitStatus is required
+                  </small>
+                </div>
             </div>
           </td>
         </tr>
@@ -1507,6 +1987,11 @@
             <label for="circuitWeeklyFindings"> Weekly Findings:</label>
             <textarea class="form-control " formControlName="circuitWeeklyFindings" rows="4" id="circuitWeeklyFindings"
               name="text"></textarea>
+              <div *ngIf="circuitWeeklyFindings?.invalid && (circuitWeeklyFindings?.dirty || circuitWeeklyFindings?.touched)">
+                <small class="text-danger" *ngIf="circuitWeeklyFindings?.errors?.['required']">
+                  circuitWeeklyFindings is required
+                </small>
+              </div>
           </td>
         </tr>
 
@@ -1552,6 +2037,11 @@
               <input class="form-check-input" formControlName="earthingStatus" type="radio" name="earthingStatus"
                 value="Good">
                 <label for="earthingStatus" class="form-label"style="margin-left: 7px;"> Good </label>
+                <div *ngIf="earthingStatus?.invalid && (earthingStatus?.dirty || earthingStatus?.touched)">
+                  <small class="text-danger" *ngIf="earthingStatus?.errors?.['required']">
+                    earthingStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -1559,6 +2049,11 @@
               <input class="form-check-input" formControlName="earthingStatus" type="radio" name="earthingStatus"
                 value="Accepted">
                 <label for="earthingStatus" class="form-label"style="margin-left: 7px;"> Accepted</label>
+                <div *ngIf="earthingStatus?.invalid && (earthingStatus?.dirty || earthingStatus?.touched)">
+                  <small class="text-danger" *ngIf="earthingStatus?.errors?.['required']">
+                    earthingStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -1566,6 +2061,11 @@
               <input class="form-check-input" formControlName="earthingStatus" type="radio" name="earthingStatus"
                 value="Poor">
                 <label for="earthingStatus" class="form-label" style="margin-left: 7px;"> Poor</label>
+                <div *ngIf="earthingStatus?.invalid && (earthingStatus?.dirty || earthingStatus?.touched)">
+                  <small class="text-danger" *ngIf="earthingStatus?.errors?.['required']">
+                    earthingStatus is required
+                  </small>
+                </div>
             </div>
           </td>
           <td >
@@ -1573,6 +2073,11 @@
               <input class="form-check-input" formControlName="earthingStatus" type="radio" name="earthingStatus"
                 value="N/A">
                 <label for="earthingStatus" class="form-label" style="margin-left: 7px;"> N/A</label>
+                <div *ngIf="earthingStatus?.invalid && (earthingStatus?.dirty || earthingStatus?.touched)">
+                  <small class="text-danger" *ngIf="earthingStatus?.errors?.['required']">
+                    earthingStatus is required
+                  </small>
+                </div>
             </div>
           </td>
         </tr>
@@ -1587,12 +2092,22 @@
             <div class="from-group">
               <label for="earthingMaximum" class="form-label"> Maximum :</label>
               <input name="earthingMaximum" formControlName="earthingMaximum" id="earthingMaximum" class="form-control">
+              <div *ngIf="earthingMaximum?.invalid && (earthingMaximum?.dirty || earthingMaximum?.touched)">
+                <small class="text-danger" *ngIf="earthingMaximum?.errors?.['required']">
+                  earthingMaximum is required
+                </small>
+              </div>
             </div>
           </td>
           <td>
             <div class="from-group">
               <label for="earthingMin" class="form-label"> Minimum :</label>
               <input name="earthingMin" formControlName="earthingMin" id="earthingMin" class="form-control">
+              <div *ngIf="earthingMin?.invalid && (earthingMin?.dirty || earthingMin?.touched)">
+                <small class="text-danger" *ngIf="earthingMin?.errors?.['required']">
+                  earthingMin is required
+                </small>
+              </div>
             </div>
           </td>
         </tr>
@@ -1601,6 +2116,11 @@
             <label for="earthingWeeklyFindings"> Weekly Findings:</label>
             <textarea class="form-control " formControlName="earthingWeeklyFindings" rows="4"
               id="earthingWeeklyFindings" name="text"></textarea>
+              <div *ngIf="earthingWeeklyFindings?.invalid && (earthingWeeklyFindings?.dirty || earthingWeeklyFindings?.touched)">
+                <small class="text-danger" *ngIf="earthingWeeklyFindings?.errors?.['required']">
+                  earthingWeeklyFindings is required
+                </small>
+              </div>
           </td>
         </tr>
 
@@ -1612,6 +2132,11 @@
             <datalist id="QHSEmenace">
               <option *ngFor="let menace of CodeList">{{menace.code}} </option>
             </datalist>
+            <div *ngIf="code?.invalid && (code?.dirty || code?.touched)">
+              <small class="text-danger" *ngIf="code?.errors?.['required']">
+                code is required
+              </small>
+            </div>
           </td>
           <td>
             <div class="from-group">

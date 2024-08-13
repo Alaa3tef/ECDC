@@ -1,25 +1,25 @@
 <!-- ======= Sidebar ======= -->
-<aside id="sidebar" class="sidebar">
+<aside id="sidebar" class="sidebar" [class.open]="isOpen" [class.collapsed]="!isOpen && isCollapsed">
 
-  <ul class="sidebar-nav" id="sidebar-nav">
+  <ul class="sidebar-nav" id="sidebar-nav" *ngIf="isOpen">
 
 
     <li class="nav-item" *ngIf="IsRadio || IsUser || IsAdmin">
-      <a class="nav-link collapsed" routerLink="/Home">
+      <a class="nav-link collapsed" routerLink="/Home" (click)="onItemSelect()">
         <i class="bi bi-house"></i>
         <span>Home</span>
       </a>
     </li><!-- End Dashboard Nav -->
 
     <li class="nav-item" *ngIf="IsUser || IsAdmin">
-      <a class="nav-link collapsed" routerLink="/Dashboard">
+      <a class="nav-link collapsed" routerLink="/Dashboard"(click)="onItemSelect()">
         <i class="bi bi-grid"></i>
         <span>Dashboard</span>
       </a>
     </li><!-- End Dashboard Nav -->
 
     <li class="nav-item" *ngIf="IsRadio">
-      <a class="nav-link collapsed" routerLink="/SubDashboard">
+      <a class="nav-link collapsed" routerLink="/SubDashboard" (click)="onItemSelect()">
         <i class="bi bi-grid"></i>
         <span>Dashboard</span>
       </a>
@@ -32,84 +32,84 @@
       </a>
       <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-          <a routerLink="/stopCardCharts">
+          <a routerLink="/stopCardCharts" (click)="onItemSelect()">
             <i class="bi bi-circle"></i><span>Stop Card Chart</span>
           </a>
         </li>
         <li>
-          <a routerLink="/stopCardCompareCharts">
+          <a routerLink="/stopCardCompareCharts" (click)="onItemSelect()">
             <i class="bi bi-circle"></i><span>Stop Card Compare Chart</span>
           </a>
         </li>
         <li>
-          <a routerLink="/RigMovePerformanceCharts">
+          <a routerLink="/RigMovePerformanceCharts" (click)="onItemSelect()">
             <i class="bi bi-circle"></i><span>RMPE Chart</span>
           </a>
         </li>
         <li *ngIf="IsAdmin">
-          <a routerLink="/RigMovePerformanceCompareCharts">
+          <a routerLink="/RigMovePerformanceCompareCharts" (click)="onItemSelect()">
             <i class="bi bi-circle"></i><span>RMPE Compare Chart</span>
           </a>
         </li>
         <li *ngIf="IsAdmin">
-          <a routerLink="/PotentialHazardCharts">
+          <a routerLink="/PotentialHazardCharts" (click)="onItemSelect()">
             <i class="bi bi-circle"></i><span>Potential Hazard Chart</span>
           </a>
         </li>
         <li *ngIf="IsUser">
-          <a routerLink="/DrillChart">
+          <a routerLink="/DrillChart" (click)="onItemSelect()">
             <i class="bi bi-circle"></i><span>Drill Chart</span>
           </a>
         </li>
 
         <li *ngIf="IsAdmin">
-          <a routerLink="/DrillCompareCharts">
+          <a routerLink="/DrillCompareCharts" (click)="onItemSelect()">
             <i class="bi bi-circle"></i><span>Drill Compare By DrillType Chart</span>
           </a>
         </li>
 
         <li *ngIf="IsAdmin">
-          <a routerLink="/DrillCompareWithRigsCharts">
+          <a routerLink="/DrillCompareWithRigsCharts" (click)="onItemSelect()">
             <i class="bi bi-circle"></i><span>Drills Compare By All Rigs Chart</span>
           </a>
         </li>
         <li *ngIf="IsUser">
-          <a routerLink="/QHSEChartByMonth">
+          <a routerLink="/QHSEChartByMonth" (click)="onItemSelect()">
             <i class="bi bi-circle"></i><span>QHSE Statics Compare By Month Chart</span>
           </a>
         </li>
         <li *ngIf="IsUser">
-          <a routerLink="/QHSEChartByYear">
+          <a routerLink="/QHSEChartByYear" (click)="onItemSelect()">
             <i class="bi bi-circle"></i><span>QHSE Statics Compare By Year Chart</span>
           </a>
         </li>
         <li *ngIf="IsAdmin">
-          <a routerLink="/QHSEChartByYearAllRigs">
+          <a routerLink="/QHSEChartByYearAllRigs" (click)="onItemSelect()">
             <i class="bi bi-circle"></i><span>QHSE Statics Compare With All Rigs By Year Chart</span>
           </a>
         </li>
         <li *ngIf="IsAdmin">
-          <a routerLink="/QHSEChartByMonthAllRigs">
+          <a routerLink="/QHSEChartByMonthAllRigs" (click)="onItemSelect()">
             <i class="bi bi-circle"></i><span>QHSE Statics Compare With All Rigs By Month Chart</span>
           </a>
         </li>
         <li *ngIf="IsAdmin">
-          <a routerLink="/CustomerChartByYearAllRigs">
+          <a routerLink="/CustomerChartByYearAllRigs" (click)="onItemSelect()">
             <i class="bi bi-circle"></i><span>Customer Satisfaction With Compare All Rigs By Year </span>
           </a>
         </li>
         <li *ngIf="IsAdmin">
-          <a routerLink="/CustomerChartByMonthAllRigs">
+          <a routerLink="/CustomerChartByMonthAllRigs" (click)="onItemSelect()">
             <i class="bi bi-circle"></i><span>Customer Satisfaction With Compare All Rigs By Month </span>
           </a>
         </li>
         <li *ngIf="IsAdmin">
-          <a routerLink="/CustomerChartByYearTwoRigs">
+          <a routerLink="/CustomerChartByYearTwoRigs" (click)="onItemSelect()">
             <i class="bi bi-circle"></i><span>Customer Satisfaction With Compare Two Rigs By Year </span>
           </a>
         </li>
         <li *ngIf="IsUser">
-          <a routerLink="/CustomerChartByMonthUser">
+          <a routerLink="/CustomerChartByMonthUser" (click)="onItemSelect()">
             <i class="bi bi-circle"></i><span>Customer Satisfaction With Compare By Month</span>
           </a>
         </li>
@@ -121,49 +121,49 @@
 
           <ul id="correctiveSystem-nav" class="collapse" data-bs-parent=".nav-item">
             <li>
-              <a routerLink="/Dashboard/CorrectiveAction/ResponsabilityChart">
+              <a routerLink="/Dashboard/CorrectiveAction/ResponsabilityChart"(click)="onItemSelect()">
                 <i class="bi bi-circle"></i><span>Corrective & Responsability Chart</span>
               </a>
             </li>
             <li>
-              <a routerLink="/Dashboard/CorrectiveAction/ObservationChart">
+              <a routerLink="/Dashboard/CorrectiveAction/ObservationChart"(click)="onItemSelect()">
                 <i class="bi bi-circle"></i><span>Corrective & Observation Chart</span>
               </a>
             </li>
             <li>
-              <a routerLink="/Dashboard/CorrectiveAction/StandardChart">
+              <a routerLink="/Dashboard/CorrectiveAction/StandardChart"(click)="onItemSelect()">
                 <i class="bi bi-circle"></i><span>Corrective & Standard Chart</span>
               </a>
             </li>
             <li>
-              <a routerLink="/Dashboard/CorrectiveAction/SuggestedDateChart">
+              <a routerLink="/Dashboard/CorrectiveAction/SuggestedDateChart"(click)="onItemSelect()">
                 <i class="bi bi-circle"></i><span>Exceeded the Suggested Date</span>
               </a>
             </li>
           </ul>
         </li>
         <li *ngIf="IsUser||IsAdmin">
-          <a routerLink="/Dashboard/WeeklyClinic/Chart">
+          <a routerLink="/Dashboard/WeeklyClinic/Chart"(click)="onItemSelect()">
             <i class="bi bi-circle"></i><span>Weekly Clinic Chart</span>
           </a>
         </li>
         <li *ngIf="IsUser||IsAdmin">
-          <a routerLink="/Dashboard/Handover/Chart">
+          <a routerLink="/Dashboard/Handover/Chart"(click)="onItemSelect()">
             <i class="bi bi-circle"></i><span>QHSE Engineer Shift Handover Chart</span>
           </a>
         </li>
         <li *ngIf="IsUser||IsAdmin">
-          <a routerLink="/MedicalReportChartByYear">
+          <a routerLink="/MedicalReportChartByYear"(click)="onItemSelect()">
             <i class="bi bi-circle"></i><span>Medical Report With Compare By Year</span>
           </a>
         </li>
         <li *ngIf="IsUser||IsAdmin">
-          <a routerLink="/MedicalReportChartByMonth">
+          <a routerLink="/MedicalReportChartByMonth"(click)="onItemSelect()">
             <i class="bi bi-circle"></i><span>Medical Report With Compare By Month</span>
           </a>
         </li>
         <li *ngIf="IsUser||IsAdmin">
-          <a routerLink="/MedicalHistoryReportChartByYear">
+          <a routerLink="/MedicalHistoryReportChartByYear"(click)="onItemSelect()">
             <i class="bi bi-circle"></i><span>Medical History Report Chart</span>
           </a>
         </li>
@@ -184,27 +184,27 @@
             </a>
             <ul style="margin-left: -20px;" id="Daily-nav" class="nav-content collapse" data-bs-parent="#reports-nav">
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="/QHSEDaily/Add">
+                <a routerLink="/QHSEDaily/Add"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>QHSE Daily Report</span>
                 </a>
               </li>
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="/StopCard">
+                <a routerLink="/StopCard"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>Stop Card Report</span>
                 </a>
               </li>
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="/Dashboard/PTSM/Add">
+                <a routerLink="/Dashboard/PTSM/Add"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>PTSM Report</span>
                 </a>
               </li>
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="/Dashboard/BOP/Add">
+                <a routerLink="/Dashboard/BOP/Add"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>POB Report</span>
                 </a>
               </li>
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="/DailyLifting/Add">
+                <a routerLink="/DailyLifting/Add"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>Daily Lifting Report </span>
                 </a>
               </li>
@@ -221,27 +221,27 @@
             </a>
             <ul style="margin-left: -20px;" id="Weekly-nav" class="nav-content collapse" data-bs-parent="#reports-nav">
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="Dashboard/Crane/Add">
+                <a routerLink="Dashboard/Crane/Add"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>Weekly Crane Inspection Report </span>
                 </a>
               </li>
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="Dashboard/Forklift/Add">
+                <a routerLink="Dashboard/Forklift/Add"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>Weekly Forklift Inspection Report </span>
                 </a>
               </li>
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="/WeeklyInspection/Add">
+                <a routerLink="/WeeklyInspection/Add"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>Weekly Inspection Report </span>
                 </a>
               </li>
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="/WeeklyCampInspection/Add">
+                <a routerLink="/WeeklyCampInspection/Add"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>Weekly Camp Inspection Report </span>
                 </a>
               </li>
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="/VehicleWeeklyCheck/Add">
+                <a routerLink="/VehicleWeeklyCheck/Add"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>Vehicle Weekly Check Report </span>
                 </a>
               </li>
@@ -260,17 +260,17 @@
             <ul style="margin-left: -20px;" id="Medical-nav" class="nav-content collapse" data-bs-parent="#reports-nav">
 
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="/Dashboard/WeeklyClinic/Add">
+                <a routerLink="/Dashboard/WeeklyClinic/Add"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>Weekly Clinic Report </span>
                 </a>
               </li>
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="/MedicalReport/Add">
+                <a routerLink="/MedicalReport/Add"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>Medical Report </span>
                 </a>
               </li>
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="/MedicalHistory/Add">
+                <a routerLink="/MedicalHistory/Add"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>Medical History Report </span>
                 </a>
               </li>
@@ -291,62 +291,62 @@
 
 
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="/Accident">
+                <a routerLink="/Accident"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>Incident Report</span>
                 </a>
               </li>
 
               <li *ngIf="IsRadio || IsUser || IsAdmin">
-                <a routerLink="/SJP">
+                <a routerLink="/SJP"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>SJP Report</span>
                 </a>
               </li>
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="/RigPerformance/Add">
+                <a routerLink="/RigPerformance/Add"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>RMPE Report</span>
                 </a>
               </li>
 
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="/EmployeeCompetencyEvaluation/Add">
+                <a routerLink="/EmployeeCompetencyEvaluation/Add"(click)="onItemSelect()"v>
                   <i class="bi bi-circle"></i><span>Employee Competency Evaluation Report</span>
                 </a>
               </li>
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="/PotentialHazard/Add">
+                <a routerLink="/PotentialHazard/Add"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>Potential Hazards Report</span>
                 </a>
               </li>
 
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="/PPEReceiving/Add">
+                <a routerLink="/PPEReceiving/Add"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>PPE Receiving Report</span>
                 </a>
               </li>
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="/Drill/Add">
+                <a routerLink="/Drill/Add"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>Drills</span>
                 </a>
               </li>
 
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="/Customer/Add">
+                <a routerLink="/Customer/Add"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>Customer Satisfaction Evaluation Report </span>
                 </a>
               </li>
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="Dashboard/CorrectiveAction/Add">
+                <a routerLink="Dashboard/CorrectiveAction/Add"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>Corrective Action Report </span>
                 </a>
               </li>
 
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="/Dashboard/Handover/Add">
+                <a routerLink="/Dashboard/Handover/Add"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>QHSE Engineer Shift Handover Report </span>
                 </a>
               </li>
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="/Dashboard/RigCertificates/Add">
+                <a routerLink="/Dashboard/RigCertificates/Add"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>Rig Certificates Report</span>
                 </a>
               </li>
@@ -376,7 +376,7 @@
             <ul style="margin-left: -20px;" id="Forms-nav" class="nav-content collapse"
               data-bs-parent="#managmentSystem-nav">
               <li>
-                <a [routerLink]="['/Policy']">
+                <a [routerLink]="['/Policy']"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>Policy</span>
                 </a>
               </li>
@@ -396,22 +396,22 @@
             <ul style="margin-left: -20px;" id="Procedure-nav" class="nav-content collapse"
               data-bs-parent="#managmentSystem-nav">
               <li>
-                <a [routerLink]="['/Health']">
+                <a [routerLink]="['/Health']"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>Health</span>
                 </a>
               </li>
               <li *ngIf="IsUser || IsAdmin">
-                <a [routerLink]="['/Safety']">
+                <a [routerLink]="['/Safety']"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>Safety</span>
                 </a>
               </li>
               <li *ngIf="IsUser || IsAdmin">
-                <a [routerLink]="['/Environment']">
+                <a [routerLink]="['/Environment']"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>Environment</span>
                 </a>
               </li>
               <li *ngIf="IsUser || IsAdmin">
-                <a [routerLink]="['/Quality']">
+                <a [routerLink]="['/Quality']"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>Quality</span>
                 </a>
               </li>
@@ -430,12 +430,12 @@
             <ul style="margin-left: -20px;" id="Form-nav" class="nav-content collapse"
               data-bs-parent="#managmentSystem-nav">
               <li>
-                <a [routerLink]="['/Clinc']">
+                <a [routerLink]="['/Clinc']"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>Clinc Form</span>
                 </a>
               </li>
               <li *ngIf="IsUser || IsAdmin">
-                <a [routerLink]="['/QHSE']">
+                <a [routerLink]="['/QHSE']"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>QHSE Form</span>
                 </a>
               </li>
@@ -458,27 +458,27 @@
             </a>
             <ul style="margin-left: -20px;" id="DailyData-nav" class="nav-content collapse" data-bs-parent="#tables-nav">
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="/QHSEDaily">
+                <a routerLink="/QHSEDaily"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>QHSE Daily</span>
                 </a>
               </li>
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="/Dashboard/Stopcard">
+                <a routerLink="/Dashboard/Stopcard"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>Stop Card</span>
                 </a>
               </li>
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="/Dashboard/PTSM">
+                <a routerLink="/Dashboard/PTSM"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>PTSM</span>
                 </a>
               </li>
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="/BopTable">
+                <a routerLink="/BopTable"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>POB</span>
                 </a>
               </li>
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="/Dashboard/DailyLifting">
+                <a routerLink="/Dashboard/DailyLifting"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>Daily Lifting</span>
                 </a>
               </li>
@@ -495,27 +495,27 @@
             </a>
             <ul style="margin-left: -20px;" id="WeeklyData-nav" class="nav-content collapse" data-bs-parent="#reports-nav">
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="Dashboard/Crane">
+                <a routerLink="Dashboard/Crane"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>Weekly Crane Inspection</span>
                 </a>
               </li>
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="Dashboard/Forklift">
+                <a routerLink="Dashboard/Forklift"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>Weekly Forklift Inspection</span>
                 </a>
               </li>
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="/Dashboard/WeeklyInspection">
+                <a routerLink="/Dashboard/WeeklyInspection"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>Weekly Inspection</span>
                 </a>
               </li>
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="/Dashboard/WeeklyCampInspection">
+                <a routerLink="/Dashboard/WeeklyCampInspection"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>Weekly Camp Inspection</span>
                 </a>
               </li>
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="//Dashboard/VehicleWeeklyChecklist">
+                <a routerLink="//Dashboard/VehicleWeeklyChecklist"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>Vehicle Weekly Check</span>
                 </a>
               </li>
@@ -534,17 +534,17 @@
             <ul style="margin-left: -20px;" id="MedicalData-nav" class="nav-content collapse" data-bs-parent="#reports-nav">
 
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="/Dashboard/WeeklyClinic">
+                <a routerLink="/Dashboard/WeeklyClinic"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>Weekly Clinic</span>
                 </a>
               </li>
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="Dashboard/MedicalReport">
+                <a routerLink="Dashboard/MedicalReport"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>Medical Report</span>
                 </a>
               </li>
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="/Dashboard/MedicalHistory">
+                <a routerLink="/Dashboard/MedicalHistory"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>Medical History</span>
                 </a>
               </li>
@@ -563,62 +563,62 @@
 
 
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="/Dashboard/Accidents">
+                <a routerLink="/Dashboard/Accidents"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>Incident</span>
                 </a>
               </li>
 
               <li *ngIf="IsRadio || IsUser || IsAdmin">
-                <a routerLink="/Dashboard/SJPTable">
+                <a routerLink="/Dashboard/SJPTable"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>SJP</span>
                 </a>
               </li>
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="/RigPerformance">
+                <a routerLink="/RigPerformance"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>RMPE</span>
                 </a>
               </li>
 
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="/Dashboard/EmployeeCompetencyEvaluations">
+                <a routerLink="/Dashboard/EmployeeCompetencyEvaluations"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>Employee Competency Evaluation</span>
                 </a>
               </li>
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="/PotentialHazard">
+                <a routerLink="/PotentialHazard"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>Potential Hazards</span>
                 </a>
               </li>
 
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="/PPEReceiving">
+                <a routerLink="/PPEReceiving"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>PPE Receiving</span>
                 </a>
               </li>
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="/Dashboard/Drill">
+                <a routerLink="/Dashboard/Drill"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>Drills</span>
                 </a>
               </li>
 
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="/Dashboard/Customer">
+                <a routerLink="/Dashboard/Customer"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>Customer Satisfaction Evaluation</span>
                 </a>
               </li>
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="Dashboard/CorrectiveAction">
+                <a routerLink="Dashboard/CorrectiveAction"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>Corrective Action</span>
                 </a>
               </li>
 
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="/Dashboard/Handover">
+                <a routerLink="/Dashboard/Handover"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>QHSE Engineer Shift Handover</span>
                 </a>
               </li>
               <li *ngIf="IsUser || IsAdmin">
-                <a routerLink="/Dashboard/RigCertificates">
+                <a routerLink="/Dashboard/RigCertificates"(click)="onItemSelect()">
                   <i class="bi bi-circle"></i><span>Rig Certificates</span>
                 </a>
               </li>
@@ -631,28 +631,28 @@
 
 
     <li class="nav-item">
-      <a class="nav-link collapsed" routerLink="/AboutUs">
+      <a class="nav-link collapsed" routerLink="/AboutUs"(click)="onItemSelect()">
         <i class="bi bi-envelope"></i>
         <span>About US</span>
       </a>
     </li><!-- End Contact Page Nav -->
 
     <li class="nav-item">
-      <a class="nav-link collapsed" routerLink="/ArrivalStatusSJP">
+      <a class="nav-link collapsed" routerLink="/ArrivalStatusSJP"(click)="onItemSelect()">
         <i class="fa-solid fa-car-on fa-fade"></i>
         <span>Arrival Status</span>
       </a>
     </li><!-- End Contact Page Nav -->
 
     <li class="nav-item" *ngIf="IsAdmin">
-      <a class="nav-link collapsed" routerLink="/Register">
+      <a class="nav-link collapsed" routerLink="/Register"(click)="onItemSelect()">
         <i class="bi bi-card-list"></i>
         <span>Register</span>
       </a>
     </li>
 
     <li class="nav-item">
-      <a class="nav-link collapsed" (click)="SignOut()" routerLink="">
+      <a class="nav-link collapsed" (click)="SignOut()" routerLink=""(click)="onItemSelect()">
         <i class="bi bi-box-arrow-in-right"></i>
         <span>Sign Out</span>
       </a>

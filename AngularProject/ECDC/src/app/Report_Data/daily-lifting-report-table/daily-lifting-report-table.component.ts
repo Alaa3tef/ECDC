@@ -34,17 +34,44 @@ export class DailyLiftingReportTableComponent {
   constructor(
     private getDataByPage:AddNewDailyLiftingReportService,
     private loginService:LoginService,
-    private dataService:DataService) { }
+    private dataService:DataService) {
+      console.log("fffffffffffffffffffff")
+    this.User=this.loginService.currentUser.getValue();
+    console.log( this.User)
+     }
 
   ngOnInit() {
     this.User=this.loginService.currentUser.getValue();
     this.getpages(1)
 
+    this.User=this.loginService.currentUser.getValue();
+    console.log("fffffffffffffffffffff")
+    console.log( this.User)
     this.loginService.isAdmin.subscribe({
       next: data => {
-        this.IsAdmin=data
+        this.IsAdmin = data
+        console.log("kkkookokokokokok")
+        console.log(this.IsAdmin)
       }
-     })
+    })
+    this.loginService.isUser.subscribe({
+      next: data => {
+        this.IsUser = data
+        console.log("kkkookokokokokok")
+        console.log(this.IsAdmin)
+      }
+    })
+    this.loginService.isRadio.subscribe({
+      next: data => {
+        this.IsRadio = data
+      }
+    })
+    this.loginService.isUser.subscribe({
+      next: data => {
+        this.IsUser = data
+      }
+    })
+
 
      this.getDataByPage.GetDailyLiftingReport(this.User.ID, this.User.Role).subscribe({
       next: data => this.json_data = data.data,
@@ -75,9 +102,12 @@ export class DailyLiftingReportTableComponent {
   }
   getpages(num:number)
   {
+    this.User=this.loginService.currentUser.getValue();
     this.getDataByPage.GetDailyLiftingReportByPage(num,this.User.ID,this.User.Role).subscribe({
       next: data => {
         this.ListOfDailyLiftingReport.next(data.items)
+        console.log("data.items",data.items);
+
         this.countOfPage=data.count;
         this.TempArray= new Array(this.countOfPage);
       },

@@ -119,7 +119,7 @@ export class EditJMLFormComponent {
             Validators.required
           ]
         ),
-        departureDate: this.fb.control(
+        departureTime: this.fb.control(
           '',
           [
             Validators.required
@@ -328,8 +328,8 @@ export class EditJMLFormComponent {
   get date() {
     return this.JMPForm.get('date');
   }
-  get departureDate() {
-    return this.JMPForm.get('departureDate');
+  get departureTime() {
+    return this.JMPForm.get('departureTime');
   }
   get destination() {
     return this.JMPForm.get('destination');

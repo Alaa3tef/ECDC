@@ -15,7 +15,7 @@ Chart.register(...registerables);
 export class StopCardCompareChartComponent {
   clearChart(ID_Name:string) {
     const myElement = document.querySelector('#'+ ID_Name) as HTMLElement;
-    
+
     myElement.remove()
     this.UnsafeAct_Month1 = [];
     this.UnsafeCondition_Month1 = [];
@@ -80,7 +80,9 @@ export class StopCardCompareChartComponent {
   month2: number = 0;
   month1_Name: string = '';
   month2_Name: string = '';
-
+  YearList: number[] = [];
+  Year: number[] = [];
+  SelectedYear:number=0;
   temp: boolean = false;
   classifications: string[] = [];
   categories: string[] = [];
@@ -175,6 +177,7 @@ export class StopCardCompareChartComponent {
   SWA_noCount_Month2: number = 0;
 
   User:any;
+  ErrorMessage: string = '';
 
   constructor(private loginService:LoginService,private dataService: DataService) { }
 
@@ -193,6 +196,22 @@ export class StopCardCompareChartComponent {
       next: data => {
         data.data.forEach((element: { name: string; }) => {
           this.categories.push(element.name)
+        });
+      }
+    })
+
+    this.dataService.GetStopCards(this.User.ID, this.User.Role).subscribe({
+      next:data=>{
+        data.data.forEach((ele: any) => {
+          this.Year.push(ele.date)
+        });
+    
+        this.Year.forEach((ele: any) => {
+          const dateObject = new Date(ele);
+          const year = dateObject.getFullYear();
+          this.YearList.push(year)
+          this.YearList= Array.from(new Set(this.YearList))
+    
         });
       }
     })
@@ -215,13 +234,21 @@ export class StopCardCompareChartComponent {
     this.month2_Name = selectedText
   }
 
+  onYearChange(event: any) {
+    this.SelectedYear = event.target.value
+    console.log("this.yearrr", this.Year)
+
+  }
+
   onChange(event: any) {
     console.log(this.month1)
     console.log(this.month2)
     console.log(this.month1_Name)
     console.log(this.month2_Name)
+    console.log("Year:", this.Year);
+
     this.temp = true;
-    this.dataService.GetDataForChartsCompare(this.month1, this.month2,this.User.ID,this.User.Role).subscribe({
+    this.dataService.GetDataForChartsCompare(this.month1, this.month2,this.SelectedYear,this.User.ID,this.User.Role).subscribe({
       next: data => {
         console.log(data.data)
         this.clearChart("myChart")
@@ -344,7 +371,7 @@ export class StopCardCompareChartComponent {
       }
     })
     ///////////////////////////////////////////////////////////////////////////////////////
-    this.dataService.GetDataForChartsCompare(this.month1, this.month2,this.User.ID,this.User.Role).subscribe({
+    this.dataService.GetDataForChartsCompare(this.month1, this.month2,this.SelectedYear,this.User.ID,this.User.Role).subscribe({
       next: data => {
         console.log(data.data)
         this.clearChart("myChart2")
@@ -664,7 +691,7 @@ export class StopCardCompareChartComponent {
       }
     })
     ///////////////////////////////////////////////////////////////////////////////////////
-    this.dataService.GetDataForChartsCompare(this.month1, this.month2,this.User.ID,this.User.Role).subscribe({
+    this.dataService.GetDataForChartsCompare(this.month1, this.month2,this.SelectedYear,this.User.ID,this.User.Role).subscribe({
       next: data => {
         console.log(data.data)
         this.clearChart("myChart3")

@@ -5,7 +5,15 @@
     </h2>
 
   </div>
-  <div class="mb-5">
+  <div class="row mb-5 text-center">
+    <div class="col-md-6">
+      <label for="month" class="form-label">Year</label>
+      <select name="year" id="year" class="form-select" (change)="onYearChange($event)">
+        <option value="" disabled selected>Choose Year</option>
+        <option value="{{item}}" *ngFor="let item of YearsList">{{item}}</option>
+      </select>
+    </div>
+  <div class="mb-5 col-md-6">
     <label for="month" class="form-label">Month</label>
     <select name="month" id="month" class="form-select" (change)="onChange($event)">
       <option value="" disabled selected>Choose Month</option>
@@ -24,6 +32,7 @@
     </select>
   </div>
 
+  </div>
   <div id="divChart" #divChart *ngIf="temp">
     <div class="mb-5" id="chart1">
       <p class="display-6 text-center">Stop Card by Classification</p>
@@ -36,6 +45,10 @@
     <div id="chart3">
       <p class="display-6 text-center">Stop Card by SWA</p>
       <canvas id="myChart3"></canvas>
+    </div>
+    <div id="chart4">
+      <p class="display-6 text-center">Stop Card by Rig</p>
+      <canvas id="myChart4"></canvas>
     </div>
   </div>
 </div>

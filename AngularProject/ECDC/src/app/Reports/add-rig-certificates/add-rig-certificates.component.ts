@@ -589,65 +589,126 @@ export class AddRigCertificatesComponent {
   addrotarySystem() {
     this.rotarySystem.push(this.createrotarySystemFormGroup('', true));
   }
+  deleteRotarySystem(index: any) {
+    if (confirm("Are you sure you want to delete this record?")) {
+      this.rotarySystem.removeAt(index);
+    }
+  }
+
   addhoistingSystem() {
     this.hoistingSystem.push(this.createhoistingSystemFormGroup('', true));
   }
-
+  deletehoistingSystem(index: any) {
+    if (confirm("Are you sure you want to delete this record?")) {
+      this.hoistingSystem.removeAt(index);
+    }
+  }
   addmudCirculationSystem() {
     this.mudCirculationSystem.push(this.createmudCirculationSystemFormGroup('', true));
+  }
+  deletemudCirculationSystem(index: any) {
+    if (confirm("Are you sure you want to delete this record?")) {
+      this.mudCirculationSystem.removeAt(index);
+    }
   }
   addwellControlSystem() {
     this.wellControlSystem.push(this.createwellControlSystemFormGroup('', true));
   }
-
+  deletewellControlSystem(index: any) {
+    if (confirm("Are you sure you want to delete this record?")) {
+      this.wellControlSystem.removeAt(index);
+    }
+  }
   addpowerSystem() {
     this.powerSystem.push(this.createpowerSystemFormGroup('', true));
+  }
+  deletepowerSystem(index: any) {
+    if (confirm("Are you sure you want to delete this record?")) {
+      this.powerSystem.removeAt(index);
+    }
   }
   addotherSystem() {
     this.otherSystem.push(this.createotherSystemFormGroup('', true));
   }
-
+  deleteotherSystem(index: any) {
+    if (confirm("Are you sure you want to delete this record?")) {
+      this.otherSystem.removeAt(index);
+    }
+  }
   addpersonnelCerificates() {
     this.personnelCerificates.push(this.createpersonnelCerificatesFormGroup());
     this.personnelCerificatesClicked = true;
     this.EmpCode_Name.push('');
     this.EmpCode_Position.push('');
   }
-
+  deletepersonnelCerificates(index: any) {
+    if (confirm("Are you sure you want to delete this record?")) {
+      this.personnelCerificates.removeAt(index);
+    }
+  }
   addmobileCrane() {
     this.mobileCrane.push(this.createmobileCraneFormGroup());
     this.mobileCraneClicked = true;
   }
-
+  deletemobileCrane(index: any) {
+    if (confirm("Are you sure you want to delete this record?")) {
+      this.mobileCrane.removeAt(index);
+    }
+  }
   addforklift() {
     this.forklift.push(this.createforkliftFormGroup());
     this.forkliftClicked = true;
   }
-
+  deleteforklift(index: any) {
+    if (confirm("Are you sure you want to delete this record?")) {
+      this.forklift.removeAt(index);
+    }
+  }
   addmanRidingWinch() {
     this.manRidingWinch.push(this.createmanRidingWinchFormGroup());
     this.manRidingWinchClicked = true;
   }
-
+  deletemanRidingWinch(index: any) {
+    if (confirm("Are you sure you want to delete this record?")) {
+      this.manRidingWinch.removeAt(index);
+    }
+  }
   addairHoist() {
     this.airHoist.push(this.createairHoistFormGroup());
     this.airHoistClicked = true;
   }
-
+  deleteairHoist(index: any) {
+    if (confirm("Are you sure you want to delete this record?")) {
+      this.airHoist.removeAt(index);
+    }
+  }
   addhydraulicWinch() {
     this.hydraulicWinch.push(this.createhydraulicWinchFormGroup());
     this.hydraulicWinchClicked = true;
+  }
+  deletehydraulicWinch(index: any) {
+    if (confirm("Are you sure you want to delete this record?")) {
+      this.hydraulicWinch.removeAt(index);
+    }
   }
   addpresssureReliefValve() {
     this.presssureReliefValve.push(this.createpresssureReliefValveFormGroup());
     this.presssureReliefValveClicked = true;
   }
-
+  deletepresssureReliefValve(index: any) {
+    if (confirm("Are you sure you want to delete this record?")) {
+      this.presssureReliefValve.removeAt(index);
+    }
+  }
   addhseEquipmentTable() {
     this.hseEquipmentTable.push(this.createhseEquipmentTableFormGroup());
     this.hseEquipmentTableClicked = true;
   }
-
+  deletehseEquipmentTable(index: any) {
+    if (confirm("Are you sure you want to delete this record?")) {
+      this.hseEquipmentTable.removeAt(index);
+    }
+  }
   submitData() {
     console.log("this.RigCertificatesForm.value")
     console.log(this.RigCertificatesForm.value)

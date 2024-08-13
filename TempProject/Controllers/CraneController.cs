@@ -2515,7 +2515,7 @@ namespace TempProject.Controllers
 					orgCrane.OutriggerRemarks = newCrane.OutriggerRemarks;
 					orgCrane.StrangeSoundRemarks = newCrane.StrangeSoundRemarks;
 					orgCrane.DriverName = newCrane.DriverName;
-					orgCrane.userID = newCrane.userID;
+					//orgCrane.userID = newCrane.userID;
 
 
 					craneRepo.update(orgCrane);

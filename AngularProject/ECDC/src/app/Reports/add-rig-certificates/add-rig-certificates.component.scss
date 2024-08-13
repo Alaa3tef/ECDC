@@ -30,3 +30,51 @@ input,select{
 .width thead th:nth-child(2),.width thead th:nth-child(3) {
   width: 11%;
 }
+/* Default styles for larger screens */
+.table {
+  width: 100%;
+}
+
+// .form-group {
+//   margin-bottom: 15px;
+// }
+
+
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+  .table, .table  {
+    display: block;
+    width: 100%;
+  }
+.td-conent{
+  display: block;
+  width: 100%;
+}
+  // .table tr {
+  //   margin-bottom: 15px;
+  // }
+
+  .table  {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+  }
+.td-conent{
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+  // .form-group {
+  //   margin-bottom: 10px;
+  // }
+
+  .form-group label {
+    margin-bottom: 5px;
+  }
+  .button-container .btn {
+    margin-bottom: 9%; /* Add margin below each button */
+  }
+  .heading_container{
+    margin-top: 17% !important;
+  }
+}

@@ -39,17 +39,6 @@
           </td>
         </tr>
         <tr>
-          <td colspan="2">
-            <div class="form-group">
-              <label class="form-label" for="topics">Topics: </label>
-              <input type="text" name="topics" formControlName="topics" id="topics" class="form-control" />
-              <div *ngIf="(topics?.invalid && (topics?.dirty || topics?.touched))||submitted">
-                <small class="text-danger" *ngIf="topics?.errors?.['required']">
-                  Topics is required
-                </small>
-              </div>
-            </div>
-          </td>
           <td>
             <div class="form-group">
               <label class="form-label" for="healthMeetingNo">No. of Health Meeting with Crew: </label>
@@ -58,6 +47,17 @@
                 *ngIf="(healthMeetingNo?.invalid && (healthMeetingNo?.dirty || healthMeetingNo?.touched))||submitted">
                 <small class="text-danger" *ngIf="healthMeetingNo?.errors?.['required']">
                   Health Meeting Number is required
+                </small>
+              </div>
+            </div>
+          </td>
+          <td colspan="2">
+            <div class="form-group">
+              <label class="form-label" for="topics">Topics: </label>
+              <input type="text" name="topics" formControlName="topics" id="topics" class="form-control" />
+              <div *ngIf="(topics?.invalid && (topics?.dirty || topics?.touched))||submitted">
+                <small class="text-danger" *ngIf="topics?.errors?.['required']">
+                  Topics is required
                 </small>
               </div>
             </div>

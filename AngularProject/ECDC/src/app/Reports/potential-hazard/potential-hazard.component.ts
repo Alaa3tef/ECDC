@@ -79,19 +79,19 @@ export class PotentialHazardComponent {
           pR_IssueDate: this.fb.control(
             '',
             [
-              Validators.required
+              // Validators.required
             ]
           ),
           pR_No: this.fb.control(
             '',
             [
-              Validators.required
+              // Validators.required
             ]
           ),
           pO_No: this.fb.control(
             '',
             [
-              Validators.required
+              // Validators.required
             ]
           ),
           responibilityId: this.fb.control(

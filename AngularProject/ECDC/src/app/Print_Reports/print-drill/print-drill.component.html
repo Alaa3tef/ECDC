@@ -125,12 +125,11 @@
                           <h6 class="mb-0">
                             <span style="font-weight: bold; color: rgb(38, 38, 202); text-decoration: underline;">Drill
                               Scenario :</span>
-                            <div class="p-1 mt-3" style="border: 1px solid black; max-width: 100%; overflow: hidden;">
-                              <ul>
-                                <li>
-                                  {{ record.drillScenario }}
-                                </li>
-                              </ul>
+                            <div class="recommendations-container">
+                              <!-- <ng-container *ngFor="let drillScenario of record.drillScenario.split('\n')">
+                                <div class="recommendation-item">{{ drillScenario }}</div>
+                              </ng-container> -->
+                              {{record.drillScenario}}
                             </div>
                           </h6>
                         </div>
@@ -218,12 +217,11 @@
                           <h6 >
                             <span style="font-weight: bold; color: rgb(38, 38, 202); text-decoration: underline;">Emergency
                               Equipment Used :</span>
-                            <div class="mt-3" style="border: 1px solid black; max-width: 100%; overflow: hidden;">
-                              <ul>
-                                <li>
-                                  {{ record.emergencyEquipmentUsed }}
-                                </li>
-                              </ul>
+                            <div class="recommendations-container">
+                              <!-- <ng-container *ngFor="let drillScenario of record.emergencyEquipmentUsed split('\n')">
+                                <div class="recommendation-item">{{ drillScenario }}</div>
+                              </ng-container> -->
+                              {{record.emergencyEquipmentUsed}}
                             </div>
                           </h6>
                         </div>
@@ -235,12 +233,11 @@
                           <h6 class="mb-0">
                             <span style="font-weight: bold; color: rgb(38, 38, 202); text-decoration: underline;">Effectiveness
                               Points :</span>
-                            <div class="p-1 mt-3" style="border: 1px solid black; max-width: 100%; overflow: hidden;">
-                              <ul>
-                                <li>
-                                  {{ record.effectivenessPoints }}
-                                </li>
-                              </ul>
+                            <div class="recommendations-container">
+                              <!-- <ng-container *ngFor="let drillScenario of record.effectivenessPointssplit('\n')">
+                                <div class="recommendation-item">{{ drillScenario }}</div>
+                              </ng-container> -->
+                              {{record.effectivenessPoints}}
                             </div>
                           </h6>
                         </div>
@@ -252,12 +249,11 @@
                           <h6 class="mb-0">
                             <span style="font-weight: bold; color: rgb(38, 38, 202); text-decoration: underline;">Deficiencies
                               Points :</span>
-                            <div class="p-1 mt-3" style="border: 1px solid black; max-width: 100%; overflow: hidden;">
-                              <ul>
-                                <li>
-                                  {{ record.deficienciesPoints }}
-                                </li>
-                              </ul>
+                            <div class="recommendations-container">
+                              <!-- <ng-container *ngFor="let drillScenario of record.deficienciesPoints split('\n')">
+                                <div class="recommendation-item">{{ drillScenario }}</div>
+                              </ng-container> -->
+                              {{record.deficienciesPoints}}
                             </div>
                           </h6>
                         </div>
@@ -269,12 +265,11 @@
                           <h6 class="mb-0">
                             <span style="font-weight: bold; color: rgb(38, 38, 202); text-decoration: underline;">Recommendations
                               :</span>
-                            <div class="p-1 mt-3" style="border: 1px solid black; max-width: 100%; overflow: hidden;">
-                              <ul>
-                                <li>
-                                  {{ record.recommendations }}
-                                </li>
-                              </ul>
+                            <div class="recommendations-container">
+                              <!-- <ng-container *ngFor="let drillScenario of record.recommendations split('\n')">
+                                <div class="recommendation-item">{{ drillScenario }}</div>
+                              </ng-container> -->
+                              {{record.recommendations}}
                             </div>
                           </h6>
                         </div>

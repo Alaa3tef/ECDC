@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from 'Services/login.service';
 
@@ -15,6 +15,9 @@ export class SidebarComponent {
   IsUser:boolean=false;
   IsRadio:boolean=false;
   IsAdmin:boolean=false;
+  @Input() isOpen: boolean = true;
+  @Output() itemSelected = new EventEmitter<void>();
+  isCollapsed = false;
   constructor(private loginService: LoginService, private router: Router) {
 
   }
@@ -58,6 +61,7 @@ export class SidebarComponent {
         console.log("user id3333333333333333e" + this.UserRole);
       }
     })
+    this.checkScreenSize()
   }
 
   SignOut() {
@@ -72,5 +76,32 @@ export class SidebarComponent {
     this.IsAdmin=false;
     this.IsRadio=false;
     this.IsUser=false;
+  }
+
+  toggleSidebar() {
+    if (window.innerWidth <= 768) {
+      this.isOpen = !this.isOpen;
+    } else {
+      this.isCollapsed = !this.isCollapsed;
+    }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.checkScreenSize();
+  }
+
+  checkScreenSize() {
+    if (window.innerWidth <= 768) {
+      this.isOpen = false;
+      this.isCollapsed = false;
+    } else {
+      this.isOpen = true;
+      this.isCollapsed = false;
+    }
+  }
+
+  onItemSelect() {
+    this.itemSelected.emit();
   }
 }

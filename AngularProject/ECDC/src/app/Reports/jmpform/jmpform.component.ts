@@ -40,7 +40,7 @@ export class JMPFormComponent {
   vehicleLicenceExpire!: Date;
   vehicleLicenceNo!: string;
 
-
+  isApproved:boolean=false
   constructor(
     private JMPService: AddnewJMPService,
     private SignalR_Service: SignalrService,
@@ -80,7 +80,7 @@ export class JMPFormComponent {
             Validators.pattern('^[1-9]|[1-9][0-9]+$')
           ]
         ),
-        departureDate: this.fb.control(
+        departureTime: this.fb.control(
           '',
           [
             Validators.required
@@ -294,8 +294,8 @@ export class JMPFormComponent {
   get date() {
     return this.JMPForm.get('date');
   }
-  get departureDate() {
-    return this.JMPForm.get('departureDate');
+  get departureTime() {
+    return this.JMPForm.get('departureTime');
   }
   get destination() {
     return this.JMPForm.get('destination');
@@ -430,7 +430,12 @@ export class JMPFormComponent {
     });
   }
 
-
+  toggleApproval() {
+    this.isApproved = !this.isApproved;
+    this.JMPForm.patchValue({
+      qHSEManagerMustApprove: this.isApproved ? 'Approved' : ''
+    });
+  }
   submitData() {
     if(this.JMPForm.valid){
       this.jmpservice.AddJMP(this.JMPForm.value).subscribe({

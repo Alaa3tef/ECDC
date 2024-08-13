@@ -2148,7 +2148,7 @@ namespace TempProject.Controllers
 					orgQHSEDailyReport.SafetyAlertCrewNumber = newQHSEDailyReport.SafetyAlertCrewNumber;
 					orgQHSEDailyReport.QuizCrewNumber = newQHSEDailyReport.QuizCrewNumber;
 
-					orgQHSEDailyReport.UserId = newQHSEDailyReport.UserId;
+					//orgQHSEDailyReport.UserId = newQHSEDailyReport.UserId;
 					//QHSEDailyReportRepo.update(orgQHSEDailyReport);
 
 					List<CrewSaftyAlertAndQHSEDaily> CrewSaftyAlertAndQHSEDailys = CrewSaftyAlertAndQHSEDailyRepo.getall().Where(p => p.QHSEDailyId == orgQHSEDailyReport.Id).ToList();

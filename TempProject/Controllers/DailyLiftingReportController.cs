@@ -1603,6 +1603,7 @@ namespace TempProject.Controllers
             {
                 try
                 {
+
                     DailyLiftingReport orgDailyLiftingReport = DailyLiftingReportRepo.getbyid(id);
                     orgDailyLiftingReport.RigId = newDailyLiftingReport.RigId;
                     orgDailyLiftingReport.Date = newDailyLiftingReport.Date;
@@ -1618,7 +1619,7 @@ namespace TempProject.Controllers
                     orgDailyLiftingReport.Capacity = newDailyLiftingReport.Capacity;
                     orgDailyLiftingReport.ChasisNo = newDailyLiftingReport.ChasisNo;
                     orgDailyLiftingReport.MobileCraneName = newDailyLiftingReport.MobileCraneName;
-                    orgDailyLiftingReport.userID = newDailyLiftingReport.userID;
+                    //orgDailyLiftingReport.userID = newDailyLiftingReport.userID;
                     DailyLiftingReportRepo.update(orgDailyLiftingReport);
 
                     

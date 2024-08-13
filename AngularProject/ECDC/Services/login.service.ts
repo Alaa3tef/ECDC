@@ -20,7 +20,7 @@ export class LoginService {
   isRadio= new BehaviorSubject(false);
   isUser= new BehaviorSubject(false);
   isLogin= new BehaviorSubject(false);
-
+  token:any
   Url: string = "http://localhost:5000/api/Account/login";
 
 
@@ -46,8 +46,8 @@ export class LoginService {
 
   saveCurrentUser()
   {
-    let token: any = localStorage.getItem('UserToken');
-    this.currentUser.next(jwtDecode(token));
+    this.token= localStorage.getItem('UserToken');
+    this.currentUser.next(jwtDecode(this.token));
     this.UserObj= this.currentUser.getValue();
     this.isLogin.next(true)
    if(this.UserObj.Role=="Admin")

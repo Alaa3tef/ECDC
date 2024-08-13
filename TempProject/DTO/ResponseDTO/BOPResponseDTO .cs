@@ -10,7 +10,7 @@ namespace TempProject.Models
 
         [ForeignKey("Rig")]
         public int RigId { get; set; }
-
+        public int RigNumber { get; set; }
         public virtual Rig Rig { get; set; }
 
 

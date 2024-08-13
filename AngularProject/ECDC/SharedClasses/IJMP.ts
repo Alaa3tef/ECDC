@@ -14,7 +14,7 @@ export interface IJMP {
   journyManagerName: string;
   managerNumber: string;
   driverNameId: number;
-  departureDate: Date;
+  departureTime: Time;
   vehicleId: number;
   estimatedArriveDate: Date;
   estimatedArriveTime: Time;

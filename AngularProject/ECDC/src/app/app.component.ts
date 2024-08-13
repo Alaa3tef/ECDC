@@ -22,7 +22,7 @@ export class AppComponent {
   IsAdmin: boolean = false;
 
   IsLoging: boolean = false;
-
+  isSidebarOpen = false;
   private hubConnection!: signalR.HubConnection;
 
   constructor(
@@ -32,6 +32,12 @@ export class AppComponent {
     private renderer: Renderer2
     ) {
 
+  }
+  onSidebarToggled() {
+    this.isSidebarOpen = !this.isSidebarOpen;
+  }
+  onItemSelected() {
+    this.isSidebarOpen = false;
   }
   public startConnection = () => {
     this.hubConnection = new signalR.HubConnectionBuilder()

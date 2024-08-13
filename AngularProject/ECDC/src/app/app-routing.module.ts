@@ -575,7 +575,7 @@ const routes: Routes = [
   //RigCertificates
   { path: 'Dashboard/RigCertificates/Add', canActivate: [UserauthGuard], component: AddRigCertificatesComponent },
   { path: 'Dashboard/RigCertificates', canActivate: [AllAuthGuardGuard], component: RigCertificatesComponent },
-  { path: 'Dashboard/RigCertificates/Edit/:id/:reportDate', canActivate: [UserauthGuard], component: EditRigCertificatesComponent },
+  { path: 'Dashboard/RigCertificates/Edit/:id/:reportDate', canActivate: [UserEditGuard], component: EditRigCertificatesComponent },
   { path: 'Dashboard/RigCertificates/Print', canActivate: [UserauthGuard], component: PrintRigCertificatesComponent },
   { path: 'Dashboard/RigCertificates/Print/:id', canActivate: [UserauthGuard], component: PrintRigCertificatesByIdComponent },
 
@@ -626,7 +626,7 @@ const routes: Routes = [
   // *********************************** Daily Lifting Report ***********************************************
   { path: 'Dashboard/CraneDailyReports/Add', canActivate: [UserauthGuard], component: AddCraneDailyLiftingReportsComponent },
   { path: 'Dashboard/CraneDailyReports', canActivate: [UserauthGuard], component: CraneDailyLiftingReportsComponent },
-  { path: 'Dashboard/CraneDailyReports/Edit/:id', canActivate: [AuthGuard], component: EditMobileCraneDailyLeftingComponent },
+  { path: 'Dashboard/CraneDailyReports/Edit/:id', canActivate: [UserEditGuard], component: EditMobileCraneDailyLeftingComponent },
   { path: 'Dashboard/ForkliftDailyReports/Add', canActivate: [UserauthGuard], component: AddForkliftDailyLeftingComponent },
   { path: 'Dashboard/ForkliftDailyReports', canActivate: [UserauthGuard], component: ForkliftDailyLeftingComponent },
   { path: 'Dashboard/ForkliftDailyReports/Edit/:id', canActivate: [AuthGuard], component: EditForkliftDailyLeftingComponent },

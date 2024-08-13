@@ -88,10 +88,10 @@ export class EditPotentialHazardComponent {
     this.PotentialHazardForm = this.fb.group({
       id: this.fb.control(0, [Validators.required]),
       rigId: this.fb.control('', [Validators.required]),
-      pR_IssueDate: this.fb.control('', [Validators.required]),
+      pR_IssueDate: this.fb.control(''),
       date: this.fb.control('', [Validators.required]),
-      pR_No: this.fb.control('', [Validators.required]),
-      pO_No: this.fb.control('', [Validators.required]),
+      pR_No: this.fb.control(''),
+      pO_No: this.fb.control(''),
       responibilityId: this.fb.control('', [Validators.required]),
       status: this.fb.control('', [Validators.required]),
       description: this.fb.control('', [Validators.required]),

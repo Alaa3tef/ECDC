@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AddnewJMPService } from 'Services/addnew-jmp.service';
 import { DataService } from 'Services/data.service';
@@ -17,6 +17,7 @@ export class NavbarComponent {
   UserRole!: string;
   IsLoging: boolean = false;
   JMPRecords:number=0;
+  @Output() sidebarToggled = new EventEmitter<void>();
 
   constructor(private JMPService:AddnewJMPService,
     private loginService: LoginService,
@@ -78,4 +79,10 @@ export class NavbarComponent {
     })
 
   }
+
+  toggleSidebar() {
+    this.sidebarToggled.emit();
+  }
+
+
 }

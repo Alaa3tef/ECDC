@@ -30,9 +30,10 @@ namespace TempProject.DTO.ResponseDTO
         public  List<PPEAndPPEReceiving> PPE { get; set; }=new List<PPEAndPPEReceiving> { };
 
 
-        public List<string> PPEs { get; set; }= new List<string>();
+        public List<string> PPEs { get; set; } = new List<string>();
+        //public List<string> PPeNames { get; set; } = new List<string>();
 
-      
+
 
 
         [DefaultValue(false)]

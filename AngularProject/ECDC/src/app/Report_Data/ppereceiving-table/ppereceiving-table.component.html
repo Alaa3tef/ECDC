@@ -27,10 +27,11 @@
           <th>Rig No.</th>
 
           <th>Date</th>
-          <th>Normal Coveralls Size</th>
+          <!-- <th>Normal Coveralls Size</th>
           <th>Thermal Coveralls Size</th>
 
-          <th>Safety Boots Size</th>
+          <th>Safety Boots Size</th> -->
+          <th>PPE</th>
           <th >Actions</th>
         </tr>
       </thead>
@@ -38,11 +39,14 @@
         <tr>
           <td>Rig - {{record.rigId}}</td>
           <td>{{record.date |date:'yyyy-MM-dd'}}</td>
-          <td>{{record.normalCoverallsSize}}</td>
+          <!-- <td>{{record.normalCoverallsSize}}</td>
           <td>{{record.thermalCoverallsSize}}</td>
 
-          <td>{{record.safetyBootsSize}}</td>
-          <td  >
+          <td>{{record.safetyBootsSize}}</td> -->
+          <td>
+            <li *ngFor="let ppe of record.ppEs" class="ppe-item"> - &nbsp;{{ppe}}</li>
+          </td>
+          <td >
             <a routerLink="/PPEReceiving/Edit/{{record.id}}/{{record.date}}" class="m-2 h4" style="color: #434F78;"><i class="fa-solid fa-pen-to-square"></i></a>
             <a routerLink="/PrintPPEReceivingById/{{record.id}}" class="m-2 h4" style="color: #434F78;"><i class="fa-solid fa-print"></i></a>
             <a (click)="DeletePPEReceiving(record)" class="m-2 h4" style="color: #f3c93e;cursor: pointer !important;"><i class="fa-solid fa-trash"></i></a>

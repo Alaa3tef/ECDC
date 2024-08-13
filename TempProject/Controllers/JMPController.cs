@@ -64,7 +64,7 @@ namespace TempProject.Controllers
                 JMPDTO.EstimatedArriveDate = JMP.EstimatedArriveDate;
                 JMPDTO.EstimatedArriveTime = JMP.EstimatedArriveTime;
                 JMPDTO.Destination = JMP.Destination;
-                JMPDTO.DepartureDate = JMP.DepartureDate;
+                JMPDTO.DepartureTime = JMP.DepartureTime;
                 JMPDTO.DriverName = JMP.DriverName.Name;
                 JMPDTO.DriverPhoneNumber = JMP.DriverName.PhoneNumber;
                 JMPDTO.DriverLicenceExpireDate = JMP.DriverName.LicenceExpireData;
@@ -132,7 +132,7 @@ namespace TempProject.Controllers
 				JMPDTO.EstimatedArriveDate = JMP.EstimatedArriveDate;
 				JMPDTO.EstimatedArriveTime = JMP.EstimatedArriveTime;
 				JMPDTO.Destination = JMP.Destination;
-				JMPDTO.DepartureDate = JMP.DepartureDate;
+				JMPDTO.DepartureTime = JMP.DepartureTime;
 				JMPDTO.DriverName = JMP.DriverName.Name;
 				JMPDTO.DriverPhoneNumber = JMP.DriverName.PhoneNumber;
 				JMPDTO.DriverLicenceExpireDate = JMP.DriverName.LicenceExpireData;
@@ -197,7 +197,7 @@ namespace TempProject.Controllers
 				JMPDTO.EstimatedArriveDate = JMP.EstimatedArriveDate;
 				JMPDTO.EstimatedArriveTime = JMP.EstimatedArriveTime;
 				JMPDTO.Destination = JMP.Destination;
-				JMPDTO.DepartureDate = JMP.DepartureDate;
+				JMPDTO.DepartureTime = JMP.DepartureTime;
 				JMPDTO.DriverName = JMP.DriverName.Name;
 				JMPDTO.DriverPhoneNumber = JMP.DriverName.PhoneNumber;
 				JMPDTO.DriverLicenceExpireDate = JMP.DriverName.LicenceExpireData;
@@ -260,7 +260,7 @@ namespace TempProject.Controllers
 		//		JMPDTO.EstimatedArriveDate = JMP.EstimatedArriveDate;
 		//		JMPDTO.EstimatedArriveTime = JMP.EstimatedArriveTime;
 		//		JMPDTO.Destination = JMP.Destination;
-		//		JMPDTO.DepartureDate = JMP.DepartureDate;
+		//		JMPDTO.DepartureTime = JMP.DepartureTime;
 		//		JMPDTO.DriverName = JMP.DriverName.Name;
 		//		JMPDTO.DriverPhoneNumber = JMP.DriverName.PhoneNumber;
 		//		JMPDTO.DriverLicenceExpireDate = JMP.DriverName.LicenceExpireData;
@@ -325,7 +325,7 @@ namespace TempProject.Controllers
 				JMPDTO.EstimatedArriveDate = JMP.EstimatedArriveDate;
 				JMPDTO.EstimatedArriveTime = JMP.EstimatedArriveTime;
 				JMPDTO.Destination = JMP.Destination;
-				JMPDTO.DepartureDate = JMP.DepartureDate;
+				JMPDTO.DepartureTime = JMP.DepartureTime;
 				JMPDTO.DriverName = JMP.DriverName.Name;
 				JMPDTO.DriverPhoneNumber = JMP.DriverName.PhoneNumber;
 				JMPDTO.DriverLicenceExpireDate = JMP.DriverName.LicenceExpireData;
@@ -386,7 +386,7 @@ namespace TempProject.Controllers
 				JMPDTO.EstimatedArriveDate = JMP.EstimatedArriveDate;
 				JMPDTO.EstimatedArriveTime = JMP.EstimatedArriveTime;
 				JMPDTO.Destination = JMP.Destination;
-				JMPDTO.DepartureDate = JMP.DepartureDate;
+				JMPDTO.DepartureTime = JMP.DepartureTime;
 				JMPDTO.DriverNameId = JMP.DriverNameId;
 				JMPDTO.CommunicationID = JMP.CommunicationID;
 				JMPDTO.Company = JMP.Company;
@@ -491,7 +491,7 @@ namespace TempProject.Controllers
                 JMPDTO.EstimatedArriveDate = JMP.EstimatedArriveDate;
                 JMPDTO.EstimatedArriveTime = JMP.EstimatedArriveTime;
                 JMPDTO.Destination = JMP.Destination;
-                JMPDTO.DepartureDate = JMP.DepartureDate;
+                JMPDTO.DepartureTime = JMP.DepartureTime;
                 JMPDTO.DriverName = JMP.DriverName.Name;
                 JMPDTO.DriverPhoneNumber = JMP.DriverName.PhoneNumber;
                 JMPDTO.DriverLicenceExpireDate = JMP.DriverName.LicenceExpireData;
@@ -553,7 +553,7 @@ namespace TempProject.Controllers
                 JMPDTO.EstimatedArriveDate = jmp.EstimatedArriveDate;
                 JMPDTO.EstimatedArriveTime = jmp.EstimatedArriveTime;
                 JMPDTO.Destination = jmp.Destination;
-                JMPDTO.DepartureDate = jmp.DepartureDate;
+                JMPDTO.DepartureTime = jmp.DepartureTime;
                 JMPDTO.DriverNameId = jmp.DriverNameId;
                 JMPDTO.CommunicationID = jmp.CommunicationID;
                 JMPDTO.Company = jmp.Company;
@@ -608,7 +608,7 @@ namespace TempProject.Controllers
                     orgJMP.EstimatedArriveDate = newJMP.EstimatedArriveDate;
                     orgJMP.EstimatedArriveTime = newJMP.EstimatedArriveTime;
                     orgJMP.Destination = newJMP.Destination;
-                    orgJMP.DepartureDate = newJMP.DepartureDate;
+                    orgJMP.DepartureTime = newJMP.DepartureTime;
                     orgJMP.DriverNameId = newJMP.DriverNameId;
                     orgJMP.CommunicationID = newJMP.CommunicationID;
                     orgJMP.Company = newJMP.Company;
@@ -979,7 +979,7 @@ namespace TempProject.Controllers
 				JMPDTO.EstimatedArriveDate = JMP.EstimatedArriveDate;
 				JMPDTO.EstimatedArriveTime = JMP.EstimatedArriveTime;
 				JMPDTO.Destination = JMP.Destination;
-				JMPDTO.DepartureDate = JMP.DepartureDate;
+				JMPDTO.DepartureTime = JMP.DepartureTime;
 				JMPDTO.DriverName = JMP.DriverName.Name;
 				JMPDTO.DriverPhoneNumber = JMP.DriverName.PhoneNumber;
 				JMPDTO.DriverLicenceExpireDate = JMP.DriverName.LicenceExpireData;
@@ -1040,7 +1040,7 @@ namespace TempProject.Controllers
 				JMPDTO.EstimatedArriveDate = JMP.EstimatedArriveDate;
 				JMPDTO.EstimatedArriveTime = JMP.EstimatedArriveTime;
 				JMPDTO.Destination = JMP.Destination;
-				JMPDTO.DepartureDate = JMP.DepartureDate;
+				JMPDTO.DepartureTime = JMP.DepartureTime;
 				JMPDTO.DriverName = JMP.DriverName.Name;
 				JMPDTO.DriverPhoneNumber = JMP.DriverName.PhoneNumber;
 				JMPDTO.DriverLicenceExpireDate = JMP.DriverName.LicenceExpireData;
@@ -1103,7 +1103,7 @@ namespace TempProject.Controllers
             newTemp.EstimatedArriveDate = temp.EstimatedArriveDate;
             newTemp.EstimatedArriveTime = temp.EstimatedArriveTime;
             newTemp.Destination = temp.Destination;
-            newTemp.DepartureDate = temp.DepartureDate;
+            newTemp.DepartureTime = temp.DepartureTime;
             newTemp.DriverName = temp.DriverName.Name;
             newTemp.DriverPhoneNumber = temp.DriverName.PhoneNumber;
             newTemp.DriverLicenceExpireDate = temp.DriverName.LicenceExpireData;
@@ -1170,7 +1170,7 @@ namespace TempProject.Controllers
 			newTemp.EstimatedArriveDate = temp.EstimatedArriveDate;
 			newTemp.EstimatedArriveTime = temp.EstimatedArriveTime;
 			newTemp.Destination = temp.Destination;
-			newTemp.DepartureDate = temp.DepartureDate;
+			newTemp.DepartureTime = temp.DepartureTime;
 			newTemp.DriverName = temp.DriverName.Name;
 			newTemp.DriverPhoneNumber = temp.DriverName.PhoneNumber;
 			newTemp.DriverLicenceExpireDate = temp.DriverName.LicenceExpireData;
@@ -1236,7 +1236,7 @@ namespace TempProject.Controllers
 				JMPDTO.EstimatedArriveDate = JMP.EstimatedArriveDate;
 				JMPDTO.EstimatedArriveTime = JMP.EstimatedArriveTime;
 				JMPDTO.Destination = JMP.Destination;
-				JMPDTO.DepartureDate = JMP.DepartureDate;
+				JMPDTO.DepartureTime = JMP.DepartureTime;
 				JMPDTO.DriverName = JMP.DriverName.Name;
 				JMPDTO.DriverPhoneNumber = JMP.DriverName.PhoneNumber;
 				JMPDTO.DriverLicenceExpireDate = JMP.DriverName.LicenceExpireData;
@@ -1301,7 +1301,7 @@ namespace TempProject.Controllers
                 JMPDTO.EstimatedArriveDate = JMP.EstimatedArriveDate;
                 JMPDTO.EstimatedArriveTime = JMP.EstimatedArriveTime;
                 JMPDTO.Destination = JMP.Destination;
-                JMPDTO.DepartureDate = JMP.DepartureDate;
+                JMPDTO.DepartureTime = JMP.DepartureTime;
                 JMPDTO.DriverName = JMP.DriverName.Name;
                 JMPDTO.DriverPhoneNumber = JMP.DriverName.PhoneNumber;
                 JMPDTO.DriverLicenceExpireDate = JMP.DriverName.LicenceExpireData;
@@ -1368,7 +1368,7 @@ namespace TempProject.Controllers
         //        JMPDTO.EstimatedArriveDate = JMP.EstimatedArriveDate;
         //        JMPDTO.EstimatedArriveTime = JMP.EstimatedArriveTime;
         //        JMPDTO.Destination = JMP.Destination;
-        //        JMPDTO.DepartureDate = JMP.DepartureDate;
+        //        JMPDTO.DepartureTime = JMP.DepartureTime;
         //        JMPDTO.DriverName = JMP.DriverName.Name;
         //        JMPDTO.DriverPhoneNumber = JMP.DriverName.PhoneNumber;
         //        JMPDTO.DriverLicenceExpireDate = JMP.DriverName.LicenceExpireData;
@@ -1433,7 +1433,7 @@ namespace TempProject.Controllers
                     JMP.EstimatedArriveDate = JMPDTO.EstimatedArriveDate;
                     JMP.EstimatedArriveTime = JMPDTO.EstimatedArriveTime;
                     JMP.Destination = JMPDTO.Destination;
-                    JMP.DepartureDate = JMPDTO.DepartureDate;
+                    JMP.DepartureTime = JMPDTO.DepartureTime;
                     JMP.DriverNameId = JMPDTO.DriverNameId;
                     JMP.CommunicationID = JMPDTO.CommunicationID;
                     JMP.Company = JMPDTO.Company;

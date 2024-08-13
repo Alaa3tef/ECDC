@@ -8,8 +8,9 @@ namespace TempProject.DTO.ResponseDTO
 		public int Id { get; set; }
 
 		public int RigNo { get; set; }
+        public int RigNumber { get; set; }
 
-		[Column(TypeName = "date")]
+        [Column(TypeName = "date")]
 		public DateTime Date { get; set; }
 
         public string Cient { get; set; }

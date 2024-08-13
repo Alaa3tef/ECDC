@@ -163,8 +163,10 @@
                         <div class="mb-1">
                           <h6 class="mb-0">
                             <span style="font-weight: bold;">Description :</span>
-                            <div class="p-1" style="border: 1px solid black;width: 100%;">
-                              {{ record.descriptionOfTheEvent }}
+                            <div class="recommendations-container">
+                              <ng-container *ngFor="let descriptionOfTheEvent of record.descriptionOfTheEvent .split('\n')">
+                                <div class="recommendation-item">{{ descriptionOfTheEvent }}</div>
+                              </ng-container>
                             </div>
                           </h6>
                         </div>
@@ -187,8 +189,10 @@
                         <div class="mb-1">
                           <h6 class="mb-0">
                             <span style="font-weight: bold;">Direct Causes :</span>
-                            <div class="p-1" style="border: 1px solid black;width: 100%;">
-                              {{ record.directCauses }}
+                            <div class="recommendations-container">
+                              <ng-container *ngFor="let directCauses of record.directCauses.split('\n')">
+                                <div class="recommendation-item">{{ directCauses }}</div>
+                              </ng-container>
                             </div>
                           </h6>
                         </div>
@@ -199,8 +203,10 @@
                         <div class="mb-1">
                           <h6 class="mb-0">
                             <span style="font-weight: bold;">Root Causes :</span>
-                            <div class="p-1" style="border: 1px solid black;width: 100%;">
-                              {{ record.rootCauses }}
+                            <div class="recommendations-container">
+                              <ng-container *ngFor="let rootCauses of record.rootCauses.split('\n')">
+                                <div class="recommendation-item">{{ rootCauses }}</div>
+                              </ng-container>
                             </div>
                           </h6>
                         </div>
@@ -211,8 +217,10 @@
                         <div class="mb-1">
                           <h6 class="mb-0">
                             <span style="font-weight: bold;">Recommendations :</span>
-                            <div class="p-1" style="border: 1px solid black;width: 100%;">
-                              {{ record.recommendations }}
+                            <div class="recommendations-container">
+                              <ng-container *ngFor="let recommendation of record.recommendations.split('\n')">
+                                <div class="recommendation-item">{{ recommendation }}</div>
+                              </ng-container>
                             </div>
                           </h6>
                         </div>
