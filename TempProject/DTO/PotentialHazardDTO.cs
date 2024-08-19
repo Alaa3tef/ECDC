@@ -18,10 +18,10 @@ namespace TempProject.DTO
 		public DateTime Date { get; set; }
 
 		[Column(TypeName = "date")]
-		public DateTime PR_IssueDate { get; set; }
+		public DateTime? PR_IssueDate { get; set; }
 
-		public int PR_No { get; set; }
-		public int PO_No { get; set; }
+		public int? PR_No { get; set; }
+		public int? PO_No { get; set; }
 
 		public int ResponibilityId { get; set; }
 		public string Status { get; set; }

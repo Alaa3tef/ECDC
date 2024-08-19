@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { LoginService } from 'Services/login.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { LoginService } from 'Services/login.service';
 })
 export class FooterComponent {
   IsLoging:boolean=false;
-
+  @Input() isSidebarOpen: boolean = false;
   constructor(private loginService: LoginService) {
 
   }

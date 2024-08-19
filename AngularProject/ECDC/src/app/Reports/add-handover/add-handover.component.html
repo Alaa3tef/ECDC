@@ -307,8 +307,12 @@
                     Training Matrix
                   </td>
                   <td class="p-1">
-                    <input type="number" placeholder="Percentage of training matrix" formControlName="trainingMatrix"
-                      class="form-control" />
+                    <div class="input-group">
+                      <input type="number" placeholder="Percentage of training matrix" formControlName="trainingMatrix"
+                             class="form-control" />
+                      <span class="input-group-text">%</span>
+                  </div>
+                  
                     <div
                       *ngIf="(trainingMatrix?.invalid && (trainingMatrix?.dirty || trainingMatrix?.touched))||submitted">
                       <small class="text-danger" *ngIf="trainingMatrix?.errors?.['required']">

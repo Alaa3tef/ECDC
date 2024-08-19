@@ -72,7 +72,7 @@
                           <div class="mb-1">
                             <h6 class="mb-1">
                               <span style="font-weight: bold;">PR - Issue Date: </span>
-                              <span>{{ record.pR_IssueDate ? record.pR_IssueDate : '-'|date: 'dd-MM-yyyy' }}</span>
+                              <span>{{ record.pR_IssueDate ? (record.pR_IssueDate | date: 'dd-MM-yyyy') : '&nbsp;&nbsp;&nbsp; - ' }}</span>
                             </h6>
                           </div>
                         </td>
@@ -91,7 +91,8 @@
                           <div class="mb-1">
                             <h6 class="mb-1">
                               <span style="font-weight: bold;">PR No:</span>
-                              <span>{{ record.pR_No ? record.pR_No : '-'}}</span>
+                              <span>{{ record.pR_No ? record.pR_No : '&nbsp;&nbsp;&nbsp; - ' }}</span>
+
                             </h6>
                           </div>
                         </td>
@@ -110,7 +111,7 @@
                           <div class="mb-1">
                             <h6 class="mb-1">
                               <span style="font-weight: bold;">PO No:</span>
-                              <span>{{ record.pO_No ? record.pO_No : '-' }}</span>
+                              <span>{{ record.pO_No ? record.pO_No : '&nbsp;&nbsp;&nbsp; -' }}</span>
                             </h6>
                           </div>
                         </td>

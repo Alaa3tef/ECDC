@@ -2,10 +2,10 @@
 <div class="row" style="margin-right: 0px;">
   <div *ngIf="IsLoging; then thenBlock else elseBlock"></div>
   <ng-template #thenBlock>
-    <div class="col-md-3">
-      <app-sidebar [isOpen]="isSidebarOpen"(itemSelected)="onItemSelected()"></app-sidebar>
+    <div [ngClass]="{'col-md-3': isSidebarOpen, 'd-none': !isSidebarOpen}">
+      <app-sidebar [isOpen]="isSidebarOpen" (itemSelected)="onItemSelected()"></app-sidebar>
     </div>
-    <div class="col-md-9" style="min-height: 576px !important;">
+    <div [ngClass]="{'col-md-9': isSidebarOpen, 'col-md-12': !isSidebarOpen}" style="min-height: 576px !important;">
       <div *ngIf="IsAdmin" id="notify" class="alert alert-success alert-dismissible fade show col-md-4"
         style="position: fixed;top: 100px;left: 870px;z-index: 1;margin-top: 0 !important; visibility: hidden;"
         role="alert">
@@ -16,9 +16,11 @@
       </div>
       <router-outlet></router-outlet>
     </div>
+    
+    
   </ng-template>
   <ng-template #elseBlock>
-    <div class="col-md-12" style="min-height: 576px !important;">
+    <div [ngClass]="isSidebarOpen ? 'col-md-9' : 'col-md-12'" style="min-height: 576px !important;">
       <div *ngIf="IsAdmin" id="notify" class="alert alert-success alert-dismissible fade show col-md-4"
         style="position: fixed;top: 100px;left: 870px;z-index: 1;margin-top: 0 !important; visibility: hidden;"
         role="alert">
@@ -47,6 +49,5 @@
   </div> -->
 </div>
 <div class="mt-4">
-  <app-footer></app-footer>
-
+  <app-footer ></app-footer>
 </div>

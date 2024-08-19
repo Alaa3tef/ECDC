@@ -4,3 +4,16 @@ td{
 form.submitted .ng-invalid {
   border-color: red;
 }
+
+.input-group {
+  position: relative;
+}
+
+.input-group-text {
+  position: absolute;
+  right: 10px; /* Adjust this value to position the % correctly */
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none; /* Makes sure the % symbol doesn't interfere with input */
+  font-weight: bold;
+}

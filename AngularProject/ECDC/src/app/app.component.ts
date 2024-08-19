@@ -22,7 +22,7 @@ export class AppComponent {
   IsAdmin: boolean = false;
 
   IsLoging: boolean = false;
-  isSidebarOpen = false;
+  isSidebarOpen = true;
   private hubConnection!: signalR.HubConnection;
 
   constructor(

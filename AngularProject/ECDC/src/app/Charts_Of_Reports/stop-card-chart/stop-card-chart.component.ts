@@ -507,27 +507,30 @@ onMonth(event:any){
         this.clearChart("myChart4");
         this.PotentialList = data.data;
         this.pushingList = [];
+    
+        // // Organize the data by username
+        // this.RigNames.forEach(userName => {
+        //   const userReports = this.PotentialList.filter(item => item.userName === userName);
+        //   this.pushingList.push(userReports);
+        // });
+    
+        // // Count reports per username
+        // this.pushingListCounthing = this.pushingList.map(row => row.length);
+    
 
         // Organize the data by username
-        this.PotentialList.forEach(item => {
-          let found = false;
-          for (let row of this.pushingList) {
-            if (row.some(r => r.userName === item.userName)) {
-              row.push(item);
-              found = true;
-              break;
-            }
+        const reportCounts = this.PotentialList.reduce((acc, item) => {
+          if (!acc[item.userName]) {
+            acc[item.userName] = 0;
           }
-          if (!found) {
-            this.pushingList.push([item]);
-          }
-        });
+          acc[item.userName] += 1;
+          return acc;
+        }, {});
 
-        // Count reports per username
-        this.pushingListCounthing = this.RigNames.map(userName =>
-          this.pushingList.find(row => row.some(item => item.userName === userName))?.length || 0
-        );
-
+        // Extract usernames and their corresponding counts
+        this.RigNames = Object.keys(reportCounts); // Usernames
+        this.pushingListCounthing = Object.values(reportCounts); // Number of reports per user
+        console.log("ggggggggggggggggggggg",this.pushingListCounthing);
         // Generate random colors
         this.ColorsBackground = [];
         this.Colors = [];
@@ -538,75 +541,85 @@ onMonth(event:any){
           this.ColorsBackground.push(`rgba(${red}, ${green}, ${blue}, 0.2)`);
           this.Colors.push(`rgba(${red}, ${green}, ${blue}, 1)`);
         }
-
+    
         // Create or update the chart
         this.AddCanvas("myChart4", "chart4");
-
+    
         const myChart4 = new Chart("myChart4", {
           type: 'bar',
           data: {
-            labels: this.RigNames, // Usernames
+            labels: this.RigNames, // Unique Usernames
             datasets: [{
-              label: selectedText,
-              data: this.pushingListCounthing, // Number of reports per user
-              backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-              ], // Example: Light blue
-              borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-              ],// Example: Dark blue
+              label: `Reports made by users (${event.target.value})`,
+              data: this.pushingListCounthing, // Total number of reports per user
+              backgroundColor: this.ColorsBackground,
+              borderColor: this.Colors,
               borderWidth: 1,
               datalabels: {
-                display: false, // Hide labels by default
-                color: [
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(54, 162, 235, 1)',
-                ],
-                anchor: 'end',
-                align: 'end',
+                display: true, // Show labels
+                color: this.Colors, // Color of the text labels
+                anchor: 'center', // Center the labels on the bars
+                align: 'center',
                 font: {
-                  size: 18,
+                  size: 14, // Adjust the font size for readability
+                },
+                formatter: function(value, context) {
+                  return value; // Display the count directly on the chart
                 }
               }
             }]
           },
-          // options: {
-          //   responsive: true,
-          //   scales: {
-
-          //     x: {
-          //       ticks: {
-          //         autoSkip: true, // Enable auto-skip to avoid overcrowding
-          //         maxRotation: 60, // Increase label rotation angle
-          //         minRotation: 60,
-          //         maxTicksLimit: 10, // Limit number of ticks on X-axis
-          //       },
-          //       title: {
-          //         display: true,
-          //         text: 'Usernames',
-          //       },
-          //     },
-          //   },
-          //   plugins: {
-          //     legend: {
-          //       display: true,
-          //       position: 'top',
-          //     },
-          //     datalabels: {
-          //       display: false, // Disable all data labels initially
-          //     },
-          //     tooltip: {
-          //       enabled: true, // Enable tooltips to show data on hover
-          //     },
-          //   },
-          // }
+          options: {
+            responsive: true,
+            scales: {
+              x: {
+                ticks: {
+                  autoSkip: false, // Don't skip ticks (since users should be unique)
+                  maxRotation: 60, // Increase label rotation angle if needed
+                  minRotation: 60,
+                  maxTicksLimit: 20, // Adjust the limit based on number of users
+                },
+                title: {
+                  display: true,
+                  text: 'Usernames',
+                },
+              },
+              y: {
+                beginAtZero: true,
+                title: {
+                  display: true,
+                  text: 'Number of Reports',
+                }
+              }
+            },
+            plugins: {
+              legend: {
+                display: true,
+                position: 'top',
+              },
+              tooltip: {
+                enabled: true, // Enable tooltips to show data on hover
+              },
+              datalabels: {
+                display: true, // Ensure datalabels are displayed
+                align: 'end',
+                anchor: 'end',
+                font: {
+                  weight: 'bold',
+                  size: 14,
+                },
+                formatter: (value) => {
+                  return value; // Show the value directly
+                }
+              }
+            },
+          }
         });
-
-
+        
+        
       }
     });
+    
 
   }
 
