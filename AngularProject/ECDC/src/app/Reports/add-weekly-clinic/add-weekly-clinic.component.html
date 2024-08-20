@@ -12,7 +12,7 @@
 
       <table class="table">
         <tr>
-          <td colspan="2">
+          <td colspan="2"class="col-12 col-md-6 col-lg-3">
             <div class="form-group">
               <label class="form-label" for="rigId">Rig Number: </label>
               <select name="rigId" formControlName="rigId" id="rigId" class="form-select">
@@ -26,7 +26,7 @@
               </div>
             </div>
           </td>
-          <td>
+          <td class="col-12 col-md-6 col-lg-3">
             <div class="form-group">
               <label class="form-label" for="date">Date: </label>
               <input type="date" formControlName="date" class="form-control" />
@@ -39,9 +39,9 @@
           </td>
         </tr>
         <tr>
-          <td>
+          <td colspan="2" class=" col-md-6 col-lg-3">
             <div class="form-group">
-              <label class="form-label" for="healthMeetingNo">No. of Health Meeting with Crew: </label>
+              <label class="form-label col-12" for="healthMeetingNo">No. of Health Meeting with Crew: </label>
               <input type="number" formControlName="healthMeetingNo" id="healthMeetingNo" class="form-control">
               <div
                 *ngIf="(healthMeetingNo?.invalid && (healthMeetingNo?.dirty || healthMeetingNo?.touched))||submitted">
@@ -51,7 +51,7 @@
               </div>
             </div>
           </td>
-          <td colspan="2">
+          <td  class="col-12 col-md-6 col-lg-3">
             <div class="form-group">
               <label class="form-label" for="topics">Topics: </label>
               <input type="text" name="topics" formControlName="topics" id="topics" class="form-control" />
@@ -64,9 +64,9 @@
           </td>
         </tr>
         <tr>
-          <td>
+          <td class="col-12 col-md-6 col-lg-3">
             <div class="form-group">
-              <label class="form-label" for="weeklyClinicNo">Weekly Clinic Cases: </label>
+              <label class="form-label" for="weeklyClinicNo"> Cases: </label>
               <input type="number" formControlName="weeklyClinicNo" class="form-control">
               <div *ngIf="(weeklyClinicNo?.invalid && (weeklyClinicNo?.dirty || weeklyClinicNo?.touched))||submitted">
                 <small class="text-danger" *ngIf="weeklyClinicNo?.errors?.['required']">
@@ -75,7 +75,7 @@
               </div>
             </div>
           </td>
-          <td>
+          <td class="col-12 col-md-6 col-lg-3">
             <div class="form-group">
               <label class="form-label" for="lastFirstAidDrillNo">Last First Aid Drill: </label>
               <input type="date" formControlName="lastFirstAidDrillNo" class="form-control" />
@@ -87,7 +87,7 @@
               </div>
             </div>
           </td>
-          <td>
+          <td class="col-12 col-md-6 col-lg-3">
             <div class="form-group">
               <label class="form-label" for="medicalReportNo">Medical Report No: </label>
               <input type="number" formControlName="medicalReportNo" id="medicalReportNo" class="form-control">
@@ -442,7 +442,7 @@
           </td>
         </tr>
         <tr>
-          <td>
+          <td colspan="2">
             <div class="form-group">
               <label class="form-label" for="doctorName">Doctor Name: </label>
               <input type="text" formControlName="doctorName" class="form-control" />
@@ -453,7 +453,7 @@
               </div>
             </div>
           </td>
-          <td>
+          <td colspan="2">
             <div class="form-group">
               <label class="form-label" for="qhseEngineer">QHSE Engineer: </label>
               <input type="text" formControlName="qhseEngineer" class="form-control" />

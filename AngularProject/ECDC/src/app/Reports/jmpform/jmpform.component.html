@@ -11,9 +11,9 @@
 
       <table class="table">
         <tr>
-          <td colspan="2">
+          <td class="col-12 col-md-6 col-lg-3">
             <div class="form-group">
-              <label class="form-label" for="destination">Destination : </label>
+              <label class="form-label" for="destination">Destination </label>
               <input type="text" name="destination" formControlName="destination" id="destination" class="form-control">
               <div *ngIf="destination?.invalid && (destination?.dirty || destination?.touched)">
                 <small class="text-danger" *ngIf="destination?.errors?.['required']">
@@ -22,7 +22,7 @@
               </div>
             </div>
           </td>
-          <td>
+          <td class="col-12 col-md-6 col-lg-3" >
             <div class="form-group">
               <label class="form-label" for="company">Company : </label>
               <input type="text" name="company" formControlName="company" id="company" class="form-control">
@@ -33,7 +33,7 @@
               </div>
             </div>
           </td>
-          <td>
+          <td class="col-12 col-md-6 col-lg-3">
             <div class="form-group">
               <label class="form-label" for="estimatedArriveTime">Date :</label>
               <input type="date" name="date" formControlName="date" id="date" class="form-control">
@@ -47,7 +47,7 @@
         </tr>
 
         <tr>
-          <td colspan="2">
+          <td colspan="2" class="col-12 col-md-6 col-lg-3">
             <div class="form-group">
               <label class="form-label" for="purposeOfJourny">Purpose Of Journy : </label>
               <input type="text" name="purposeOfJourny" formControlName="purposeOfJourny" id="purposeOfJourny"
@@ -59,7 +59,7 @@
               </div>
             </div>
           </td>
-          <td colspan="2">
+          <td colspan="2" class="col-12 col-md-6 col-lg-3">
             <label>Will The Driver Reach Destination Before Dark ? </label>
             <br>
             <div class="ms-1">

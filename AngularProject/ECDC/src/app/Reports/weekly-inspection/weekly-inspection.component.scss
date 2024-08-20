@@ -4,3 +4,43 @@
 form.submitted .ng-invalid {
   border-color: red;
 }
+/* Default styles for larger screens */
+.table {
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+  .table  {
+    display: block;
+    width: 100%;
+  }
+.td-content{
+  display: block;
+  width: 100%;
+}
+
+.td-content{
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+  .form-group {
+    margin-bottom: 10px;
+  }
+
+  .form-group label {
+    margin-bottom: 5px;
+  }
+  .button-container .btn {
+    margin-bottom: 9%; /* Add margin below each button */
+  }
+  .heading_container{
+    margin-top: 17% !important;
+  }
+}
