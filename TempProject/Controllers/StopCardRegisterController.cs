@@ -779,7 +779,7 @@ namespace TempProject.Controllers
 				else if (string.Equals(UserRole, "User", StringComparison.OrdinalIgnoreCase))
 				{
 					List<StopCardResponseDTO> StopCardRegisterDTOs = new List<StopCardResponseDTO>();
-					List<StopCardRegister> StopCardRegisters = StopCardRegisterRepoistory.getall().Where(a => a.Date.Month == date&&a.user.Id==UserId).ToList();
+					List<StopCardRegister> StopCardRegisters = StopCardRegisterRepoistory.getall().Where(a => a.Date.Month == date && a.Date.Year == year && a.user.Id==UserId).ToList();
 					foreach (StopCardRegister StopCardRegister in StopCardRegisters)
 					{
 						StopCardResponseDTO StopCardRegisterDTO = new StopCardResponseDTO();

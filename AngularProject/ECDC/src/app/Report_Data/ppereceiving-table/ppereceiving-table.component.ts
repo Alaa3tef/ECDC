@@ -182,7 +182,7 @@ export class PPEReceivingTableComponent {
       worksheet.addRow(temp)
     }
 
-    let fname = "Potential Hazard Report"
+    let fname = "PPE Receiving Report"
 
     //add data and file name and download
     workbook.xlsx.writeBuffer().then((data) => {

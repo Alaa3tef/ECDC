@@ -30,7 +30,9 @@ export class VehicleWeeklyChecklistReportTableComponent {
 
   User:any;
 
-
+  isLoading = false;
+  progress: number = 0;
+  message!: string;
   constructor(
     private getDataByPage:AddNewVehicleWeeklyChecklistReportService,
     private loginService:LoginService,
@@ -75,18 +77,37 @@ export class VehicleWeeklyChecklistReportTableComponent {
   }
   getpages(num:number)
   {
+    this.isLoading = true;  // Start the loader
+    this.progress = 0;  // Reset progress
     this.getDataByPage.GetVehicleWeeklyChecklistByPage(num,this.User.ID,this.User.Role).subscribe({
       next: data => {
+        this.progress = 100;  // Set progress to 100% when backend responds
+          this.isLoading = false;  // Stop loader
         this.ListOfVehicleWeeklyChecklist.next(data.items)
         this.countOfPage=data.count;
         this.TempArray= new Array(this.countOfPage);
       },
       error: err => {
+        this.isLoading = false;  // Stop loader
+        this.progress = 0;  // Reset progress on error
+        this.message = 'Error occurred during Generation.';
+
         console.log(err)
       }
     })
+    this.simulateProgressUntilCompletion();
     this.indexofPages=num;
     console.log("getpages"+this.indexofPages);
+  }
+   // Simulate incremental progress for user feedback until backend completes
+   simulateProgressUntilCompletion() {
+    const interval = setInterval(() => {
+      if (this.progress < 90) {  // Limit to 90% to leave room for backend completion
+        this.progress += 10;
+      } else {
+        clearInterval(interval);  // Stop simulation when close to 100%
+      }
+    }, 500);  // Adjust as needed
   }
   gotleft()
   {

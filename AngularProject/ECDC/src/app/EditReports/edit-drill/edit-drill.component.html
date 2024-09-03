@@ -49,9 +49,9 @@
                                     Time Completed isn't valid
                                     <br>
                                     ex:6.05
-                                </small> 
-                            
-                            
+                                </small>
+
+
                             </div>
                         </div>
                     </td>
@@ -70,9 +70,9 @@
                                     Time Initiated isn't valid
                                     <br>
                                     ex:6.05
-                                </small> 
-                            
-                            
+                                </small>
+
+
                             </div>
                         </div>
                     </td>
@@ -86,7 +86,7 @@
                             <input class="form-control" [value]="DutartionEquip" disabled />
                             <input name="duration" formControlName="duration" id="duration"
                               class="form-control" [(ngModel)]="DutartionEquip" hidden />
-                          </div> 
+                          </div>
                     </td>
                     <td colspan="2">
                         <div class="form-group">
@@ -206,36 +206,51 @@
                         </div>
                     </td>
                 </tr>
+
+
                 <tr>
-                    <td>
-                        <input list="QHSEmenace" autocomplete="off" formControlName="teamMemeberCode3"
-                            name="teamMemeberCode3" class="form-control" (input)="selectedMenaceTeamMemeber3($event)"
-                            [(ngModel)]="drill.teamMemeberCode3">
-                        <datalist id="teamMemeberCode3">
-                            <option *ngFor="let menace of QHSECodeList">{{menace.code}} </option>
-                        </datalist>
-                    </td>
-                    <td>
-                        <div class="from-group">
-                            <input class="form-control" [value]="TeamMemeber3_Position" disabled
-                                [(ngModel)]="drill.teamMemeberPosition3 " />
-                            <input name="teamMemeberPosition3" formControlName="teamMemeberPosition3"
-                                id="teamMemeberPosition3" class="form-control" [(ngModel)]="TeamMemeber3_Position"
-                                hidden />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="form-group">
-                            <input class="form-control" [value]="TeamMemeber3_Name" disabled
-                                [(ngModel)]="drill.teamMemeberName3" />
-                            <input name="teamMemeberName3" formControlName="teamMemeberName3" id="teamMemeberName3"
-                                class="form-control" [(ngModel)]="TeamMemeber3_Name" hidden />
-                        </div>
-                    </td>
+                  <td>
+                    <input list="QHSEmenace" autocomplete="off" formControlName="teamMemeberCode3"
+                           name="teamMemeberCode3" class="form-control"
+                           (input)="selectedMenaceTeamMemeber3($event)" [(ngModel)]="drill.teamMemeberCode3">
+                    <datalist id="teamMemeberCode3">
+                      <option *ngFor="let menace of QHSECodeList">{{menace.code}}</option>
+                    </datalist>
+                  </td>
+
+                  <td>
+                    <div class="form-group">
+                      <!-- Input for manually entered position -->
+                      <input *ngIf="showAdditionalFields; else showPositionFromDBTemplate"
+                             formControlName="teamMemeberPosition3"
+                             [(ngModel)]="manuallyEnteredPosition" class="form-control"
+                             placeholder="Enter Position" (blur)="saveManualEntry()"/>
+                      <!-- Display position from database when not manually entered -->
+                      <ng-template #showPositionFromDBTemplate>
+                        <input class="form-control"  [value]="drill.teamMemeberPosition3"disabled />
+                      </ng-template>
+                    </div>
+                  </td>
+
+                  <td>
+                    <div class="form-group">
+                      <!-- Input for manually entered name -->
+                      <input *ngIf="showAdditionalFields; else showNameFromDBTemplate"
+                             formControlName="teamMemeberName3"
+                             [(ngModel)]="manuallyEnteredName" class="form-control"
+                             placeholder="Enter Name" (blur)="saveManualEntry()"/>
+                      <!-- Display name from database when not manually entered -->
+                      <ng-template #showNameFromDBTemplate>
+                        <input class="form-control"  [value]="drillForm.get('teamMemeberName3')?.value" disabled />
+                      </ng-template>
+                    </div>
+                  </td>
                 </tr>
+
+
                 <tr>
                     <td>
-                        
+
                         <input list="QHSEmenace" autocomplete="off" formControlName="teamMemeberCode4"
                             name="teamMemeberCode4" class="form-control" (input)="selectedMenaceTeamMemeber4($event)"
                             [(ngModel)]="TeamMemeber4_Code" placeholder="Code">
@@ -406,7 +421,7 @@
                 </tr>
 
                 <tr>
-                  
+
 
                     <td>
                         <label class="form-label m-0 pb-0">Emp.No: </label>
@@ -415,7 +430,7 @@
                           <option *ngFor="let menace of QHSECodeList">{{menace.code}}</option>
                         </datalist>
                       </td>
-                      
+
                     <td>
                         <div class="from-group">
                             <label for="qhsePositionName" class="form-label">Position :</label>
@@ -478,7 +493,7 @@
 
                 </tr>
 
-                
+
           <tr>
             <td colspan="3">
               <div class="form-group">
@@ -494,7 +509,7 @@
             </td>
           </tr>
           <tr>
-            
+
             <td>
             <div class="row" >
                 <div *ngFor="let imageUrl of drill.images" class="col-4 mx-2 my-2">

@@ -92,7 +92,7 @@ export class DrillComponent {
 
   // duration!:any
   DutartionEquip: string = '';
-
+  showAdditionalFields: boolean = false;  // Flag to control visibility
   User: any;
   @Input() TimeInitiated: any
   @Input() TimeCompleted: any
@@ -393,6 +393,24 @@ export class DrillComponent {
         error: err => this.ErrorMessage = err
       })
 
+  // Subscribe to form control value changes to detect changes in the selected code
+  this.drillForm.get('teamMemeberCode3')?.valueChanges.subscribe((value) => {
+    if (value === '0') {
+      this.showAdditionalFields = true;  // Show fields when code is 0
+      this.drillForm.get('teamMemeberPosition3')?.setValidators([Validators.required]);
+      this.drillForm.get('teamMemeberName3')?.setValidators([Validators.required]);
+    } else {
+      this.showAdditionalFields = false;  // Hide fields otherwise
+      // Clear validators when fields are hidden
+      this.drillForm.get('teamMemeberPosition3')?.clearValidators();
+      this.drillForm.get('teamMemeberName3')?.clearValidators();
+      // Reset values to fetch from database
+      this.fetchDetailsFromDatabase(value);
+    }
+    this.drillForm.get('teamMemeberPosition3')?.updateValueAndValidity();
+    this.drillForm.get('teamMemeberName3')?.updateValueAndValidity();
+  });
+
   }
 
   selectedMenace(event: any) {
@@ -551,36 +569,76 @@ export class DrillComponent {
       }
     })
   }
-  selectedMenaceTeamMemeber3(event: any) {
-    console.log("event.target.value")
-    console.log(event.target.value)
-    this.dataService.GetEmpCodeByCode(event.target.value).subscribe({
-      next: data => {
-        this.TeamMemeber3_NameId = data.data.id
-        this.TeamMemeber3_Name = data.data.name,
-          this.TeamMemeber3_PositionID = data.data.positionId
-        console.log("this.employee_name")
-        console.log(this.TeamMemeber3_Name)
-        console.log("this.employeePositionID")
-        console.log(this.TeamMemeber3_PositionID)
+
+ selectedMenaceTeamMemeber3(event: any) {
+  const selectedCode = event.target.value;
+  console.log("Selected Code:", selectedCode);
+
+  if (selectedCode !== '0') {
+    // Fetch data when code is not '0'
+    this.dataService.GetEmpCodeByCode(selectedCode).subscribe({
+      next: (data) => {
+        this.TeamMemeber3_NameId = data.data.id;
+        this.TeamMemeber3_Name = data.data.name;
+        this.TeamMemeber3_PositionID = data.data.positionId;
+
+        // Update form controls with the fetched data
+        this.drillForm.patchValue({
+          teamMemeberName3: this.TeamMemeber3_Name,
+          teamMemeberPosition3: '', // Temporarily clear until position is fetched
+        });
+
+        console.log("Employee Name:", this.TeamMemeber3_Name);
+        console.log("Employee Position ID:", this.TeamMemeber3_PositionID);
+
         this.dataService.GetPositionByID(this.TeamMemeber3_PositionID).subscribe({
-          next: data => {
-            this.TeamMemeber3_Position = data.data.name,
-              console.log("this.PusherPosition")
-            console.log(this.TeamMemeber3_Position)
+          next: (data) => {
+            this.TeamMemeber3_Position = data.data.name;
+
+            // Update form control for the position with the fetched data
+            this.drillForm.patchValue({
+              teamMemeberPosition3: this.TeamMemeber3_Position,
+            });
+
+            console.log("Position Name:", this.TeamMemeber3_Position);
           },
-          error: err => {
-            this.ErrorMessage = err,
-              console.log(this.ErrorMessage)
+          error: (err) => {
+            this.ErrorMessage = err;
+            console.log("Error fetching position:", this.ErrorMessage);
           }
-        })
+        });
       },
-      error: err => {
-        this.ErrorMessage = err,
-          console.log(err)
+      error: (err) => {
+        this.ErrorMessage = err;
+        console.log("Error fetching employee code:", err);
       }
-    })
+    });
+  } else {
+    // Code is '0', enable manual entry by clearing the form controls
+    this.drillForm.patchValue({
+      teamMemeberName3: '',
+      teamMemeberPosition3: ''
+    });
+    this.showAdditionalFields = true;
   }
+}
+
+
+fetchDetailsFromDatabase(code: number) {
+  this.dataService.GetEmpCodeByCode(code).subscribe({
+    next: (data) => {
+      if (!this.showAdditionalFields) {
+        this.drillForm.patchValue({
+          teamMemeberPosition3: data.data.position,
+          teamMemeberName3: data.data.name
+        });
+      }
+    },
+    error: (err) => {
+      console.log("Error fetching details:", err);
+    }
+  });
+}
   selectedMenaceTeamMemeber4(event: any) {
     console.log("event.target.value")
     console.log(event.target.value)
@@ -703,6 +761,17 @@ export class DrillComponent {
   }
 
 
+  // fetchDetailsFromDatabase(code: string) {
+
+  //   // Mockup: Setting static values for example
+  //   const details = { position: this.teamMemeberPosition3, name: this.teamMemeberName3 }; // replace this with your database call
+  //   this.drillForm.patchValue({
+  //     teamMemeberPosition3: details.position,
+  //     teamMemeberName3: details.name
+
+  //   });
+  //   console.log("teamMemeberName333333333333333333",this.teamMemeberName3)
+  // }
 
 
 

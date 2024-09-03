@@ -114,6 +114,9 @@ Code:any=[]
 
   fileToEdit!: File;
   User: any;
+  showAdditionalFields: boolean = false;
+  manuallyEnteredPosition: string = ''; // To store manually entered position
+  manuallyEnteredName: string = ''; // To store manually entered name
 
 
   DutartionEquip: any;
@@ -127,8 +130,8 @@ Code:any=[]
     private drillService: AddNewDrillServiceService,
     private fb: FormBuilder,
     private router: Router,
-    private cdr: ChangeDetectorRef) { 
-      
+    private cdr: ChangeDetectorRef) {
+
     }
 
 
@@ -138,8 +141,8 @@ Code:any=[]
       this.drillId = params.get("id");
       console.log(this.drillId)
     }),
-   
-   
+
+
 
       this.drillService.GetDrillByID(this.drillId, this.User.ID, this.User.Role).subscribe({
         next: data => {
@@ -182,9 +185,9 @@ Code:any=[]
          else{
           this.TeamMemeber4_Code = data.data.teamMemeberCode4
           this.TeamMemeber4_Position = data.data.teamMemeberPosition4;
-          this.TeamMemeber4_Name = data.data.teamMemeberName4;  
+          this.TeamMemeber4_Name = data.data.teamMemeberName4;
          }
-            
+
          if(data.data.teamMemeberCode5 ===''|| data.data.teamMemeberCode5 === null)
          {
            this.TeamMemeber5_Code=0;
@@ -192,7 +195,7 @@ Code:any=[]
          else{
           this.TeamMemeber5_Code = data.data.teamMemeberCode5
           this.TeamMemeber5_Position = data.data.teamMemeberPosition5;
-          this.TeamMemeber5_Name = data.data.teamMemeberName5;  
+          this.TeamMemeber5_Name = data.data.teamMemeberName5;
          }
 
          if(data.data.teamMemeberCode6 ===''|| data.data.teamMemeberCode6 === null)
@@ -202,7 +205,7 @@ Code:any=[]
          else{
           this.TeamMemeber6_Code = data.data.teamMemeberCode6
           this.TeamMemeber6_Position = data.data.teamMemeberPosition6;
-          this.TeamMemeber6_Name = data.data.teamMemeberName6;  
+          this.TeamMemeber6_Name = data.data.teamMemeberName6;
          }
 
          if(data.data.teamMemeberCode7 ===''|| data.data.teamMemeberCode7 === null)
@@ -212,7 +215,7 @@ Code:any=[]
          else{
           this.TeamMemeber7_Code = data.data.teamMemeberCode7
           this.TeamMemeber7_Position = data.data.teamMemeberPosition7;
-          this.TeamMemeber7_Name = data.data.teamMemeberName7;  
+          this.TeamMemeber7_Name = data.data.teamMemeberName7;
          }
 
           console.log('***********this.QHSE_Code here ******************')
@@ -235,7 +238,7 @@ Code:any=[]
               console.log(this.QHSE_Name);
               console.log("this.QHSE_PositionID");
               console.log(this.QHSEPositionID);
-              
+
               this.dataService.GetPositionByID(this.QHSEPositionID).subscribe({
                 next: data => {
                   this.QHSE_Position = data.data.name;
@@ -252,7 +255,7 @@ Code:any=[]
               this.ErrorMessage = err;
               console.log(err);
             }
-          });   
+          });
           this.dataService.GetEmpCodeByCode(this.STP_Code).subscribe({
             next: data => {
               this.STP_Code = this.drill.stpCode
@@ -392,11 +395,11 @@ Code:any=[]
                 console.log(err)
             }
           })
-        
+
         },
         error: (erorr: string) => this.ErrorMessage = erorr
       }),
-      
+
 
       this.dataService.GetEmpCode().subscribe({
         next: data => {
@@ -434,7 +437,7 @@ Code:any=[]
                 [
                   Validators.required
                 ]
-                
+
               ),
               drillTypeId: this.fb.control(
                 '',
@@ -496,7 +499,7 @@ Code:any=[]
                   Validators.required
                 ]
               ),
-      
+
               teamMemeberCode1: this.fb.control(
                 '',
                 [
@@ -515,7 +518,7 @@ Code:any=[]
                   Validators.required
                 ]
               ),
-      
+
               teamMemeberCode2: this.fb.control(
                 '',
                 [
@@ -534,7 +537,7 @@ Code:any=[]
                   Validators.required
                 ]
               ),
-      
+
               teamMemeberCode3: this.fb.control(
                 '',
                 [
@@ -553,7 +556,7 @@ Code:any=[]
                   Validators.required
                 ]
               ),
-      
+
               teamMemeberCode4: this.fb.control(
                 0,
                 [
@@ -572,7 +575,7 @@ Code:any=[]
                   // Validators.required
                 ]
               ),
-      
+
               teamMemeberCode5: this.fb.control(
                 0,
                 [
@@ -590,31 +593,31 @@ Code:any=[]
                 [
                 ]
               ),
-      
+
               teamMemeberCode6: this.fb.control(
                 0,[]
               ),
               teamMemeberPosition6: this.fb.control(
                 '',[]
-               
+
               ),
               teamMemeberName6: this.fb.control(
                 '',[]
-                
+
               ),
-      
+
               teamMemeberCode7: this.fb.control(
                 0,[]
-               
+
               ),
               teamMemeberPosition7: this.fb.control(
                 0,[]
-                
+
               ),
               teamMemeberName7: this.fb.control(
                 0,[]
               ),
-      
+
               drillScenario: this.fb.control(
                 '',
                 [
@@ -639,7 +642,7 @@ Code:any=[]
               ),
               duration: this.fb.control(
                 '',
-                 []           
+                 []
               ),
               emergencyEquipmentUsed: this.fb.control(
                 '',
@@ -665,7 +668,7 @@ Code:any=[]
                   Validators.required
                 ]
               ),
-      
+
               userID: this.fb.control(this.UserJsonObj.ID, [Validators.required]),
               images: this.fb.control(null)
             }),
@@ -679,9 +682,9 @@ Code:any=[]
           this.ErrorMessage = err,
             console.log(this.ErrorMessage)
         }
-      
-      
-      
+
+
+
       }),
       this.dataService.GetRig().subscribe({
         next: data => {
@@ -695,34 +698,79 @@ Code:any=[]
       })
 
 
+  // Subscribe to form control value changes to detect changes in the selected code
+  this.drillForm.get('teamMemeberCode3')?.valueChanges.subscribe((value) => {
+    if (value === '0') {
+      this.showAdditionalFields = true;  // Show fields when code is 0
+      this.drillForm.get('teamMemeberPosition3')?.setValidators([Validators.required]);
+      this.drillForm.get('teamMemeberName3')?.setValidators([Validators.required]);
+    } else {
+      this.showAdditionalFields = false;  // Hide fields otherwise
+      // Clear validators when fields are hidden
+      this.drillForm.get('teamMemeberPosition3')?.clearValidators();
+      this.drillForm.get('teamMemeberName3')?.clearValidators();
+      this.fetchDetailsFromDatabase(value);
+    }
+    this.drillForm.get('teamMemeberPosition3')?.updateValueAndValidity();
+    this.drillForm.get('teamMemeberName3')?.updateValueAndValidity();
 
+    // Call saveManualEntry to save manual inputs if needed
+    this.saveManualEntry();
+  });
   }
+
+
+fetchDetailsFromDatabase(code: number) {
+  this.dataService.GetEmpCodeByCode(code).subscribe({
+    next: (data) => {
+      if (!this.showAdditionalFields) {
+        this.drillForm.patchValue({
+          teamMemeberPosition3: data.data.position,
+          teamMemeberName3: data.data.name
+        });
+      }
+    },
+    error: (err) => {
+      console.log("Error fetching details:", err);
+    }
+  });
+}
+
+saveManualEntry() {
+  if (this.showAdditionalFields) {
+    // Update manually entered values to ensure they persist
+    this.manuallyEnteredPosition = this.drillForm.get('teamMemeberPosition3')?.value;
+    this.manuallyEnteredName = this.drillForm.get('teamMemeberName3')?.value;
+  }
+  }
+
+
 
   getDiff(){
     const completedTime = this.TimeCompleted.split(':');
     const initiatedTime = this.TimeInitiated.split(':');
-  
+
     if (completedTime.length === 3 && initiatedTime.length === 3) {
       const completedHours = parseInt(completedTime[0]);
       const completedMinutes = parseInt(completedTime[1]);
       const completedSeconds = parseInt(completedTime[2]);
-  
+
       const initiatedHours = parseInt(initiatedTime[0]);
       const initiatedMinutes = parseInt(initiatedTime[1]);
       const initiatedSeconds = parseInt(initiatedTime[2]);
-  
+
       const completedInMilliseconds = (completedHours * 3600000) + (completedMinutes * 60000) + (completedSeconds * 1000);
       const initiatedInMilliseconds = (initiatedHours * 3600000) + (initiatedMinutes * 60000) + (initiatedSeconds * 1000);
-  
+
       const timeDifferenceMilliseconds =Math.abs(completedInMilliseconds - initiatedInMilliseconds);
-    
+
 
         // Convert timeDifferenceMilliseconds to mm:ss format
         const minutes = Math.floor(timeDifferenceMilliseconds / 60000);
         const seconds = ((timeDifferenceMilliseconds % 60000) / 1000).toFixed(0);
-    
+
         this.DutartionEquip = `${minutes}:${seconds}`;
-  
+
         console.log(this.DutartionEquip);
       } else {
         console.log('Invalid time format in one or both time values.');
@@ -886,35 +934,46 @@ Code:any=[]
     })
   }
   selectedMenaceTeamMemeber3(event: any) {
-    console.log("event.target.value")
-    console.log(event.target.value)
-    this.dataService.GetEmpCodeByCode(event.target.value).subscribe({
+    const code = event.target.value;
+
+    this.dataService.GetEmpCodeByCode(code).subscribe({
       next: data => {
-        this.TeamMemeber3_NameId = data.data.id
-        this.TeamMemeber3_Name = data.data.name,
-          this.TeamMemeber3_PositionID = data.data.positionId
-        console.log("this.employee_name")
-        console.log(this.TeamMemeber3_Name)
-        console.log("this.employeePositionID")
-        console.log(this.TeamMemeber3_PositionID)
+        this.TeamMemeber3_NameId = data.data.id;
+        this.TeamMemeber3_Name = data.data.name;
+        this.TeamMemeber3_PositionID = data.data.positionId;
+
+        console.log("Employee Name:", this.TeamMemeber3_Name);
+        console.log("Employee Position ID:", this.TeamMemeber3_PositionID);
+
         this.dataService.GetPositionByID(this.TeamMemeber3_PositionID).subscribe({
-          next: data => {
-            this.TeamMemeber3_Position = data.data.name,
-              console.log("this.PusherPosition")
-            console.log(this.TeamMemeber3_Position)
+          next: positionData => {
+            this.TeamMemeber3_Position = positionData.data.name;
+            console.log("Employee Position:", this.TeamMemeber3_Position);
+
+            // Update form controls with fetched values
+            this.drillForm.patchValue({
+              teamMemeberName3: this.TeamMemeber3_Name,
+              teamMemeberPosition3: this.TeamMemeber3_Position
+            });
+            console.log("this.drillForm.get('teamMemeberPosition3')?.value"); // Should log the updated position
+
+            console.log(this.drillForm.get('teamMemeberPosition3')?.value); // Should log the updated position
+
           },
           error: err => {
-            this.ErrorMessage = err,
-              console.log(this.ErrorMessage)
+            this.ErrorMessage = err;
+            console.error(this.ErrorMessage);
           }
-        })
+        });
       },
       error: err => {
-        this.ErrorMessage = err,
-          console.log(err)
+        this.ErrorMessage = err;
+        console.error(err);
       }
-    })
+    });
   }
+
+
   selectedMenaceTeamMemeber4(event: any) {
     console.log("event.target.value")
     console.log(event.target.value)
@@ -1036,8 +1095,8 @@ Code:any=[]
       }
     })
   }
- 
- 
+
+
   get id() {
     return this.drillForm.get('id');
   }
@@ -1183,7 +1242,7 @@ Code:any=[]
     return this.drillForm.get('images');
   }
 
- 
+
 
 
 
@@ -1249,24 +1308,25 @@ Code:any=[]
       Formdata.append('drillScenario', this.drillScenario?.value);
 
       Formdata.append('userID', this.UserJsonObj.ID);
-     
+
       for (let i = 0; i < this.SelectFiles.length; i++) {
         Formdata.append('images', this.SelectFiles[i]);
       }
       this.drillService.EditDrill(Formdata, this.drillId).subscribe({
         next: data => {
           console.log(data)
-          this.router.navigate(['/Dashboard/Drill']);
+         // this.router.navigate(['/Dashboard/Drill']);
         },
         error: error => console.log(error)
       });
+      this.saveManualEntry()
   }
 
 
   GetImagePath(event: any) {
      this.SelectFiles = event.target.files;
-  
- 
+
+
 }
 }
 
@@ -1275,4 +1335,3 @@ Code:any=[]
 
 
 
-  

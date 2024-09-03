@@ -5,7 +5,7 @@
       </h2>
 
     </div>
-    <a routerLink="/VehicleWeeklyCheck/Add" class="btn btn-primary me-3">Add New Vehicle Weekly Checklist 
+    <a routerLink="/VehicleWeeklyCheck/Add" class="btn btn-primary me-3">Add New Vehicle Weekly Checklist
     </a>
     <a (click)="Download()" class="btn btn-primary">Export Data</a>
     <table class="table table-striped text-center mt-2">
@@ -51,4 +51,14 @@
         <i class="fa-solid fa-angles-right"></i>
       </button>
     </div>
+       <!-- Loader and Progress Bar -->
+       <div *ngIf="isLoading" class="loader-overlay overlay">
+        <div class="loader-container" >
+          <div class="progress-bar">
+            <div class="progress-bar-fill" [style.width.%]="progress"></div> <!-- Ensure this binding is correct -->
+          </div>
+          <div class="spinner-border" role="status"></div>
+          <p style="font-size: large;">Loading... {{progress}}%</p>
+        </div>
+      </div>
   </div>

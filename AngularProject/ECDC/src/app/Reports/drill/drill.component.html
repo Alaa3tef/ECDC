@@ -268,48 +268,52 @@
         </tr>
         <tr>
           <td>
-            <!-- <label class="form-label m-0 pb-0">Emp.No: </label> -->
-            <input list="QHSEmenace" autocomplete="off" formControlName="teamMemeberCode3" name="teamMemeberCode3"
+            <!-- Code Input -->
+            <input list="teamMemeberCode3" autocomplete="off" formControlName="teamMemeberCode3" name="teamMemeberCode3"
               class="form-control" (input)="selectedMenaceTeamMemeber3($event)">
             <datalist id="teamMemeberCode3">
               <option *ngFor="let menace of QHSECodeList">{{menace.code}} </option>
             </datalist>
-            <div
-            *ngIf="teamMemeberCode3?.invalid && (teamMemeberCode3?.dirty || teamMemeberCode3?.touched)">
-            <small class="text-danger" *ngIf="teamMemeberCode3?.errors?.['required']">
-              Code is required
-            </small>
-          </div>
+            <div *ngIf="drillForm.get('teamMemeberCode3')?.invalid && (drillForm.get('teamMemeberCode3')?.dirty || drillForm.get('teamMemeberCode3')?.touched)">
+              <small class="text-danger" *ngIf="drillForm.get('teamMemeberCode3')?.errors?.['required']">
+                Code is required
+              </small>
+            </div>
           </td>
+
+          <!-- Position Input -->
           <td>
-            <div class="from-group">
-              <!-- <label for="teamMemeberPosition" class="form-label"> Position :</label> -->
-              <input class="form-control" [value]="TeamMemeber3_Position" disabled />
-              <input name="teamMemeberPosition3" formControlName="teamMemeberPosition3" id="teamMemeberPosition3"
-                class="form-control" [(ngModel)]="TeamMemeber3_Position" hidden />
-                <div
-                *ngIf="teamMemeberPosition3?.invalid && (teamMemeberPosition3?.dirty || teamMemeberPosition3?.touched)">
-                <small class="text-danger" *ngIf="teamMemeberPosition3?.errors?.['required']">
-                  POsition is required
+            <div class="form-group">
+              <!-- Show input when code is 0, otherwise show the value -->
+              <input *ngIf="showAdditionalFields; else showPositionFromDB" formControlName="teamMemeberPosition3" class="form-control" placeholder="Enter Position" />
+              <ng-template #showPositionFromDB >
+                <input class="form-control" [value]="drillForm.get('teamMemeberPosition3')?.value" disabled />
+              </ng-template>
+              <div *ngIf="drillForm.get('teamMemeberPosition3')?.invalid && (drillForm.get('teamMemeberPosition3')?.dirty || drillForm.get('teamMemeberPosition3')?.touched)">
+                <small class="text-danger" *ngIf="drillForm.get('teamMemeberPosition3')?.errors?.['required']">
+                  Position is required
                 </small>
               </div>
             </div>
           </td>
+
+          <!-- Name Input -->
           <td>
             <div class="form-group">
-              <!-- <label class="form-label" for="teamMemeberName">Name :</label> -->
-              <input class="form-control" [value]="TeamMemeber3_Name" disabled />
-              <input name="teamMemeberName3" formControlName="teamMemeberName3" id="teamMemeberName3"
-                class="form-control" [(ngModel)]="TeamMemeber3_Name" hidden />
-                <div
-                *ngIf="teamMemeberName3?.invalid && (teamMemeberName3?.dirty || teamMemeberName3?.touched)">
-                <small class="text-danger" *ngIf="teamMemeberName3?.errors?.['required']">
-                  NAME is required
+              <!-- Show input when code is 0, otherwise show the value -->
+              <input *ngIf="showAdditionalFields; else showNameFromDB" formControlName="teamMemeberName3" class="form-control" placeholder="Enter Name" />
+              <ng-template #showNameFromDB>
+                <input class="form-control" [value]="drillForm.get('teamMemeberName3')?.value" disabled />
+              </ng-template>
+              <div *ngIf="drillForm.get('teamMemeberName3')?.invalid && (drillForm.get('teamMemeberName3')?.dirty || drillForm.get('teamMemeberName3')?.touched)">
+                <small class="text-danger" *ngIf="drillForm.get('teamMemeberName3')?.errors?.['required']">
+                  Name is required
                 </small>
               </div>
             </div>
           </td>
         </tr>
+
         <tr>
           <td>
             <!-- <label class="form-label m-0 pb-0">Emp.No: </label> -->
