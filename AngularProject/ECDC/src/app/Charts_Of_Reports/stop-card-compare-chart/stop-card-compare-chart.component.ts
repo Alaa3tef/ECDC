@@ -178,6 +178,14 @@ export class StopCardCompareChartComponent {
 
   User:any;
   ErrorMessage: string = '';
+  ColorsBackground: any[] = []
+  Rigs: any[] = [];
+  PotentialList: any[] = [];
+  pushingList: any[][] = []//any[]=[];
+  pushingListCounthing: any[] = [];
+  RigNames: string[] = [];
+  Colors: string[] = [];
+
 
   constructor(private loginService:LoginService,private dataService: DataService) { }
 
@@ -205,14 +213,26 @@ export class StopCardCompareChartComponent {
         data.data.forEach((ele: any) => {
           this.Year.push(ele.date)
         });
-    
+
         this.Year.forEach((ele: any) => {
           const dateObject = new Date(ele);
           const year = dateObject.getFullYear();
           this.YearList.push(year)
           this.YearList= Array.from(new Set(this.YearList))
-    
+
         });
+      }
+    })
+    this.dataService.GetStopCards(this.User.ID, this.User.Role).subscribe({
+      next: data => {
+        this.Rigs = data.data;
+        this.Rigs.forEach(element => {
+          // var name= 'Rig-'+element.number
+          this.RigNames.push(element.userName)
+
+        });
+        console.log('this.RigNamessssssssssssssssssssssssssssss')
+        console.log(this.RigNames)
       }
     })
   }
@@ -786,5 +806,113 @@ export class StopCardCompareChartComponent {
 
       }
     })
+
+    this.dataService.GetDataForChartsCompare(this.month1, this.month2,this.SelectedYear,this.User.ID,this.User.Role).subscribe({
+      next: data => {
+        this.clearChart("myChart4");
+        this.PotentialList = data.data;
+        this.pushingList = [];
+
+        // Organize the data by username
+        const reportCounts = this.PotentialList.reduce((acc, item) => {
+          if (!acc[item.userName]) {
+            acc[item.userName] = 0;
+          }
+          acc[item.userName] += 1;
+          return acc;
+        }, {});
+
+        // Extract usernames and their corresponding counts
+        this.RigNames = Object.keys(reportCounts); // Usernames
+        this.pushingListCounthing = Object.values(reportCounts); // Number of reports per user
+        console.log("ggggggggggggggggggggg",this.pushingListCounthing);
+        // Generate random colors
+        this.ColorsBackground = [];
+        this.Colors = [];
+        for (let i = 0; i < this.pushingListCounthing.length; i++) {
+          const red = Math.floor(Math.random() * 256);
+          const green = Math.floor(Math.random() * 200);
+          const blue = Math.floor(Math.random() * 256);
+          this.ColorsBackground.push(`rgba(${red}, ${green}, ${blue}, 0.2)`);
+          this.Colors.push(`rgba(${red}, ${green}, ${blue}, 1)`);
+        }
+
+        // Create or update the chart
+        this.AddCanvas("myChart4", "chart4");
+
+        const myChart4 = new Chart("myChart4", {
+          type: 'bar',
+          data: {
+            labels: this.RigNames, // Unique Usernames
+            datasets: [{
+              label: `Reports made by users (${event.target.value})`,
+              data: this.pushingListCounthing, // Total number of reports per user
+              backgroundColor: this.ColorsBackground,
+              borderColor: this.Colors,
+              borderWidth: 1,
+              datalabels: {
+                display: true, // Show labels
+                color: this.Colors, // Color of the text labels
+                anchor: 'center', // Center the labels on the bars
+                align: 'center',
+                font: {
+                  size: 14, // Adjust the font size for readability
+                },
+                formatter: function(value, context) {
+                  return value; // Display the count directly on the chart
+                }
+              }
+            }]
+          },
+          options: {
+            responsive: true,
+            scales: {
+              x: {
+                ticks: {
+                  autoSkip: false, // Don't skip ticks (since users should be unique)
+                  maxRotation: 60, // Increase label rotation angle if needed
+                  minRotation: 60,
+                  maxTicksLimit: 20, // Adjust the limit based on number of users
+                },
+                title: {
+                  display: true,
+                  text: 'Usernames',
+                },
+              },
+              y: {
+                beginAtZero: true,
+                title: {
+                  display: true,
+                  text: 'Number of Reports',
+                }
+              }
+            },
+            plugins: {
+              legend: {
+                display: true,
+                position: 'top',
+              },
+              tooltip: {
+                enabled: true, // Enable tooltips to show data on hover
+              },
+              datalabels: {
+                display: true, // Ensure datalabels are displayed
+                align: 'end',
+                anchor: 'end',
+                font: {
+                  weight: 'bold',
+                  size: 14,
+                },
+                formatter: (value) => {
+                  return value; // Show the value directly
+                }
+              }
+            },
+          }
+        });
+
+
+      }
+    });
   }
 }

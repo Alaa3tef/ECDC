@@ -51,11 +51,9 @@
         <tr *ngIf="isOtherSelected">
           <td class="td-content">
             <label class="form-label m-0 pb-0">Code / National ID: </label>
-            <input formControlName="code" name="code" class="form-control" autocomplete="off">
+            <input formControlName="code" name="code" class="form-control" autocomplete="off" appNationalIdInputOnly (keypress)="validateKeyPress($event)">
             <div *ngIf="MedicalHistoryForm.get('code')?.invalid && (MedicalHistoryForm.get('code')?.dirty || MedicalHistoryForm.get('code')?.touched)">
               <small class="text-danger" *ngIf="MedicalHistoryForm.get('code')?.errors?.['required']">Code / National ID is required.</small>
-              <small class="text-danger" *ngIf="MedicalHistoryForm.get('code')?.errors?.['minlength']">Code / National ID must be exactly 14 digits.</small>
-              <small class="text-danger" *ngIf="MedicalHistoryForm.get('code')?.errors?.['maxlength']">Code / National ID must be exactly 14 digits.</small>
             </div>
           </td>
           <td class="td-content">

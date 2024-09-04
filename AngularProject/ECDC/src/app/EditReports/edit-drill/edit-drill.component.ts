@@ -1315,7 +1315,7 @@ saveManualEntry() {
       this.drillService.EditDrill(Formdata, this.drillId).subscribe({
         next: data => {
           console.log(data)
-         // this.router.navigate(['/Dashboard/Drill']);
+          this.router.navigate(['/Dashboard/Drill']);
         },
         error: error => console.log(error)
       });

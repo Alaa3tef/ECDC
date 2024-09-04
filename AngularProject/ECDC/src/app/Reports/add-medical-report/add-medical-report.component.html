@@ -52,16 +52,12 @@
           <td>
             <label class="form-label m-0 pb-0">Code / National ID: </label>
             <input formControlName="code" name="code" class="form-control" autocomplete="off" maxlength="14"
-              (keypress)="validateKeyPress($event)">
+              (keypress)="validateKeyPress($event)" appNationalIdInputOnly>
 
             <div
               *ngIf="MedicalReportForm.get('code')?.invalid && (MedicalReportForm.get('code')?.dirty || MedicalReportForm.get('code')?.touched)">
               <small class="text-danger" *ngIf="MedicalReportForm.get('code')?.errors?.['required']">Code / National ID
                 is required.</small>
-              <small class="text-danger" *ngIf="MedicalReportForm.get('code')?.errors?.['minlength']">Code / National ID
-                must be exactly 14 digits.</small>
-              <small class="text-danger" *ngIf="MedicalReportForm.get('code')?.errors?.['maxlength']">Code / National ID
-                must be exactly 14 digits.</small>
             </div>
           </td>
           <td>

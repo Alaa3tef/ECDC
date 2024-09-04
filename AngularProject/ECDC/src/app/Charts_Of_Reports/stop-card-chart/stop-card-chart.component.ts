@@ -507,16 +507,6 @@ onMonth(event:any){
         this.clearChart("myChart4");
         this.PotentialList = data.data;
         this.pushingList = [];
-    
-        // // Organize the data by username
-        // this.RigNames.forEach(userName => {
-        //   const userReports = this.PotentialList.filter(item => item.userName === userName);
-        //   this.pushingList.push(userReports);
-        // });
-    
-        // // Count reports per username
-        // this.pushingListCounthing = this.pushingList.map(row => row.length);
-    
 
         // Organize the data by username
         const reportCounts = this.PotentialList.reduce((acc, item) => {
@@ -541,10 +531,10 @@ onMonth(event:any){
           this.ColorsBackground.push(`rgba(${red}, ${green}, ${blue}, 0.2)`);
           this.Colors.push(`rgba(${red}, ${green}, ${blue}, 1)`);
         }
-    
+
         // Create or update the chart
         this.AddCanvas("myChart4", "chart4");
-    
+
         const myChart4 = new Chart("myChart4", {
           type: 'bar',
           data: {
@@ -615,34 +605,12 @@ onMonth(event:any){
             },
           }
         });
-        
-        
+
+
       }
     });
-    
+
 
   }
 
-  // clearChart(elementId: string) {
-  //   if (document.getElementById(elementId)) {
-  //     var charts = Chart.instances; // Get all chart instances
-  //     console.log("charts*///******************")
-  //     console.log(charts)
-  //     for (var key in charts) { // loop looking for the chart you want to remove
-  //       if (!charts.hasOwnProperty(key)) {
-  //         continue;
-  //       }
-  //       var chartAux = Chart.instances[key];
-  //       if (chartAux.ctx.canvas.id === elementId) {
-  //         // Remove chart-legend before destroying the chart
-  //         var parent = chartAux.ctx.canvas.parentElement;
-  //         var legend = chartAux.ctx.canvas.nextElementSibling as HTMLElement;
-  //         parent.removeChild(legend);
-  //         // Compare id with elementId passed by and if it is the one
-  //         // you want to remove just call the destroy function
-  //         Chart.instances[key].destroy();
-  //       }
-  //     }
-  //   }
-  // }
 }

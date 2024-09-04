@@ -3116,8 +3116,8 @@ namespace TempProject.Migrations
                     b.Property<string>("Family_SurgeryComment")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("GeneralExamination_BloodPressure")
-                        .HasColumnType("int");
+                    b.Property<string>("GeneralExamination_BloodPressure")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("GeneralExamination_HeartRate")
                         .HasColumnType("int");

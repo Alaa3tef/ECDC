@@ -92,7 +92,7 @@ namespace TempProject.DTO
 
         public int? GeneralExamination_Weight { get; set; }
         public int? GeneralExamination_Height { get; set; }
-        public int? GeneralExamination_BloodPressure { get; set; }
+        public string? GeneralExamination_BloodPressure { get; set; }
         public int? GeneralExamination_HeartRate { get; set; }
 
         public string? DoctorComments { get; set; }

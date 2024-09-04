@@ -94,9 +94,7 @@ export class AddMedicalReportComponent {
           code: this.fb.control(
             '',
             [
-              Validators.required,
-              Validators.minLength(14),
-              Validators.maxLength(14)
+              Validators.required
             ]
           ),
           name: this.fb.control(

@@ -391,8 +391,8 @@ export class AddMedicalHistoryReportComponent {
             '',
             [
               Validators.required,
-              Validators.minLength(14),
-              Validators.maxLength(14)
+              // Validators.minLength(14),
+              // Validators.maxLength(14)
             ]
           ),
           jop: this.fb.control(

@@ -174,10 +174,16 @@ namespace TempProject.Controllers
                         PPEReceivingDTO.ThermalCoverallsSize = PPEReceiving.ThermalCoverallsSize;
                         PPEReceivingDTO.SafetyBootsSize = PPEReceiving.SafetyBootsSize;
                         List<PPEAndPPEReceiving> PPEs = PPERepo.getall().Where(a => a.PPEReceivingId == PPEReceiving.Id).ToList();
-                        PPEReceivingDTO.PPE = PPEs;
-                   
+						PPEReceivingDTO.PPE = PPEs;
+						foreach (var ppeAndPPEReceiving in PPEReceiving.PPEAndPPEReceiving)
+						{
+							string pPEDTO;
+							pPEDTO = ppeAndPPEReceiving.PPE.Name;
+							PPEReceivingDTO.PPEs.Add(pPEDTO);
 
-                        newTemp.Add(PPEReceivingDTO);
+						}
+
+                       newTemp.Add(PPEReceivingDTO);
 					
 					}
 

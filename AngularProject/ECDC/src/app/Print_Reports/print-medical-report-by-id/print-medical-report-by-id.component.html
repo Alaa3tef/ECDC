@@ -139,7 +139,7 @@
                             <h6 class="mb-0">
                               <span
                                 style="font-weight: bold; color: rgb(38, 38, 202); text-decoration: underline;">Diagnosis:</span>
-                              <div class="p-1 mt-3" style="border: 1px solid black; max-width: 100%; overflow: hidden;">
+                              <div class="p-1 mt-3 recommendations-container" style="border: 1px solid black; max-width: 100%; overflow: hidden;">
                                 <ul>
                                   <li>
                                     {{ MedicalReportObj.diagnosis }}
@@ -164,7 +164,7 @@
                               <span
                                 style="font-weight: bold; color: rgb(38, 38, 202); text-decoration: underline;">Doctor
                                 Comment :</span>
-                              <div class="p-1 mt-3" style="border: 1px solid black; max-width: 100%; overflow: hidden;">
+                              <div class="p-1 mt-3 recommendations-container" style="border: 1px solid black; max-width: 100%; overflow: hidden;">
                                 <ul>
                                   <li>
                                     {{ MedicalReportObj.doctorComment }}
@@ -189,7 +189,7 @@
                               <span
                                 style="font-weight: bold; color: rgb(38, 38, 202); text-decoration: underline;">Doctor
                                 Recommendation :</span>
-                              <div class="p-1 mt-3" style="border: 1px solid black; max-width: 100%; overflow: hidden;">
+                              <div class="p-1 mt-3 recommendations-container" style="border: 1px solid black; max-width: 100%; overflow: hidden;">
                                 <ul>
                                   <li>
                                     {{ MedicalReportObj.doctorRecommendation }}
@@ -232,5 +232,30 @@
         <input *ngIf="Data" type="submit" class="btn btn-primary my-4" value="Print Data" (click)="print()" />
       </div>
     </div>
+  </div>
+
+  <div class="col-12 borderNone mt-5" >
+    <table class="table mb-1 borderNone"
+      style="display: flex; align-items: center; justify-content: center; border: none;">
+      <tbody>
+        <tr>
+          <td scope="row" class="borderNone">
+            Issue No. 01
+            <br>
+            Revision No. 00
+          </td>
+          <td class="borderNone" scope="row">
+            Document No. ECDC-QHSE-FM-H008
+            <br>
+            Page 1 / 1
+          </td>
+          <td class="borderNone" scope="row">
+            Issue Date: 01/01/2021
+            <br>
+            Revision Date: 01/01/2023
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>

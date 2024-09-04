@@ -241,7 +241,7 @@
                              placeholder="Enter Name" (blur)="saveManualEntry()"/>
                       <!-- Display name from database when not manually entered -->
                       <ng-template #showNameFromDBTemplate>
-                        <input class="form-control"  [value]="drillForm.get('teamMemeberName3')?.value" disabled />
+                        <input class="form-control"  [value]="drill.teamMemeberName3" disabled />
                       </ng-template>
                     </div>
                   </td>

@@ -81,7 +81,7 @@ export interface IMedicalHistory{
 
       generalExamination_Weight :number,
       generalExamination_Height :number,
-      generalExamination_BloodPressure :number,
+      generalExamination_BloodPressure :string,
       generalExamination_HeartRate :number,
 
        doctorComments :string,
